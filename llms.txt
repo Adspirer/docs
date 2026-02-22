@@ -1,0 +1,34 @@
+# Adspirer
+
+## Docs
+
+- [Google Ads Integration Guide](https://www.adspirer.com/docs/ad-platforms/google-ads.md): Manage Google Search and Performance Max campaigns with AI. 39 tools for keyword research, ad copy generation, performance analysis, and budget optimization.
+- [LinkedIn Ads Integration Guide](https://www.adspirer.com/docs/ad-platforms/linkedin-ads.md): Connect LinkedIn Ads to Adspirer for B2B campaign management. Target by job title, industry, and seniority with 28 AI-powered tools for sponsored content and lead generation.
+- [Meta Ads Integration](https://www.adspirer.com/docs/ad-platforms/meta-ads.md): Manage Facebook and Instagram campaigns with AI. 20 tools for creative testing, audience targeting, and performance optimization.
+- [TikTok Ads Integration Guide](https://www.adspirer.com/docs/ad-platforms/tiktok-ads.md): Create and manage TikTok In-Feed video campaigns with AI. 4 tools for video asset management, campaign creation, and performance tracking.
+- [Agent Skills Overview](https://www.adspirer.com/docs/agent-skills/overview.md): Turn your AI assistant into an expert advertising manager. Skills teach AI the right workflow for using Adspirer's 100+ tools—research before creating, validate before launching, confirm before spending.
+- [Tool Catalog](https://www.adspirer.com/docs/agent-skills/tools.md): Complete reference of all 100+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters.
+- [Core Workflows](https://www.adspirer.com/docs/agent-skills/workflows.md): Complete workflows for ad campaign management. Step-by-step tool sequences for Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads campaign creation, optimization, and analysis.
+- [ChatGPT Setup Guide](https://www.adspirer.com/docs/ai-clients/chatgpt.md): Connect ChatGPT to your ad accounts with Adspirer's MCP connector. Manage Google Ads, Meta Ads, LinkedIn Ads, and TikTok campaigns directly from ChatGPT.
+- [Claude Setup Guide](https://www.adspirer.com/docs/ai-clients/claude.md): Connect Claude to your ad accounts with Adspirer's MCP connector. Manage Google Ads, Meta Ads, LinkedIn Ads, and TikTok campaigns with progress streaming and natural tool invocation.
+- [Claude Code Setup Guide](https://www.adspirer.com/docs/ai-clients/claude-code.md): Connect Claude Code to Adspirer MCP in 2 minutes. Manage Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads from your terminal with 100+ tools.
+- [Codex Setup Guide](https://www.adspirer.com/docs/ai-clients/codex.md): Connect Codex to Adspirer MCP for autonomous ad management across Google, Meta, LinkedIn, and TikTok Ads. AI agents that optimize daily.
+- [Cursor Setup Guide](https://www.adspirer.com/docs/ai-clients/cursor.md): Connect Cursor IDE to Adspirer MCP. Manage Google, Meta, LinkedIn, and TikTok Ads from your editor with 100+ tools and Cursor Rules.
+- [Custom GPT Setup Guide](https://www.adspirer.com/docs/ai-clients/custom-gpt.md): Use Adspirer directly inside ChatGPT. Manage Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads campaigns with natural language — no MCP setup required.
+- [OpenClaw Setup Guide](https://www.adspirer.com/docs/ai-clients/openclaw.md): Install the Adspirer OpenClaw plugin. 100+ ad tools, 14KB skill file built in, zero configuration. Manage Google, Meta, LinkedIn, and TikTok Ads.
+- [Windsurf Setup Guide](https://www.adspirer.com/docs/ai-clients/windsurf.md): Connect Windsurf IDE to Adspirer MCP. Manage Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads from Codeium's AI-powered editor with 100+ tools.
+- [AI Advertising: The Complete Guide to Agentic Marketing in 2025](https://www.adspirer.com/docs/guides/ai-advertising.md): Learn how AI advertising works with ChatGPT and Claude. Discover agentic marketing strategies to automate Google Ads, TikTok Ads, and Meta Ads in 2025.
+- [How to Automate Facebook Ads in 2025 - Complete Guide](https://www.adspirer.com/docs/guides/automate-facebook-ads.md): Learn how to automate Facebook Ads with rules, APIs, and AI tools. Complete guide to Meta advertising automation for 2025.
+- [How to Automate Google Ads in 2025 - Complete Guide](https://www.adspirer.com/docs/guides/automate-google-ads.md): Learn how to automate Google Ads with scripts, rules, and AI tools. Step-by-step guide with examples and best practices for 2025.
+- [Google Ads Keyword Research with ChatGPT Apps: Complete 2026 Guide](https://www.adspirer.com/docs/guides/chatgpt-google-ads-keywords.md): Master Google Ads keyword research with ChatGPT Apps in 2026. Get real Keyword Planner data, dynamic intent classification, and budget recommendations through conversation.
+- [Google Ads Automation: The Complete Guide for 2025](https://www.adspirer.com/docs/guides/google-ads-automation.md): Master Google Ads automation in 2025. Learn to automate campaigns, bidding, reporting, and optimization using AI tools like ChatGPT and Claude.
+- [Marketing Agency Automation: Scale Your Agency with AI in 2025](https://www.adspirer.com/docs/guides/marketing-agency-automation.md): Discover how marketing agencies scale with AI automation. Learn to manage more clients, reduce overhead, and improve campaign performance with Adspirer.
+- [TikTok Ads Guide: Complete Advertising Playbook for 2025](https://www.adspirer.com/docs/guides/tiktok-ads-guide.md): The complete TikTok Ads guide for 2025. Learn campaign setup, creative best practices, audience targeting, and AI-powered automation strategies.
+- [Introduction](https://www.adspirer.com/docs/introduction.md): 100+ tools across 4 ad platforms. Connect from any AI assistant in minutes.
+- [Quickstart](https://www.adspirer.com/docs/quickstart.md): Get started with Adspirer in under 5 minutes. Connect your AI assistant and start managing ad campaigns.
+
+
+## Optional
+
+- [Blog](https://www.adspirer.com/blog)
+- [MCP Server](https://mcp.adspirer.com)

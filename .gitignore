@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+
+# Internal/audit files
+MINTLIFY-AUDIT*
+PHASE-*-SUMMARY.md
+
+# TTS generation scripts and audio
+generate-*.py
+*.mp3
+
+# Node
+node_modules/
