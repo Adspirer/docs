@@ -1,0 +1,84 @@
+---
+title: "Changelog"
+description: "Product updates, new features, and improvements to Adspirer."
+---
+
+<Update label="February 2025" description="v1.2.0" tags={["Platform", "AI Clients", "Documentation"]}>
+
+## Documentation Site Launch
+
+Launched comprehensive documentation at [adspirer.com/docs](/introduction) with 24 pages covering all AI clients, ad platforms, agent skills, and in-depth guides.
+
+- **AI client guides** for ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, and Windsurf
+- **Ad platform guides** for Google Ads (39 tools), Meta Ads (20 tools), LinkedIn Ads (28 tools), and TikTok Ads (4 tools)
+- **Agent skills documentation** with workflows, tool catalog, and safety rules
+- **7 in-depth guides** covering keyword research, automation, and strategy
+- Auto-generated `llms.txt`, `llms-full.txt`, and `skill.md` for AI agent discovery
+- Contextual sharing to ChatGPT, Claude, Cursor, and VS Code
+
+## ChatGPT MCP Connector
+
+Added native MCP connector support for ChatGPT Plus and Pro users. Connect Adspirer directly in ChatGPT Settings with OAuth 2.1 authentication.
+
+## Claude MCP Connector
+
+Added native MCP connector for Claude Pro, Max, Team, and Enterprise. Includes progress streaming for real-time updates during campaign creation.
+
+## Codex Agent Support
+
+Added autonomous agent setup for OpenAI Codex with YAML configuration and skill files.
+
+## OpenClaw Plugin
+
+Released zero-configuration OpenClaw plugin with bundled 14.4KB skill file. Install with `openclaw plugins install openclaw-adspirer`.
+
+</Update>
+
+<Update label="January 2025" description="v1.1.0" tags={["Platform", "Tools"]}>
+
+## LinkedIn Ads Integration
+
+Launched 28 tools for LinkedIn Ads management:
+
+- Sponsored content campaigns with lead gen forms
+- B2B targeting by job title, industry, company size, and seniority
+- Creative performance analysis and audience insights
+- Budget optimization across campaign groups
+
+## TikTok Ads Integration
+
+Added 4 tools for TikTok In-Feed video campaigns:
+
+- Campaign creation with video asset validation
+- Performance analysis and spend tracking
+- Asset management for video creatives
+
+## Agent Skills System
+
+Introduced SKILL.md instruction files that teach AI assistants proven advertising workflows. Skills enforce safety rules like creating campaigns PAUSED, requiring user confirmation before spend, and following research-before-create sequences.
+
+</Update>
+
+<Update label="December 2024" description="v1.0.0" tags={["Platform", "Launch"]}>
+
+## Adspirer MCP Server Launch
+
+Initial release of Adspirer's MCP server at `mcp.adspirer.com` with 100+ tools across 4 ad platforms.
+
+### Google Ads (39 tools)
+- Keyword research with real CPC data from Google Keyword Planner
+- Search and Performance Max campaign creation
+- Wasted spend analysis, budget optimization, and ad extensions
+- Asset discovery, validation, and ad copy generation
+
+### Meta Ads (20 tools)
+- Image, video, and carousel campaign creation
+- Audience targeting and creative fatigue detection
+- Placement optimization and performance analysis
+
+### Core Features
+- OAuth 2.1 authentication with PKCE
+- Multi-platform account management
+- Claude Code and Cursor support via MCP
+
+</Update>

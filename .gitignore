@@ -9,5 +9,8 @@ PHASE-*-SUMMARY.md
 generate-*.py
 *.mp3
 
+# Source logo files
+logo/Frame*
+
 # Node
 node_modules/
