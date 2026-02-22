@@ -33,6 +33,8 @@
           {
             "group": "AI Clients",
             "pages": [
+              "ai-clients/chatgpt",
+              "ai-clients/claude",
               "ai-clients/claude-code",
               "ai-clients/cursor",
               "ai-clients/codex",
