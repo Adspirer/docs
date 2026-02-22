@@ -135,6 +135,12 @@
       "vscode"
     ]
   },
+  "seo": {
+    "metatags": {
+      "canonical": "https://www.adspirer.com"
+    },
+    "indexing": "all"
+  },
   "footer": {
     "socials": {
       "x": "https://x.com/abhilashreddi",
