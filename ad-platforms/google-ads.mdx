@@ -1,0 +1,325 @@
+---
+title: "Google Ads Integration Guide"
+description: "Manage Google Search and Performance Max campaigns with AI. 39 tools for keyword research, ad copy generation, performance analysis, and budget optimization."
+---
+
+# Google Ads Integration
+
+The most comprehensive ad platform integration. Create Search and Performance Max campaigns, research keywords with real CPC data, generate ad copy, and optimize performance with 39 specialized tools.
+
+## Prerequisites
+
+<Note>
+- Google Ads account ([create one here](https://ads.google.com))
+- An active ad account with billing information
+- Admin or Standard access to the account you want to manage
+- Adspirer account connected via [Claude Code](/ai-clients/claude-code), [Cursor](/ai-clients/cursor), or any [supported AI client](https://www.adspirer.com/integrations)
+</Note>
+
+## Connecting Google Ads
+
+Once you've set up Adspirer with your AI client, connect Google Ads:
+
+1. Open your AI assistant (ChatGPT, Claude, Claude Code, etc.)
+2. Say: "Connect my Google Ads account"
+3. Adspirer opens your browser for OAuth authorization
+4. Sign in to your Google account and select the ad account you want to manage
+5. Approve permissions (read campaign data, create ads, manage budgets)
+
+Verify the connection:
+
+```
+Check my connected ad platforms
+```
+
+You should see your Google Ads account listed with account name, customer ID, and active status.
+
+## What You Can Do (39 Tools)
+
+### Performance Analysis
+
+- `get_campaign_performance` -- Pull metrics for campaigns (spend, conversions, CPA, ROAS)
+- `analyze_wasted_spend` -- Find keywords with spend but zero conversions
+- `analyze_search_terms` -- Review actual search queries triggering your ads
+- `explain_performance_anomaly` -- Diagnose sudden CPA spikes or CTR drops
+- `optimize_budget_allocation` -- Recommend budget shifts based on ROAS/CPA
+
+### Keyword Research
+
+- `research_keywords` -- Find keywords with real CPC data from Google Keyword Planner (search volume, competition, estimated bids)
+
+### Ad Copy & Content
+
+- `suggest_ad_content` -- Generate headlines and descriptions optimized for Google's character limits
+- `help_user_upload` -- Guide users through the asset upload process
+
+### Campaign Creation
+
+- `discover_existing_assets` -- Check if account has images, headlines, and descriptions already
+- `validate_and_prepare_assets` -- Verify assets meet Google's requirements before campaign creation
+- `create_search_campaign` -- Launch Google Search campaigns (text ads on search results, created PAUSED)
+- `create_pmax_campaign` -- Launch Performance Max campaigns (ads across all Google channels, created PAUSED)
+
+### Campaign Management
+
+- `update_campaign_budget` -- Change daily budget for existing campaigns
+- `pause_campaign` -- Stop campaigns or ad groups
+- `resume_campaign` -- Restart paused campaigns
+- `add_negative_keywords` -- Block irrelevant search terms from triggering your ads
+- `manage_ad_extensions` -- Add sitelinks, callouts, structured snippets
+
+<Tip>
+Google Ads has the largest tool set in Adspirer (39 tools total). The tools listed above are the most commonly used. Additional tools cover ad group management, bidding strategies, audience targeting, geographic targeting, and more.
+</Tip>
+
+## Campaign Types
+
+### Google Search Campaigns
+
+Text ads that appear when people search specific keywords on Google. Best for capturing high-intent traffic -- people actively looking for your product or service.
+
+**When to use:** Lead generation, e-commerce, local services, SaaS signups.
+
+### Performance Max (PMax) Campaigns
+
+AI-powered campaigns that show ads across all Google channels: Search, Display, YouTube, Gmail, Maps, and Discover. Google's algorithm automatically optimizes placement and creative combinations.
+
+**When to use:** E-commerce (especially with product feeds), broad awareness + conversions, when you have strong creative assets (images + video).
+
+## Search Campaign Creation Workflow
+
+Google Search campaigns follow a 5-step workflow. Skip steps and the campaign will fail validation.
+
+```
+1. get_connections_status
+   -> (verify Google Ads is connected)
+2. research_keywords
+   -> (input: business description, seed keywords, target location)
+   -> (output: keyword suggestions with real CPC data)
+3. discover_existing_assets
+   -> (check if you have headlines/descriptions in Google Ads already)
+4. suggest_ad_content (if new assets needed)
+   -> (generate headlines and descriptions within Google's character limits)
+5. validate_and_prepare_assets
+   -> (verify everything meets Google's requirements)
+6. create_search_campaign
+   -> (campaign created PAUSED -- you review before launching)
+```
+
+## PMax Campaign Creation Workflow
+
+Performance Max requires more creative assets than Search. Four-step workflow:
+
+```
+1. get_connections_status
+   -> (verify Google Ads is connected)
+2. discover_existing_assets
+   -> (check for images, videos, logos in your account)
+3. help_user_upload (if assets are missing)
+   -> (guide you to upload to Google or provide URLs)
+4. validate_and_prepare_assets
+   -> (PMax requires: 5+ images, 1+ video, 5+ headlines, 5+ descriptions)
+5. create_pmax_campaign
+   -> (campaign created PAUSED)
+```
+
+### PMax Asset Requirements
+
+- **Images:** Minimum 5 (1200x628px landscape + 1200x1200px square)
+- **Video:** Minimum 1 (under 30 seconds recommended)
+- **Headlines:** 5 (max 30 characters each)
+- **Descriptions:** 5 (max 90 characters each)
+- **Logo:** 1 (1200x1200px)
+
+## Example Prompts
+
+### Analyze Performance
+
+```
+Pull my Google Ads performance for the last 30 days.
+Show spend, conversions, CPA, and ROAS.
+Highlight any campaigns with ROAS below 2.0.
+```
+
+### Research Keywords
+
+```
+Research keywords for emergency plumbing services in Chicago.
+Show me search volume, CPC estimates, and competition level.
+Suggest which keywords to target and which to avoid.
+```
+
+### Find Wasted Spend
+
+```
+Analyze my Google Ads for wasted spend.
+Find keywords that have spent more than $50 but generated zero conversions.
+Recommend which to pause and which to add as negative keywords.
+```
+
+### Create a Search Campaign
+
+```
+Create a Google Search campaign:
+- Business: Online pet supply store
+- Target keywords: organic dog food, natural dog treats, premium pet food
+- Location: United States
+- Budget: $40/day
+- Objective: Website conversions (purchases)
+
+Research the keywords first, generate ad copy, then build the campaign.
+```
+
+### Create a Performance Max Campaign
+
+```
+Create a Performance Max campaign for luxury watches:
+- Budget: $50/day
+- Target audience: Men 25-54 interested in fashion and luxury goods
+- Creative: [provide image and video URLs]
+- Objective: Online sales
+
+Validate all assets meet PMax requirements first.
+```
+
+### Optimize Budget
+
+```
+Analyze my Google Ads campaigns for the last 30 days.
+Which campaigns have the best ROAS?
+Recommend how to reallocate my $3,000/month budget to maximize conversions.
+```
+
+## Keyword Research: What You Need to Know
+
+The `research_keywords` tool connects directly to Google Keyword Planner data. You get:
+
+- **Search volume:** Monthly search estimates for each keyword
+- **CPC data:** Average cost-per-click and estimated bid range
+- **Competition level:** Low, Medium, or High
+- **Keyword suggestions:** Related keywords you may not have considered
+
+<Warning>
+Keyword research is a Read tool (no cost impact), but always review the data before committing budget. High-volume keywords are not always the best choice -- look for keywords with good volume AND manageable CPC relative to your target CPA.
+</Warning>
+
+## Ad Copy Guidelines
+
+The `suggest_ad_content` tool generates headlines and descriptions within Google's strict character limits:
+
+- **Headlines:** Up to 15 headlines, max 30 characters each
+- **Descriptions:** Up to 4 descriptions, max 90 characters each
+- **Display URL paths:** 2 paths, max 15 characters each
+
+Google dynamically combines your headlines and descriptions. Provide diverse options so Google's algorithm can find high-performing combinations.
+
+## Budget Guidelines
+
+- **Minimum:** $10/day per campaign (Google's practical minimum for Search)
+- **Recommended:** $30+/day for meaningful data collection
+- **Testing:** Start with $40/day split across 3-5 ad groups to test different keyword themes
+- **Scaling:** Once you find keywords with CPA below target, increase budget 20-30% every 5-7 days
+- **PMax minimum:** $20+/day recommended (PMax needs budget to test across multiple channels)
+
+## Best Use Cases for Google Ads
+
+- **Demand capture:** Reach people actively searching for your product or service (highest intent of any platform)
+- **Local services:** Plumbers, dentists, lawyers, restaurants -- people searching "near me"
+- **E-commerce:** Product searches, comparison shopping, brand searches
+- **SaaS & B2B:** High-intent keywords like "CRM software" or "marketing automation tool"
+- **Lead generation:** Contact forms, phone calls, demo requests from search traffic
+
+**Not ideal for:** Brand awareness (use [Meta Ads](/ad-platforms/meta-ads) or [TikTok Ads](/ad-platforms/tiktok-ads) instead), visual/video-first products, targeting by job title (use [LinkedIn Ads](/ad-platforms/linkedin-ads)).
+
+## Troubleshooting
+
+### "Ad account not connected" error
+
+Re-authenticate your Google Ads account:
+
+```
+Connect my Google Ads account
+```
+
+Make sure you select the correct Google account and ad account during OAuth. If you manage multiple accounts (MCC), you may need to specify which sub-account to use.
+
+### "Asset validation failed" error
+
+Common causes:
+
+- Headlines exceed 30 characters or descriptions exceed 90 characters
+- Fewer than 5 images for PMax campaigns
+- Image dimensions do not meet minimum requirements
+- Missing required asset types (PMax needs images, headlines, descriptions, and at least one logo)
+
+Run validation separately to diagnose:
+
+```
+Validate my Google Ads assets for a Search campaign
+```
+
+### "Campaign creation failed" error
+
+Most common reason: skipping workflow steps. Google campaigns require keyword research and asset validation before creation. If you jump straight to `create_search_campaign` without running `research_keywords` and `validate_and_prepare_assets` first, it will fail.
+
+If you're using [agent skills](/agent-skills/overview), the AI enforces the correct workflow automatically.
+
+### "Keyword research returned no results"
+
+This usually means your seed keywords or business description is too narrow. Try:
+
+- Broader seed keywords (e.g., "plumber" instead of "emergency residential copper pipe repair")
+- Different location targeting (e.g., expand from city to state)
+- More descriptive business description so the tool can suggest related terms
+
+### High CPA with no conversions
+
+Common issue with new campaigns. Troubleshoot:
+
+- Review search terms with `analyze_search_terms` -- are irrelevant queries consuming budget?
+- Add negative keywords with `add_negative_keywords` to block wasteful clicks
+- Check landing page quality -- Google Ads can drive clicks but conversions depend on your website
+- Use `analyze_wasted_spend` to identify keywords spending without converting
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="What's the difference between Search and Performance Max campaigns?">
+**Search campaigns** show text ads on Google Search results when people search specific keywords. You control which keywords trigger your ads. Best for high-intent traffic.
+
+**Performance Max campaigns** use Google's AI to show ads across all Google channels (Search, Display, YouTube, Gmail, Maps, Discover). You provide creative assets and a conversion goal, and Google optimizes everything automatically. Best when you have strong creative assets and want broad reach with automated optimization.
+</Accordion>
+
+<Accordion title="Does Adspirer generate images or videos for Google Ads?">
+No. Adspirer generates ad copy (headlines and descriptions) through the `suggest_ad_content` tool, but it does not create images or videos. For PMax campaigns, you provide image/video URLs from Google Drive, Dropbox, S3, or any public URL. The `validate_and_prepare_assets` tool ensures your assets meet Google's specifications.
+</Accordion>
+
+<Accordion title="Can I manage Google Ads and Meta Ads from the same conversation?">
+Yes. Adspirer supports multi-platform management. You can pull Google Ads performance, then switch to Meta Ads analysis in the same conversation. Use `get_connections_status` to see all connected platforms.
+</Accordion>
+
+<Accordion title="What's the difference between Google Ads and Meta Ads?">
+**[Google Ads](/ad-platforms/google-ads):** Best for demand capture (reaching people actively searching for solutions). Keyword-based targeting. Higher intent but more expensive clicks.
+
+**[Meta Ads](/ad-platforms/meta-ads):** Best for demand generation (reaching people who don't know you exist) and visual products. Interest-based targeting. Lower intent but cheaper clicks.
+
+Most advertisers run both: Google for high-intent searches, Meta for awareness and retargeting.
+</Accordion>
+
+<Accordion title="How much does Adspirer cost for Google Ads?">
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. A typical Google Search campaign creation uses 5-6 tool calls. Keyword research alone is 1 call. See [full pricing](https://www.adspirer.com/pricing).
+</Accordion>
+
+<Accordion title="Is my Google Ads data secure?">
+Yes. Adspirer uses OAuth 2.1 authentication -- your Google Ads credentials are never stored on Adspirer's servers. All connections are HTTPS-encrypted with least-privilege access scopes. You can revoke access at any time from your Google account settings.
+</Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Meta Ads Integration](/ad-platforms/meta-ads)
+- [LinkedIn Ads Integration](/ad-platforms/linkedin-ads)
+- [TikTok Ads Integration](/ad-platforms/tiktok-ads)
+- [Campaign Creation Workflows](/agent-skills/workflows)
+- [Google Ads + AI Integration](https://www.adspirer.com/integrations/google-ads)
+- [Pricing & Plans](https://www.adspirer.com/pricing)

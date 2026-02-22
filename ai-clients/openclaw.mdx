@@ -1,0 +1,282 @@
+---
+title: "OpenClaw Setup Guide"
+description: "Install the Adspirer OpenClaw plugin. 100+ ad tools, 14KB skill file built in, zero configuration. Manage Google, Meta, LinkedIn, and TikTok Ads."
+---
+
+One plugin, 100+ tools, 14KB skill file built in. No separate setup.
+
+## What Makes OpenClaw Different
+
+Every other MCP client gives you access to Adspirer's 100+ tools. That's the baseline.
+
+OpenClaw gives you a complete AI advertising agent -- pre-configured, pre-trained, ready to run campaigns. The plugin includes a 14.4KB SKILL.md file that documents every tool, every workflow, every platform-specific nuance. The plugin doesn't just connect to Adspirer -- it includes a 14.4KB instruction manual that turns OpenClaw into a specialized advertising AI.
+
+You're deploying an expert, not configuring tools.
+
+## Prerequisites
+
+<Note>
+- OpenClaw CLI installed ([download here](https://openclaw.com))
+- Node.js 18+ (for npm installation method)
+- An Adspirer account ([free to start](https://adspirer.ai/sign-up))
+- At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
+</Note>
+
+## Setup (3 Minutes)
+
+### Step 1: Install the Adspirer Plugin
+
+Two installation methods. Pick one:
+
+**Method 1: OpenClaw Plugin Manager (Recommended)**
+
+```bash
+openclaw plugins install openclaw-adspirer
+```
+
+**Method 2: NPM**
+
+```bash
+npm i openclaw-adspirer
+```
+
+Both methods install the same plugin. The OpenClaw method handles dependencies automatically. The NPM method gives you more control if you're integrating into an existing Node.js project.
+
+### Step 2: Authenticate with Adspirer
+
+```
+openclaw adspirer login
+```
+
+Your browser opens for OAuth 2.1 sign-in. Authorize OpenClaw to access your Adspirer account. No API keys, no passwords stored locally.
+
+### Step 3: Connect Your Ad Platforms
+
+```
+openclaw adspirer connect
+```
+
+This opens `adspirer.com` in your browser. Connect Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads -- or any combination. Each platform has its own OAuth flow. Authorize the platforms you want to manage.
+
+### Step 4: Verify Your Setup
+
+```
+openclaw adspirer status
+```
+
+You'll see a table showing:
+
+- Connected platforms (Google, Meta, LinkedIn, TikTok)
+- Account names and IDs
+- Connection status (active/expired)
+- Available tool count per platform
+
+If everything shows "active," you're ready.
+
+## What You Get: The Skill File
+
+Most MCP integrations give you raw tool access. OpenClaw gives you a 14,400-character instruction manual that covers:
+
+- **100+ tools documented:** Every parameter, every return value, every edge case
+- **6 complete workflows:** Performance analysis, keyword research, campaign creation (per platform), budget optimization, account management, automation
+- **Platform quick reference:** When to use each platform, minimum budgets, best use cases
+- **Safety rules:** What to always check first, what requires user confirmation, what never to retry
+- **Troubleshooting guide:** Common errors and how to fix them
+- **Example prompts:** Real queries you can copy-paste to get started
+
+This isn't configuration. It's training. OpenClaw reads the SKILL.md file and knows how to behave like an expert advertising manager.
+
+## What You Can Do
+
+100+ tools across 4 ad platforms:
+
+| Platform | Tools | Key Capabilities |
+|----------|-------|-----------------|
+| **Google Ads** | 39 | Keyword research with real CPC data, Search & PMax campaigns, wasted spend analysis, budget optimization, extensions, asset management |
+| **LinkedIn Ads** | 28 | B2B targeting (job titles, industries, seniority), sponsored content, lead gen forms, performance analysis |
+| **Meta Ads** | 20 | Image/video/carousel campaigns, audience targeting, creative fatigue detection, placement optimization |
+| **TikTok Ads** | 4 | In-feed campaigns, asset validation, performance tracking |
+
+Plus 8 automation tools for scheduling, monitoring, and cross-platform reporting.
+
+## Example Commands
+
+What to actually run once you're set up:
+
+### Google Search Campaign
+
+```
+openclaw "Create a Google Search campaign for my consulting firm:
+- Service: fractional CFO services for startups
+- Target: startup founders and CEOs at Series A-B companies
+- Budget: $80/day
+- Research keywords with real CPC data
+- Add negative keywords for 'jobs', 'salary', 'free'"
+```
+
+### Google PMax Campaign
+
+```
+openclaw "Set up a Performance Max campaign:
+- Product: standing desk, $549 retail price
+- Target ROAS: 500%
+- Product images: [paste URLs]
+- Write compelling headlines and descriptions
+- Use my Merchant Center product feed"
+```
+
+### Meta Ads Campaign
+
+```
+openclaw "Create a Meta image campaign for my online course:
+- Product: UX design bootcamp, $599 one-time
+- Target: designers and career changers aged 24-38
+- Interests: UX design, Figma, product design, career growth
+- Budget: $55/day
+- Image URL: [paste URL]
+- Optimize for registrations"
+```
+
+### LinkedIn Lead Gen Campaign
+
+```
+openclaw "Launch a LinkedIn sponsored content campaign:
+- Product: employee engagement platform
+- Target: HR VPs and CHROs at enterprises with 1,000+ employees
+- Industries: tech, finance, healthcare
+- Budget: $130/day
+- Goal: book a product demo
+- Image URL: [paste URL]"
+```
+
+### Cross-Platform Performance Report
+
+```
+openclaw "Generate a full performance report for the last 30 days.
+Pull data from all connected platforms.
+Include:
+- Executive summary with key wins and concerns
+- Per-platform metrics: spend, conversions, CPA, ROAS
+- Wasted spend analysis (Google keywords + Meta creative fatigue)
+- Top 5 recommendations for next month
+Format as markdown."
+```
+
+## The claw.json Manifest
+
+The plugin includes a manifest file that defines its metadata and permissions:
+
+```bash
+{
+  "name": "adspirer-ads-agent",
+  "version": "1.1.0",
+  "displayName": "Adspirer Ads Agent",
+  "keywords": [
+    "advertising",
+    "google-ads",
+    "meta-ads",
+    "linkedin-ads",
+    "tiktok-ads",
+    "ppc",
+    "mcp"
+  ],
+  "permissions": {
+    "network": [
+      "mcp.adspirer.com",
+      "www.adspirer.com"
+    ]
+  }
+}
+```
+
+This tells OpenClaw that the plugin is an advertising agent, which keywords to associate with it, and which domains it's allowed to access. The network permissions ensure the plugin can only connect to Adspirer's servers -- no other external services.
+
+## Safety Features
+
+The skill file includes safety rules. OpenClaw enforces them automatically:
+
+- **All campaigns created PAUSED:** Review before they spend money
+- **User confirmation required:** OpenClaw asks before any action that affects spend
+- **Read-before-write workflows:** The agent researches keywords before creating campaigns, validates assets before launching
+- **Connection status checks:** Always verifies you're managing the correct account first
+- **No automatic retries:** If a tool call fails, OpenClaw reports the error instead of retrying blindly
+- **Platform-specific minimums:** The agent knows Google Ads requires $10/day minimum, LinkedIn requires $10/day, Meta has no minimum -- and won't let you create campaigns below those thresholds
+
+## Troubleshooting
+
+### "Plugin not found" error
+
+List your installed plugins:
+
+```bash
+openclaw plugins list
+```
+
+If you don't see `openclaw-adspirer`, re-run the install command from Step 1.
+
+### "Not authenticated" error
+
+Your login session might have expired. Re-authenticate:
+
+```
+openclaw adspirer login
+```
+
+### "No ad platforms connected" warning
+
+Run the connect command:
+
+```
+openclaw adspirer connect
+```
+
+Make sure you authorize at least one ad platform (Google, Meta, LinkedIn, or TikTok) in the OAuth flow.
+
+### Tools not working or returning errors
+
+Check your account status at [adspirer.ai](https://adspirer.ai). Free accounts get 10 tool calls/month. If you've hit the limit, upgrade to Plus ($25/mo for 50 calls) or Pro ($75/mo for 100 calls).
+
+### Skill file not loading
+
+The skill file is bundled with the plugin. If OpenClaw isn't following the documented workflows, try reinstalling:
+
+```bash
+openclaw plugins uninstall openclaw-adspirer
+openclaw plugins install openclaw-adspirer
+```
+
+### Network permission errors
+
+If your firewall blocks the plugin, whitelist these domains:
+
+- `mcp.adspirer.com` (MCP server)
+- `www.adspirer.com` (OAuth and account management)
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="What's the difference between OpenClaw and other MCP clients?">
+Other clients ([Claude Code](/ai-clients/claude-code), [Cursor](/ai-clients/cursor)) give you access to Adspirer's tools. OpenClaw gives you a pre-configured advertising agent with a 14KB instruction manual built in. Less setup, more intelligence out of the box.
+</Accordion>
+<Accordion title="Do I need to install skills separately?">
+No. The SKILL.md file is bundled with the plugin. Other clients require manual skill installation. OpenClaw does it automatically.
+</Accordion>
+<Accordion title="Can I edit the skill file to customize behavior?">
+Yes. The skill file is at `node_modules/openclaw-adspirer/skills/adspirer-ads-agent/SKILL.md` (if installed via NPM) or in the OpenClaw plugins directory. Edit it to change default behaviors, add custom workflows, or modify safety rules. Changes take effect on the next OpenClaw restart.
+</Accordion>
+<Accordion title="Can I manage multiple ad accounts?">
+Yes. Connect multiple Google Ads accounts, multiple Meta Business Managers, etc. Use the `switch_primary_account` command to change which account you're managing, or specify the account ID in your commands.
+</Accordion>
+<Accordion title="How much does this cost?">
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing details](https://www.adspirer.com/pricing).
+</Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Claude Code Setup Guide](/ai-clients/claude-code)
+- [Cursor Setup Guide](/ai-clients/cursor)
+- [Codex Setup Guide](/ai-clients/codex)
+- [Google Ads Integration](/ad-platforms/google-ads)
+- [Pricing & Plans](https://www.adspirer.com/pricing)
+- [All Documentation](/introduction)

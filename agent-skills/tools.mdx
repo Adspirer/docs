@@ -1,0 +1,125 @@
+---
+title: "Tool Catalog"
+description: "Complete reference of all 100+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
+---
+
+## Tool Types
+
+- **Read:** Safe to run anytime. Pulls data, analyzes performance, provides insights. No spending impact.
+- **Write:** Requires user confirmation. Creates campaigns, updates budgets, modifies targeting. Affects spend.
+
+## Google Ads Tools (39)
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `get_campaign_performance` | Read | Pull metrics for campaigns (spend, conversions, CPA, ROAS) |
+| `research_keywords` | Read | Find keywords with real CPC data from Google Keyword Planner |
+| `create_search_campaign` | Write | Launch Google Search campaign (created PAUSED) |
+| `create_pmax_campaign` | Write | Launch Performance Max campaign (created PAUSED) |
+| `analyze_wasted_spend` | Read | Find keywords with spend but zero conversions |
+| `optimize_budget_allocation` | Read | Recommend budget shifts based on ROAS/CPA |
+| `analyze_search_terms` | Read | Review actual search queries triggering your ads |
+| `discover_existing_assets` | Read | Check if account has images/headlines/descriptions |
+| `suggest_ad_content` | Read | Generate ad headlines and descriptions (Google char limits) |
+| `validate_and_prepare_assets` | Read | Verify assets meet Google's requirements before campaign creation |
+| `update_campaign_budget` | Write | Change daily budget for existing campaigns |
+| `pause_campaign` | Write | Stop campaigns or ad groups |
+| `resume_campaign` | Write | Restart paused campaigns |
+| `add_negative_keywords` | Write | Block irrelevant search terms |
+| `manage_ad_extensions` | Write | Add sitelinks, callouts, structured snippets |
+| `explain_performance_anomaly` | Read | Diagnose sudden CPA spikes or CTR drops |
+| `help_user_upload` | Read | Guide user through asset upload process |
+| ...and 22 more | | Ad group management, bidding, audience targeting, etc. |
+
+## LinkedIn Ads Tools (28)
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `get_linkedin_campaign_performance` | Read | Pull metrics for LinkedIn campaigns (spend, clicks, conversions, cost per lead) |
+| `get_linkedin_organizations` | Read | List user's LinkedIn company pages (required before campaign creation) |
+| `search_linkedin_targeting` | Read | Find B2B audiences by job title, industry, company size, seniority |
+| `research_business_for_linkedin_targeting` | Read | Input competitor name, get targeting suggestions |
+| `create_linkedin_image_campaign` | Write | Launch sponsored content campaign (created PAUSED) |
+| `discover_linkedin_assets` | Read | Check existing creatives in LinkedIn |
+| `validate_and_prepare_linkedin_assets` | Read | Verify images meet LinkedIn requirements (1200x627px or 1200x1200px) |
+| `add_linkedin_creative` | Write | Add new sponsored posts to existing campaigns |
+| `analyze_linkedin_creative_performance` | Read | See which images/copy combinations perform best |
+| `optimize_linkedin_budget` | Read | Recommend budget reallocation based on cost per lead |
+| `update_linkedin_campaign` | Write | Change budgets, bids, or targeting |
+| `pause_linkedin_campaign` | Write | Stop campaigns or ad groups |
+| `explain_linkedin_anomaly` | Read | Diagnose sudden CTR, CPC, or conversion rate changes |
+| `manage_linkedin_conversions` | Write | Set up and track conversion events (form fills, downloads) |
+| ...and 14 more | | Lead gen forms, audience expansion, bid strategies, etc. |
+
+## Meta Ads Tools (20)
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `get_meta_campaign_performance` | Read | Pull metrics for Meta campaigns (Facebook + Instagram) |
+| `search_meta_targeting` | Read | Find audiences by interests, demographics, behaviors |
+| `select_meta_campaign_type` | Read | Choose: Image, Video, or Carousel based on creative assets |
+| `discover_meta_assets` | Read | Check existing creatives in Meta |
+| `validate_and_prepare_meta_assets` | Read | Verify image/video URLs meet Meta requirements (dimensions, file size) |
+| `create_meta_image_campaign` | Write | Launch single-image campaign (created PAUSED) |
+| `create_meta_video_campaign` | Write | Launch video campaign (created PAUSED) |
+| `create_meta_carousel_campaign` | Write | Launch multi-card carousel campaign (created PAUSED) |
+| `analyze_meta_ad_performance` | Read | Deep analysis of ad-level performance with recommendations |
+| `analyze_meta_audiences` | Read | See which audience segments perform best (age, gender, interests) |
+| `detect_meta_creative_fatigue` | Read | Identify ads losing effectiveness over time (declining CTR after 14+ days) |
+| `optimize_meta_budget` | Read | Recommend budget reallocation based on ROAS/CPA |
+| `optimize_meta_placements` | Read | Shift spend to best-performing placements (Feed, Stories, Reels) |
+| `explain_meta_anomaly` | Read | Diagnose sudden CPA spikes or CTR drops |
+| `update_meta_campaign` | Write | Change budgets, bids, or targeting |
+| `pause_meta_campaign` | Write | Stop campaigns or ad sets |
+| `browse_meta_targeting` | Read | Explore Meta's targeting categories |
+| ...and 3 more | | Resume campaigns, audience insights, etc. |
+
+## TikTok Ads Tools (4)
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `get_tiktok_campaign_performance` | Read | Pull metrics for TikTok campaigns |
+| `discover_tiktok_assets` | Read | Check existing videos in TikTok |
+| `validate_and_prepare_tiktok_assets` | Read | Verify videos meet TikTok requirements (9:16 vertical, 5-60 seconds) |
+| `create_tiktok_campaign` | Write | Launch in-feed video campaign (created PAUSED) |
+
+## Automation Tools (8)
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `schedule_brief` | Write | Schedule daily/weekly performance summaries via email or Slack |
+| `create_monitor` | Write | Set alerts for CPA spikes, budget overspend, CTR drops |
+| `list_monitors` | Read | View all active performance monitors |
+| `delete_monitor` | Write | Remove a monitor |
+| `generate_report_now` | Read | Generate ad-hoc cross-platform performance report |
+| `list_scheduled_tasks` | Read | View all scheduled briefs and reports |
+| `update_scheduled_task` | Write | Change frequency or parameters of scheduled briefs |
+| `delete_scheduled_task` | Write | Remove a scheduled brief or report |
+
+## System Tools (4)
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `get_connections_status` | Read | Show all connected ad platforms and account IDs |
+| `switch_primary_account` | Write | Change active ad account (for users managing multiple accounts) |
+| `get_usage_status` | Read | Check Adspirer plan limits (tool calls used/remaining this month) |
+| `get_business_profile` | Read | View user's Adspirer account details and subscription info |
+
+## Tool Call Best Practices
+
+<Note>
+- **Always start with `get_connections_status`:** Verify the correct ad account is active before using platform-specific tools
+- **Chain Read tools before Write tools:** Research, validate, then create. Never jump straight to campaign creation.
+- **Ask for user confirmation before Write tools:** Present the plan, get approval, then execute.
+- **Never retry Write tools on error:** If a campaign creation fails, report the error and wait for user input. Don't auto-retry.
+- **Format results as tables:** Performance data should be scannable (columns: metric, value, change vs. previous period)
+</Note>
+
+## Related Documentation
+
+- [Core Workflows](/agent-skills/workflows) -- See how these tools fit into step-by-step processes
+- [Skills Overview](/agent-skills/overview)
+- [Google Ads Integration](/ad-platforms/google-ads)
+- [Meta Ads Integration](/ad-platforms/meta-ads)
+- [LinkedIn Ads Integration](/ad-platforms/linkedin-ads)
+- [TikTok Ads Integration](/ad-platforms/tiktok-ads)

@@ -1,0 +1,276 @@
+---
+title: "Cursor Setup Guide"
+description: "Connect Cursor IDE to Adspirer MCP. Manage Google, Meta, LinkedIn, and TikTok Ads from your editor with 100+ tools and Cursor Rules."
+---
+
+Manage ads from your code editor. 100+ tools, automatic workflow rules, zero context-switching.
+
+## Prerequisites
+
+<Note>
+- Cursor IDE installed ([download here](https://cursor.sh))
+- An Adspirer account ([free to start](https://adspirer.ai/sign-up))
+- At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
+</Note>
+
+## Setup (3 Minutes)
+
+### Step 1: Add Adspirer to Your MCP Config
+
+Open Cursor's AI chat (Cmd+L or Ctrl+L) and paste this prompt:
+
+```
+Add the Adspirer MCP server to my global MCP config.
+Server URL: https://mcp.adspirer.com/mcp
+```
+
+Cursor will create or update your `~/.cursor/mcp.json` automatically.
+
+<Note>
+**Manual alternative**
+
+If you prefer, create or edit `~/.cursor/mcp.json` (global) or `.cursor/mcp.json` (per-project) directly:
+
+```bash
+{
+  "mcpServers": {
+    "adspirer": {
+      "url": "https://mcp.adspirer.com/mcp"
+    }
+  }
+}
+```
+</Note>
+
+### Step 2: Restart Cursor
+
+MCP configs load on startup. Close and reopen Cursor for the connection to register.
+
+### Step 3: Install Agent Skills (Recommended)
+
+Skills teach Cursor the correct workflow for using Adspirer's 100+ tools. Without skills, Cursor sees the tools but doesn't know the right order -- should it research keywords before creating a campaign? Should it validate assets first? Skills answer these questions.
+
+Install skills:
+
+```bash
+git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
+cp -r /tmp/ads-mcp/plugins/cursor/adspirer/skills/ad-campaign-management ~/.cursor/skills/
+```
+
+### Step 4: Install Cursor Rules (Optional But Powerful)
+
+Cursor Rules are automatic instructions that trigger based on context. Adspirer's rule file enforces safety and best practices:
+
+- Always check `get_connections_status` before running other tools
+- Research keywords before creating Google Search campaigns
+- Validate assets before launching campaigns
+- Confirm with the user before any action that affects spend
+- Never retry failed campaign creation without asking
+
+To install Cursor Rules:
+
+```bash
+cp /tmp/ads-mcp/plugins/cursor/adspirer/rules/use-adspirer.mdc .cursor/rules/
+```
+
+The rule is set to `alwaysApply: true`, so Cursor will automatically enforce these workflows whenever you interact with Adspirer tools.
+
+### Step 5: Authenticate
+
+Next time you ask Cursor to use an Adspirer tool, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization. Sign in, connect your ad platforms, done.
+
+### Step 6: Verify Your Setup
+
+Open Cursor's AI chat (Cmd+L or Ctrl+L) and say:
+
+```
+Check my connected ad platforms
+```
+
+You should see a table showing your connected accounts -- Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads -- with account names, IDs, and connection status.
+
+## What You Can Do
+
+100+ tools across 4 ad platforms, accessible from Cursor's AI chat or inline editing:
+
+| Platform | Tools | Key Capabilities |
+|----------|-------|-----------------|
+| **Google Ads** | 39 | Keyword research, Search & PMax campaigns, wasted spend analysis, budget optimization, search term reports, ad extensions |
+| **LinkedIn Ads** | 28 | Sponsored content, B2B targeting (job titles, industries, company size), lead gen forms, creative analysis |
+| **Meta Ads** | 20 | Image/video/carousel ads, audience targeting, placement optimization, creative fatigue detection |
+| **TikTok Ads** | 4 | In-feed campaigns, asset validation, performance tracking |
+
+Plus 8 automation tools for scheduling, monitoring, and cross-platform reporting.
+
+## Example Prompts
+
+What to actually say to Cursor once you're connected:
+
+### Google Search Campaign
+
+```
+Create a Google Search campaign for my B2B software:
+- Product: cloud-based inventory management for restaurants
+- Target: restaurant owners and ops managers
+- Budget: $75/day
+- Research keywords with real CPC data first
+- Suggest negative keywords to avoid irrelevant clicks
+```
+
+### Google PMax Campaign
+
+```
+Build a Performance Max campaign for my online course:
+- Product: "Advanced Python for Data Science" course, $199
+- Target ROAS: 300%
+- I have these image assets: [paste URLs]
+- Write headlines and descriptions optimized for conversions
+- Set up conversion tracking for purchases
+```
+
+### Meta Ads Creative Testing
+
+```
+Set up a Meta carousel campaign for my furniture store:
+- Products: 4 best-selling sofas ($800-$2,000 range)
+- Target: homeowners aged 28-45, interests in interior design and home decor
+- Budget: $50/day
+- Image URLs: [paste 4 URLs]
+- Write unique copy for each carousel card
+- Optimize for purchases
+```
+
+### LinkedIn B2B Lead Gen
+
+```
+Create a LinkedIn campaign targeting CFOs and Finance Directors:
+- Company size: 200-5,000 employees
+- Industries: manufacturing, logistics, retail
+- Product: AP automation software
+- Budget: $120/day
+- Goal: demo request sign-ups
+- Use this image: [paste URL]
+```
+
+### Cross-Platform Performance Report
+
+```
+Pull performance data from all my connected platforms for the last 30 days.
+Create a markdown report with:
+- Executive summary with key metrics per platform
+- Top 3 campaigns by ROAS across all platforms
+- Wasted spend analysis (Google: zero-conversion keywords, Meta: fatigued creatives)
+- Budget reallocation recommendations for next month
+```
+
+## How Cursor Rules Improve Your Workflow
+
+If you installed the Cursor Rule in Step 4, here's what changes:
+
+### Before Rules:
+
+**You:** "Create a Google Ads campaign for running shoes"
+
+**Cursor:** Immediately calls `create_search_campaign` with generic parameters -- fails because no keyword research, no asset validation.
+
+### After Rules:
+
+**You:** "Create a Google Ads campaign for running shoes"
+
+**Cursor:** Automatically follows the workflow:
+
+1. Calls `get_connections_status` (verify you're managing the right account)
+2. Calls `research_keywords` with "running shoes" seed keywords
+3. Shows you CPC data and keyword suggestions
+4. Calls `discover_existing_assets` (check if you have images/headlines already)
+5. Calls `validate_and_prepare_assets` (make sure assets meet Google's requirements)
+6. Calls `create_search_campaign` with validated data
+7. **Asks for your confirmation** before actually creating the campaign
+
+Rules turn one vague prompt into a complete, validated workflow. You still control the final decision -- nothing launches without your approval.
+
+## Safety Features
+
+- **All campaigns created PAUSED:** Review before they spend money
+- **User confirmation required:** Cursor asks before any write action
+- **Read-before-write enforcement:** Skills prevent campaign creation without research
+- **Connection checks:** Always verifies you're managing the correct account first
+- **No automatic retries:** If something fails, Cursor waits for your input instead of retrying blindly
+
+## Troubleshooting
+
+### Cursor doesn't recognize Adspirer tools
+
+Check your mcp.json file:
+
+```bash
+cat ~/.cursor/mcp.json
+```
+
+Make sure the JSON is valid (no trailing commas, proper quotes). Restart Cursor after any config changes.
+
+### "Connection failed" error
+
+Your firewall or network might be blocking the MCP connection. Try:
+
+- Whitelisting `mcp.adspirer.com` in your firewall settings
+- Checking if your company VPN blocks external MCP servers
+- Testing with a different network (mobile hotspot) to isolate the issue
+
+### Skills aren't working
+
+Verify the skills directory:
+
+```bash
+ls -la ~/.cursor/skills/ad-campaign-management/
+```
+
+You should see a SKILL.md file. If the directory doesn't exist, re-run the copy command from Step 3.
+
+### Cursor Rules not triggering
+
+Check that the rule file is in the right location:
+
+```bash
+ls -la .cursor/rules/
+```
+
+You should see `use-adspirer.mdc`. If it's not there, copy it from the GitHub repo again. Rules are per-project, so each project needs its own copy.
+
+### OAuth flow not opening
+
+Some browser settings block automatic OAuth redirects. Try:
+
+- Manually visiting [adspirer.ai](https://adspirer.ai) and signing in first
+- Checking your default browser settings (Cursor uses your system default)
+- Disabling browser extensions that might block pop-ups or redirects
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="What's the difference between global and per-project config?">
+**Global (`~/.cursor/mcp.json`):** Adspirer works in every Cursor project. Use this if you manage ads regularly.
+
+**Per-project (`.cursor/mcp.json`):** Adspirer only works in that specific project. Use this if you're working on a client's codebase and want ad management tools only for that client.
+</Accordion>
+<Accordion title="Can I use Adspirer with Cursor Composer?">
+Yes. Cursor Composer (multi-file editing mode) has full access to Adspirer tools. You can ask Composer to analyze campaigns, generate reports, and save the output as markdown files in your project -- all in one flow.
+</Accordion>
+<Accordion title="Do I need both Skills and Cursor Rules?">
+No, but they complement each other. Skills teach Cursor *how* to use the tools. Cursor Rules enforce *when* and *why* to use them. Install both for the best experience, or start with Skills if you only want one.
+</Accordion>
+<Accordion title="How much does Adspirer cost?">
+Pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing details](https://www.adspirer.com/pricing).
+</Accordion>
+<Accordion title="Can I manage multiple ad accounts?">
+Yes. Connect multiple Google Ads accounts, multiple Meta Business Managers, etc. Use the `switch_primary_account` tool to change which account you're managing, or specify the account ID in your prompts.
+</Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Claude Code Setup Guide](/ai-clients/claude-code)
+- [Google Ads Integration Guide](/ad-platforms/google-ads)
+- [Google Ads + Adspirer Integration](https://www.adspirer.com/integrations/google-ads)
+- [Pricing & Plans](https://www.adspirer.com/pricing)
+- [All Documentation](/introduction)

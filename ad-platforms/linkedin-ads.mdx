@@ -1,0 +1,262 @@
+---
+title: "LinkedIn Ads Integration Guide"
+description: "Connect LinkedIn Ads to Adspirer for B2B campaign management. Target by job title, industry, and seniority with 28 AI-powered tools for sponsored content and lead generation."
+---
+
+# LinkedIn Ads Integration
+
+B2B advertising done right. Target decision-makers by job title, industry, and seniority with 28 specialized tools.
+
+## Prerequisites
+
+<Note>
+- LinkedIn Campaign Manager account ([create one here](https://business.linkedin.com/marketing-solutions/ads))
+- A LinkedIn company page (required to run ads)
+- An active ad account with billing information
+- Admin access to the ad account you want to manage
+- Adspirer account connected via [Claude Code](/ai-clients/claude-code), [Cursor](/ai-clients/cursor), or any [supported AI client](https://www.adspirer.com/integrations)
+</Note>
+
+## Connecting LinkedIn Ads
+
+Once you've set up Adspirer with your AI client, connect LinkedIn:
+
+1. Open your AI assistant (ChatGPT, Claude, Claude Code, etc.)
+2. Say: "Connect my LinkedIn Ads account"
+3. Adspirer opens your browser for OAuth authorization
+4. Sign in to LinkedIn Campaign Manager and select the ad account you want to manage
+5. Approve permissions (read campaign data, create ads, manage budgets)
+
+Verify the connection:
+
+```
+Check my connected ad platforms
+```
+
+You should see your LinkedIn ad account listed with organization name, account ID, and active status.
+
+## What You Can Do (28 Tools)
+
+### Performance Analysis
+
+- `get_linkedin_campaign_performance` -- Pull metrics for campaigns, ad groups, or individual sponsored posts
+- `analyze_linkedin_creative_performance` -- Deep analysis of which images/copy combinations perform best
+- `explain_linkedin_anomaly` -- Diagnose sudden changes in CTR, CPC, or conversion rate
+
+### Targeting & Research
+
+- `search_linkedin_targeting` -- Find audiences by job title, industry, company size, seniority, skills, groups
+- `research_business_for_linkedin_targeting` -- Input a competitor or target company, get suggested targeting criteria
+
+### Organizations
+
+- `get_linkedin_organizations` -- List your company pages (required before campaign creation)
+
+### Campaign Creation
+
+- `discover_linkedin_assets` -- Check if you have existing creatives in LinkedIn
+- `validate_and_prepare_linkedin_assets` -- Verify images meet LinkedIn's requirements (dimensions, file size)
+- `create_linkedin_image_campaign` -- Launch sponsored content campaigns (image-based)
+
+### Creative Management
+
+- `add_linkedin_creative` -- Add new sponsored posts to existing campaigns
+- `update_linkedin_creative` -- Edit copy or creative assets on live ads
+
+### Campaign Management
+
+- `update_linkedin_campaign` -- Change budgets, bids, or targeting
+- `pause_linkedin_campaign` -- Stop campaigns or ad groups
+- `resume_linkedin_campaign` -- Restart paused campaigns
+
+### Optimization
+
+- `optimize_linkedin_budget` -- Reallocate budget based on conversion performance
+
+### Conversions
+
+- `manage_linkedin_conversions` -- Set up and track conversion events (form fills, downloads, demo requests)
+
+## Campaign Creation Workflow
+
+LinkedIn campaigns follow a 5-step workflow:
+
+```bash
+1. get_linkedin_organizations
+   ↓ (select which company page to advertise under)
+2. search_linkedin_targeting OR research_business_for_linkedin_targeting
+   ↓ (find your B2B audience)
+3. discover_linkedin_assets
+   ↓ (check existing creatives)
+4. validate_and_prepare_linkedin_assets
+   ↓ (verify image URLs meet LinkedIn requirements)
+5. create_linkedin_image_campaign
+   ↓ (campaign created PAUSED)
+```
+
+## Example Prompts
+
+### Analyze Performance
+
+```
+Pull my LinkedIn Ads performance for the last 60 days.
+Show spend, clicks, conversions, and cost per lead.
+Highlight campaigns with cost per lead above $75.
+```
+
+### Research Targeting for a New Campaign
+
+```
+I want to target marketing directors at B2B SaaS companies with 100-500 employees.
+What targeting criteria should I use on LinkedIn?
+Show me audience size estimates.
+```
+
+### Create a Sponsored Content Campaign
+
+```
+Create a LinkedIn sponsored content campaign:
+- Product: B2B marketing automation platform
+- Target: Marketing managers at tech companies with 50-1000 employees
+- Job titles: Marketing Manager, Demand Gen Manager, Growth Marketing Manager
+- Industries: Computer Software, Internet, Information Technology
+- Budget: $75/day
+- Creative: [provide image URL]
+- Objective: Lead generation (demo request form)
+
+Validate the creative first, then build the campaign.
+```
+
+### Optimize Budget Allocation
+
+```
+Analyze my LinkedIn campaigns for the last 30 days.
+Which campaigns have the best cost per lead?
+Recommend how to reallocate my $5,000/month budget to maximize lead volume.
+```
+
+### Competitive Targeting Research
+
+```
+Research targeting for LinkedIn based on this competitor: HubSpot.
+What job titles, industries, and seniority levels should I target to reach their customer base?
+```
+
+## B2B Targeting Options
+
+LinkedIn's targeting is the most precise for B2B. Here's what you can target:
+
+### Job Criteria
+
+- **Job titles:** CMO, VP Marketing, Marketing Manager, Growth Lead, etc.
+- **Job functions:** Marketing, Sales, Engineering, Operations, etc.
+- **Seniority:** C-level, VP, Director, Manager, Entry-level
+- **Years of experience:** 0-2, 3-5, 6-10, 11+ years
+
+### Company Criteria
+
+- **Industries:** Computer Software, Financial Services, Marketing & Advertising, etc. (140+ options)
+- **Company size:** 1-10, 11-50, 51-200, 201-500, 501-1000, 1001-5000, 5001-10000, 10001+ employees
+- **Company name:** Target specific companies (ABM campaigns)
+- **Company growth rate:** Fast-growing companies (20%+ headcount growth)
+
+### Skills & Interests
+
+- **Skills:** SaaS, Marketing Automation, SEO, Content Marketing, etc.
+- **Groups:** Target members of specific LinkedIn groups
+- **Interests:** Categories professionals engage with
+
+## Budget Guidelines
+
+- **Minimum:** $10/day (LinkedIn's requirement)
+- **Recommended:** $50+/day for meaningful B2B lead volume
+- **Testing:** Start with $75/day split across 2-3 audience segments
+- **CPC range:** Expect $8-15+ per click (higher than Meta/Google but higher quality leads)
+- **Cost per lead:** B2B leads typically $40-150 depending on industry and targeting
+
+## Creative Requirements
+
+LinkedIn sponsored content uses single images. The `validate_and_prepare_linkedin_assets` tool checks:
+
+- **Dimensions:** 1200x627px (1.91:1 aspect ratio) or 1200x1200px (1:1)
+- **Format:** JPG or PNG
+- **File size:** Under 5MB
+- **Text:** Intro text up to 600 characters (150 shown before "see more")
+- **Headline:** Up to 200 characters
+- **Call-to-action:** Learn More, Download, Sign Up, Register, Apply, etc.
+
+## Best Use Cases for LinkedIn Ads
+
+- **B2B lead generation:** Demos, webinar signups, whitepaper downloads
+- **Account-based marketing (ABM):** Target specific companies or job titles
+- **Thought leadership:** Content promotion to build brand authority
+- **Event promotion:** Conferences, trade shows, virtual events
+- **Recruitment:** Job postings to specific professional audiences
+
+**Not ideal for:** E-commerce, consumer products, impulse purchases. LinkedIn is a B2B platform. CPC is high, but lead quality is excellent for long sales cycles.
+
+## Troubleshooting
+
+### "No organizations found" error
+
+You need a LinkedIn company page before you can run ads. Create one at [linkedin.com/company/setup/new](https://www.linkedin.com/company/setup/new), then reconnect your LinkedIn Ads account in Adspirer.
+
+### "Campaign creation failed" error
+
+Most common reason: skipping `get_linkedin_organizations`. You must select an organization before creating campaigns. Run the full workflow in order.
+
+If you're using [agent skills](/agent-skills/overview), the AI enforces the correct workflow automatically.
+
+### "Audience too small" warning
+
+LinkedIn requires a minimum audience size of 300 members. If your targeting is too narrow (e.g., "CMOs at Series A SaaS startups in San Francisco"), broaden it:
+
+- Expand job titles (CMO, VP Marketing, Head of Marketing)
+- Widen geography (San Francisco -> Bay Area -> California)
+- Increase company size range (Series A -> Series A-C)
+
+### High CPC but low conversions
+
+Common issue with LinkedIn. Your targeting might be too broad. Tighten it:
+
+- Add seniority filters (target decision-makers, not individual contributors)
+- Use negative targeting (exclude students, job seekers)
+- Test different creative (professional, data-driven imagery works best on LinkedIn)
+- Optimize your landing page for B2B (short forms, clear value prop, no fluff)
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Can I run video ads on LinkedIn through Adspirer?">
+Not yet. Adspirer currently supports image-based sponsored content only. Video ad support is on the roadmap for Q2 2026.
+</Accordion>
+
+<Accordion title="Can I target by company revenue?">
+LinkedIn doesn't expose revenue as a targeting option via the API. You can target by company size (employee count) and industry as a proxy.
+</Accordion>
+
+<Accordion title="What's the difference between LinkedIn and Google Ads for B2B?">
+**LinkedIn:** Best for demand generation (reaching people who might need your solution but aren't actively searching). Target by job title/seniority. Higher CPC but better B2B lead quality.
+
+**[Google Ads](/ad-platforms/google-ads):** Best for demand capture (reaching people actively searching for solutions like yours). Target by keywords. Lower CPC but broader intent.
+
+Most B2B companies run both: Google for high-intent keywords, LinkedIn for cold outreach to specific job titles.
+</Accordion>
+
+<Accordion title="Can I use LinkedIn's Matched Audiences (retargeting)?">
+Not through Adspirer yet. Matched Audiences (website retargeting, contact list uploads) requires additional API permissions that are in development. For now, focus on interest-based and job title targeting.
+</Accordion>
+
+<Accordion title="How much does Adspirer cost for LinkedIn Ads?">
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. A typical LinkedIn campaign creation uses 5-6 tool calls. See [full pricing](https://www.adspirer.com/pricing).
+</Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Google Ads Integration](/ad-platforms/google-ads)
+- [Meta Ads Integration](/ad-platforms/meta-ads)
+- [Campaign Creation Workflows](/agent-skills/workflows)
+- [LinkedIn Ads + AI Integration](https://www.adspirer.com/integrations/linkedin-ads)
+- [Pricing & Plans](https://www.adspirer.com/pricing)
+- [All Documentation](/introduction)

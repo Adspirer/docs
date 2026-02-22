@@ -1,0 +1,175 @@
+---
+title: "Custom GPT Setup Guide"
+description: "Use Adspirer directly inside ChatGPT. Manage Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads campaigns with natural language — no MCP setup required."
+---
+
+Use Adspirer directly in ChatGPT. No terminal, no IDE, no MCP configuration. Just open ChatGPT and start managing ad campaigns.
+
+## Prerequisites
+
+<Note>
+- ChatGPT Plus, Team, or Enterprise subscription (Custom GPTs require a paid plan)
+- An Adspirer account ([free to start](https://adspirer.ai/sign-up))
+- At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
+</Note>
+
+## Setup
+
+### Step 1: Find the Adspirer GPT
+
+Open ChatGPT and search for "Adspirer" in the GPT Store, or use the direct link:
+
+```
+https://chatgpt.com/g/adspirer
+```
+
+### Step 2: Start a Conversation
+
+Click **Start Chat**. The Adspirer GPT comes pre-configured with instructions for managing ad campaigns across all supported platforms.
+
+### Step 3: Connect Your Ad Accounts
+
+On your first interaction, the GPT will prompt you to connect your ad platforms. Say:
+
+```
+Connect my ad accounts
+```
+
+Your browser opens for OAuth authorization. Sign in to each platform you want to manage (Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads) and approve permissions.
+
+### Step 4: Verify Your Setup
+
+```
+Check my connected ad platforms
+```
+
+You should see a table showing your connected accounts, account names, IDs, and active status.
+
+## How It Works
+
+The Adspirer Custom GPT uses OpenAI's Actions feature to connect to Adspirer's API. Under the hood:
+
+1. You type a natural language request ("Create a Google Search campaign for...")
+2. The GPT translates your request into Adspirer tool calls
+3. Adspirer executes the action via ad platform APIs (Google, Meta, LinkedIn, TikTok)
+4. Results come back in the chat — formatted tables, recommendations, confirmations
+
+No MCP setup. No terminal commands. No configuration files. It just works inside ChatGPT.
+
+## What You Can Do
+
+100+ tools across 4 ad platforms:
+
+| Platform | Tools | Key Capabilities |
+|----------|-------|--------------------|
+| **Google Ads** | 39 | Keyword research with real CPC data, Search & PMax campaigns, wasted spend analysis, budget optimization |
+| **Meta Ads** | 20 | Image/video/carousel campaigns, audience targeting, creative fatigue detection, placement optimization |
+| **LinkedIn Ads** | 28 | B2B targeting (job titles, industries, seniority), sponsored content, lead gen forms |
+| **TikTok Ads** | 4 | In-feed campaigns, asset validation, performance tracking |
+
+## Example Prompts
+
+### Google Search Campaign
+
+```
+Create a Google Ads search campaign for my consulting firm:
+- Service: fractional CFO services for startups
+- Target: startup founders and CEOs at Series A-B companies
+- Budget: $60/day
+- Research keywords with real CPC data first
+- Add negative keywords for 'jobs', 'salary', 'free'
+```
+
+### Meta Ads Campaign
+
+```
+Create a Meta image campaign for my skincare brand:
+- Product: anti-aging serum for women 30-55
+- Budget: $40/day
+- Target interests: skincare, beauty, wellness, anti-aging
+- Image URL: [paste URL]
+- Optimize for purchases
+```
+
+### Cross-Platform Performance Report
+
+```
+Pull my ad performance for the last 30 days across all platforms.
+Show spend, conversions, CPA, and ROAS for each.
+Highlight anything underperforming.
+```
+
+### Budget Optimization
+
+```
+Analyze my Google Ads campaigns for wasted spend.
+Find keywords with clicks but zero conversions in the last 60 days.
+How much am I wasting per month?
+```
+
+## Custom GPT vs MCP Clients
+
+| Feature | Custom GPT | MCP Clients (Claude Code, Cursor, etc.) |
+|---------|-----------|---------------------------------------|
+| **Setup** | Click and go | Terminal command |
+| **Interface** | ChatGPT web/mobile | IDE or terminal |
+| **Agent Skills** | Built into GPT instructions | Install separately |
+| **Best for** | Marketers, non-technical users | Developers, power users |
+| **Offline** | No | No |
+| **Cost** | ChatGPT Plus ($20/mo) + Adspirer | AI client subscription + Adspirer |
+
+<Tip>
+If you're a developer or live in the terminal, use [Claude Code](/ai-clients/claude-code) or [Cursor](/ai-clients/cursor) instead. If you're a marketer who uses ChatGPT daily, the Custom GPT is the fastest path.
+</Tip>
+
+## Safety Features
+
+The Adspirer GPT enforces the same safety rules as all other clients:
+
+- **All campaigns created PAUSED** — you review before they go live
+- **Confirmation before spend** — the GPT asks before any budget-affecting action
+- **Research-first workflows** — keyword research and asset validation happen before campaign creation
+- **Connection checks** — always verifies you're managing the correct account first
+
+## Troubleshooting
+
+### "Adspirer GPT not found" in GPT Store
+
+The GPT may not appear in all regions. Try the direct link above. If still unavailable, use one of our [MCP-based AI clients](/ai-clients/claude-code) instead.
+
+### Authentication keeps failing
+
+Clear your browser cache or try an incognito window. The OAuth flow uses secure tokens — browser extensions (especially ad blockers) can interfere.
+
+### "Action failed" errors
+
+Check your Adspirer account status at [adspirer.ai](https://adspirer.ai). Free accounts get 10 tool calls/month. If you've hit the limit, upgrade to Plus ($25/mo for 50 calls) or Pro ($75/mo for 100 calls).
+
+### GPT not following workflows correctly
+
+Be specific in your prompts. Instead of "create a campaign," say "create a Google Ads search campaign for [product] with [budget] targeting [audience]." The more context you give, the better the GPT follows the correct workflow.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Do I need ChatGPT Plus?">
+Yes. Custom GPTs require ChatGPT Plus ($20/month), Team, or Enterprise. Free ChatGPT users can't access custom GPTs. If you don't have Plus, use [Claude Code](/ai-clients/claude-code) or [Cursor](/ai-clients/cursor) instead.
+</Accordion>
+<Accordion title="Can I use this on mobile?">
+Yes. The Adspirer GPT works in the ChatGPT mobile app (iOS and Android). Same features, same tools.
+</Accordion>
+<Accordion title="Is this the same as using MCP with Claude?">
+Similar capabilities, different interface. The Custom GPT uses OpenAI Actions (API calls). MCP clients use Model Context Protocol. Both connect to Adspirer's 100+ tools. The Custom GPT is simpler to set up; MCP clients offer more flexibility and agent skills.
+</Accordion>
+<Accordion title="How much does Adspirer cost?">
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing](https://www.adspirer.com/pricing).
+</Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Claude Code Setup Guide](/ai-clients/claude-code)
+- [Cursor Setup Guide](/ai-clients/cursor)
+- [Google Ads Integration](/ad-platforms/google-ads)
+- [Pricing & Plans](https://www.adspirer.com/pricing)
+- [All Documentation](/introduction)

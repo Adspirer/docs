@@ -1,0 +1,275 @@
+---
+title: "Codex Setup Guide"
+description: "Connect Codex to Adspirer MCP for autonomous ad management across Google, Meta, LinkedIn, and TikTok Ads. AI agents that optimize daily."
+---
+
+Autonomous ad campaign management. Your AI agent runs campaigns while you sleep.
+
+## What Makes Codex Different
+
+Most AI tools are assistants. They answer questions. They generate copy. They analyze data when you ask.
+
+Codex is autonomous. You define the goal -- "check my ad performance every morning and flag anything unusual" -- and the agent runs that task on a schedule. No human in the loop. It wakes up, pulls your campaign data, analyzes it, and sends you a summary. If your cost-per-acquisition spikes 40% overnight, you get an alert before you've had coffee.
+
+When you connect Codex to Adspirer, you get 100+ advertising tools that run on a schedule. It's an AI ad manager that operates 24/7.
+
+## Prerequisites
+
+<Note>
+- OpenAI Codex CLI installed ([install instructions](https://github.com/openai/codex))
+- An Adspirer account ([free to start](https://adspirer.ai/sign-up))
+- At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
+- Basic understanding of YAML config files (we provide the template)
+</Note>
+
+## Setup (5 Minutes)
+
+### Step 1: Add Adspirer to Codex Config
+
+Edit your Codex config file at `~/.codex/config.toml`:
+
+```bash
+[mcp_servers.adspirer]
+url = "https://mcp.adspirer.com/mcp"
+```
+
+If the file doesn't exist, create it. If you already have other MCP servers configured, just add the `[mcp_servers.adspirer]` section.
+
+### Step 2: Install Agent Skills
+
+Skills teach the Codex agent how to use Adspirer's 100+ tools in the right order. Without skills, the agent might try to create a campaign before researching keywords. With skills, it follows proven workflows.
+
+```bash
+git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
+cp /tmp/ads-mcp/plugins/codex/adspirer/SKILL.md ~/.codex/skills/adspirer-ads.md
+```
+
+### Step 3: Create an Autonomous Agent
+
+This is where Codex gets powerful. You define an agent with a default task -- what it should do when it runs autonomously.
+
+Create `~/.codex/agents/adspirer-ads.yaml`:
+
+```bash
+interface:
+  display_name: "Adspirer Ads Agent"
+  short_description: "Manage ad campaigns across Google, Meta, LinkedIn & TikTok"
+  default_prompt: "Check connected ad platforms and summarize recent campaign performance across all active accounts."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "adspirer"
+      transport: "streamable_http"
+      url: "https://mcp.adspirer.com/mcp"
+```
+
+The `default_prompt` is what the agent runs when you invoke it without a specific task. Think of it as the agent's daily routine.
+
+### Step 4: Authenticate
+
+Run the agent for the first time:
+
+```
+codex run adspirer-ads
+```
+
+Your browser opens for OAuth 2.1 authorization. Sign in to Adspirer, connect your ad platforms (Google, Meta, LinkedIn, TikTok), and approve permissions.
+
+### Step 5: Verify the Connection
+
+The agent should run its default prompt and show you a summary of your connected accounts and recent campaign performance. If you see metrics from your ad platforms, you're set.
+
+## What You Can Do
+
+100+ tools across 4 ad platforms, available for autonomous or on-demand tasks:
+
+| Platform | Tools | Key Capabilities |
+|----------|-------|-----------------|
+| **Google Ads** | 39 | Keyword research, Search & PMax campaigns, wasted spend detection, budget reallocation, search term analysis |
+| **LinkedIn Ads** | 28 | B2B targeting (job titles, industries, company size), sponsored content, lead gen forms, performance analysis |
+| **Meta Ads** | 20 | Image/video/carousel campaigns, creative fatigue detection, audience targeting, placement optimization |
+| **TikTok Ads** | 4 | In-feed campaigns, asset validation, performance tracking |
+
+## Autonomous Workflows (The Real Use Case)
+
+Here's why people use Codex with Adspirer:
+
+### Daily Performance Check-In
+
+**Agent YAML default_prompt:**
+
+```
+"Pull yesterday's performance across all my ad platforms.
+Compare to the previous 7-day average.
+Flag any campaigns with CPA increases over 30% or spend increases over 50%.
+Send me a summary."
+```
+
+Schedule this to run every morning at 8am. You wake up to a performance summary in your inbox or Slack. No dashboards to check.
+
+### Weekly Wasted Spend Audit
+
+**Agent YAML default_prompt:**
+
+```
+"Audit my Google Ads account for wasted spend in the last 7 days.
+Find keywords with spend but zero conversions.
+For each keyword, recommend: pause it, add a negative keyword, or lower the bid.
+Total up potential monthly savings."
+```
+
+Run this every Monday. The agent finds money leaks and tells you exactly what to fix.
+
+### Budget Rebalancing
+
+**Agent YAML default_prompt:**
+
+```
+"Analyze performance across Google and Meta Ads for the last 30 days.
+I have $10,000/month total budget.
+Recommend how to split the budget for maximum conversions.
+Show me current allocation vs recommended allocation."
+```
+
+Run this monthly. The agent analyzes cross-platform ROI and recommends where to shift spend.
+
+### Anomaly Detection
+
+**Agent YAML default_prompt:**
+
+```
+"Check all active campaigns across Google, Meta, LinkedIn, and TikTok.
+Look for anomalies in the last 24 hours:
+- Sudden CPA spikes
+- Campaigns that stopped converting
+- Unexpected spend increases
+Alert me immediately if anything is found."
+```
+
+Run this every 6 hours. The agent acts as a 24/7 monitoring system. If something breaks at 3am, you get an alert.
+
+## On-Demand Prompts (Non-Autonomous)
+
+You can also run Codex with one-off prompts instead of the default task:
+
+### Campaign Creation
+
+```
+codex run adspirer-ads "Create a Google PMax campaign for my DTC brand:
+- Product: premium wireless earbuds, $129 retail price
+- Target ROAS: 350%
+- I have product images and videos ready
+- Write asset group headlines and descriptions
+- Use my Google Merchant Center feed"
+```
+
+### LinkedIn Lead Gen
+
+```
+codex run adspirer-ads "Launch a LinkedIn campaign targeting CTOs:
+- Company size: 100-1,000 employees
+- Industries: fintech, SaaS, cybersecurity
+- Product: zero-trust security platform
+- Budget: $150/day
+- Goal: whitepaper downloads
+- Image URL: [paste URL]"
+```
+
+### Cross-Platform Report
+
+```
+codex run adspirer-ads "Generate a Q1 2026 performance report.
+Pull data from Google Ads, Meta Ads, and LinkedIn Ads.
+Include: total spend, conversions, ROAS by platform.
+Format as markdown."
+```
+
+## Safety Features (Critical for Autonomous Agents)
+
+When an AI agent runs without human oversight, safety matters. Adspirer enforces these rules:
+
+- **All campaigns created PAUSED:** Even in autonomous mode, campaigns don't launch until you manually approve them
+- **No budget changes without confirmation:** The agent can analyze and recommend budget changes, but it can't execute them autonomously
+- **Read-before-write workflows:** Skills force research and validation before any campaign creation
+- **Connection status checks:** Agent verifies it's managing the correct account before taking any action
+- **No automatic retries:** If a tool call fails, the agent reports the error instead of retrying blindly
+
+Bottom line: Autonomous doesn't mean uncontrolled. The agent analyzes, recommends, and alerts -- but you make the final spending decisions.
+
+## Troubleshooting
+
+### "MCP server not found" error
+
+Check your `~/.codex/config.toml` file:
+
+```bash
+cat ~/.codex/config.toml
+```
+
+Make sure the `[mcp_servers.adspirer]` section exists with the correct URL.
+
+### Agent doesn't follow workflows correctly
+
+Verify the SKILL.md file is in the right location:
+
+```bash
+cat ~/.codex/skills/adspirer-ads.md
+```
+
+If it's missing, re-run the copy command from Step 2.
+
+### OAuth authentication keeps failing
+
+Codex uses your system's default browser for OAuth. If it's not opening:
+
+- Check your default browser setting
+- Try manually visiting [adspirer.ai](https://adspirer.ai) and signing in first
+- Disable browser extensions that might block redirects
+
+### Agent runs but doesn't produce output
+
+Check the Codex logs:
+
+```bash
+codex logs adspirer-ads
+```
+
+Look for errors related to tool calls or authentication. If you see "tool call limit exceeded," upgrade your Adspirer plan at [adspirer.ai](https://adspirer.ai).
+
+### Scheduled agent isn't running
+
+Codex doesn't include a built-in scheduler. Use cron (Linux/Mac) or Task Scheduler (Windows) to run the agent on a schedule:
+
+```bash
+# Run daily at 8am
+0 8 * * * /usr/local/bin/codex run adspirer-ads
+```
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Can the agent actually spend money autonomously?">
+No. All campaigns are created PAUSED, and budget changes require user confirmation. The agent can analyze, recommend, and alert -- but you approve spending decisions manually.
+</Accordion>
+<Accordion title="What's the difference between Codex and Claude Code?">
+[Claude Code](/ai-clients/claude-code) is interactive -- you ask it to do something, it does it. Codex is autonomous -- you define a task once, and it runs on a schedule. Use Claude Code for ad-hoc analysis. Use Codex for recurring tasks like daily performance checks.
+</Accordion>
+<Accordion title="How do I change the agent's default task?">
+Edit the `default_prompt` in `~/.codex/agents/adspirer-ads.yaml`. Restart the agent for changes to take effect.
+</Accordion>
+<Accordion title="Can I run multiple agents for different ad accounts?">
+Yes. Create separate agent YAML files (e.g., `client-a-ads.yaml`, `client-b-ads.yaml`) with different default prompts. Each agent can specify which Adspirer account to use via the `switch_primary_account` tool.
+</Accordion>
+<Accordion title="How much does this cost?">
+Adspirer pricing is based on tool calls. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. Autonomous agents typically use 2-5 tool calls per run. See [full pricing details](https://www.adspirer.com/pricing).
+</Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Claude Code Setup Guide](/ai-clients/claude-code)
+- [Cursor Setup Guide](/ai-clients/cursor)
+- [Google Ads Integration](/ad-platforms/google-ads)
+- [Pricing & Plans](https://www.adspirer.com/pricing)
+- [All Documentation](/introduction)

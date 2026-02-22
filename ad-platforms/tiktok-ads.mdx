@@ -1,0 +1,270 @@
+---
+title: "TikTok Ads Integration Guide"
+description: "Create and manage TikTok In-Feed video campaigns with AI. 4 tools for video asset management, campaign creation, and performance tracking."
+---
+
+# TikTok Ads Integration
+
+Reach TikTok's billion-plus users with AI-powered campaign management. Create In-Feed video ads, validate creative assets, and track performance with 4 specialized tools.
+
+## Prerequisites
+
+<Note>
+- TikTok Ads Manager account ([create one here](https://ads.tiktok.com))
+- A TikTok Business Center account with billing enabled
+- Admin access to the ad account you want to manage
+- Adspirer account connected via [Claude Code](/ai-clients/claude-code), [Cursor](/ai-clients/cursor), or any [supported AI client](https://www.adspirer.com/integrations)
+</Note>
+
+## Connecting TikTok Ads
+
+Once you've set up Adspirer with your AI client, connect TikTok:
+
+1. Open your AI assistant (ChatGPT, Claude, Claude Code, etc.)
+2. Say: "Connect my TikTok Ads account"
+3. Adspirer opens your browser for OAuth authorization
+4. Sign in to TikTok Business Center and select the ad account you want to manage
+5. Approve permissions (read campaign data, create ads, manage budgets)
+
+Verify the connection:
+
+```
+Check my connected ad platforms
+```
+
+You should see your TikTok ad account listed with advertiser name, account ID, and active status.
+
+## What You Can Do (4 Tools)
+
+### Performance Analysis
+
+- `get_tiktok_campaign_performance` -- Pull metrics for TikTok campaigns (video views, engagement, conversions, cost metrics)
+
+### Creative Management
+
+- `discover_tiktok_assets` -- Check existing video creatives in your TikTok account
+- `validate_and_prepare_tiktok_assets` -- Verify video files meet TikTok's requirements (9:16 vertical, 5-60 seconds, MP4/MOV)
+
+### Campaign Creation
+
+- `create_tiktok_campaign` -- Launch In-Feed video campaigns (created PAUSED)
+
+<Tip>
+TikTok Ads is Adspirer's newest integration with a focused tool set. Additional tools for audience targeting, budget optimization, and ad group management are on the roadmap. The current 4 tools cover the core workflow: check assets, validate creatives, create campaigns, and track performance.
+</Tip>
+
+## Campaign Creation Workflow
+
+TikTok campaigns follow a streamlined 4-step workflow:
+
+```
+1. get_connections_status
+   -> (verify TikTok Ads is connected)
+2. discover_tiktok_assets
+   -> (check existing videos in your account)
+3. validate_and_prepare_tiktok_assets
+   -> (verify video meets TikTok requirements: 9:16 vertical, 5-60 seconds)
+4. create_tiktok_campaign
+   -> (campaign created PAUSED -- you review before launching)
+```
+
+## Example Prompts
+
+### Check Performance
+
+```
+Pull my TikTok Ads performance for the last 14 days.
+Show video views, engagement rate, conversions, and cost per conversion.
+Which campaigns have the best video completion rate?
+```
+
+### Create a Campaign
+
+```
+Create a TikTok campaign:
+- Product: Skincare brand targeting women 18-34
+- Audience: Women interested in beauty, skincare, wellness
+- Budget: $50/day
+- Creative: [provide video URL]
+- Objective: Website conversions
+
+Validate the video first, then build the campaign.
+```
+
+### Upload and Validate Video
+
+```
+Validate this TikTok video creative: [your video URL]
+Check if it meets TikTok's specs for In-Feed ads.
+```
+
+### Analyze What's Working
+
+```
+Show me my TikTok campaign performance for the last 30 days.
+Which ad creatives have the highest engagement rate?
+What's my average cost per conversion across all campaigns?
+```
+
+## Creative Assets: What You Need to Know
+
+TikTok is a video-first platform. All campaigns require video creative.
+
+<Warning>
+Adspirer does NOT generate videos. You provide video URLs from Google Drive, Dropbox, S3, or any publicly accessible link. The `validate_and_prepare_tiktok_assets` tool checks that your video meets TikTok's specifications before campaign creation.
+</Warning>
+
+### TikTok's Creative Requirements
+
+The `validate_and_prepare_tiktok_assets` tool checks these automatically:
+
+- **Aspect ratio:** 9:16 (vertical) -- 1080x1920px recommended
+- **Duration:** 5-60 seconds (9-15 seconds performs best for engagement)
+- **Format:** MP4 or MOV
+- **File size:** Under 500MB
+- **Resolution:** Minimum 720p (1280x720px), 1080p recommended
+
+### Supported Asset Sources
+
+- Google Drive (public or shared links)
+- Dropbox (public links)
+- Amazon S3 (public URLs)
+- Any publicly accessible video URL
+
+### Creative Best Practices
+
+- **Hook in the first 2 seconds:** TikTok users scroll fast. Grab attention immediately.
+- **Native look and feel:** Ads that look like organic TikTok content outperform polished commercials
+- **Vertical video only:** Horizontal or square videos perform significantly worse on TikTok
+- **Sound on:** Unlike other platforms, most TikTok users watch with sound on. Use music and voiceover.
+- **Short and punchy:** 9-15 seconds is the sweet spot for In-Feed ads
+
+## Ad Format: In-Feed Ads
+
+TikTok In-Feed ads appear in users' For You feed and blend with organic content. They support:
+
+- **Traffic objective:** Drive users to your website or landing page
+- **Conversions objective:** Optimize for specific actions (purchases, signups, add to cart)
+- **App installs:** Drive mobile app downloads
+
+In-Feed ads auto-play with sound as users scroll through their feed. Users can like, comment, share, and follow directly from the ad.
+
+## Targeting Options
+
+When creating TikTok campaigns through Adspirer, you can target by:
+
+### Demographics
+
+- **Age:** 13-17, 18-24, 25-34, 35-44, 45-54, 55+
+- **Gender:** Male, Female, All
+- **Location:** Country, state/region, city-level targeting
+
+### Interests & Behaviors
+
+- **Interests:** Beauty, Fashion, Food & Beverage, Technology, Fitness, Gaming, and 20+ categories
+- **Behavioral signals:** Video interaction patterns, content engagement history
+- **Device:** iOS, Android, specific device models
+
+## Budget Guidelines
+
+- **Minimum:** $20/day per campaign (TikTok's requirement for campaign-level budgets)
+- **Ad group minimum:** $20/day
+- **Recommended:** $50+/day for meaningful data collection
+- **Testing:** Start with $50/day on a single ad group to gauge performance before scaling
+- **CPC range:** Expect $0.50-2.00 per click (varies by industry and targeting)
+- **CPM range:** $6-10 per thousand impressions
+
+## Best Use Cases for TikTok Ads
+
+- **E-commerce:** Products that photograph/film well (fashion, beauty, gadgets, food)
+- **Brand awareness:** Reaching younger demographics (Gen Z and Millennials) at scale
+- **Product launches:** New product reveals with authentic, native-feeling video content
+- **App installs:** Mobile-first audience with high app download intent
+- **Direct-to-consumer brands:** Brands that can create authentic, engaging short-form video
+
+**Not ideal for:** B2B lead generation (use [LinkedIn Ads](/ad-platforms/linkedin-ads)), high-intent search capture (use [Google Ads](/ad-platforms/google-ads)), audiences over 45 (limited reach on TikTok).
+
+## Troubleshooting
+
+### "Ad account not connected" error
+
+Re-authenticate your TikTok Business Center account:
+
+```
+Connect my TikTok Ads account
+```
+
+Make sure you select the correct advertiser account during OAuth. If you manage multiple accounts in TikTok Business Center, you may need to reconnect and select the right one.
+
+### "Asset validation failed" error
+
+Common causes:
+
+- Video is not in 9:16 vertical format (horizontal or square videos are rejected)
+- Video duration is outside 5-60 second range
+- File too large (over 500MB)
+- Unsupported format (use MP4 or MOV)
+- Video URL is private or not publicly accessible
+
+Run validation separately to diagnose:
+
+```
+Validate this TikTok video creative: [your URL]
+```
+
+### "Campaign creation failed" error
+
+Most common reason: skipping the asset validation step. TikTok campaigns require `validate_and_prepare_tiktok_assets` before `create_tiktok_campaign`. The validation tool uploads and processes the video in TikTok's system.
+
+If you're using [agent skills](/agent-skills/overview), the AI enforces the correct workflow automatically.
+
+### Low video completion rates
+
+Your creative may not be engaging enough for TikTok's audience. Common fixes:
+
+- Stronger hook in the first 2 seconds
+- Use trending sounds or music
+- Make it feel organic, not like a traditional ad
+- Shorter duration (try 9-12 seconds instead of 30+)
+- Test multiple video variations to find what resonates
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Can I create image ads on TikTok through Adspirer?">
+Not currently. TikTok is a video-first platform, and Adspirer supports In-Feed video ads. While TikTok does support some image-based formats (like Spark Ads), the current integration focuses on video campaigns. Image ad support may be added in the future based on TikTok's API capabilities.
+</Accordion>
+
+<Accordion title="Does Adspirer generate TikTok video content?">
+No. Adspirer manages campaigns, not video production. You create videos using your preferred tools (CapCut, Canva, Adobe Premiere, or even your phone) and provide the video URL. For AI-generated video, tools like Runway, Pika, or HeyGen can help. Upload the result to Google Drive or Dropbox and provide the link to Adspirer.
+</Accordion>
+
+<Accordion title="What's the difference between TikTok Ads and Meta Ads?">
+**TikTok Ads:** Video-first platform with a younger audience (Gen Z, Millennials). Content feels native and authentic. Strong for brand discovery and impulse purchases. Lower CPM but requires video creative.
+
+**[Meta Ads](/ad-platforms/meta-ads):** Supports image, video, and carousel formats. Broader age demographics. More advanced targeting and retargeting options. Better for retargeting and full-funnel campaigns.
+
+Many advertisers run both: TikTok for awareness and discovery, Meta for retargeting and conversion optimization.
+</Accordion>
+
+<Accordion title="Can I boost existing TikTok organic posts?">
+Not through Adspirer currently. Boosting organic posts (Spark Ads) requires additional API permissions. The current integration creates new In-Feed ads with your uploaded video creatives. Spark Ads support is being evaluated for a future release.
+</Accordion>
+
+<Accordion title="How much does Adspirer cost for TikTok Ads?">
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. A typical TikTok campaign creation uses 3-4 tool calls. See [full pricing](https://www.adspirer.com/pricing).
+</Accordion>
+
+<Accordion title="Is my TikTok advertising data secure?">
+Yes. Adspirer uses OAuth 2.1 authentication -- your TikTok credentials are never stored on Adspirer's servers. All connections are HTTPS-encrypted with strict security protocols. You can revoke access at any time from your TikTok Business Center.
+</Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Google Ads Integration](/ad-platforms/google-ads)
+- [Meta Ads Integration](/ad-platforms/meta-ads)
+- [LinkedIn Ads Integration](/ad-platforms/linkedin-ads)
+- [Campaign Creation Workflows](/agent-skills/workflows)
+- [TikTok Ads + AI Integration](https://www.adspirer.com/integrations/tiktok-ads)
+- [Pricing & Plans](https://www.adspirer.com/pricing)

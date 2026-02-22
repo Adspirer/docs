@@ -1,0 +1,235 @@
+---
+title: "Meta Ads Integration"
+description: "Manage Facebook and Instagram campaigns with AI. 20 tools for creative testing, audience targeting, and performance optimization."
+---
+
+## Prerequisites
+
+<Note>
+- Meta Business Manager account ([create one here](https://business.facebook.com))
+- An active Meta ad account with billing information
+- Admin access to the ad account you want to manage
+- Adspirer account connected via [Claude Code](/ai-clients/claude-code), [Cursor](/ai-clients/cursor), or any [supported AI client](https://www.adspirer.com/integrations)
+</Note>
+
+## Connecting Meta Ads
+
+Once you've set up Adspirer with your AI client, connect Meta:
+
+1. Open your AI assistant (ChatGPT, Claude, Claude Code, etc.)
+2. Say: "Connect my Meta Ads account"
+3. Adspirer opens your browser for OAuth authorization
+4. Sign in to Meta Business Manager and select the ad account you want to manage
+5. Approve permissions (read campaign data, create ads, manage budgets)
+
+Verify the connection:
+
+```
+Check my connected ad platforms
+```
+
+You should see your Meta ad account listed with account name, ID, and active status.
+
+## What You Can Do (20 Tools)
+
+### Performance Analysis
+
+- `get_meta_campaign_performance` — Pull metrics for campaigns, ad sets, or individual ads
+- `analyze_meta_ad_performance` — Deep analysis of ad-level performance with recommendations
+- `analyze_meta_audiences` — See which audience segments perform best
+- `detect_meta_creative_fatigue` — Identify ads losing effectiveness over time
+- `explain_meta_anomaly` — Diagnose sudden changes in performance (CPA spikes, CTR drops)
+
+### Targeting & Research
+
+- `search_meta_targeting` — Find audiences by interests, demographics, behaviors
+- `browse_meta_targeting` — Explore Meta's targeting categories
+
+### Campaign Creation
+
+- `select_meta_campaign_type` — Choose between Image, Video, or Carousel based on your creative
+- `discover_meta_assets` — Check if you have existing creatives in Meta
+- `validate_and_prepare_meta_assets` — Verify images/videos meet Meta's requirements (dimensions, file size, aspect ratio)
+- `create_meta_image_campaign` — Launch single-image campaigns
+- `create_meta_video_campaign` — Launch video campaigns
+- `create_meta_carousel_campaign` — Launch multi-card carousel campaigns
+
+### Optimization
+
+- `optimize_meta_budget` — Reallocate budget based on ROAS or CPA performance
+- `optimize_meta_placements` — Shift spend to best-performing placements (Feed, Stories, Reels, etc.)
+
+### Management
+
+- `update_meta_campaign` — Change budgets, bids, or targeting
+- `pause_meta_campaign` — Stop campaigns or ad sets
+- `resume_meta_campaign` — Restart paused campaigns
+
+## Campaign Creation Workflow
+
+Meta campaigns follow a 6-step workflow. Skip steps and the campaign will fail validation.
+
+```
+1. get_connections_status
+   ↓ (verify you're managing the right Meta account)
+2. search_meta_targeting
+   ↓ (find your target audience)
+3. select_meta_campaign_type
+   ↓ (image, video, or carousel?)
+4. discover_meta_assets
+   ↓ (check existing creatives)
+5. validate_and_prepare_meta_assets
+   ↓ (verify asset URLs meet Meta requirements)
+6. create_meta_*_campaign
+   ↓ (image/video/carousel — campaign created PAUSED)
+```
+
+## Example Prompts
+
+### Analyze Performance
+
+```
+Pull my Meta Ads performance for the last 30 days.
+Show spend, conversions, CPA, and ROAS.
+Highlight any campaigns with ROAS below 2.0.
+```
+
+### Detect Creative Fatigue
+
+```
+Check my Meta campaigns for creative fatigue.
+Find ads that have been running for 14+ days with declining CTR.
+Recommend which creatives to refresh.
+```
+
+### Create an Image Campaign
+
+```
+Create a Meta image campaign:
+- Product: Organic skincare line for women 25-45
+- Target: Women interested in clean beauty, sustainability, wellness
+- Budget: $30/day
+- Creative: [provide Google Drive link to your image]
+- Objective: Website conversions (Add to Cart)
+
+Validate the creative first, then build the campaign.
+```
+
+### Optimize Placements
+
+```
+Analyze my Meta ad placements for the last 14 days.
+Which placements have the best CPA? (Feed, Stories, Reels, etc.)
+Recommend budget shifts to maximize conversions.
+```
+
+### Audience Analysis
+
+```
+Analyze my Meta audiences.
+Which age groups and genders convert best?
+What interests correlate with higher ROAS?
+Show me a breakdown table.
+```
+
+## Creative Assets: What You Need to Know
+
+Adspirer does NOT generate images or videos. You provide the creative URLs.
+
+### Supported Asset Sources
+
+- Google Drive (public or shared links)
+- Dropbox (public links)
+- Amazon S3 (public URLs)
+- Any publicly accessible image/video URL
+
+### Meta's Creative Requirements
+
+The `validate_and_prepare_meta_assets` tool checks these automatically:
+
+- **Image ads:** 1080x1080px minimum, JPG or PNG, under 30MB, 1:1 or 4:5 aspect ratio
+- **Video ads:** 1080x1080px minimum, MP4 or MOV, under 4GB, 1:1 or 4:5 or 9:16 aspect ratio, 1-240 seconds
+- **Carousel ads:** 2-10 cards, each 1080x1080px, JPG or PNG
+- **Text limits:** Primary text 125 chars (recommended), headline 27 chars, description 30 chars
+
+## Budget Guidelines
+
+- **Minimum:** $5/day per ad set (Meta's requirement)
+- **Recommended:** $20+/day for meaningful data
+- **Testing:** Start with $30/day split across 2-3 ad sets to find winners
+- **Scaling:** Once you find ROAS above 3.0, increase budget 20-30% every 3 days
+
+## Best Use Cases for Meta Ads
+
+- **E-commerce:** Visual products (fashion, home goods, beauty)
+- **Demand generation:** Reach cold audiences with interest-based targeting
+- **Retargeting:** Re-engage website visitors, cart abandoners
+- **Video storytelling:** Brand awareness campaigns with Reels or Stories
+- **Lead generation:** On-platform forms (though LinkedIn often performs better for B2B)
+
+## Troubleshooting
+
+### "Ad account not connected" error
+
+Re-authenticate your Meta Business Manager:
+
+```
+Connect my Meta Ads account
+```
+
+Make sure you select the correct ad account during OAuth. If you manage multiple accounts, you may need to reconnect with admin permissions.
+
+### "Asset validation failed" error
+
+Common causes:
+
+- Image/video URL is private (not publicly accessible)
+- Wrong dimensions (Meta requires minimum 1080x1080px)
+- File too large (30MB for images, 4GB for video)
+- Unsupported format (use JPG/PNG for images, MP4/MOV for video)
+
+Run validation separately to diagnose:
+
+```
+Validate this Meta creative: [your URL]
+```
+
+### "Campaign creation failed" error
+
+Most common reason: skipping workflow steps. Meta campaigns require all 6 steps in order. If you jump straight to `create_meta_image_campaign` without running `validate_and_prepare_meta_assets` first, it will fail.
+
+If you're using [agent skills](/agent-skills/overview), the AI enforces the correct workflow automatically.
+
+### Creative fatigue detection not working
+
+The tool needs at least 14 days of data per ad. If your ads are newer, it can't detect fatigue yet. Wait until ads have run for 2+ weeks.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Can I manage Instagram ads separately from Facebook?">
+    No. Meta treats Facebook and Instagram as placement options within the same campaign. When you create a Meta campaign through Adspirer, you choose placements (Feed, Stories, Reels, etc.) that span both platforms. You can't create Instagram-only campaigns through the API.
+  </Accordion>
+  <Accordion title="Does Adspirer generate ad creatives?">
+    No. Adspirer manages campaigns, not creative production. You provide image/video URLs. For AI-generated creatives, use tools like Midjourney, DALL-E, or Runway, then upload to Google Drive/Dropbox and provide the link.
+  </Accordion>
+  <Accordion title="Can I A/B test creatives?">
+    Yes. Create multiple ad sets with different creatives (different image URLs) but the same targeting and budget. After 7 days, use `analyze_meta_ad_performance` to see which creative wins, then pause the losers and scale the winner.
+  </Accordion>
+  <Accordion title="What's the difference between Meta and Google Ads?">
+    **Meta Ads:** Best for demand generation (reaching people who don't know you exist) and visual products. Interest-based targeting. Lower intent but cheaper clicks.
+
+    **[Google Ads](/ad-platforms/google-ads):** Best for demand capture (reaching people actively searching for solutions). Keyword-based targeting. Higher intent but more expensive clicks.
+  </Accordion>
+  <Accordion title="How much does Adspirer cost for Meta Ads?">
+    Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. A typical Meta campaign creation uses 4-6 tool calls. See [full pricing](https://www.adspirer.com/pricing).
+  </Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Google Ads Integration](/ad-platforms/google-ads)
+- [LinkedIn Ads Integration](/ad-platforms/linkedin-ads)
+- [Campaign Creation Workflows](/agent-skills/workflows)
+- [Meta Ads + AI Integration](https://www.adspirer.com/integrations/meta-ads)
+- [Pricing & Plans](https://www.adspirer.com/pricing)

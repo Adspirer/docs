@@ -1,68 +1,93 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "theme": "maple",
+  "name": "Adspirer",
+  "description": "Manage ad campaigns with AI. 100+ tools across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads.",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#3B82F6",
+    "light": "#F8FAFC",
+    "dark": "#0F172A"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://www.adspirer.com"
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": false
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "introduction",
+              "quickstart"
             ]
           },
           {
-            "group": "Customization",
+            "group": "AI Clients",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "ai-clients/claude-code",
+              "ai-clients/cursor",
+              "ai-clients/codex",
+              "ai-clients/openclaw",
+              "ai-clients/windsurf",
+              "ai-clients/custom-gpt"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Ad Platforms",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "ad-platforms/google-ads",
+              "ad-platforms/meta-ads",
+              "ad-platforms/linkedin-ads",
+              "ad-platforms/tiktok-ads"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Agent Skills",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "agent-skills/overview",
+              "agent-skills/tools",
+              "agent-skills/workflows"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Guides",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Google Ads",
             "pages": [
-              "api-reference/introduction"
+              "guides/chatgpt-google-ads-keywords",
+              "guides/google-ads-automation",
+              "guides/automate-google-ads"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Meta Ads",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "guides/automate-facebook-ads"
+            ]
+          },
+          {
+            "group": "TikTok Ads",
+            "pages": [
+              "guides/tiktok-ads-guide"
+            ]
+          },
+          {
+            "group": "Strategy",
+            "pages": [
+              "guides/ai-advertising",
+              "guides/marketing-agency-automation"
             ]
           }
         ]
@@ -71,52 +96,48 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Blog",
+          "href": "https://www.adspirer.com/blog",
+          "icon": "newspaper"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "MCP Server",
+          "href": "https://mcp.adspirer.com",
+          "icon": "server"
         }
       ]
     }
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Pricing",
+        "href": "https://www.adspirer.com/pricing"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Start Free Trial",
+      "href": "https://adspirer.ai"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/AdspirerAI",
+      "github": "https://github.com/Adspirer",
+      "linkedin": "https://www.linkedin.com/company/adspirer"
     }
   }
 }
