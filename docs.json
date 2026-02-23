@@ -145,8 +145,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Get Started",
-      "href": "https://adspirer.ai?utm_source=docs&utm_medium=nav&utm_content=get-started"
+      "label": "Book Meeting",
+      "href": "https://www.adspirer.com/demo?utm_source=docs&utm_medium=nav&utm_content=book-meeting"
     }
   },
   "contextual": {
