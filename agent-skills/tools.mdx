@@ -1,6 +1,10 @@
 ---
 title: "Tool Catalog"
+sidebarTitle: "Tool Catalog"
 description: "Complete reference of all 100+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
+icon: "wrench"
+mode: "wide"
+keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 ---
 
 ## Tool Types
@@ -10,100 +14,116 @@ description: "Complete reference of all 100+ Adspirer tools. Organized by platfo
 
 ## Google Ads Tools (39)
 
+<Expandable title="View all 39 Google Ads tools" defaultOpen>
+
 | Tool Name | Type | Description |
 |-----------|------|-------------|
-| `get_campaign_performance` | Read | Pull metrics for campaigns (spend, conversions, CPA, ROAS) |
-| `research_keywords` | Read | Find keywords with real CPC data from Google Keyword Planner |
-| `create_search_campaign` | Write | Launch Google Search campaign (created PAUSED) |
-| `create_pmax_campaign` | Write | Launch Performance Max campaign (created PAUSED) |
-| `analyze_wasted_spend` | Read | Find keywords with spend but zero conversions |
-| `optimize_budget_allocation` | Read | Recommend budget shifts based on ROAS/CPA |
-| `analyze_search_terms` | Read | Review actual search queries triggering your ads |
-| `discover_existing_assets` | Read | Check if account has images/headlines/descriptions |
-| `suggest_ad_content` | Read | Generate ad headlines and descriptions (Google char limits) |
-| `validate_and_prepare_assets` | Read | Verify assets meet Google's requirements before campaign creation |
-| `update_campaign_budget` | Write | Change daily budget for existing campaigns |
-| `pause_campaign` | Write | Stop campaigns or ad groups |
-| `resume_campaign` | Write | Restart paused campaigns |
-| `add_negative_keywords` | Write | Block irrelevant search terms |
-| `manage_ad_extensions` | Write | Add sitelinks, callouts, structured snippets |
-| `explain_performance_anomaly` | Read | Diagnose sudden CPA spikes or CTR drops |
-| `help_user_upload` | Read | Guide user through asset upload process |
+| `get_campaign_performance` | <Badge color="green">Read</Badge> | Pull metrics for campaigns (spend, conversions, CPA, ROAS) |
+| `research_keywords` | <Badge color="green">Read</Badge> | Find keywords with real CPC data from Google Keyword Planner |
+| `create_search_campaign` | <Badge color="red">Write</Badge> | Launch Google Search campaign (created PAUSED) |
+| `create_pmax_campaign` | <Badge color="red">Write</Badge> | Launch Performance Max campaign (created PAUSED) |
+| `analyze_wasted_spend` | <Badge color="green">Read</Badge> | Find keywords with spend but zero conversions |
+| `optimize_budget_allocation` | <Badge color="green">Read</Badge> | Recommend budget shifts based on ROAS/CPA |
+| `analyze_search_terms` | <Badge color="green">Read</Badge> | Review actual search queries triggering your ads |
+| `discover_existing_assets` | <Badge color="green">Read</Badge> | Check if account has images/headlines/descriptions |
+| `suggest_ad_content` | <Badge color="green">Read</Badge> | Generate ad headlines and descriptions (Google char limits) |
+| `validate_and_prepare_assets` | <Badge color="green">Read</Badge> | Verify assets meet Google's requirements before campaign creation |
+| `update_campaign_budget` | <Badge color="red">Write</Badge> | Change daily budget for existing campaigns |
+| `pause_campaign` | <Badge color="red">Write</Badge> | Stop campaigns or ad groups |
+| `resume_campaign` | <Badge color="red">Write</Badge> | Restart paused campaigns |
+| `add_negative_keywords` | <Badge color="red">Write</Badge> | Block irrelevant search terms |
+| `manage_ad_extensions` | <Badge color="red">Write</Badge> | Add sitelinks, callouts, structured snippets |
+| `explain_performance_anomaly` | <Badge color="green">Read</Badge> | Diagnose sudden CPA spikes or CTR drops |
+| `help_user_upload` | <Badge color="green">Read</Badge> | Guide user through asset upload process |
 | ...and 22 more | | Ad group management, bidding, audience targeting, etc. |
+
+</Expandable>
 
 ## LinkedIn Ads Tools (28)
 
+<Expandable title="View all 28 LinkedIn Ads tools">
+
 | Tool Name | Type | Description |
 |-----------|------|-------------|
-| `get_linkedin_campaign_performance` | Read | Pull metrics for LinkedIn campaigns (spend, clicks, conversions, cost per lead) |
-| `get_linkedin_organizations` | Read | List user's LinkedIn company pages (required before campaign creation) |
-| `search_linkedin_targeting` | Read | Find B2B audiences by job title, industry, company size, seniority |
-| `research_business_for_linkedin_targeting` | Read | Input competitor name, get targeting suggestions |
-| `create_linkedin_image_campaign` | Write | Launch sponsored content campaign (created PAUSED) |
-| `discover_linkedin_assets` | Read | Check existing creatives in LinkedIn |
-| `validate_and_prepare_linkedin_assets` | Read | Verify images meet LinkedIn requirements (1200x627px or 1200x1200px) |
-| `add_linkedin_creative` | Write | Add new sponsored posts to existing campaigns |
-| `analyze_linkedin_creative_performance` | Read | See which images/copy combinations perform best |
-| `optimize_linkedin_budget` | Read | Recommend budget reallocation based on cost per lead |
-| `update_linkedin_campaign` | Write | Change budgets, bids, or targeting |
-| `pause_linkedin_campaign` | Write | Stop campaigns or ad groups |
-| `explain_linkedin_anomaly` | Read | Diagnose sudden CTR, CPC, or conversion rate changes |
-| `manage_linkedin_conversions` | Write | Set up and track conversion events (form fills, downloads) |
+| `get_linkedin_campaign_performance` | <Badge color="green">Read</Badge> | Pull metrics for LinkedIn campaigns (spend, clicks, conversions, cost per lead) |
+| `get_linkedin_organizations` | <Badge color="green">Read</Badge> | List user's LinkedIn company pages (required before campaign creation) |
+| `search_linkedin_targeting` | <Badge color="green">Read</Badge> | Find B2B audiences by job title, industry, company size, seniority |
+| `research_business_for_linkedin_targeting` | <Badge color="green">Read</Badge> | Input competitor name, get targeting suggestions |
+| `create_linkedin_image_campaign` | <Badge color="red">Write</Badge> | Launch sponsored content campaign (created PAUSED) |
+| `discover_linkedin_assets` | <Badge color="green">Read</Badge> | Check existing creatives in LinkedIn |
+| `validate_and_prepare_linkedin_assets` | <Badge color="green">Read</Badge> | Verify images meet LinkedIn requirements (1200x627px or 1200x1200px) |
+| `add_linkedin_creative` | <Badge color="red">Write</Badge> | Add new sponsored posts to existing campaigns |
+| `analyze_linkedin_creative_performance` | <Badge color="green">Read</Badge> | See which images/copy combinations perform best |
+| `optimize_linkedin_budget` | <Badge color="green">Read</Badge> | Recommend budget reallocation based on cost per lead |
+| `update_linkedin_campaign` | <Badge color="red">Write</Badge> | Change budgets, bids, or targeting |
+| `pause_linkedin_campaign` | <Badge color="red">Write</Badge> | Stop campaigns or ad groups |
+| `explain_linkedin_anomaly` | <Badge color="green">Read</Badge> | Diagnose sudden CTR, CPC, or conversion rate changes |
+| `manage_linkedin_conversions` | <Badge color="red">Write</Badge> | Set up and track conversion events (form fills, downloads) |
 | ...and 14 more | | Lead gen forms, audience expansion, bid strategies, etc. |
+
+</Expandable>
 
 ## Meta Ads Tools (20)
 
+<Expandable title="View all 20 Meta Ads tools">
+
 | Tool Name | Type | Description |
 |-----------|------|-------------|
-| `get_meta_campaign_performance` | Read | Pull metrics for Meta campaigns (Facebook + Instagram) |
-| `search_meta_targeting` | Read | Find audiences by interests, demographics, behaviors |
-| `select_meta_campaign_type` | Read | Choose: Image, Video, or Carousel based on creative assets |
-| `discover_meta_assets` | Read | Check existing creatives in Meta |
-| `validate_and_prepare_meta_assets` | Read | Verify image/video URLs meet Meta requirements (dimensions, file size) |
-| `create_meta_image_campaign` | Write | Launch single-image campaign (created PAUSED) |
-| `create_meta_video_campaign` | Write | Launch video campaign (created PAUSED) |
-| `create_meta_carousel_campaign` | Write | Launch multi-card carousel campaign (created PAUSED) |
-| `analyze_meta_ad_performance` | Read | Deep analysis of ad-level performance with recommendations |
-| `analyze_meta_audiences` | Read | See which audience segments perform best (age, gender, interests) |
-| `detect_meta_creative_fatigue` | Read | Identify ads losing effectiveness over time (declining CTR after 14+ days) |
-| `optimize_meta_budget` | Read | Recommend budget reallocation based on ROAS/CPA |
-| `optimize_meta_placements` | Read | Shift spend to best-performing placements (Feed, Stories, Reels) |
-| `explain_meta_anomaly` | Read | Diagnose sudden CPA spikes or CTR drops |
-| `update_meta_campaign` | Write | Change budgets, bids, or targeting |
-| `pause_meta_campaign` | Write | Stop campaigns or ad sets |
-| `browse_meta_targeting` | Read | Explore Meta's targeting categories |
+| `get_meta_campaign_performance` | <Badge color="green">Read</Badge> | Pull metrics for Meta campaigns (Facebook + Instagram) |
+| `search_meta_targeting` | <Badge color="green">Read</Badge> | Find audiences by interests, demographics, behaviors |
+| `select_meta_campaign_type` | <Badge color="green">Read</Badge> | Choose: Image, Video, or Carousel based on creative assets |
+| `discover_meta_assets` | <Badge color="green">Read</Badge> | Check existing creatives in Meta |
+| `validate_and_prepare_meta_assets` | <Badge color="green">Read</Badge> | Verify image/video URLs meet Meta requirements (dimensions, file size) |
+| `create_meta_image_campaign` | <Badge color="red">Write</Badge> | Launch single-image campaign (created PAUSED) |
+| `create_meta_video_campaign` | <Badge color="red">Write</Badge> | Launch video campaign (created PAUSED) |
+| `create_meta_carousel_campaign` | <Badge color="red">Write</Badge> | Launch multi-card carousel campaign (created PAUSED) |
+| `analyze_meta_ad_performance` | <Badge color="green">Read</Badge> | Deep analysis of ad-level performance with recommendations |
+| `analyze_meta_audiences` | <Badge color="green">Read</Badge> | See which audience segments perform best (age, gender, interests) |
+| `detect_meta_creative_fatigue` | <Badge color="green">Read</Badge> | Identify ads losing effectiveness over time (declining CTR after 14+ days) |
+| `optimize_meta_budget` | <Badge color="green">Read</Badge> | Recommend budget reallocation based on ROAS/CPA |
+| `optimize_meta_placements` | <Badge color="green">Read</Badge> | Shift spend to best-performing placements (Feed, Stories, Reels) |
+| `explain_meta_anomaly` | <Badge color="green">Read</Badge> | Diagnose sudden CPA spikes or CTR drops |
+| `update_meta_campaign` | <Badge color="red">Write</Badge> | Change budgets, bids, or targeting |
+| `pause_meta_campaign` | <Badge color="red">Write</Badge> | Stop campaigns or ad sets |
+| `browse_meta_targeting` | <Badge color="green">Read</Badge> | Explore Meta's targeting categories |
 | ...and 3 more | | Resume campaigns, audience insights, etc. |
+
+</Expandable>
 
 ## TikTok Ads Tools (4)
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
-| `get_tiktok_campaign_performance` | Read | Pull metrics for TikTok campaigns |
-| `discover_tiktok_assets` | Read | Check existing videos in TikTok |
-| `validate_and_prepare_tiktok_assets` | Read | Verify videos meet TikTok requirements (9:16 vertical, 5-60 seconds) |
-| `create_tiktok_campaign` | Write | Launch in-feed video campaign (created PAUSED) |
+| `get_tiktok_campaign_performance` | <Badge color="green">Read</Badge> | Pull metrics for TikTok campaigns |
+| `discover_tiktok_assets` | <Badge color="green">Read</Badge> | Check existing videos in TikTok |
+| `validate_and_prepare_tiktok_assets` | <Badge color="green">Read</Badge> | Verify videos meet TikTok requirements (9:16 vertical, 5-60 seconds) |
+| `create_tiktok_campaign` | <Badge color="red">Write</Badge> | Launch in-feed video campaign (created PAUSED) |
 
 ## Automation Tools (8)
 
+<Expandable title="View all 8 Automation tools">
+
 | Tool Name | Type | Description |
 |-----------|------|-------------|
-| `schedule_brief` | Write | Schedule daily/weekly performance summaries via email or Slack |
-| `create_monitor` | Write | Set alerts for CPA spikes, budget overspend, CTR drops |
-| `list_monitors` | Read | View all active performance monitors |
-| `delete_monitor` | Write | Remove a monitor |
-| `generate_report_now` | Read | Generate ad-hoc cross-platform performance report |
-| `list_scheduled_tasks` | Read | View all scheduled briefs and reports |
-| `update_scheduled_task` | Write | Change frequency or parameters of scheduled briefs |
-| `delete_scheduled_task` | Write | Remove a scheduled brief or report |
+| `schedule_brief` | <Badge color="red">Write</Badge> | Schedule daily/weekly performance summaries via email or Slack |
+| `create_monitor` | <Badge color="red">Write</Badge> | Set alerts for CPA spikes, budget overspend, CTR drops |
+| `list_monitors` | <Badge color="green">Read</Badge> | View all active performance monitors |
+| `delete_monitor` | <Badge color="red">Write</Badge> | Remove a monitor |
+| `generate_report_now` | <Badge color="green">Read</Badge> | Generate ad-hoc cross-platform performance report |
+| `list_scheduled_tasks` | <Badge color="green">Read</Badge> | View all scheduled briefs and reports |
+| `update_scheduled_task` | <Badge color="red">Write</Badge> | Change frequency or parameters of scheduled briefs |
+| `delete_scheduled_task` | <Badge color="red">Write</Badge> | Remove a scheduled brief or report |
+
+</Expandable>
 
 ## System Tools (4)
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
-| `get_connections_status` | Read | Show all connected ad platforms and account IDs |
-| `switch_primary_account` | Write | Change active ad account (for users managing multiple accounts) |
-| `get_usage_status` | Read | Check Adspirer plan limits (tool calls used/remaining this month) |
-| `get_business_profile` | Read | View user's Adspirer account details and subscription info |
+| `get_connections_status` | <Badge color="green">Read</Badge> | Show all connected ad platforms and account IDs |
+| `switch_primary_account` | <Badge color="red">Write</Badge> | Change active ad account (for users managing multiple accounts) |
+| `get_usage_status` | <Badge color="green">Read</Badge> | Check Adspirer plan limits (tool calls used/remaining this month) |
+| `get_business_profile` | <Badge color="green">Read</Badge> | View user's Adspirer account details and subscription info |
 
 ## Tool Call Best Practices
 

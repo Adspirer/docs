@@ -1,6 +1,8 @@
 ---
 title: "Core Workflows"
 description: "Complete workflows for ad campaign management. Step-by-step tool sequences for Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads campaign creation, optimization, and analysis."
+icon: "arrows-spin"
+keywords: ["workflows", "campaign creation", "optimization", "automation"]
 ---
 
 Exact tool sequences for campaign creation, optimization, and analysis. These are the workflows that agent skills enforce automatically.
@@ -319,7 +321,7 @@ Schedule recurring tasks and set up monitoring.
 
 ### Example: Daily Performance Brief
 
-```python
+```python Daily Performance Brief
 schedule_brief(
   platforms=["google", "meta", "linkedin"],
   frequency="daily",
@@ -331,7 +333,7 @@ schedule_brief(
 
 ### Example: CPA Spike Monitor
 
-```python
+```python CPA Spike Alert
 create_monitor(
   platform="google",
   metric="cpa",

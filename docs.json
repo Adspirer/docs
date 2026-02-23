@@ -4,7 +4,7 @@
   "name": "Adspirer",
   "description": "Manage ad campaigns with AI. 100+ tools across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads.",
   "colors": {
-    "primary": "#3B82F6",
+    "primary": "#2563EB",
     "light": "#F8FAFC",
     "dark": "#0F172A"
   },
@@ -18,6 +18,62 @@
     "default": "dark",
     "strict": false
   },
+  "styling": {
+    "eyebrows": "breadcrumbs",
+    "codeblocks": {
+      "theme": {
+        "light": "github-light",
+        "dark": "github-dark"
+      }
+    }
+  },
+  "metadata": {
+    "timestamp": true
+  },
+  "banner": {
+    "content": "**New:** TikTok Ads support is live with 4 tools for in-feed video campaigns. [Try it now →](/ad-platforms/tiktok-ads)",
+    "dismissible": true
+  },
+  "search": {
+    "prompt": "Search Adspirer docs..."
+  },
+  "background": {
+    "decoration": "gradient"
+  },
+  "errors": {
+    "404": {
+      "redirect": false,
+      "title": "Page Not Found",
+      "description": "This page doesn't exist or may have moved. **[Go to documentation home →](/introduction)**"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/getting-started",
+      "destination": "/quickstart",
+      "permanent": true
+    },
+    {
+      "source": "/tools",
+      "destination": "/agent-skills/tools",
+      "permanent": true
+    },
+    {
+      "source": "/workflows",
+      "destination": "/agent-skills/workflows",
+      "permanent": true
+    },
+    {
+      "source": "/security",
+      "destination": "/knowledge-base/security",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/knowledge-base/pricing",
+      "permanent": true
+    }
+  ],
   "navigation": {
     "tabs": [
       {
@@ -116,6 +172,29 @@
       }
     ],
     "global": {
+      "languages": [
+        {
+          "language": "en",
+          "default": true,
+          "href": "/introduction"
+        },
+        {
+          "language": "es",
+          "href": "/es"
+        },
+        {
+          "language": "ja",
+          "href": "/ja"
+        },
+        {
+          "language": "pt",
+          "href": "/pt"
+        },
+        {
+          "language": "de",
+          "href": "/de"
+        }
+      ],
       "anchors": [
         {
           "anchor": "Blog",
@@ -172,6 +251,35 @@
     "indexing": "all"
   },
   "footer": {
+    "links": [
+      {
+        "header": "Product",
+        "items": [
+          { "label": "MCP Server", "href": "https://mcp.adspirer.com" },
+          { "label": "Pricing", "href": "https://www.adspirer.com/pricing" },
+          { "label": "Changelog", "href": "/changelog" },
+          { "label": "Security", "href": "/knowledge-base/security" }
+        ]
+      },
+      {
+        "header": "Resources",
+        "items": [
+          { "label": "Blog", "href": "https://www.adspirer.com/blog" },
+          { "label": "Guides", "href": "/guides/ai-advertising" },
+          { "label": "Tool Catalog", "href": "/agent-skills/tools" },
+          { "label": "How MCP Works", "href": "/mcp" }
+        ]
+      },
+      {
+        "header": "Connect",
+        "items": [
+          { "label": "Book a Demo", "href": "https://www.adspirer.com/book-demo" },
+          { "label": "GitHub", "href": "https://github.com/Adspirer/docs" },
+          { "label": "Twitter", "href": "https://x.com/abhilashreddi" },
+          { "label": "LinkedIn", "href": "https://www.linkedin.com/company/adspirer" }
+        ]
+      }
+    ],
     "socials": {
       "x": "https://x.com/abhilashreddi",
       "github": "https://github.com/Adspirer/docs",

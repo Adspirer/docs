@@ -1,6 +1,9 @@
 ---
 title: "How MCP Works"
+sidebarTitle: "How MCP Works"
 description: "How Adspirer implements the Model Context Protocol (MCP). Architecture, OAuth 2.1 authentication with PKCE, streamable HTTP transport, tool discovery, and security model."
+icon: "diagram-project"
+keywords: ["mcp", "model context protocol", "oauth", "architecture", "authentication"]
 ---
 
 Adspirer connects AI assistants to ad platforms using MCP — the open protocol created by Anthropic for AI tool integration.
@@ -41,7 +44,7 @@ Adspirer supports two MCP transport mechanisms:
 
 The primary transport for web and IDE clients. Requests are JSON-RPC 2.0 over HTTP:
 
-```json
+```json Example MCP Request
 {
   "jsonrpc": "2.0",
   "id": "req-1",
@@ -93,7 +96,7 @@ sequenceDiagram
 
 When an AI client connects, it discovers available tools via `tools/list`:
 
-```json
+```json Tool Discovery Request
 {
   "jsonrpc": "2.0",
   "id": "req-0",
@@ -132,7 +135,7 @@ When the AI calls a tool, the server:
 
 If something goes wrong, the server returns structured errors with recovery steps:
 
-```json
+```json Error Response Example
 {
   "error": {
     "code": -32002,
@@ -171,6 +174,25 @@ See [full pricing](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=p
 | **Sessions** | Redis (auto-expiring, 1hr TTL) |
 | **Auth** | OAuth 2.1 with PKCE |
 | **Logging** | Structured JSON logs |
+
+### Server Architecture
+
+<Tree>
+  <TreeItem title="mcp.adspirer.com" icon="server">
+    <TreeItem title="OAuth 2.1 + PKCE" icon="lock" />
+    <TreeItem title="JSON-RPC 2.0 Router" icon="route">
+      <TreeItem title="tools/list — Discover 100+ tools" />
+      <TreeItem title="tools/call — Execute tool with auth" />
+    </TreeItem>
+    <TreeItem title="Platform Adapters" icon="plug">
+      <TreeItem title="Google Ads API (39 tools)" />
+      <TreeItem title="Meta Marketing API (20 tools)" />
+      <TreeItem title="LinkedIn Marketing API (28 tools)" />
+      <TreeItem title="TikTok Marketing API (4 tools)" />
+    </TreeItem>
+    <TreeItem title="Redis Sessions (1hr TTL)" icon="database" />
+  </TreeItem>
+</Tree>
 
 ### Uptime
 

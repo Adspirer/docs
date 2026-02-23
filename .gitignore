@@ -7,6 +7,7 @@ PHASE-*-SUMMARY.md
 
 # TTS generation scripts and audio
 generate-*.py
+tts-convert.py
 *.mp3
 
 # Source logo files
