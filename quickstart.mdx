@@ -1,85 +1,133 @@
 ---
 title: "Quickstart"
-description: "Get started with Adspirer in under 5 minutes. Connect your AI assistant and start managing ad campaigns."
+description: "Get started with Adspirer in under 5 minutes. Sign up, connect your AI client (ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, or Windsurf), link an ad platform, and run your first campaign query."
 ---
 
-## Step 1: Sign Up
+<Steps>
+  <Step title="Sign Up">
+    Create your free Adspirer account at [adspirer.ai](https://adspirer.ai). No credit card required — free tier includes 10 tool calls per month.
+  </Step>
 
-Create your free Adspirer account at [adspirer.ai](https://adspirer.ai). No credit card required — free tier includes 10 tool calls per month.
+  <Step title="Connect Your AI Client">
+    Pick your AI assistant and follow the setup guide:
 
-## Step 2: Connect Your AI Client
+    **Chat Apps**
 
-Pick your AI assistant and follow the setup guide:
+    <CardGroup cols={2}>
+      <Card title="ChatGPT" icon="/icons/chatgpt.svg" href="/ai-clients/chatgpt">
+        Add the MCP connector in ChatGPT Settings. Requires Plus or Pro.
+      </Card>
+      <Card title="Claude" icon="/icons/claude.svg" href="/ai-clients/claude">
+        Add the MCP connector in Claude Settings. Requires Pro, Max, Team, or Enterprise.
+      </Card>
+    </CardGroup>
 
-**Chat Apps**
+    **Developer Tools**
 
-<CardGroup cols={2}>
-  <Card title="ChatGPT" icon="/icons/chatgpt.svg" href="/ai-clients/chatgpt">
-    Add the MCP connector in ChatGPT Settings. Requires Plus or Pro.
-  </Card>
-  <Card title="Claude" icon="/icons/claude.svg" href="/ai-clients/claude">
-    Add the MCP connector in Claude Settings. Requires Pro, Max, Team, or Enterprise.
-  </Card>
-</CardGroup>
+    <CardGroup cols={2}>
+      <Card title="Claude Code" icon="/icons/claude-code.svg" href="/ai-clients/claude-code">
+        Plugin install or one MCP command from your terminal.
+      </Card>
+      <Card title="Cursor" icon="/icons/cursor.svg" href="/ai-clients/cursor">
+        One-command installer with 5 skills and subagent.
+      </Card>
+      <Card title="Codex" icon="/icons/codex.svg" href="/ai-clients/codex">
+        One-command installer for autonomous agent setup.
+      </Card>
+      <Card title="OpenClaw" icon="/icons/openclaw.svg" href="/ai-clients/openclaw">
+        Plugin install with 14KB skill file built in.
+      </Card>
+      <Card title="Windsurf" icon="/icons/windsurf.svg" href="/ai-clients/windsurf">
+        Add MCP config to Windsurf settings.
+      </Card>
+      <Card title="Custom GPT" icon="/icons/chatgpt.svg" href="/ai-clients/custom-gpt">
+        Use Adspirer inside ChatGPT via the GPT Store.
+      </Card>
+    </CardGroup>
 
-**Developer Tools**
+    **Quick MCP Config Reference**
 
-<CardGroup cols={2}>
-  <Card title="Claude Code" icon="/icons/claude-code.svg" href="/ai-clients/claude-code">
-    2-minute setup from your terminal.
-  </Card>
-  <Card title="Cursor" icon="/icons/cursor.svg" href="/ai-clients/cursor">
-    3-minute setup in your IDE.
-  </Card>
-  <Card title="Codex" icon="/icons/codex.svg" href="/ai-clients/codex">
-    5-minute autonomous agent setup.
-  </Card>
-  <Card title="OpenClaw" icon="/icons/openclaw.svg" href="/ai-clients/openclaw">
-    3-minute plugin installation.
-  </Card>
-  <Card title="Windsurf" icon="/icons/windsurf.svg" href="/ai-clients/windsurf">
-    3-minute IDE setup.
-  </Card>
-  <Card title="Custom GPT" icon="/icons/chatgpt.svg" href="/ai-clients/custom-gpt">
-    Use Adspirer inside ChatGPT via the GPT Store.
-  </Card>
-</CardGroup>
+    <Tabs>
+      <Tab title="Claude Code">
+        ```bash
+        claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
+        ```
+        Or use the plugin system: `/plugin marketplace add amekala/ads-mcp` then `/plugin install adspirer`
+      </Tab>
+      <Tab title="Cursor">
+        ```bash
+        bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/cursor/adspirer/install.sh)
+        ```
+        Run from your **system terminal**, not Cursor's built-in terminal. Then restart Cursor.
+      </Tab>
+      <Tab title="Codex">
+        ```bash
+        bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/codex/adspirer/install.sh)
+        ```
+        Then run `codex mcp login adspirer` to authenticate.
+      </Tab>
+      <Tab title="OpenClaw">
+        ```bash
+        openclaw plugins install openclaw-adspirer
+        openclaw adspirer login
+        ```
+      </Tab>
+      <Tab title="Windsurf">
+        Add to `~/.codeium/windsurf/mcp_config.json`:
+        ```json
+        {
+          "mcpServers": {
+            "adspirer": {
+              "type": "streamable-http",
+              "url": "https://mcp.adspirer.com/mcp"
+            }
+          }
+        }
+        ```
+      </Tab>
+      <Tab title="ChatGPT / Claude">
+        No config needed — add the MCP connector from your app's Settings page:
 
-## Step 3: Connect an Ad Platform
+        **MCP Server URL:** `https://mcp.adspirer.com/mcp`
+      </Tab>
+    </Tabs>
+  </Step>
 
-Link your advertising accounts. You can connect multiple platforms:
+  <Step title="Connect an Ad Platform">
+    Link your advertising accounts. You can connect multiple platforms:
 
-<CardGroup cols={2}>
-  <Card title="Google Ads" icon="/icons/google-ads.svg" href="/ad-platforms/google-ads">
-    39 tools for Search & PMax campaigns, keyword research, budget optimization.
-  </Card>
-  <Card title="Meta Ads" icon="/icons/meta.svg" href="/ad-platforms/meta-ads">
-    20 tools for Facebook & Instagram campaigns, creative testing.
-  </Card>
-  <Card title="LinkedIn Ads" icon="/icons/linkedin.svg" href="/ad-platforms/linkedin-ads">
-    28 tools for B2B advertising, lead gen forms, sponsored content.
-  </Card>
-  <Card title="TikTok Ads" icon="/icons/tiktok.svg" href="/ad-platforms/tiktok-ads">
-    4 tools for in-feed video campaigns.
-  </Card>
-</CardGroup>
+    <CardGroup cols={2}>
+      <Card title="Google Ads" icon="/icons/google-ads.svg" href="/ad-platforms/google-ads">
+        39 tools for Search & PMax campaigns, keyword research, budget optimization.
+      </Card>
+      <Card title="Meta Ads" icon="/icons/meta.svg" href="/ad-platforms/meta-ads">
+        20 tools for Facebook & Instagram campaigns, creative testing.
+      </Card>
+      <Card title="LinkedIn Ads" icon="/icons/linkedin.svg" href="/ad-platforms/linkedin-ads">
+        28 tools for B2B advertising, lead gen forms, sponsored content.
+      </Card>
+      <Card title="TikTok Ads" icon="/icons/tiktok.svg" href="/ad-platforms/tiktok-ads">
+        4 tools for in-feed video campaigns.
+      </Card>
+    </CardGroup>
+  </Step>
 
-## Step 4: Try It Out
+  <Step title="Try It Out">
+    Once connected, ask your AI assistant:
 
-Once connected, ask your AI assistant:
+    <Prompt description="Verify your ad platform connections are working." actions={["copy", "cursor"]}>
+    Check my connected ad platforms
+    </Prompt>
 
-```
-Check my connected ad platforms
-```
+    You should see a table showing your connected accounts with IDs, names, and connection status.
 
-You should see a table showing your connected accounts with IDs, names, and connection status.
+    Then try something real:
 
-Then try something real:
-
-```
-Research Google Ads keywords for "project management software" —
-show search volume, CPC, and competition level
-```
+    <Prompt description="Research keywords with real CPC data from Google Keyword Planner." actions={["copy", "cursor"]}>
+    Research Google Ads keywords for "project management software" — show search volume, CPC, and competition level
+    </Prompt>
+  </Step>
+</Steps>
 
 ## What's Next?
 
