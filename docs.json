@@ -31,7 +31,7 @@
     "timestamp": true
   },
   "banner": {
-    "content": "**New:** TikTok Ads support is live with 4 tools for in-feed video campaigns. [Try it now →](/ad-platforms/tiktok-ads)",
+    "content": "**New:** TikTok Ads support is live with 4 tools for in-feed video campaigns. [Try it now →](/docs/ad-platforms/tiktok-ads)",
     "dismissible": true
   },
   "search": {
@@ -44,7 +44,7 @@
     "404": {
       "redirect": false,
       "title": "Page Not Found",
-      "description": "This page doesn't exist or may have moved. **[Go to documentation home →](/introduction)**"
+      "description": "This page doesn't exist or may have moved. **[Go to documentation home →](/docs/introduction)**"
     }
   },
   "redirects": [
@@ -234,17 +234,17 @@
         "items": [
           { "label": "MCP Server", "href": "https://mcp.adspirer.com" },
           { "label": "Pricing", "href": "https://www.adspirer.com/pricing" },
-          { "label": "Changelog", "href": "/changelog" },
-          { "label": "Security", "href": "/knowledge-base/security" }
+          { "label": "Changelog", "href": "/docs/changelog" },
+          { "label": "Security", "href": "/docs/knowledge-base/security" }
         ]
       },
       {
         "header": "Resources",
         "items": [
           { "label": "Blog", "href": "https://www.adspirer.com/blog" },
-          { "label": "Guides", "href": "/guides/ai-advertising" },
-          { "label": "Tool Catalog", "href": "/agent-skills/tools" },
-          { "label": "How MCP Works", "href": "/mcp" }
+          { "label": "Guides", "href": "/docs/guides/ai-advertising" },
+          { "label": "Tool Catalog", "href": "/docs/agent-skills/tools" },
+          { "label": "How MCP Works", "href": "/docs/mcp" }
         ]
       },
       {
