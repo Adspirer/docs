@@ -172,29 +172,6 @@
       }
     ],
     "global": {
-      "languages": [
-        {
-          "language": "en",
-          "default": true,
-          "href": "/introduction"
-        },
-        {
-          "language": "es",
-          "href": "/es"
-        },
-        {
-          "language": "ja",
-          "href": "/ja"
-        },
-        {
-          "language": "pt",
-          "href": "/pt"
-        },
-        {
-          "language": "de",
-          "href": "/de"
-        }
-      ],
       "anchors": [
         {
           "anchor": "Blog",
