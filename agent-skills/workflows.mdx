@@ -23,13 +23,13 @@ Pull metrics from all connected ad platforms and present a unified view.
 
 ```mermaid
 flowchart LR
-    A["get_connections_status"] --> B{"Multi-platform?"}
-    B -->|Yes| C["Google"]
-    B -->|Yes| D["Meta"]
-    B -->|Yes| E["LinkedIn"]
-    B -->|Yes| F["TikTok"]
-    B -->|Single| G["One platform"]
-    C --> H["Comparison table"]
+    A[get_connections_status] --> B{Multi-platform}
+    B -->|Yes| C[Google]
+    B -->|Yes| D[Meta]
+    B -->|Yes| E[LinkedIn]
+    B -->|Yes| F[TikTok]
+    B -->|Single| G[One platform]
+    C --> H[Comparison table]
     D --> H
     E --> H
     F --> H
@@ -65,14 +65,14 @@ Five-step workflow. Skip a step = campaign creation fails.
 
 ```mermaid
 flowchart TD
-    A["1. get_connections_status"] --> B["2. research_keywords"]
-    B --> C["3. discover_existing_assets"]
-    C --> D{"New assets needed?"}
-    D -->|Yes| E["4. suggest_ad_content"]
-    D -->|No| F["5. validate_and_prepare_assets"]
+    A[get_connections_status] --> B[research_keywords]
+    B --> C[discover_existing_assets]
+    C --> D{New assets needed}
+    D -->|Yes| E[suggest_ad_content]
+    D -->|No| F[validate_and_prepare_assets]
     E --> F
-    F --> G["6. create_search_campaign (PAUSED)"]
-    G --> H{{"USER CONFIRMATION"}}
+    F --> G[create_search_campaign PAUSED]
+    G --> H{{USER CONFIRMATION}}
 ```
 
 ### Key Parameters
@@ -105,13 +105,13 @@ Performance Max campaigns require high-quality assets. Four-step workflow.
 
 ```mermaid
 flowchart TD
-    A["1. get_connections_status"] --> B["2. discover_existing_assets"]
-    B --> C{"Assets complete?"}
-    C -->|Missing| D["3. help_user_upload"]
-    C -->|Complete| E["4. validate_and_prepare_assets"]
+    A[get_connections_status] --> B[discover_existing_assets]
+    B --> C{Assets complete}
+    C -->|Missing| D[help_user_upload]
+    C -->|Complete| E[validate_and_prepare_assets]
     D --> E
-    E --> F["5. create_pmax_campaign (PAUSED)"]
-    F --> G{{"USER CONFIRMATION"}}
+    E --> F[create_pmax_campaign PAUSED]
+    F --> G{{USER CONFIRMATION}}
 ```
 
 ### Asset Requirements
@@ -142,15 +142,15 @@ Six-step workflow for Facebook & Instagram campaigns.
 
 ```mermaid
 flowchart TD
-    A["1. get_connections_status"] --> B["2. search_meta_targeting"]
-    B --> C["3. select_meta_campaign_type"]
-    C --> D["4. discover_meta_assets"]
-    D --> E["5. validate_and_prepare_meta_assets"]
-    E --> F{"Campaign type?"}
-    F -->|Image| G["create_meta_image_campaign"]
-    F -->|Video| H["create_meta_video_campaign"]
-    F -->|Carousel| I["create_meta_carousel_campaign"]
-    G --> J{{"USER CONFIRMATION"}}
+    A[get_connections_status] --> B[search_meta_targeting]
+    B --> C[select_meta_campaign_type]
+    C --> D[discover_meta_assets]
+    D --> E[validate_and_prepare_meta_assets]
+    E --> F{Campaign type}
+    F -->|Image| G[create_meta_image_campaign]
+    F -->|Video| H[create_meta_video_campaign]
+    F -->|Carousel| I[create_meta_carousel_campaign]
+    G --> J{{USER CONFIRMATION}}
     H --> J
     I --> J
 ```
@@ -188,11 +188,11 @@ Five-step workflow for B2B sponsored content.
 
 ```mermaid
 flowchart TD
-    A["1. get_linkedin_organizations"] --> B["2. search_linkedin_targeting"]
-    B --> C["3. discover_linkedin_assets"]
-    C --> D["4. validate_and_prepare_linkedin_assets"]
-    D --> E["5. create_linkedin_image_campaign (PAUSED)"]
-    E --> F{{"USER CONFIRMATION"}}
+    A[get_linkedin_organizations] --> B[search_linkedin_targeting]
+    B --> C[discover_linkedin_assets]
+    C --> D[validate_and_prepare_linkedin_assets]
+    D --> E[create_linkedin_image_campaign PAUSED]
+    E --> F{{USER CONFIRMATION}}
 ```
 
 ### Targeting Best Practices
@@ -228,10 +228,10 @@ Three-step workflow (simpler than other platforms).
 
 ```mermaid
 flowchart TD
-    A["1. get_connections_status"] --> B["2. discover_tiktok_assets"]
-    B --> C["3. validate_and_prepare_tiktok_assets"]
-    C --> D["4. create_tiktok_campaign (PAUSED)"]
-    D --> E{{"USER CONFIRMATION"}}
+    A[get_connections_status] --> B[discover_tiktok_assets]
+    B --> C[validate_and_prepare_tiktok_assets]
+    C --> D[create_tiktok_campaign PAUSED]
+    D --> E{{USER CONFIRMATION}}
 ```
 
 ### Creative Requirements
@@ -262,14 +262,14 @@ Reallocate spend based on performance data.
 
 ```mermaid
 flowchart TD
-    A["1. get_campaign_performance"] --> B{"Platform?"}
-    B -->|Google| C["optimize_budget_allocation"]
-    B -->|Meta| D["optimize_meta_budget"]
-    B -->|LinkedIn| E["optimize_linkedin_budget"]
-    C --> F["Present recommendations"]
+    A[get_campaign_performance] --> B{Platform}
+    B -->|Google| C[optimize_budget_allocation]
+    B -->|Meta| D[optimize_meta_budget]
+    B -->|LinkedIn| E[optimize_linkedin_budget]
+    C --> F[Present recommendations]
     D --> F
     E --> F
-    F --> G{{"USER APPROVAL"}}
+    F --> G{{USER APPROVAL}}
 ```
 
 ### Optimization Logic
@@ -294,9 +294,9 @@ Managing multiple ad accounts and checking system status.
 
 ```mermaid
 flowchart LR
-    A["1. get_connections_status"] --> B["2. switch_primary_account"]
-    B --> C["3. get_usage_status"]
-    C --> D["4. get_business_profile"]
+    A[get_connections_status] --> B[switch_primary_account]
+    B --> C[get_usage_status]
+    C --> D[get_business_profile]
 ```
 
 ### When to Use
