@@ -14,134 +14,107 @@ Manage ads from your code editor. One command to install, 100+ tools, automatic 
 - At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
 </Note>
 
-## Quick Install (One Command)
+## Setup
 
-**Run this from your system terminal** (Terminal.app, iTerm, Windows Terminal, etc.), **not** Cursor's built-in terminal. Cursor's terminal is sandboxed and can't write to `~/.cursor/`, which causes permission errors.
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/cursor/adspirer/install.sh)
-```
-
-This automatically:
-- Installs the performance marketing subagent to `~/.cursor/agents/`
-- Installs all 5 Adspirer skills to `~/.cursor/skills/`
-- Configures the Adspirer MCP server in `~/.cursor/mcp.json`
-
-Then restart Cursor.
-
-<Note>
-The installer does not require authentication. You'll authenticate in the Getting Started steps below.
-</Note>
-
-## Getting Started
+<Tabs>
+<Tab title="Quick Install (Recommended)">
+**Run this from your system terminal** (Terminal.app, iTerm, Windows Terminal, etc.), **not** Cursor's built-in terminal.
 
 <Steps>
-  <Step title="Verify the MCP Server is Connected">
-    Open **Cursor Settings > MCP**. You should see `adspirer` listed.
+  <Step title="Run the Installer">
+    ```bash
+    bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/cursor/adspirer/install.sh)
+    ```
 
-    If it shows a connection error, click on it to authenticate. A browser window will open for Adspirer login — complete the sign-in and return to Cursor.
+    This installs the performance marketing subagent, all 5 skills, and the MCP server config automatically.
+  </Step>
+  <Step title="Restart Cursor">
+    Close and reopen Cursor to load the new MCP config.
+  </Step>
+  <Step title="Authenticate with Adspirer">
+    Open **Cursor Settings > MCP**. You should see `adspirer` listed. Click on it to authenticate — a browser window will open for Adspirer login.
 
-    If `adspirer` is missing entirely, add it manually: **Cursor Settings > MCP > Add Server** with URL:
+    If `adspirer` is missing, add it manually: **Cursor Settings > MCP > Add Server** with URL:
 
     ```
     https://mcp.adspirer.com/mcp
     ```
   </Step>
-  <Step title="Open Your Brand Folder in Cursor">
+  <Step title="Set Up Your Brand Workspace">
+    Open your brand folder and switch to **Agent mode** (not Ask or Edit mode):
+
     ```bash
     cd ~/Clients/YourBrand
     cursor .
     ```
 
-    Your brand folder can have docs (`.md`, `.txt`, `.csv`, `.yaml`, `.json`, `.pdf`) or be completely empty.
-  </Step>
-  <Step title="Switch to Agent Mode and Set Up Your Workspace">
-    Make sure you're in **Agent mode** (not Ask or Edit mode) in the Cursor chat panel. Then say:
+    Then say:
 
     ```
     set up my brand workspace
     ```
 
-    The agent will:
-    1. Connect to your ad accounts (may open a browser for OAuth on first use)
-    2. Scan the folder for brand docs
-    3. Pull live campaign data from all connected platforms
-    4. Create `BRAND.md` with your brand context, performance snapshot, and KPI targets
-    5. Tell you what it found and ask what you'd like to work on
-
-    If it doesn't trigger automatically, type: `/adspirer-setup`
-  </Step>
-  <Step title="Start Managing Campaigns">
-    <Prompt description="Check campaign status across all connected platforms." actions={["copy", "cursor"]}>
-    How are my Google Ads campaigns doing?
-    </Prompt>
-
-    <Prompt description="Find wasted ad spend across all platforms." actions={["copy", "cursor"]}>
-    Find wasted spend across all platforms
-    </Prompt>
-
-    <Prompt description="Write new ad headlines from real performance data." actions={["copy", "cursor"]}>
-    Write new headlines for my Google Search campaigns
-    </Prompt>
+    The agent will connect to your ad accounts, scan for brand docs, pull live campaign data, and create `BRAND.md`. If it doesn't trigger automatically, type: `/adspirer-setup`
   </Step>
 </Steps>
+</Tab>
+<Tab title="Manual Setup">
+<Steps>
+  <Step title="Clone the Repo">
+    ```bash
+    git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
+    cd /tmp/ads-mcp/plugins/cursor/adspirer
+    ```
+  </Step>
+  <Step title="Install Subagent and Skills">
+    ```bash
+    mkdir -p ~/.cursor/agents ~/.cursor/skills
+    cp .cursor/agents/performance-marketing-agent.md ~/.cursor/agents/
+    cp -r .cursor/skills/adspirer-ads ~/.cursor/skills/
+    cp -r .cursor/skills/adspirer-setup ~/.cursor/skills/
+    cp -r .cursor/skills/adspirer-performance-review ~/.cursor/skills/
+    cp -r .cursor/skills/adspirer-write-ad-copy ~/.cursor/skills/
+    ```
+  </Step>
+  <Step title="Add the MCP Server">
+    Add to `~/.cursor/mcp.json`:
+
+    ```json
+    {
+      "mcpServers": {
+        "adspirer": {
+          "url": "https://mcp.adspirer.com/mcp"
+        }
+      }
+    }
+    ```
+
+    Or use **Cursor Settings > MCP > Add Server** with URL `https://mcp.adspirer.com/mcp`.
+  </Step>
+  <Step title="Copy Rules (Optional)">
+    ```bash
+    cd ~/Clients/YourBrand
+    mkdir -p .cursor/rules
+    cp /tmp/ads-mcp/plugins/cursor/adspirer/.cursor/rules/*.mdc .cursor/rules/
+    ```
+  </Step>
+  <Step title="Restart and Authenticate">
+    Restart Cursor. Open **Cursor Settings > MCP**, find `adspirer`, and click to authenticate via browser.
+  </Step>
+  <Step title="Set Up Your Brand Workspace">
+    Open your brand folder, switch to **Agent mode**, and say:
+
+    ```
+    set up my brand workspace
+    ```
+  </Step>
+</Steps>
+</Tab>
+</Tabs>
 
 <Check>
 You're connected. Cursor now has access to 100+ advertising tools with automatic workflow enforcement.
 </Check>
-
-## Manual Install (Alternative)
-
-If you prefer to install manually instead of using the one-command script:
-
-<Expandable title="Click to expand manual steps">
-
-### Step 1: Clone the repo
-
-```bash
-git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-cd /tmp/ads-mcp/plugins/cursor/adspirer
-```
-
-### Step 2: Install subagent and skills
-
-```bash
-mkdir -p ~/.cursor/agents ~/.cursor/skills
-cp .cursor/agents/performance-marketing-agent.md ~/.cursor/agents/
-cp -r .cursor/skills/adspirer-ads ~/.cursor/skills/
-cp -r .cursor/skills/adspirer-setup ~/.cursor/skills/
-cp -r .cursor/skills/adspirer-performance-review ~/.cursor/skills/
-cp -r .cursor/skills/adspirer-write-ad-copy ~/.cursor/skills/
-cp -r .cursor/skills/adspirer-wasted-spend ~/.cursor/skills/
-```
-
-### Step 3: Add the MCP server
-
-Add to `~/.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "adspirer": {
-      "url": "https://mcp.adspirer.com/mcp"
-    }
-  }
-}
-```
-
-Or use **Cursor Settings > MCP > Add Server** with URL `https://mcp.adspirer.com/mcp`.
-
-### Step 4: Copy rules to your brand folder (optional)
-
-```bash
-cd ~/Clients/YourBrand
-mkdir -p .cursor/rules
-cp /tmp/ads-mcp/plugins/cursor/adspirer/.cursor/rules/*.mdc .cursor/rules/
-```
-
-### Step 5: Restart Cursor
-
-</Expandable>
 
 ## Available Skills
 
