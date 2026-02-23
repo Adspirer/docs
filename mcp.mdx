@@ -11,11 +11,11 @@ Model Context Protocol (MCP) is an open standard that lets AI assistants call ex
 
 ```mermaid
 flowchart LR
-    A["AI Assistant\n(ChatGPT, Claude, Cursor...)"] -->|"MCP Protocol\n(JSON-RPC 2.0)"| B["Adspirer MCP Server"]
-    B -->|"REST APIs"| C["Google Ads API"]
-    B -->|"REST APIs"| D["Meta Graph API"]
-    B -->|"REST APIs"| E["LinkedIn Campaign API"]
-    B -->|"REST APIs"| F["TikTok Ads API"]
+    A["AI Assistant"] -->|"MCP (JSON-RPC 2.0)"| B["Adspirer MCP Server"]
+    B -->|"REST API"| C["Google Ads"]
+    B -->|"REST API"| D["Meta Ads"]
+    B -->|"REST API"| E["LinkedIn Ads"]
+    B -->|"REST API"| F["TikTok Ads"]
 ```
 
 One server, any AI client. Your Adspirer account works with ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, and Windsurf — all connecting to the same endpoint.
