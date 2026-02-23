@@ -8,7 +8,7 @@ Research keywords through conversation—not spreadsheets
 ## Key Takeaways
 
 - ChatGPT Apps can connect directly to Google Ads Keyword Planner for real-time keyword data
-- Dynamic CPC thresholds automatically adapt to your industry (legal keywords at $50 CPC vs. retail at $2)
+- Dynamic <Tooltip tip="Cost Per Click — amount you pay each time someone clicks your ad">CPC</Tooltip> thresholds automatically adapt to your industry (legal keywords at $50 CPC vs. retail at $2)
 - High-intent keywords are identified using percentile-based analysis, not arbitrary thresholds
 - Budget recommendations are calculated from actual keyword data, not guesswork
 - You can research, analyze, and select keywords entirely through conversation
@@ -58,9 +58,9 @@ Here's where it gets interesting. Rather than using fixed CPC thresholds ($3 = h
 
 | Intent Level | Threshold | Logic |
 |--------------|-----------|-------|
-| HIGH | ≥75th percentile CPC | Top 25% most expensive keywords = highest commercial value |
-| MEDIUM | 25th-75th percentile | Middle 50% |
-| LOW | Less than 25th percentile | Bottom 25%, lower commercial intent |
+| <Badge color="red">HIGH</Badge> | ≥75th percentile CPC | Top 25% most expensive keywords = highest commercial value |
+| <Badge color="yellow">MEDIUM</Badge> | 25th-75th percentile | Middle 50% |
+| <Badge color="green">LOW</Badge> | Less than 25th percentile | Bottom 25%, lower commercial intent |
 
 **Why this matters:** A "high intent" keyword in the legal industry might have a $150 CPC, while in retail it's $3. Fixed thresholds don't work across industries—percentile-based classification does.
 
