@@ -207,6 +207,9 @@
   "integrations": {
     "ga4": {
       "measurementId": "G-ZX09MFTP89"
+    },
+    "gtm": {
+      "tagId": "GTM-PQGBFK5Q"
     }
   },
   "contextual": {
