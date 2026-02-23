@@ -1,0 +1,91 @@
+---
+title: "Security & Data Privacy"
+description: "How Adspirer protects your ad accounts. OAuth 2.1 with PKCE, no password storage, encrypted tokens, revocable access, and data handling policies."
+---
+
+Adspirer never sees your ad platform passwords. Here's how security works at every layer.
+
+## Authentication: OAuth 2.1 with PKCE
+
+When you connect an ad platform (Google Ads, Meta, LinkedIn, TikTok), Adspirer uses **OAuth 2.1 with PKCE** — the same standard used by banking apps and enterprise software.
+
+### What This Means
+
+- **Your passwords stay with Google/Meta/LinkedIn/TikTok.** Adspirer never receives, stores, or transmits your login credentials.
+- **PKCE prevents interception.** Every authentication generates a cryptographic proof that only your specific session can complete. Even if someone intercepts the authorization code, they can't use it.
+- **Scoped permissions.** You authorize exactly what Adspirer can do — read campaign data, create ads, manage budgets. Nothing more.
+
+### Token Lifecycle
+
+| Token | Lifetime | Purpose |
+|-------|----------|---------|
+| Access token | 1 hour | Authorizes tool calls |
+| Refresh token | 30 days | Generates new access tokens without re-login |
+
+Tokens are encrypted at rest and automatically refreshed. If a token expires, your AI client prompts you to re-authenticate.
+
+## What Data Adspirer Accesses
+
+**Reads:**
+- Campaign names, statuses, budgets
+- Performance metrics (spend, conversions, CPA, ROAS, CTR)
+- Keywords, ad copy, targeting settings
+- Asset metadata (image/video dimensions, file sizes)
+
+**Writes (with your confirmation):**
+- Create campaigns (always created PAUSED)
+- Update budgets and bids
+- Pause or resume campaigns
+- Add keywords, ad copy, or extensions
+
+**Never accesses:**
+- Your ad platform login credentials
+- Billing/payment information (credit cards, bank accounts)
+- Personal data beyond what's shown in ad account settings
+- Data from other ad accounts you haven't explicitly connected
+
+## Campaign Safety
+
+Every write operation has built-in safety:
+
+- **Campaigns created PAUSED** — You review before any money is spent
+- **User confirmation required** — Your AI assistant asks before budget-affecting actions
+- **No automatic retries** — If a campaign creation fails, it reports the error instead of retrying
+- **Read-before-write** — Research and validation always happen before creation
+
+## Revoking Access
+
+You can disconnect Adspirer at any time:
+
+1. **From Adspirer:** Visit [adspirer.ai](https://adspirer.ai?utm_source=docs&utm_medium=page&utm_content=account) and disconnect the platform
+2. **From the ad platform:** Revoke access in your platform's security settings:
+   - Google: [Security Settings](https://myaccount.google.com/permissions)
+   - Meta: [Business Integrations](https://www.facebook.com/settings?tab=business_tools)
+   - LinkedIn: [Permitted Services](https://www.linkedin.com/psettings/permitted-services)
+   - TikTok: Business Center > Settings > Authorized Partners
+
+Revoking from either side immediately stops all tool access.
+
+## Infrastructure Security
+
+| Layer | Protection |
+|-------|-----------|
+| **Transport** | HTTPS/TLS encryption for all API calls |
+| **Hosting** | Google Cloud Run with auto-scaling and DDoS protection |
+| **Sessions** | Redis with auto-expiring keys (1hr TTL) |
+| **Tokens** | Encrypted at rest, hashed in database |
+| **Logging** | Structured logs exclude sensitive data (tokens, credentials) |
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Is my ad data shared with other users?">
+No. Your data is isolated to your Adspirer account. No data is shared between users, used for training, or sold to third parties.
+</Accordion>
+<Accordion title="Can Adspirer spend money without my approval?">
+No. All campaigns are created PAUSED, and budget changes require explicit user confirmation. Even autonomous agents (like Codex) follow this rule.
+</Accordion>
+<Accordion title="What happens if Adspirer goes down?">
+Your ad campaigns continue running normally — they're managed by Google/Meta/LinkedIn/TikTok, not by Adspirer. You just can't make changes via AI until the service recovers. Downtime does not affect live campaigns.
+</Accordion>
+</AccordionGroup>

@@ -11,39 +11,38 @@ Manage ad campaigns from ChatGPT. Add Adspirer's MCP connector in under 2 minute
 
 <Note>
 - A ChatGPT **Plus** or **Pro** subscription (connectors are not available on the free tier)
-- An Adspirer account ([free to start](https://adspirer.ai/sign-up))
+- An Adspirer account ([free to start](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=page&utm_content=signup))
 - At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
 </Note>
 
 ## Setup (2 Minutes)
 
-### Step 1: Open ChatGPT Settings
+<Steps>
+  <Step title="Open ChatGPT Settings">
+    Go to **Settings → Connectors** in ChatGPT. You need a Plus or Pro subscription to see the Connectors option.
+  </Step>
+  <Step title="Add Custom Connector">
+    Click **Add custom connector** and enter:
 
-Go to **Settings → Connectors** in ChatGPT. You need a Plus or Pro subscription to see the Connectors option.
+    | Field | Value |
+    |-------|-------|
+    | **Name** | `Ads MCP` |
+    | **URL** | `https://mcp.adspirer.com/mcp` |
+    | **Authentication** | OAuth 2.1 |
+  </Step>
+  <Step title="Complete OAuth Flow">
+    Click to authenticate. Your browser opens and redirects to Adspirer's login page. Sign in (or create an account) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
+  </Step>
+  <Step title="Start Managing Ads">
+    Return to ChatGPT and start a new conversation. Ask about your campaigns, create new ads, or analyze performance — all in natural language.
 
-### Step 2: Add Custom Connector
+    ```
+    Check my connected ad platforms
+    ```
 
-Click **Add custom connector** and enter:
-
-| Field | Value |
-|-------|-------|
-| **Name** | `Ads MCP` |
-| **URL** | `https://mcp.adspirer.com/mcp` |
-| **Authentication** | OAuth 2.1 |
-
-### Step 3: Complete OAuth Flow
-
-Click to authenticate. Your browser opens and redirects to Adspirer's login page. Sign in (or create an account) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
-
-### Step 4: Start Managing Ads
-
-Return to ChatGPT and start a new conversation. Ask about your campaigns, create new ads, or analyze performance — all in natural language.
-
-```
-Check my connected ad platforms
-```
-
-You should see a table showing your connected accounts across all platforms with account IDs, names, and connection status.
+    You should see a table showing your connected accounts across all platforms with account IDs, names, and connection status.
+  </Step>
+</Steps>
 
 ## MCP Server Details
 
@@ -113,7 +112,7 @@ Both use the same Adspirer MCP server, so functionality is identical. However, C
 Yes. Your Adspirer account works across both platforms. Connect the same MCP URL to ChatGPT, Claude, Claude Code, Cursor, or any MCP-compatible client. Your ad account connections carry across all of them.
 </Accordion>
 <Accordion title="How much does this cost?">
-Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing](https://www.adspirer.com/pricing).
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
 </Accordion>
 </AccordionGroup>
 
@@ -123,4 +122,4 @@ Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month
 - [Claude Code Setup](/ai-clients/claude-code) — Terminal-based setup for developers
 - [Custom GPT](/ai-clients/custom-gpt) — Pre-built GPT in the GPT Store
 - [Google Ads Integration](/ad-platforms/google-ads) — Full Google Ads tool reference
-- [Pricing & Plans](https://www.adspirer.com/pricing)
+- [Pricing & Plans](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing)

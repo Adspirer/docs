@@ -1,0 +1,75 @@
+---
+title: "Multi-Account Management"
+description: "Manage multiple ad accounts across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads from a single Adspirer connection. Switch accounts, manage clients, and run cross-account reports."
+---
+
+Connect multiple ad accounts per platform and switch between them in conversation.
+
+## How It Works
+
+Your Adspirer account can connect to multiple ad accounts on each platform:
+
+- Multiple Google Ads customer IDs
+- Multiple Meta Business Manager ad accounts
+- Multiple LinkedIn Campaign Manager accounts
+- Multiple TikTok Ads Manager accounts
+
+When you first connect, one account per platform is set as **primary** — all tool calls default to that account.
+
+## Switching Accounts
+
+To change which account you're managing:
+
+```
+Switch to my Google Ads account 123-456-7890
+```
+
+Or use the tool directly:
+
+```
+switch_primary_account(platform="google_ads", account_id="1234567890")
+```
+
+The switch persists for your current session. All subsequent tool calls target the new account until you switch again.
+
+## For Agencies
+
+If you manage ads for multiple clients:
+
+1. **Connect all client accounts** through OAuth (each client authorizes separately)
+2. **Start each session** by confirming which client you're working with:
+   ```
+   Show me all my connected ad accounts
+   ```
+3. **Switch to the client** you want to manage:
+   ```
+   Switch to the Google Ads account for [Client Name]
+   ```
+4. **Run your workflow** — all tool calls target that client's account
+
+<Tip>
+Always verify the active account before creating campaigns. Running `get_connections_status` at the start of each session prevents accidentally modifying the wrong client's campaigns.
+</Tip>
+
+## Cross-Account Reports
+
+Pull performance data from multiple accounts in one request:
+
+```
+Compare performance across all my Google Ads accounts for the last 30 days.
+Show spend, conversions, and CPA for each account.
+```
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Is there a limit to how many accounts I can connect?">
+No hard limit. Connect as many ad accounts as you manage. Tool call limits apply to your Adspirer plan, not to the number of connected accounts.
+</Accordion>
+<Accordion title="Can different team members manage different accounts?">
+Yes, with Claude Team or Enterprise. Each team member authenticates with their own Adspirer account and connects their own set of ad accounts. See the [Claude Team setup](/ai-clients/claude#team--enterprise-setup).
+</Accordion>
+<Accordion title="Does switching accounts cost a tool call?">
+No. Account switching is a session operation and does not count against your tool call limit.
+</Accordion>
+</AccordionGroup>

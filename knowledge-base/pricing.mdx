@@ -1,0 +1,89 @@
+---
+title: "Pricing & Tool Calls Explained"
+description: "How Adspirer pricing works. Tool call limits by plan, typical usage per platform, cost examples for campaign creation, and upgrade guidance."
+---
+
+Adspirer pricing is based on **tool calls**, not ad spend. Every time your AI assistant calls an Adspirer tool (like pulling performance data or creating a campaign), it counts as one tool call.
+
+## Plans
+
+| Plan | Tool Calls/Month | Price | Best For |
+|------|-----------------|-------|----------|
+| **Free** | 10 | $0 | Testing and evaluation |
+| **Plus** | 50 | $25/mo | Individual advertisers, small accounts |
+| **Pro** | 100 | $75/mo | Agencies, multi-platform advertisers |
+
+See [full pricing details](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
+
+## How Tool Calls Work
+
+Each tool invocation counts as 1 call, regardless of:
+
+- Which platform (Google, Meta, LinkedIn, TikTok)
+- Which AI client (ChatGPT, Claude, Cursor, etc.)
+- How much data is returned
+- How long the operation takes
+
+### Typical Usage by Task
+
+| Task | Tool Calls | Notes |
+|------|-----------|-------|
+| Check connected platforms | 1 | `get_connections_status` |
+| Pull campaign performance | 1 | Per platform |
+| Keyword research | 1 | Returns full keyword list with CPC data |
+| Create Google Search campaign | 5-6 | Research + assets + validate + create |
+| Create Meta image campaign | 4-6 | Targeting + type + assets + validate + create |
+| Create LinkedIn campaign | 5-6 | Org + targeting + assets + validate + create |
+| Create TikTok campaign | 3-4 | Assets + validate + create |
+| Cross-platform performance report | 4-5 | 1 call per connected platform + analysis |
+| Wasted spend analysis | 1-2 | Analysis + optional optimization |
+| Budget optimization | 2-3 | Performance pull + optimization recommendation |
+
+### Monthly Usage Examples
+
+| Scenario | Estimated Calls | Recommended Plan |
+|----------|----------------|-----------------|
+| Weekly performance check (1 platform) | 4-5/mo | Free |
+| Weekly check + 1 campaign/month | 10-15/mo | Plus |
+| Daily monitoring (2 platforms) | 40-60/mo | Plus or Pro |
+| Agency managing 3 clients | 60-100/mo | Pro |
+| Heavy usage: daily + campaigns + audits | 100+/mo | Pro |
+
+## What Counts as a Tool Call
+
+**Counts:** Any tool invocation through MCP — `get_campaign_performance`, `research_keywords`, `create_search_campaign`, etc.
+
+**Does NOT count:**
+- Connecting your AI client to Adspirer
+- OAuth authentication / login
+- Viewing your account status
+- AI assistant thinking / reasoning between tool calls
+- Failed tool calls due to authentication errors
+
+## Checking Your Usage
+
+Ask your AI assistant:
+
+```
+Check my Adspirer usage status
+```
+
+This returns your current plan, calls used this month, and calls remaining.
+
+## Upgrading
+
+If you hit your limit mid-month, upgrade takes effect immediately and resets your counter. Visit [adspirer.ai](https://adspirer.ai?utm_source=docs&utm_medium=page&utm_content=account) to manage your plan.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Do unused calls roll over?">
+No. Tool call limits reset monthly. Unused calls do not carry over to the next month.
+</Accordion>
+<Accordion title="Can I pay per call instead of monthly?">
+Not currently. All plans are monthly subscriptions with included tool call limits.
+</Accordion>
+<Accordion title="Does the same Adspirer account work across all AI clients?">
+Yes. Your tool call limit is shared across ChatGPT, Claude, Cursor, and all other clients. One account, one limit.
+</Accordion>
+</AccordionGroup>

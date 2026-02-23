@@ -1,0 +1,79 @@
+---
+title: "What Adspirer Can & Can't Do"
+description: "Adspirer capabilities and limitations. What the AI advertising agent handles (campaign management, analytics, optimization) and what it doesn't (creative generation, conversion tracking, billing)."
+---
+
+A clear breakdown of what Adspirer does and what's outside its scope.
+
+## What Adspirer Does
+
+### Campaign Management
+- Create Search, PMax, Image, Video, Carousel, and Sponsored Content campaigns
+- Pause, resume, and update live campaigns
+- Set and adjust budgets, bids, and targeting
+- All campaigns created **PAUSED** for your review
+
+### Research & Analysis
+- Keyword research with real CPC data from Google Keyword Planner
+- Audience targeting research (interests, demographics, job titles)
+- Performance analysis (spend, conversions, CPA, ROAS, CTR)
+- Wasted spend detection (keywords with clicks but zero conversions)
+- Creative fatigue detection (declining CTR over time)
+- Performance anomaly diagnosis (sudden CPA spikes)
+
+### Optimization
+- Budget reallocation based on ROAS/CPA performance
+- Placement optimization (Meta: Feed vs Stories vs Reels)
+- Audience segment analysis (which demographics convert best)
+- Cross-platform performance comparison
+
+### Automation
+- Scheduled daily/weekly performance briefs
+- CPA spike monitors with alerts
+- Cross-platform reporting
+
+## What Adspirer Does NOT Do
+
+### Creative Generation
+Adspirer does **not** generate images, videos, or design assets. It generates **ad copy** (headlines and descriptions) but not visual creatives.
+
+**Workaround:** Use AI creative tools (Midjourney, DALL-E, Runway, CapCut), then provide the URL to Adspirer for campaign creation.
+
+### Conversion Tracking Setup
+Adspirer cannot install tracking pixels, configure Google Tag Manager, or set up conversion events. These require access to your website code.
+
+**Workaround:** Set up conversion tracking directly in each platform's dashboard, then Adspirer can report on conversion data.
+
+### Billing & Payment
+Adspirer cannot access or modify your ad platform billing information (credit cards, invoices, payment methods).
+
+### Landing Page Creation
+Adspirer manages ads, not websites. It cannot create or modify landing pages.
+
+### Organic Social Media
+Adspirer manages **paid** advertising only. It cannot post organic content, manage social media accounts, or boost existing organic posts.
+
+### Platform-Specific Limitations
+
+| Platform | Not Yet Supported |
+|----------|------------------|
+| **Google Ads** | Display campaigns, Shopping campaigns (standalone), YouTube campaigns |
+| **Meta Ads** | Instagram-only campaigns (Meta treats FB/IG as placements), Messenger ads |
+| **LinkedIn Ads** | Video ads, Matched Audiences (retargeting), InMail campaigns |
+| **TikTok Ads** | Image ads, Spark Ads (boosted organic), TopView, Branded Effects |
+
+These limitations reflect the current API integrations. New capabilities are added regularly — see the [Changelog](/changelog) for updates.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Can Adspirer spend money without my approval?">
+No. All campaigns are created PAUSED. Budget changes require explicit confirmation. Even autonomous agents (Codex) follow this rule.
+</Accordion>
+<Accordion title="Does Adspirer work with Google Analytics?">
+Not directly. Adspirer reads performance data from ad platform APIs (Google Ads, Meta, etc.). It does not connect to Google Analytics, but the campaign data it reports includes conversion metrics from your platform's tracking.
+</Accordion>
+<Accordion title="Can Adspirer manage existing campaigns I created manually?">
+Yes. Adspirer can read, analyze, pause, resume, and update campaigns regardless of how they were created. You don't need to create campaigns through Adspirer to manage them with it.
+</Accordion>
+</AccordionGroup>

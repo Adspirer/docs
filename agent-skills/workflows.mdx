@@ -9,17 +9,21 @@ Exact tool sequences for campaign creation, optimization, and analysis. These ar
 
 Pull metrics from all connected ad platforms and present a unified view.
 
-### Tool Sequence
+### Workflow
 
-```
-1. get_connections_status
-   (confirm which platforms are connected)
-2. get_campaign_performance (Google Ads)
-3. get_meta_campaign_performance (Meta Ads)
-4. get_linkedin_campaign_performance (LinkedIn Ads)
-5. get_tiktok_campaign_performance (TikTok Ads)
-   (run in parallel if multi-platform)
-6. Present side-by-side comparison table
+```mermaid
+flowchart LR
+    A["get_connections_status"] --> B{"Multi-platform?"}
+    B -->|Yes| C["get_campaign_performance\n(Google Ads)"]
+    B -->|Yes| D["get_meta_campaign_performance\n(Meta Ads)"]
+    B -->|Yes| E["get_linkedin_campaign_performance\n(LinkedIn Ads)"]
+    B -->|Yes| F["get_tiktok_campaign_performance\n(TikTok Ads)"]
+    B -->|Single| G["Platform-specific\nperformance tool"]
+    C --> H["Side-by-side\ncomparison table"]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
 ```
 
 ### Output Format
@@ -36,23 +40,18 @@ Results should be formatted as a table with columns: Platform, Spend, Conversion
 
 Five-step workflow. Skip a step = campaign creation fails.
 
-### Tool Sequence
+### Workflow
 
-```
-1. get_connections_status
-   (verify Google Ads is connected)
-2. research_keywords
-   (input: business_description, seed_keywords, target_location)
-   (output: keyword suggestions with real CPC data)
-3. discover_existing_assets
-   (check if user has images/headlines in Google Ads already)
-4. suggest_ad_content (if new assets needed)
-   (generate headlines, descriptions within Google's character limits)
-5. validate_and_prepare_assets
-   (verify assets meet Google's requirements)
-6. create_search_campaign
-   (campaign created PAUSED)
-7. ASK USER FOR CONFIRMATION before proceeding
+```mermaid
+flowchart TD
+    A["1. get_connections_status\n(verify Google Ads connected)"] --> B["2. research_keywords\n(business description, seeds, location)"]
+    B --> C["3. discover_existing_assets\n(check for images/headlines in account)"]
+    C --> D{"New assets\nneeded?"}
+    D -->|Yes| E["4. suggest_ad_content\n(headlines + descriptions)"]
+    D -->|No| F["5. validate_and_prepare_assets\n(verify Google requirements)"]
+    E --> F
+    F --> G["6. create_search_campaign\n(created PAUSED)"]
+    G --> H{{"ASK USER\nFOR CONFIRMATION"}}
 ```
 
 ### Key Parameters
@@ -72,19 +71,17 @@ Five-step workflow. Skip a step = campaign creation fails.
 
 Performance Max campaigns require high-quality assets. Four-step workflow.
 
-### Tool Sequence
+### Workflow
 
-```
-1. get_connections_status
-2. discover_existing_assets
-   (check for high-quality images, videos, logos)
-3. help_user_upload (if assets missing)
-   (guide user to upload to Google Merchant Center or provide URLs)
-4. validate_and_prepare_assets
-   (PMax requires: 5+ images, 1+ video, 5+ headlines, 5+ descriptions)
-5. create_pmax_campaign
-   (campaign created PAUSED)
-6. ASK USER FOR CONFIRMATION
+```mermaid
+flowchart TD
+    A["1. get_connections_status"] --> B["2. discover_existing_assets\n(images, videos, logos)"]
+    B --> C{"Assets\ncomplete?"}
+    C -->|Missing| D["3. help_user_upload\n(guide to Merchant Center or provide URLs)"]
+    C -->|Complete| E["4. validate_and_prepare_assets\n(5+ images, 1+ video, 5+ headlines, 5+ descriptions)"]
+    D --> E
+    E --> F["5. create_pmax_campaign\n(created PAUSED)"]
+    F --> G{{"ASK USER\nFOR CONFIRMATION"}}
 ```
 
 ### Asset Requirements
@@ -99,23 +96,24 @@ Performance Max campaigns require high-quality assets. Four-step workflow.
 
 Six-step workflow for Facebook & Instagram campaigns.
 
-### Tool Sequence
+### Workflow
 
-```
-1. get_connections_status
-   (verify Meta Ads is connected)
-2. search_meta_targeting
-   (find audiences by interests, demographics, behaviors)
-   (output: targeting options with audience size estimates)
-3. select_meta_campaign_type
-   (image, video, or carousel based on user's creative)
-4. discover_meta_assets
-   (check existing creatives in Meta)
-5. validate_and_prepare_meta_assets
-   (verify image/video URLs meet Meta requirements)
-6. create_meta_image_campaign | create_meta_video_campaign | create_meta_carousel_campaign
-   (campaign created PAUSED)
-7. ASK USER FOR CONFIRMATION
+```mermaid
+flowchart TD
+    A["1. get_connections_status\n(verify Meta Ads connected)"] --> B["2. search_meta_targeting\n(interests, demographics, behaviors)"]
+    B --> C["3. select_meta_campaign_type"]
+    C --> D{"Campaign\ntype?"}
+    D -->|Image| G["create_meta_image_campaign"]
+    D -->|Video| H["create_meta_video_campaign"]
+    D -->|Carousel| I["create_meta_carousel_campaign"]
+    C --> E["4. discover_meta_assets\n(check existing creatives)"]
+    E --> F["5. validate_and_prepare_meta_assets\n(verify URLs meet Meta requirements)"]
+    F --> G
+    F --> H
+    F --> I
+    G --> J{{"ASK USER FOR CONFIRMATION"}}
+    H --> J
+    I --> J
 ```
 
 ### Creative Requirements by Type
@@ -136,21 +134,15 @@ Six-step workflow for Facebook & Instagram campaigns.
 
 Five-step workflow for B2B sponsored content.
 
-### Tool Sequence
+### Workflow
 
-```
-1. get_linkedin_organizations
-   (list user's company pages, select one to advertise under)
-2. search_linkedin_targeting | research_business_for_linkedin_targeting
-   (find B2B audiences by job title, industry, company size, seniority)
-   (output: targeting options with audience size)
-3. discover_linkedin_assets
-   (check existing creatives)
-4. validate_and_prepare_linkedin_assets
-   (verify images meet LinkedIn requirements)
-5. create_linkedin_image_campaign
-   (campaign created PAUSED)
-6. ASK USER FOR CONFIRMATION
+```mermaid
+flowchart TD
+    A["1. get_linkedin_organizations\n(select company page)"] --> B["2. search_linkedin_targeting\n(job title, industry, company size, seniority)"]
+    B --> C["3. discover_linkedin_assets\n(check existing creatives)"]
+    C --> D["4. validate_and_prepare_linkedin_assets\n(verify image specs)"]
+    D --> E["5. create_linkedin_image_campaign\n(created PAUSED)"]
+    E --> F{{"ASK USER\nFOR CONFIRMATION"}}
 ```
 
 ### Targeting Best Practices
@@ -174,18 +166,14 @@ Five-step workflow for B2B sponsored content.
 
 Three-step workflow (simpler than other platforms).
 
-### Tool Sequence
+### Workflow
 
-```
-1. get_connections_status
-   (verify TikTok Ads is connected)
-2. discover_tiktok_assets
-   (check existing videos)
-3. validate_and_prepare_tiktok_assets
-   (verify video meets TikTok requirements: 9:16 vertical, 5-60 seconds)
-4. create_tiktok_campaign
-   (campaign created PAUSED)
-5. ASK USER FOR CONFIRMATION
+```mermaid
+flowchart TD
+    A["1. get_connections_status\n(verify TikTok connected)"] --> B["2. discover_tiktok_assets\n(check existing videos)"]
+    B --> C["3. validate_and_prepare_tiktok_assets\n(9:16 vertical, 5-60s, MP4/MOV)"]
+    C --> D["4. create_tiktok_campaign\n(created PAUSED)"]
+    D --> E{{"ASK USER\nFOR CONFIRMATION"}}
 ```
 
 ### Creative Requirements
@@ -199,19 +187,18 @@ Three-step workflow (simpler than other platforms).
 
 Reallocate spend based on performance data.
 
-### Tool Sequence (Per Platform)
+### Workflow
 
-```
-1. get_campaign_performance (pull last 30 days)
-2. optimize_budget_allocation (Google)
-   OR optimize_meta_budget (Meta)
-   OR optimize_linkedin_budget (LinkedIn)
-   (analyzes ROAS or CPA, suggests reallocation)
-3. Present recommendations in table:
-   - Current budget allocation
-   - Recommended budget allocation
-   - Expected impact (conversions gained)
-4. ASK USER FOR APPROVAL before executing changes
+```mermaid
+flowchart TD
+    A["1. get_campaign_performance\n(pull last 30 days)"] --> B{"Which\nplatform?"}
+    B -->|Google| C["optimize_budget_allocation"]
+    B -->|Meta| D["optimize_meta_budget"]
+    B -->|LinkedIn| E["optimize_linkedin_budget"]
+    C --> F["Present recommendations:\n- Current allocation\n- Recommended allocation\n- Expected impact"]
+    D --> F
+    E --> F
+    F --> G{{"ASK USER FOR APPROVAL\nbefore executing changes"}}
 ```
 
 ### Optimization Logic
@@ -225,17 +212,13 @@ Reallocate spend based on performance data.
 
 Managing multiple ad accounts and checking system status.
 
-### Tool Sequence
+### Workflow
 
-```
-1. get_connections_status
-   (shows all connected platforms and account IDs)
-2. switch_primary_account (if managing multiple accounts)
-   (change active account for subsequent tool calls)
-3. get_usage_status
-   (check Adspirer plan limits: tool calls used/remaining)
-4. get_business_profile
-   (view user's Adspirer account details)
+```mermaid
+flowchart LR
+    A["get_connections_status\n(all platforms + account IDs)"] --> B["switch_primary_account\n(if managing multiple)"]
+    B --> C["get_usage_status\n(tool calls used/remaining)"]
+    C --> D["get_business_profile\n(Adspirer account details)"]
 ```
 
 ### When to Use

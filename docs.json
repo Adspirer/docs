@@ -27,7 +27,8 @@
             "group": "Getting Started",
             "pages": [
               "introduction",
-              "quickstart"
+              "quickstart",
+              "mcp"
             ]
           },
           {
@@ -58,6 +59,17 @@
               "agent-skills/overview",
               "agent-skills/tools",
               "agent-skills/workflows"
+            ]
+          },
+          {
+            "group": "Knowledge Base",
+            "pages": [
+              "knowledge-base/pricing",
+              "knowledge-base/security",
+              "knowledge-base/platform-comparison",
+              "knowledge-base/multi-account",
+              "knowledge-base/multi-client",
+              "knowledge-base/capabilities"
             ]
           }
         ]
@@ -120,13 +132,13 @@
     "links": [
       {
         "label": "Pricing",
-        "href": "https://www.adspirer.com/pricing"
+        "href": "https://www.adspirer.com/pricing?utm_source=docs&utm_medium=nav&utm_content=pricing"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Get Started",
-      "href": "https://adspirer.ai"
+      "href": "https://adspirer.ai?utm_source=docs&utm_medium=nav&utm_content=get-started"
     }
   },
   "contextual": {

@@ -11,39 +11,38 @@ The best MCP experience for advertising. Anthropic created the Model Context Pro
 
 <Note>
 - A Claude **Pro**, **Max**, **Team**, or **Enterprise** subscription (connectors are not available on the free tier)
-- An Adspirer account ([free to start](https://adspirer.ai/sign-up))
+- An Adspirer account ([free to start](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=page&utm_content=signup))
 - At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
 </Note>
 
 ## Setup (2 Minutes)
 
-### Step 1: Open Claude Settings
+<Steps>
+  <Step title="Open Claude Settings">
+    Navigate to **Settings → Connectors** in Claude. You need a Pro, Max, Team, or Enterprise subscription to access connectors.
+  </Step>
+  <Step title="Add Custom Connector">
+    Click **Add custom connector** and enter:
 
-Navigate to **Settings → Connectors** in Claude. You need a Pro, Max, Team, or Enterprise subscription to access connectors.
+    | Field | Value |
+    |-------|-------|
+    | **Name** | `Ads MCP` |
+    | **URL** | `https://mcp.adspirer.com/mcp` |
+    | **Authentication** | OAuth |
+  </Step>
+  <Step title="Authenticate via Adspirer">
+    Click to connect. Your browser opens and redirects to Adspirer's OAuth page. Sign in and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
+  </Step>
+  <Step title="Start a New Chat">
+    Return to Claude and click **Connect apps** below the text input. Enable **Ads MCP**, then start managing your campaigns with natural language.
 
-### Step 2: Add Custom Connector
+    ```
+    Check my connected ad platforms
+    ```
 
-Click **Add custom connector** and enter:
-
-| Field | Value |
-|-------|-------|
-| **Name** | `Ads MCP` |
-| **URL** | `https://mcp.adspirer.com/mcp` |
-| **Authentication** | OAuth |
-
-### Step 3: Authenticate via Adspirer
-
-Click to connect. Your browser opens and redirects to Adspirer's OAuth page. Sign in and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
-
-### Step 4: Start a New Chat
-
-Return to Claude and click **Connect apps** below the text input. Enable **Ads MCP**, then start managing your campaigns with natural language.
-
-```
-Check my connected ad platforms
-```
-
-You should see a table showing your connected accounts across all platforms with account IDs, names, and connection status.
+    You should see a table showing your connected accounts across all platforms with account IDs, names, and connection status.
+  </Step>
+</Steps>
 
 ## MCP Server Configuration
 
@@ -150,7 +149,7 @@ Yes. Claude Code is the terminal-based developer tool that also supports MCP. Se
 Yes. Your Adspirer account works across both platforms. Connect the same MCP URL to Claude, ChatGPT, Cursor, or any MCP-compatible client. Your ad account connections carry across all of them.
 </Accordion>
 <Accordion title="How much does this cost?">
-Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing](https://www.adspirer.com/pricing).
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
 </Accordion>
 </AccordionGroup>
 
@@ -160,4 +159,4 @@ Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month
 - [Claude Code Setup](/ai-clients/claude-code) — Terminal-based setup for developers
 - [Google Ads Integration](/ad-platforms/google-ads) — Full Google Ads tool reference
 - [Agent Skills Overview](/agent-skills/overview) — Teach Claude the right workflows
-- [Pricing & Plans](https://www.adspirer.com/pricing)
+- [Pricing & Plans](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing)

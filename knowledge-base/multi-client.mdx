@@ -1,0 +1,66 @@
+---
+title: "Using Adspirer Across Multiple AI Clients"
+description: "Use the same Adspirer account with ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, and Windsurf. One account, one tool call limit, any AI client."
+---
+
+Your Adspirer account works with every supported AI client. Connect once, use everywhere.
+
+## One Account, Any Client
+
+| AI Client | Type | Best For |
+|-----------|------|----------|
+| [ChatGPT](/ai-clients/chatgpt) | Chat app | Marketers, non-technical users |
+| [Claude](/ai-clients/claude) | Chat app | Best MCP integration, progress streaming |
+| [Claude Code](/ai-clients/claude-code) | Terminal | Developers, automation, scripting |
+| [Cursor](/ai-clients/cursor) | IDE | Developers who live in their editor |
+| [Codex](/ai-clients/codex) | Autonomous agent | Scheduled tasks, daily monitoring |
+| [OpenClaw](/ai-clients/openclaw) | CLI agent | Pre-configured advertising agent |
+| [Windsurf](/ai-clients/windsurf) | IDE | Codeium users |
+| [Custom GPT](/ai-clients/custom-gpt) | ChatGPT Store | Zero setup, mobile-friendly |
+
+All clients connect to the same MCP server (`mcp.adspirer.com/mcp`) and share your tool call quota.
+
+## Key Differences
+
+### ChatGPT vs Claude
+
+Both work well. Claude has deeper MCP integration (Anthropic created MCP) with progress streaming during long operations. ChatGPT may need more explicit tool mentions in prompts.
+
+### Chat Apps vs Developer Tools
+
+**Chat apps** (ChatGPT, Claude) are conversational — you describe what you want in natural language. No configuration files.
+
+**Developer tools** (Claude Code, Cursor, Codex, OpenClaw, Windsurf) support **agent skills** — instruction files that teach the AI optimal advertising workflows. Skills enforce safety rules automatically and improve tool invocation accuracy.
+
+### Interactive vs Autonomous
+
+**Interactive** (all except Codex): You ask, the AI responds. Real-time conversation.
+
+**Autonomous** (Codex): You define a task and schedule. The agent runs it without you being present — e.g., daily performance checks at 8 AM.
+
+## Shared Tool Call Limit
+
+Your monthly tool call limit applies across **all** clients. If your Plus plan has 50 calls/month:
+
+- 10 calls from ChatGPT + 20 from Claude + 20 from Cursor = 50 total
+- Switching clients doesn't reset your limit
+
+Check usage from any client:
+
+```
+Check my Adspirer usage status
+```
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Do I need separate Adspirer accounts for each AI client?">
+No. One Adspirer account works across all clients. Your ad platform connections persist across all of them.
+</Accordion>
+<Accordion title="Can I use different AI clients for different tasks?">
+Yes, and this is recommended. Use Claude for quick ad-hoc queries, Cursor for deep analysis sessions, and Codex for scheduled daily monitoring.
+</Accordion>
+<Accordion title="What if I switch AI clients mid-workflow?">
+Your ad platform connections persist. But workflow state (like "I was in the middle of creating a campaign") doesn't carry between clients. Start a new workflow in the new client.
+</Accordion>
+</AccordionGroup>

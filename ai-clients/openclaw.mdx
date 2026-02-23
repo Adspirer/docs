@@ -18,50 +18,49 @@ You're deploying an expert, not configuring tools.
 <Note>
 - OpenClaw CLI installed ([download here](https://openclaw.com))
 - Node.js 18+ (for npm installation method)
-- An Adspirer account ([free to start](https://adspirer.ai/sign-up))
+- An Adspirer account ([free to start](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=page&utm_content=signup))
 - At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
 </Note>
 
 ## Setup (3 Minutes)
 
-### Step 1: Install the Adspirer Plugin
+<Steps>
+  <Step title="Install the Adspirer Plugin">
+    ```bash
+    openclaw plugins install openclaw-adspirer
+    ```
 
-```bash
-openclaw plugins install openclaw-adspirer
-```
+    This installs the plugin with all 100+ tools and the 14.4KB SKILL.md instruction file bundled in. No separate skill or agent installation needed.
+  </Step>
+  <Step title="Authenticate with Adspirer">
+    ```bash
+    openclaw adspirer login
+    ```
 
-This installs the plugin with all 100+ tools and the 14.4KB SKILL.md instruction file bundled in. No separate skill or agent installation needed.
+    Your browser opens for OAuth 2.1 sign-in. Authorize OpenClaw to access your Adspirer account. No API keys, no passwords stored locally.
+  </Step>
+  <Step title="Connect Your Ad Platforms">
+    ```bash
+    openclaw adspirer connect
+    ```
 
-### Step 2: Authenticate with Adspirer
+    This opens `adspirer.com` in your browser. Connect Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads — or any combination. Each platform has its own OAuth flow. Authorize the platforms you want to manage.
+  </Step>
+  <Step title="Verify Your Setup">
+    ```bash
+    openclaw adspirer status
+    ```
 
-```bash
-openclaw adspirer login
-```
+    You'll see a table showing:
 
-Your browser opens for OAuth 2.1 sign-in. Authorize OpenClaw to access your Adspirer account. No API keys, no passwords stored locally.
+    - Connected platforms (Google, Meta, LinkedIn, TikTok)
+    - Account names and IDs
+    - Connection status (active/expired)
+    - Available tool count per platform
 
-### Step 3: Connect Your Ad Platforms
-
-```bash
-openclaw adspirer connect
-```
-
-This opens `adspirer.com` in your browser. Connect Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads — or any combination. Each platform has its own OAuth flow. Authorize the platforms you want to manage.
-
-### Step 4: Verify Your Setup
-
-```bash
-openclaw adspirer status
-```
-
-You'll see a table showing:
-
-- Connected platforms (Google, Meta, LinkedIn, TikTok)
-- Account names and IDs
-- Connection status (active/expired)
-- Available tool count per platform
-
-If everything shows "active," you're ready.
+    If everything shows "active," you're ready.
+  </Step>
+</Steps>
 
 ## CLI Commands
 
@@ -280,7 +279,7 @@ Make sure you authorize at least one ad platform (Google, Meta, LinkedIn, or Tik
 
 ### Tools not working or returning errors
 
-Check your account status at [adspirer.ai](https://adspirer.ai). Free accounts get 10 tool calls/month. If you've hit the limit, upgrade to Plus ($25/mo for 50 calls) or Pro ($75/mo for 100 calls).
+Check your account status at [adspirer.ai](https://adspirer.ai?utm_source=docs&utm_medium=page&utm_content=account). Free accounts get 10 tool calls/month. If you've hit the limit, upgrade to Plus ($25/mo for 50 calls) or Pro ($75/mo for 100 calls).
 
 ### Skill file not loading
 
@@ -314,7 +313,7 @@ Yes. The skill file is at `node_modules/openclaw-adspirer/skills/adspirer-ads-ag
 Yes. Connect multiple Google Ads accounts, multiple Meta Business Managers, etc. Use the `switch_primary_account` command to change which account you're managing, or specify the account ID in your commands.
 </Accordion>
 <Accordion title="How much does this cost?">
-Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing details](https://www.adspirer.com/pricing).
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing details](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
 </Accordion>
 </AccordionGroup>
 
@@ -324,5 +323,5 @@ Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month
 - [Cursor Setup Guide](/ai-clients/cursor)
 - [Codex Setup Guide](/ai-clients/codex)
 - [Google Ads Integration](/ad-platforms/google-ads)
-- [Pricing & Plans](https://www.adspirer.com/pricing)
+- [Pricing & Plans](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing)
 - [All Documentation](/introduction)
