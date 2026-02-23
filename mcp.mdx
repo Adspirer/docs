@@ -22,11 +22,11 @@ One server, any AI client. Your Adspirer account works with ChatGPT, Claude, Cla
 
 ## MCP Server URL
 
-```
-https://mcp.adspirer.com/mcp
-```
+<Info>
+**MCP Server URL:** `https://mcp.adspirer.com/mcp`
 
 This single URL is used across all AI clients. The server auto-detects the transport type based on the client's request.
+</Info>
 
 ## Transport
 
@@ -34,7 +34,7 @@ Adspirer supports two MCP transport mechanisms:
 
 | Transport | Used By | How It Works |
 |-----------|---------|-------------|
-| **Streamable HTTP** | ChatGPT, Claude, Cursor, Windsurf | HTTP POST for requests, Server-Sent Events (SSE) for streaming responses. Supports progress updates during long operations. |
+| **Streamable HTTP** | ChatGPT, Claude, Cursor, Windsurf | HTTP POST for requests, <Tooltip tip="Server-Sent Events — one-way streaming from server to client over HTTP">SSE</Tooltip> for streaming responses. Supports progress updates during long operations. |
 | **STDIO** | Claude Code (local) | JSON-RPC over stdin/stdout. Used for local terminal-based tools. |
 
 ### Streamable HTTP
@@ -61,7 +61,7 @@ SSE is HTTP-native — works through firewalls, proxies, and CDNs without specia
 
 ## Authentication
 
-Adspirer uses **OAuth 2.1 with PKCE** — the most secure standard for AI tool authentication.
+Adspirer uses **OAuth 2.1 with <Tooltip tip="Proof Key for Code Exchange — prevents authorization code interception attacks">PKCE</Tooltip>** — the most secure standard for AI tool authentication.
 
 ### How It Works
 

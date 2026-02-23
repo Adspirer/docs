@@ -5,7 +5,9 @@ description: "Connect Claude Code to Adspirer MCP in 2 minutes. Manage Google Ad
 
 Manage all your ad campaigns from the terminal. One command to connect, 100+ tools to use.
 
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/hkYsJ5urfJY" title="Adspirer + Claude Code: Create Google Ads Campaigns From Your Terminal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<Frame caption="Create Google Ads Campaigns From Your Terminal">
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/hkYsJ5urfJY" title="Adspirer + Claude Code: Create Google Ads Campaigns From Your Terminal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</Frame>
 
 ## Prerequisites
 
@@ -21,8 +23,10 @@ npm install -g @anthropic-ai/claude-code
 
 ## Setup
 
-### Method 1: Plugin Install (Recommended)
+### Install
 
+<Tabs>
+<Tab title="Plugin Install (Recommended)">
 The Adspirer plugin installs the MCP server, slash commands, agent, and skills in one step:
 
 ```bash
@@ -44,9 +48,8 @@ Verify it works:
 ```
 
 This connects to your accounts, scans your folder for brand docs, pulls live campaign data, and creates a `CLAUDE.md` brand workspace file.
-
-### Method 2: Manual MCP Setup
-
+</Tab>
+<Tab title="Manual MCP Setup">
 If you prefer not to use the plugin system, add the MCP server directly:
 
 ```bash
@@ -61,6 +64,8 @@ To add agent skills manually:
 git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
 cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
 ```
+</Tab>
+</Tabs>
 
 ### Verify Your Setup
 
@@ -71,6 +76,10 @@ Check my connected ad platforms
 ```
 
 You should see a table showing your connected accounts across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads — along with account IDs, names, and connection status.
+
+<Check>
+You're connected. Claude Code now has access to 100+ advertising tools from your terminal.
+</Check>
 
 ## Brand Workspace
 
