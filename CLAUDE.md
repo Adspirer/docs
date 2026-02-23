@@ -28,11 +28,18 @@ mint update
 mint broken-links
 mint broken-links --check-anchors    # also check anchor links
 
+# Check docs.json config links (banner, footer, 404 page)
+# Mintlify CLI does NOT check these — run this alongside mint broken-links
+./check-docs-links.sh
+
 # Accessibility check
 mint a11y
 
 # Validate build (strict mode, for CI/CD)
 mint validate
+
+# Full pre-push check (run all three)
+mint validate && mint broken-links --check-anchors && ./check-docs-links.sh
 
 # Rename files and update all references
 mint rename <path/to/old-filename> <path/to/new-filename>
@@ -117,6 +124,13 @@ Custom SVG icons in `icons/` directory: chatgpt.svg, claude.svg, claude-code.svg
 ## URL / Routing
 
 URLs are auto-generated from file paths (no config needed). File `ai-clients/claude-code.mdx` → `/ai-clients/claude-code`. Redirects for old paths are defined in `docs.json` under `redirects`.
+
+**Important: `/docs/` prefix for config links.** Docs are served at `www.adspirer.com/docs/*` via Vercel rewrite. Mintlify auto-prefixes `/docs/` on navigation sidebar links but **NOT** on:
+- `banner.content` markdown links
+- `errors.404.description` markdown links
+- `footer.links[].items[].href` values
+
+All internal links in these sections must use `/docs/` prefix (e.g., `/docs/ad-platforms/tiktok-ads`, not `/ad-platforms/tiktok-ads`). Run `./check-docs-links.sh` to verify.
 
 ## Auto-generated Endpoints
 
