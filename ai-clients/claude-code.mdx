@@ -19,44 +19,50 @@ npm install -g @anthropic-ai/claude-code
 - macOS or Linux (Windows requires WSL)
 </Note>
 
-## Setup (2 Minutes)
+## Setup
 
-### Step 1: Add the Adspirer MCP Server
+### Method 1: Plugin Install (Recommended)
 
-One command. That's the entire setup:
+The Adspirer plugin installs the MCP server, slash commands, agent, and skills in one step:
+
+```bash
+/plugin marketplace add amekala/ads-mcp
+/plugin install adspirer
+```
+
+Then authenticate:
+
+1. Run `/mcp` in Claude Code
+2. Find **plugin:adspirer:adspirer** in the list
+3. Click to authenticate — your browser opens for OAuth 2.1 sign-in
+4. Sign in, connect your ad platforms, return to Claude Code
+
+Verify it works:
+
+```bash
+/adspirer:setup
+```
+
+This connects to your accounts, scans your folder for brand docs, pulls live campaign data, and creates a `CLAUDE.md` brand workspace file.
+
+### Method 2: Manual MCP Setup
+
+If you prefer not to use the plugin system, add the MCP server directly:
 
 ```bash
 claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
 ```
 
-This tells Claude Code where to find Adspirer's 100+ advertising tools. The connection uses streamable HTTP transport for real-time progress updates.
+Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization.
 
-### Step 2: Authenticate
-
-Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization -- no passwords stored, no API keys to manage.
-
-You'll see:
-
-```
-Adspirer requires authorization. Opening browser...
-```
-
-Sign in, connect your ad platforms (Google, Meta, LinkedIn, TikTok), and you're done.
-
-### Step 3: Install Agent Skills (Optional But Recommended)
-
-Skills are instruction files that teach Claude the *right way* to use Adspirer's tools. Without skills, Claude sees 100+ tools and has to guess which order to call them. With skills, it follows proven workflows -- research keywords before creating campaigns, validate assets before launching, always confirm before spending money.
-
-Install skills:
+To add agent skills manually:
 
 ```bash
 git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-cp -r /tmp/ads-mcp/plugins/claude/adspirer/skills/ad-campaign-management ~/.claude/skills/
+cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
 ```
 
-That's it. Claude now knows to check connections first, research before creating, and present results in readable tables.
-
-### Step 4: Verify Your Setup
+### Verify Your Setup
 
 Run a test prompt:
 
@@ -64,7 +70,41 @@ Run a test prompt:
 Check my connected ad platforms
 ```
 
-You should see a table showing your connected accounts across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads -- along with account IDs, names, and connection status.
+You should see a table showing your connected accounts across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads — along with account IDs, names, and connection status.
+
+## Brand Workspace
+
+When you run `/adspirer:setup`, the agent bootstraps a brand-specific workspace:
+
+1. **Connects to Adspirer** — verifies your ad platform connections
+2. **Scans your folder** — reads any brand docs (`.md`, `.txt`, `.csv`, `.yaml`, `.json`, `.pdf`) for voice, audience, and budget context
+3. **Pulls live data** — campaign performance, search terms, benchmarks from all connected platforms
+4. **Creates `CLAUDE.md`** — a brand context file with connected platforms, performance snapshot, KPI targets, and brand guidelines
+
+Open your brand folder and run setup:
+
+```bash
+cd ~/Clients/YourBrand
+claude
+```
+
+Then say "set up my brand workspace" or run `/adspirer:setup`.
+
+Your brand folder can contain docs or be completely empty — the agent builds context from your live ad platform data either way. More docs = better brand context = better ad copy and recommendations.
+
+## Slash Commands
+
+The plugin includes 5 slash commands that trigger proven workflows:
+
+| Command | What it Does |
+|---------|-------------|
+| `/adspirer:setup` | Bootstrap a brand workspace — connect accounts, scan docs, pull data, create CLAUDE.md |
+| `/adspirer:performance-review` | Cross-platform performance scorecard with KPI comparison |
+| `/adspirer:write-ad-copy` | Brand-voice ad copy from real keyword and performance data |
+| `/adspirer:wasted-spend` | Find and fix wasted spend across all platforms |
+| `/adspirer:refresh-brand-context` | Re-scan docs and update CLAUDE.md with latest data |
+
+You don't need to remember these — just describe what you want and Claude will use the right workflow.
 
 ## What You Can Do
 
@@ -152,9 +192,11 @@ Adspirer's agent skills enforce safety rules to prevent accidental spend:
 
 ## Troubleshooting
 
-### "MCP server not found" error
+### MCP server not found
 
-Make sure you ran the add command exactly as written. Check your MCP config:
+If you used the plugin, run `/mcp` and look for **plugin:adspirer:adspirer**. Click it to authenticate.
+
+If you used the manual method, check your MCP config:
 
 ```bash
 cat ~/.config/claude/mcp.json
@@ -164,7 +206,7 @@ You should see an entry for "adspirer" with the URL `https://mcp.adspirer.com/mc
 
 ### Authentication keeps failing
 
-Clear your browser cache or try a different browser. The OAuth flow uses PKCE for security -- some browser extensions can interfere. Disable ad blockers temporarily.
+Clear your browser cache or try a different browser. The OAuth flow uses PKCE for security — some browser extensions can interfere. Disable ad blockers temporarily.
 
 ### Tools not working after connecting
 
@@ -178,20 +220,28 @@ Verify the skills directory exists:
 ls -la ~/.claude/skills/ad-campaign-management/
 ```
 
-You should see a SKILL.md file. If not, re-run the copy command from Step 3.
+You should see a SKILL.md file. If not, re-run the plugin install or manual copy command.
 
-### Claude doesn't seem to follow the workflows
+### Slash commands not available
 
-Make sure skills are installed correctly. Also, be specific in your prompts -- instead of "create a campaign," say "create a Google Ads search campaign for [specific product] with [specific budget]." The more context you give, the better Claude follows the workflow.
+If `/adspirer:setup` isn't recognized, the plugin may not be installed. Run:
+
+```bash
+/plugin marketplace add amekala/ads-mcp
+/plugin install adspirer
+```
 
 ## FAQ
 
 <AccordionGroup>
 <Accordion title="Do I need to know MCP to use this?">
-No. MCP (Model Context Protocol) is the plumbing -- you don't interact with it directly. You just talk to Claude in plain English. The MCP connection happens behind the scenes.
+No. MCP (Model Context Protocol) is the plumbing — you don't interact with it directly. You just talk to Claude in plain English. The MCP connection happens behind the scenes.
 </Accordion>
 <Accordion title="What's the difference between Claude Code and Claude Desktop?">
 Claude Code is the terminal-based developer tool. Claude Desktop is the GUI app with chat and Cowork modes. Both support Adspirer through MCP. Use Claude Code if you live in the terminal. Use [Claude Desktop](https://www.adspirer.com/integrations/claude) if you prefer a visual interface.
+</Accordion>
+<Accordion title="What does the plugin install?">
+The Adspirer plugin installs: the MCP server connection, 5 slash commands (setup, performance-review, write-ad-copy, wasted-spend, refresh-brand-context), a performance marketing agent, and the ad campaign management skill file.
 </Accordion>
 <Accordion title="Can I manage multiple ad accounts?">
 Yes. Adspirer supports multiple accounts per platform. Use the `switch_primary_account` tool to change which account you're managing, or specify the account ID in your prompts.
@@ -200,7 +250,7 @@ Yes. Adspirer supports multiple accounts per platform. Use the `switch_primary_a
 Adspirer pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See the [full pricing breakdown](https://www.adspirer.com/pricing).
 </Accordion>
 <Accordion title="Is my data safe?">
-Yes. Adspirer uses OAuth 2.1 with PKCE -- we never see your passwords. Your ad account credentials live with Google/Meta/LinkedIn/TikTok. We only get read/write permissions you explicitly authorize. You can revoke access anytime from your ad platform's security settings.
+Yes. Adspirer uses OAuth 2.1 with PKCE — we never see your passwords. Your ad account credentials live with Google/Meta/LinkedIn/TikTok. We only get read/write permissions you explicitly authorize. You can revoke access anytime from your ad platform's security settings.
 </Accordion>
 </AccordionGroup>
 

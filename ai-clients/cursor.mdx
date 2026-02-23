@@ -1,37 +1,114 @@
 ---
 title: "Cursor Setup Guide"
-description: "Connect Cursor IDE to Adspirer MCP. Manage Google, Meta, LinkedIn, and TikTok Ads from your editor with 100+ tools and Cursor Rules."
+description: "Connect Cursor IDE to Adspirer MCP. Manage Google, Meta, LinkedIn, and TikTok Ads from your editor with 100+ tools, 5 skills, and a performance marketing subagent."
 ---
 
-Manage ads from your code editor. 100+ tools, automatic workflow rules, zero context-switching.
+Manage ads from your code editor. One command to install, 100+ tools, automatic workflow rules, zero context-switching.
 
 ## Prerequisites
 
 <Note>
-- Cursor IDE installed ([download here](https://cursor.sh))
+- [Cursor IDE](https://cursor.com/) installed (v2.4+ recommended for subagent support)
+- [git](https://git-scm.com/) installed (used by the installer)
 - An Adspirer account ([free to start](https://adspirer.ai/sign-up))
 - At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
 </Note>
 
-## Setup (3 Minutes)
+## Quick Install (One Command)
 
-### Step 1: Add Adspirer to Your MCP Config
-
-Open Cursor's AI chat (Cmd+L or Ctrl+L) and paste this prompt:
-
-```
-Add the Adspirer MCP server to my global MCP config.
-Server URL: https://mcp.adspirer.com/mcp
-```
-
-Cursor will create or update your `~/.cursor/mcp.json` automatically.
-
-<Note>
-**Manual alternative**
-
-If you prefer, create or edit `~/.cursor/mcp.json` (global) or `.cursor/mcp.json` (per-project) directly:
+**Run this from your system terminal** (Terminal.app, iTerm, Windows Terminal, etc.), **not** Cursor's built-in terminal. Cursor's terminal is sandboxed and can't write to `~/.cursor/`, which causes permission errors.
 
 ```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/cursor/adspirer/install.sh)
+```
+
+This automatically:
+- Installs the performance marketing subagent to `~/.cursor/agents/`
+- Installs all 5 Adspirer skills to `~/.cursor/skills/`
+- Configures the Adspirer MCP server in `~/.cursor/mcp.json`
+
+Then restart Cursor.
+
+<Note>
+The installer does not require authentication. You'll authenticate in the Getting Started steps below.
+</Note>
+
+## Getting Started
+
+### 1. Verify the MCP server is connected
+
+Open **Cursor Settings > MCP**. You should see `adspirer` listed.
+
+If it shows a connection error, click on it to authenticate. A browser window will open for Adspirer login — complete the sign-in and return to Cursor.
+
+If `adspirer` is missing entirely, add it manually: **Cursor Settings > MCP > Add Server** with URL: `https://mcp.adspirer.com/mcp`
+
+### 2. Open your brand folder in Cursor
+
+```bash
+cd ~/Clients/YourBrand
+cursor .
+```
+
+Your brand folder can have docs (`.md`, `.txt`, `.csv`, `.yaml`, `.json`, `.pdf`) or be completely empty.
+
+### 3. Switch to Agent mode and say "set up my brand workspace"
+
+Make sure you're in **Agent mode** (not Ask or Edit mode) in the Cursor chat panel.
+
+The agent will:
+1. Connect to your ad accounts (may open a browser for OAuth on first use)
+2. Scan the folder for brand docs
+3. Pull live campaign data from all connected platforms
+4. Create `BRAND.md` with your brand context, performance snapshot, and KPI targets
+5. Tell you what it found and ask what you'd like to work on
+
+If it doesn't trigger automatically, type: `/adspirer-setup`
+
+### 4. Start managing campaigns
+
+<Prompt description="Check campaign status across all connected platforms." actions={["copy", "cursor"]}>
+How are my Google Ads campaigns doing?
+</Prompt>
+
+<Prompt description="Find wasted ad spend across all platforms." actions={["copy", "cursor"]}>
+Find wasted spend across all platforms
+</Prompt>
+
+<Prompt description="Write new ad headlines from real performance data." actions={["copy", "cursor"]}>
+Write new headlines for my Google Search campaigns
+</Prompt>
+
+## Manual Install (Alternative)
+
+If you prefer to install manually instead of using the one-command script:
+
+<Expandable title="Click to expand manual steps">
+
+### Step 1: Clone the repo
+
+```bash
+git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
+cd /tmp/ads-mcp/plugins/cursor/adspirer
+```
+
+### Step 2: Install subagent and skills
+
+```bash
+mkdir -p ~/.cursor/agents ~/.cursor/skills
+cp .cursor/agents/performance-marketing-agent.md ~/.cursor/agents/
+cp -r .cursor/skills/adspirer-ads ~/.cursor/skills/
+cp -r .cursor/skills/adspirer-setup ~/.cursor/skills/
+cp -r .cursor/skills/adspirer-performance-review ~/.cursor/skills/
+cp -r .cursor/skills/adspirer-write-ad-copy ~/.cursor/skills/
+cp -r .cursor/skills/adspirer-wasted-spend ~/.cursor/skills/
+```
+
+### Step 3: Add the MCP server
+
+Add to `~/.cursor/mcp.json`:
+
+```json
 {
   "mcpServers": {
     "adspirer": {
@@ -40,54 +117,32 @@ If you prefer, create or edit `~/.cursor/mcp.json` (global) or `.cursor/mcp.json
   }
 }
 ```
-</Note>
 
-### Step 2: Restart Cursor
+Or use **Cursor Settings > MCP > Add Server** with URL `https://mcp.adspirer.com/mcp`.
 
-MCP configs load on startup. Close and reopen Cursor for the connection to register.
-
-### Step 3: Install Agent Skills (Recommended)
-
-Skills teach Cursor the correct workflow for using Adspirer's 100+ tools. Without skills, Cursor sees the tools but doesn't know the right order -- should it research keywords before creating a campaign? Should it validate assets first? Skills answer these questions.
-
-Install skills:
+### Step 4: Copy rules to your brand folder (optional)
 
 ```bash
-git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-cp -r /tmp/ads-mcp/plugins/cursor/adspirer/skills/ad-campaign-management ~/.cursor/skills/
+cd ~/Clients/YourBrand
+mkdir -p .cursor/rules
+cp /tmp/ads-mcp/plugins/cursor/adspirer/.cursor/rules/*.mdc .cursor/rules/
 ```
 
-### Step 4: Install Cursor Rules (Optional But Powerful)
+### Step 5: Restart Cursor
 
-Cursor Rules are automatic instructions that trigger based on context. Adspirer's rule file enforces safety and best practices:
+</Expandable>
 
-- Always check `get_connections_status` before running other tools
-- Research keywords before creating Google Search campaigns
-- Validate assets before launching campaigns
-- Confirm with the user before any action that affects spend
-- Never retry failed campaign creation without asking
+## Available Skills
 
-To install Cursor Rules:
+| Skill | Invocation | What it Does |
+|-------|-----------|-------------|
+| **Adspirer Ads** | `/adspirer-ads` or just ask naturally | Full campaign management — 100+ tools, all workflows, all platforms |
+| **Setup** | `/adspirer-setup` | Bootstrap a brand workspace (first-time or refresh) |
+| **Performance Review** | `/adspirer-performance-review` | Cross-platform performance scorecard |
+| **Write Ad Copy** | `/adspirer-write-ad-copy` | Brand-voice ad copy from real data |
+| **Wasted Spend** | `/adspirer-wasted-spend` | Find and fix wasted ad spend |
 
-```bash
-cp /tmp/ads-mcp/plugins/cursor/adspirer/rules/use-adspirer.mdc .cursor/rules/
-```
-
-The rule is set to `alwaysApply: true`, so Cursor will automatically enforce these workflows whenever you interact with Adspirer tools.
-
-### Step 5: Authenticate
-
-Next time you ask Cursor to use an Adspirer tool, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization. Sign in, connect your ad platforms, done.
-
-### Step 6: Verify Your Setup
-
-Open Cursor's AI chat (Cmd+L or Ctrl+L) and say:
-
-```
-Check my connected ad platforms
-```
-
-You should see a table showing your connected accounts -- Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads -- with account names, IDs, and connection status.
+You don't need to remember skill names — just describe what you want and Cursor will match the right skill automatically.
 
 ## What You Can Do
 
@@ -165,13 +220,13 @@ Create a markdown report with:
 
 ## How Cursor Rules Improve Your Workflow
 
-If you installed the Cursor Rule in Step 4, here's what changes:
+If you installed the Cursor Rule (included in both the one-command installer and manual install), here's what changes:
 
 ### Before Rules:
 
 **You:** "Create a Google Ads campaign for running shoes"
 
-**Cursor:** Immediately calls `create_search_campaign` with generic parameters -- fails because no keyword research, no asset validation.
+**Cursor:** Immediately calls `create_search_campaign` with generic parameters — fails because no keyword research, no asset validation.
 
 ### After Rules:
 
@@ -187,7 +242,7 @@ If you installed the Cursor Rule in Step 4, here's what changes:
 6. Calls `create_search_campaign` with validated data
 7. **Asks for your confirmation** before actually creating the campaign
 
-Rules turn one vague prompt into a complete, validated workflow. You still control the final decision -- nothing launches without your approval.
+Rules turn one vague prompt into a complete, validated workflow. You still control the final decision — nothing launches without your approval.
 
 ## Safety Features
 
@@ -199,51 +254,18 @@ Rules turn one vague prompt into a complete, validated workflow. You still contr
 
 ## Troubleshooting
 
-### Cursor doesn't recognize Adspirer tools
-
-Check your mcp.json file:
-
-```bash
-cat ~/.cursor/mcp.json
-```
-
-Make sure the JSON is valid (no trailing commas, proper quotes). Restart Cursor after any config changes.
-
-### "Connection failed" error
-
-Your firewall or network might be blocking the MCP connection. Try:
-
-- Whitelisting `mcp.adspirer.com` in your firewall settings
-- Checking if your company VPN blocks external MCP servers
-- Testing with a different network (mobile hotspot) to isolate the issue
-
-### Skills aren't working
-
-Verify the skills directory:
-
-```bash
-ls -la ~/.cursor/skills/ad-campaign-management/
-```
-
-You should see a SKILL.md file. If the directory doesn't exist, re-run the copy command from Step 3.
-
-### Cursor Rules not triggering
-
-Check that the rule file is in the right location:
-
-```bash
-ls -la .cursor/rules/
-```
-
-You should see `use-adspirer.mdc`. If it's not there, copy it from the GitHub repo again. Rules are per-project, so each project needs its own copy.
-
-### OAuth flow not opening
-
-Some browser settings block automatic OAuth redirects. Try:
-
-- Manually visiting [adspirer.ai](https://adspirer.ai) and signing in first
-- Checking your default browser settings (Cursor uses your system default)
-- Disabling browser extensions that might block pop-ups or redirects
+| Problem | Solution |
+|---------|----------|
+| Install fails with permission/hooks error | Run the install from your **system terminal**, not Cursor's built-in terminal (it's sandboxed) |
+| MCP server not showing | Open Cursor Settings > MCP > Add server with URL `https://mcp.adspirer.com/mcp` |
+| MCP connection error | Click the server in Settings > MCP to re-authenticate via browser |
+| Authentication failed | Remove and re-add the MCP server in Cursor Settings |
+| OAuth window doesn't open | Check browser pop-up blocker. Try restarting Cursor. |
+| No ad platforms connected | Connect platforms at [adspirer.com](https://www.adspirer.com) |
+| Skills not showing | Verify: `ls ~/.cursor/skills/` — should show `adspirer-*` directories |
+| Subagent not triggering | Ensure you're in **Agent mode** (not Ask or Edit). Try `/adspirer-setup` directly. |
+| No data returned | Check for active campaigns. Try longer lookback (60/90 days) |
+| Rate limit hit | Check Adspirer tier (Free: 10/mo, Plus: 50, Pro: 100, Enterprise: unlimited) |
 
 ## FAQ
 
@@ -254,10 +276,10 @@ Some browser settings block automatic OAuth redirects. Try:
 **Per-project (`.cursor/mcp.json`):** Adspirer only works in that specific project. Use this if you're working on a client's codebase and want ad management tools only for that client.
 </Accordion>
 <Accordion title="Can I use Adspirer with Cursor Composer?">
-Yes. Cursor Composer (multi-file editing mode) has full access to Adspirer tools. You can ask Composer to analyze campaigns, generate reports, and save the output as markdown files in your project -- all in one flow.
+Yes. Cursor Composer (multi-file editing mode) has full access to Adspirer tools. You can ask Composer to analyze campaigns, generate reports, and save the output as markdown files in your project — all in one flow.
 </Accordion>
 <Accordion title="Do I need both Skills and Cursor Rules?">
-No, but they complement each other. Skills teach Cursor *how* to use the tools. Cursor Rules enforce *when* and *why* to use them. Install both for the best experience, or start with Skills if you only want one.
+No, but they complement each other. Skills teach Cursor *how* to use the tools. Cursor Rules enforce *when* and *why* to use them. The one-command installer includes both.
 </Accordion>
 <Accordion title="How much does Adspirer cost?">
 Pricing is based on tool calls, not ad spend. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. See [full pricing details](https://www.adspirer.com/pricing).

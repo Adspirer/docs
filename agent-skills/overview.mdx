@@ -67,9 +67,9 @@ Skills turn a vague prompt into a complete, validated workflow.
 
 | AI Client | Skills Support | Install Location |
 |-----------|---------------|-----------------|
-| [Claude Code](/ai-clients/claude-code) | Yes | `~/.claude/skills/ad-campaign-management/` |
-| [Cursor](/ai-clients/cursor) | Yes + Cursor Rules | `~/.cursor/skills/` + `.cursor/rules/` |
-| [Codex](/ai-clients/codex) | Yes + Agent YAML | `~/.codex/skills/adspirer-ads.md` |
+| [Claude Code](/ai-clients/claude-code) | Yes + Slash Commands | `~/.claude/skills/` (via plugin or manual) |
+| [Cursor](/ai-clients/cursor) | Yes + Subagent + Rules | `~/.cursor/skills/` + `~/.cursor/agents/` |
+| [Codex](/ai-clients/codex) | Yes + Agent Config | `~/.agents/skills/` + `~/.codex/agents/` |
 | [OpenClaw](/ai-clients/openclaw) | Bundled (14.4KB SKILL.md) | Auto-installed with plugin |
 | [Windsurf](/ai-clients/windsurf) | Coming soon | -- |
 | ChatGPT | No skills system | Use via connectors |
@@ -81,26 +81,60 @@ Installation varies by client. All skills are available in the [ads-mcp GitHub r
 
 ### Claude Code
 
+**Option A: Plugin install (recommended)** — installs MCP server, skills, slash commands, and agent in one step:
+
+```bash
+/plugin marketplace add amekala/ads-mcp
+/plugin install adspirer
+```
+
+**Option B: Manual skill install:**
+
 ```bash
 git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-cp -r /tmp/ads-mcp/plugins/claude/adspirer/skills/ad-campaign-management ~/.claude/skills/
+cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
 ```
 
 ### Cursor
 
+**Option A: One-command installer (recommended)** — installs MCP server, subagent, all 5 skills, and Cursor Rules. Run from your **system terminal**, not Cursor's built-in terminal:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/cursor/adspirer/install.sh)
+```
+
+**Option B: Manual skill install:**
+
 ```bash
 git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-cp -r /tmp/ads-mcp/plugins/cursor/adspirer/skills/ad-campaign-management ~/.cursor/skills/
-cp /tmp/ads-mcp/plugins/cursor/adspirer/rules/use-adspirer.mdc .cursor/rules/
+mkdir -p ~/.cursor/skills
+cp -r /tmp/ads-mcp/plugins/cursor/adspirer/.cursor/skills/adspirer-ads ~/.cursor/skills/
+cp -r /tmp/ads-mcp/plugins/cursor/adspirer/.cursor/skills/adspirer-setup ~/.cursor/skills/
+cp -r /tmp/ads-mcp/plugins/cursor/adspirer/.cursor/skills/adspirer-performance-review ~/.cursor/skills/
+cp -r /tmp/ads-mcp/plugins/cursor/adspirer/.cursor/skills/adspirer-write-ad-copy ~/.cursor/skills/
+cp -r /tmp/ads-mcp/plugins/cursor/adspirer/.cursor/skills/adspirer-wasted-spend ~/.cursor/skills/
 ```
 
 Cursor also supports Cursor Rules, which auto-trigger skills based on context (`alwaysApply: true`).
 
 ### Codex
 
+**Option A: One-command installer (recommended)** — installs MCP server, agent config, and all 5 skills:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/codex/adspirer/install.sh)
+```
+
+**Option B: Manual skill install:**
+
 ```bash
 git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-cp /tmp/ads-mcp/plugins/codex/adspirer/SKILL.md ~/.codex/skills/adspirer-ads.md
+mkdir -p ~/.agents/skills
+cp -r /tmp/ads-mcp/plugins/codex/adspirer/skills/adspirer-ads ~/.agents/skills/
+cp -r /tmp/ads-mcp/plugins/codex/adspirer/skills/adspirer-setup ~/.agents/skills/
+cp -r /tmp/ads-mcp/plugins/codex/adspirer/skills/adspirer-performance-review ~/.agents/skills/
+cp -r /tmp/ads-mcp/plugins/codex/adspirer/skills/adspirer-write-ad-copy ~/.agents/skills/
+cp -r /tmp/ads-mcp/plugins/codex/adspirer/skills/adspirer-wasted-spend ~/.agents/skills/
 ```
 
 ### OpenClaw

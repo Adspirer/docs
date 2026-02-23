@@ -26,25 +26,15 @@ You're deploying an expert, not configuring tools.
 
 ### Step 1: Install the Adspirer Plugin
 
-Two installation methods. Pick one:
-
-**Method 1: OpenClaw Plugin Manager (Recommended)**
-
 ```bash
 openclaw plugins install openclaw-adspirer
 ```
 
-**Method 2: NPM**
-
-```bash
-npm i openclaw-adspirer
-```
-
-Both methods install the same plugin. The OpenClaw method handles dependencies automatically. The NPM method gives you more control if you're integrating into an existing Node.js project.
+This installs the plugin with all 100+ tools and the 14.4KB SKILL.md instruction file bundled in. No separate skill or agent installation needed.
 
 ### Step 2: Authenticate with Adspirer
 
-```
+```bash
 openclaw adspirer login
 ```
 
@@ -52,15 +42,15 @@ Your browser opens for OAuth 2.1 sign-in. Authorize OpenClaw to access your Adsp
 
 ### Step 3: Connect Your Ad Platforms
 
-```
+```bash
 openclaw adspirer connect
 ```
 
-This opens `adspirer.com` in your browser. Connect Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads -- or any combination. Each platform has its own OAuth flow. Authorize the platforms you want to manage.
+This opens `adspirer.com` in your browser. Connect Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads — or any combination. Each platform has its own OAuth flow. Authorize the platforms you want to manage.
 
 ### Step 4: Verify Your Setup
 
-```
+```bash
 openclaw adspirer status
 ```
 
@@ -72,6 +62,17 @@ You'll see a table showing:
 - Available tool count per platform
 
 If everything shows "active," you're ready.
+
+## CLI Commands
+
+| Command | Description |
+|---------|-------------|
+| `openclaw adspirer login` | Authenticate via OAuth PKCE |
+| `openclaw adspirer logout` | Clear stored tokens |
+| `openclaw adspirer status` | Show auth status, connections, tool count |
+| `openclaw adspirer accounts` | List connected ad accounts |
+| `openclaw adspirer tools` | List registered tools by platform |
+| `openclaw adspirer connect` | Open Adspirer to connect ad platforms |
 
 ## What You Get: The Skill File
 
@@ -162,14 +163,59 @@ Include:
 Format as markdown."
 ```
 
+## Tool Groups
+
+| Group | Platform | Tools |
+|-------|----------|-------|
+| `google_ads` | Google Ads | 40 |
+| `meta_ads` | Meta Ads | 20 |
+| `tiktok_ads` | TikTok Ads | 4 |
+| `linkedin_ads` | LinkedIn Ads | 28 |
+| `manus` | Automation | 8 |
+| `system` | Cross-Platform | 4 |
+
+### Filtering
+
+Enable only specific platforms:
+
+```yaml
+config:
+  enabledGroups: ["google_ads", "meta_ads"]
+```
+
+Or cherry-pick individual tools:
+
+```yaml
+config:
+  enabledTools: ["echo_test", "get_campaign_performance", "list_campaigns"]
+```
+
+## Configuration
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `serverUrl` | string | `https://mcp.adspirer.com` | MCP server URL |
+| `accessToken` | string | — | OAuth access token (set by login) |
+| `refreshToken` | string | — | OAuth refresh token (set by login) |
+| `tokenExpiresAt` | number | — | Token expiry timestamp (set by login) |
+| `defaultAccountId` | string | — | Default ad account ID |
+| `enabledGroups` | string[] | all groups | Platform groups to enable |
+| `enabledTools` | string[] | `[]` | Cherry-pick specific tools (overrides groups) |
+| `requestTimeoutMs` | number | `60000` | HTTP request timeout in ms |
+
+## Tool Safety Model
+
+- **Read tools** (`get_*`, `list_*`, `analyze_*`, etc.) — auto-execute, no confirmation needed
+- **Write tools** (`create_*`, `update_*`, `pause_*`, etc.) — agent MUST ask user before executing
+
 ## The claw.json Manifest
 
 The plugin includes a manifest file that defines its metadata and permissions:
 
-```bash
+```json
 {
   "name": "adspirer-ads-agent",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "displayName": "Adspirer Ads Agent",
   "keywords": [
     "advertising",
@@ -189,7 +235,7 @@ The plugin includes a manifest file that defines its metadata and permissions:
 }
 ```
 
-This tells OpenClaw that the plugin is an advertising agent, which keywords to associate with it, and which domains it's allowed to access. The network permissions ensure the plugin can only connect to Adspirer's servers -- no other external services.
+This tells OpenClaw that the plugin is an advertising agent, which keywords to associate with it, and which domains it's allowed to access. The network permissions ensure the plugin can only connect to Adspirer's servers — no other external services.
 
 ## Safety Features
 
