@@ -22,6 +22,7 @@
     "tabs": [
       {
         "tab": "Documentation",
+        "icon": "book-open",
         "groups": [
           {
             "group": "Getting Started",
@@ -60,22 +61,12 @@
               "agent-skills/tools",
               "agent-skills/workflows"
             ]
-          },
-          {
-            "group": "Knowledge Base",
-            "pages": [
-              "knowledge-base/pricing",
-              "knowledge-base/security",
-              "knowledge-base/platform-comparison",
-              "knowledge-base/multi-account",
-              "knowledge-base/multi-client",
-              "knowledge-base/capabilities"
-            ]
           }
         ]
       },
       {
         "tab": "Guides",
+        "icon": "compass",
         "groups": [
           {
             "group": "Google Ads",
@@ -105,6 +96,23 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Knowledge Base",
+        "icon": "lightbulb",
+        "groups": [
+          {
+            "group": "Knowledge Base",
+            "pages": [
+              "knowledge-base/pricing",
+              "knowledge-base/security",
+              "knowledge-base/platform-comparison",
+              "knowledge-base/multi-account",
+              "knowledge-base/multi-client",
+              "knowledge-base/capabilities"
+            ]
+          }
+        ]
       }
     ],
     "global": {
@@ -131,8 +139,8 @@
   "navbar": {
     "links": [
       {
-        "label": "Pricing",
-        "href": "https://www.adspirer.com/pricing?utm_source=docs&utm_medium=nav&utm_content=pricing"
+        "label": "Sign In",
+        "href": "https://adspirer.ai?utm_source=docs&utm_medium=nav&utm_content=signin"
       }
     ],
     "primary": {
