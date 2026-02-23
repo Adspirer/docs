@@ -27,43 +27,45 @@ npm install -g @anthropic-ai/claude-code
 
 <Tabs>
 <Tab title="Plugin Install (Recommended)">
-The Adspirer plugin installs the MCP server, slash commands, agent, and skills in one step:
+<Steps>
+  <Step title="Install the Plugin">
+    Run these commands in Claude Code:
 
-```bash
-/plugin marketplace add amekala/ads-mcp
-/plugin install adspirer
-```
+    ```bash
+    /plugin marketplace add amekala/ads-mcp
+    /plugin install adspirer
+    ```
 
-Then authenticate:
+    This installs the MCP server, slash commands, agent, and skills in one step.
+  </Step>
+  <Step title="Authenticate with Adspirer">
+    Run `/mcp` in Claude Code and find **plugin:adspirer:adspirer** in the list. Click to authenticate — your browser opens for OAuth 2.1 sign-in. Sign in, connect your ad platforms, return to Claude Code.
+  </Step>
+  <Step title="Set Up Your Brand Workspace">
+    ```bash
+    /adspirer:setup
+    ```
 
-1. Run `/mcp` in Claude Code
-2. Find **plugin:adspirer:adspirer** in the list
-3. Click to authenticate — your browser opens for OAuth 2.1 sign-in
-4. Sign in, connect your ad platforms, return to Claude Code
-
-Verify it works:
-
-```bash
-/adspirer:setup
-```
-
-This connects to your accounts, scans your folder for brand docs, pulls live campaign data, and creates a `CLAUDE.md` brand workspace file.
+    This connects to your accounts, scans your folder for brand docs, pulls live campaign data, and creates a `CLAUDE.md` brand workspace file.
+  </Step>
+</Steps>
 </Tab>
 <Tab title="Manual MCP Setup">
-If you prefer not to use the plugin system, add the MCP server directly:
+<Steps>
+  <Step title="Add the MCP Server">
+    ```bash
+    claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
+    ```
 
-```bash
-claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
-```
-
-Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization.
-
-To add agent skills manually:
-
-```bash
-git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
-```
+    Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization.
+  </Step>
+  <Step title="Add Agent Skills (Optional)">
+    ```bash
+    git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
+    cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
+    ```
+  </Step>
+</Steps>
 </Tab>
 </Tabs>
 

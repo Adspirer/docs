@@ -35,53 +35,60 @@ The installer does not require authentication. You'll authenticate in the Gettin
 
 ## Getting Started
 
-### 1. Verify the MCP server is connected
+<Steps>
+  <Step title="Verify the MCP Server is Connected">
+    Open **Cursor Settings > MCP**. You should see `adspirer` listed.
 
-Open **Cursor Settings > MCP**. You should see `adspirer` listed.
+    If it shows a connection error, click on it to authenticate. A browser window will open for Adspirer login — complete the sign-in and return to Cursor.
 
-If it shows a connection error, click on it to authenticate. A browser window will open for Adspirer login — complete the sign-in and return to Cursor.
+    If `adspirer` is missing entirely, add it manually: **Cursor Settings > MCP > Add Server** with URL:
 
-If `adspirer` is missing entirely, add it manually: **Cursor Settings > MCP > Add Server** with URL: `https://mcp.adspirer.com/mcp`
+    ```
+    https://mcp.adspirer.com/mcp
+    ```
+  </Step>
+  <Step title="Open Your Brand Folder in Cursor">
+    ```bash
+    cd ~/Clients/YourBrand
+    cursor .
+    ```
 
-### 2. Open your brand folder in Cursor
+    Your brand folder can have docs (`.md`, `.txt`, `.csv`, `.yaml`, `.json`, `.pdf`) or be completely empty.
+  </Step>
+  <Step title="Switch to Agent Mode and Set Up Your Workspace">
+    Make sure you're in **Agent mode** (not Ask or Edit mode) in the Cursor chat panel. Then say:
 
-```bash
-cd ~/Clients/YourBrand
-cursor .
-```
+    ```
+    set up my brand workspace
+    ```
 
-Your brand folder can have docs (`.md`, `.txt`, `.csv`, `.yaml`, `.json`, `.pdf`) or be completely empty.
+    The agent will:
+    1. Connect to your ad accounts (may open a browser for OAuth on first use)
+    2. Scan the folder for brand docs
+    3. Pull live campaign data from all connected platforms
+    4. Create `BRAND.md` with your brand context, performance snapshot, and KPI targets
+    5. Tell you what it found and ask what you'd like to work on
 
-### 3. Switch to Agent mode and say "set up my brand workspace"
+    If it doesn't trigger automatically, type: `/adspirer-setup`
+  </Step>
+  <Step title="Start Managing Campaigns">
+    <Prompt description="Check campaign status across all connected platforms." actions={["copy", "cursor"]}>
+    How are my Google Ads campaigns doing?
+    </Prompt>
 
-Make sure you're in **Agent mode** (not Ask or Edit mode) in the Cursor chat panel.
+    <Prompt description="Find wasted ad spend across all platforms." actions={["copy", "cursor"]}>
+    Find wasted spend across all platforms
+    </Prompt>
 
-The agent will:
-1. Connect to your ad accounts (may open a browser for OAuth on first use)
-2. Scan the folder for brand docs
-3. Pull live campaign data from all connected platforms
-4. Create `BRAND.md` with your brand context, performance snapshot, and KPI targets
-5. Tell you what it found and ask what you'd like to work on
-
-If it doesn't trigger automatically, type: `/adspirer-setup`
+    <Prompt description="Write new ad headlines from real performance data." actions={["copy", "cursor"]}>
+    Write new headlines for my Google Search campaigns
+    </Prompt>
+  </Step>
+</Steps>
 
 <Check>
 You're connected. Cursor now has access to 100+ advertising tools with automatic workflow enforcement.
 </Check>
-
-### 4. Start managing campaigns
-
-<Prompt description="Check campaign status across all connected platforms." actions={["copy", "cursor"]}>
-How are my Google Ads campaigns doing?
-</Prompt>
-
-<Prompt description="Find wasted ad spend across all platforms." actions={["copy", "cursor"]}>
-Find wasted spend across all platforms
-</Prompt>
-
-<Prompt description="Write new ad headlines from real performance data." actions={["copy", "cursor"]}>
-Write new headlines for my Google Search campaigns
-</Prompt>
 
 ## Manual Install (Alternative)
 

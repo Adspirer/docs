@@ -44,75 +44,77 @@ The installer does not require authentication. You'll authenticate in the Gettin
 
 ## Getting Started
 
-### 1. Verify the MCP server is registered
+<Steps>
+  <Step title="Verify the MCP Server is Registered">
+    Before opening Codex, confirm the server is present:
 
-Before opening Codex, confirm the server is present:
+    ```bash
+    codex mcp list
+    ```
 
-```bash
-codex mcp list
-```
+    Look for `adspirer` in the output. It's normal for auth to show **Unsupported** at this point — that resolves after login.
 
-Look for `adspirer` in the output. It's normal for auth to show **Unsupported** at this point — that resolves after login.
+    If `adspirer` is missing entirely, run:
 
-If `adspirer` is missing entirely, run:
+    ```bash
+    codex mcp add adspirer --url https://mcp.adspirer.com/mcp
+    ```
+  </Step>
+  <Step title="Authenticate with Adspirer">
+    ```bash
+    codex mcp login adspirer
+    ```
 
-```bash
-codex mcp add adspirer --url https://mcp.adspirer.com/mcp
-```
+    A browser window will open. Sign in with your Adspirer account and authorize access. Return to your terminal when complete.
 
-### 2. Authenticate with Adspirer
+    Verify auth succeeded:
 
-```bash
-codex mcp login adspirer
-```
+    ```bash
+    codex mcp list
+    ```
 
-A browser window will open. Sign in with your Adspirer account and authorize access. Return to your terminal when complete.
+    `adspirer` should now show as **enabled**.
+  </Step>
+  <Step title="Open Your Brand Folder in Codex">
+    ```bash
+    cd ~/Clients/YourBrand
+    codex
+    ```
 
-Verify auth succeeded:
+    Your brand folder can have docs (`.md`, `.txt`, `.csv`, `.yaml`, `.json`, `.pdf`) or be completely empty.
+  </Step>
+  <Step title="Set Up Your Brand Workspace">
+    Say "set up my brand workspace". The agent will:
+    1. Connect to your ad accounts
+    2. Scan the folder for brand docs
+    3. Pull live campaign data from all connected platforms
+    4. Create `AGENTS.md` with your brand context, performance snapshot, and KPI targets
+    5. Tell you what it found and ask what you'd like to work on
 
-```bash
-codex mcp list
-```
+    If it doesn't trigger automatically, run:
 
-`adspirer` should now show as **enabled**.
+    ```
+    $adspirer-setup
+    ```
+  </Step>
+  <Step title="Start Managing Campaigns">
+    <Prompt description="Check campaign performance across all connected platforms." actions={["copy", "cursor"]}>
+    How are my Google Ads campaigns doing?
+    </Prompt>
 
-### 3. Open your brand folder in Codex
+    <Prompt description="Find wasted spend across all platforms with savings estimate." actions={["copy", "cursor"]}>
+    Find wasted spend across all platforms
+    </Prompt>
 
-```bash
-cd ~/Clients/YourBrand
-codex
-```
-
-Your brand folder can have docs (`.md`, `.txt`, `.csv`, `.yaml`, `.json`, `.pdf`) or be completely empty.
-
-### 4. Say "set up my brand workspace"
-
-The agent will:
-1. Connect to your ad accounts
-2. Scan the folder for brand docs
-3. Pull live campaign data from all connected platforms
-4. Create `AGENTS.md` with your brand context, performance snapshot, and KPI targets
-5. Tell you what it found and ask what you'd like to work on
-
-If it doesn't trigger automatically, run: `$adspirer-setup`
+    <Prompt description="Write ad headlines from real keyword and performance data." actions={["copy", "cursor"]}>
+    Write new headlines for my Google Search campaigns
+    </Prompt>
+  </Step>
+</Steps>
 
 <Check>
 You're connected. Codex now has 100+ advertising tools available for autonomous and interactive use.
 </Check>
-
-### 5. Start managing campaigns
-
-<Prompt description="Check campaign performance across all connected platforms." actions={["copy", "cursor"]}>
-How are my Google Ads campaigns doing?
-</Prompt>
-
-<Prompt description="Find wasted spend across all platforms with savings estimate." actions={["copy", "cursor"]}>
-Find wasted spend across all platforms
-</Prompt>
-
-<Prompt description="Write ad headlines from real keyword and performance data." actions={["copy", "cursor"]}>
-Write new headlines for my Google Search campaigns
-</Prompt>
 
 ## Manual Install (Alternative)
 
