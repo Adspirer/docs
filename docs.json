@@ -98,11 +98,6 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Changelog",
-          "href": "/changelog",
-          "icon": "clock-rotate-left"
-        },
-        {
           "anchor": "Blog",
           "href": "https://www.adspirer.com/blog",
           "icon": "newspaper"
@@ -111,6 +106,12 @@
           "anchor": "MCP Server",
           "href": "https://mcp.adspirer.com",
           "icon": "server"
+        }
+      ],
+      "tabs": [
+        {
+          "tab": "Changelog",
+          "href": "/changelog"
         }
       ]
     }

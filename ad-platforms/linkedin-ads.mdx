@@ -5,6 +5,8 @@ description: "Connect LinkedIn Ads to Adspirer for B2B campaign management. Targ
 
 # LinkedIn Ads Integration
 
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/BxjtR_intmY" title="LinkedIn Ads with Claude Mobile App and Adspirer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 B2B advertising done right. Target decision-makers by job title, industry, and seniority with 28 specialized tools.
 
 ## Prerequisites
@@ -98,23 +100,23 @@ LinkedIn campaigns follow a 5-step workflow:
 
 ### Analyze Performance
 
-```
+<Prompt description="LinkedIn Ads metrics with cost-per-lead analysis." actions={["copy", "cursor"]}>
 Pull my LinkedIn Ads performance for the last 60 days.
 Show spend, clicks, conversions, and cost per lead.
 Highlight campaigns with cost per lead above $75.
-```
+</Prompt>
 
 ### Research Targeting for a New Campaign
 
-```
+<Prompt description="B2B audience targeting research with size estimates." actions={["copy", "cursor"]}>
 I want to target marketing directors at B2B SaaS companies with 100-500 employees.
 What targeting criteria should I use on LinkedIn?
 Show me audience size estimates.
-```
+</Prompt>
 
 ### Create a Sponsored Content Campaign
 
-```
+<Prompt description="LinkedIn sponsored content with B2B targeting and lead gen." actions={["copy", "cursor"]}>
 Create a LinkedIn sponsored content campaign:
 - Product: B2B marketing automation platform
 - Target: Marketing managers at tech companies with 50-1000 employees
@@ -125,22 +127,22 @@ Create a LinkedIn sponsored content campaign:
 - Objective: Lead generation (demo request form)
 
 Validate the creative first, then build the campaign.
-```
+</Prompt>
 
 ### Optimize Budget Allocation
 
-```
+<Prompt description="Cost-per-lead analysis with budget reallocation." actions={["copy", "cursor"]}>
 Analyze my LinkedIn campaigns for the last 30 days.
 Which campaigns have the best cost per lead?
 Recommend how to reallocate my $5,000/month budget to maximize lead volume.
-```
+</Prompt>
 
 ### Competitive Targeting Research
 
-```
+<Prompt description="Competitor-based LinkedIn targeting research." actions={["copy", "cursor"]}>
 Research targeting for LinkedIn based on this competitor: HubSpot.
 What job titles, industries, and seniority levels should I target to reach their customer base?
-```
+</Prompt>
 
 ## B2B Targeting Options
 
