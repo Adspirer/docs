@@ -22,7 +22,6 @@
     "tabs": [
       {
         "tab": "Documentation",
-        "icon": "book-open",
         "groups": [
           {
             "group": "Getting Started",
@@ -61,46 +60,19 @@
               "agent-skills/tools",
               "agent-skills/workflows"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Guides",
-        "icon": "compass",
-        "groups": [
+          },
           {
-            "group": "Google Ads",
+            "group": "Guides",
             "pages": [
               "guides/chatgpt-google-ads-keywords",
               "guides/google-ads-automation",
-              "guides/automate-google-ads"
-            ]
-          },
-          {
-            "group": "Meta Ads",
-            "pages": [
-              "guides/automate-facebook-ads"
-            ]
-          },
-          {
-            "group": "TikTok Ads",
-            "pages": [
-              "guides/tiktok-ads-guide"
-            ]
-          },
-          {
-            "group": "Strategy",
-            "pages": [
+              "guides/automate-google-ads",
+              "guides/automate-facebook-ads",
+              "guides/tiktok-ads-guide",
               "guides/ai-advertising",
               "guides/marketing-agency-automation"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Knowledge Base",
-        "icon": "lightbulb",
-        "groups": [
+          },
           {
             "group": "Knowledge Base",
             "pages": [
@@ -110,6 +82,12 @@
               "knowledge-base/multi-account",
               "knowledge-base/multi-client",
               "knowledge-base/capabilities"
+            ]
+          },
+          {
+            "group": "",
+            "pages": [
+              "changelog"
             ]
           }
         ]
@@ -127,12 +105,6 @@
           "href": "https://mcp.adspirer.com",
           "icon": "server"
         }
-      ],
-      "tabs": [
-        {
-          "tab": "Changelog",
-          "href": "/changelog"
-        }
       ]
     }
   },
@@ -141,12 +113,21 @@
       {
         "label": "Sign In",
         "href": "https://adspirer.ai?utm_source=docs&utm_medium=nav&utm_content=signin"
+      },
+      {
+        "label": "Book Meeting",
+        "href": "https://www.adspirer.com/book-demo?utm_source=docs&utm_medium=nav&utm_content=book-meeting"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Book Meeting",
-      "href": "https://www.adspirer.com/demo?utm_source=docs&utm_medium=nav&utm_content=book-meeting"
+      "label": "Get Started",
+      "href": "https://adspirer.ai?utm_source=docs&utm_medium=nav&utm_content=get-started"
+    }
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-ZX09MFTP89"
     }
   },
   "contextual": {
