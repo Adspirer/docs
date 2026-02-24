@@ -12,7 +12,7 @@
   "logo": {
     "light": "/logo/light.png",
     "dark": "/logo/dark.png",
-    "href": "https://www.adspirer.com"
+    "href": "https://www.adspirer.com?utm_source=docs&utm_medium=logo&utm_content=home"
   },
   "appearance": {
     "default": "dark",
@@ -181,7 +181,7 @@
       "anchors": [
         {
           "anchor": "Blog",
-          "href": "https://www.adspirer.com/blog",
+          "href": "https://www.adspirer.com/blog?utm_source=docs&utm_medium=sidebar&utm_content=blog",
           "icon": "newspaper"
         },
         {
@@ -237,7 +237,7 @@
         "header": "Product",
         "items": [
           { "label": "MCP Server", "href": "https://mcp.adspirer.com" },
-          { "label": "Pricing", "href": "https://www.adspirer.com/pricing" },
+          { "label": "Pricing", "href": "https://www.adspirer.com/pricing?utm_source=docs&utm_medium=footer&utm_content=pricing" },
           { "label": "Changelog", "href": "/docs/changelog" },
           { "label": "Security", "href": "/docs/knowledge-base/security" }
         ]
@@ -245,7 +245,7 @@
       {
         "header": "Resources",
         "items": [
-          { "label": "Blog", "href": "https://www.adspirer.com/blog" },
+          { "label": "Blog", "href": "https://www.adspirer.com/blog?utm_source=docs&utm_medium=footer&utm_content=blog" },
           { "label": "Guides", "href": "/docs/guides/ai-advertising" },
           { "label": "Tool Catalog", "href": "/docs/agent-skills/tools" },
           { "label": "How MCP Works", "href": "/docs/mcp" }
@@ -254,7 +254,7 @@
       {
         "header": "Connect",
         "items": [
-          { "label": "Book a Demo", "href": "https://www.adspirer.com/book-demo" },
+          { "label": "Book a Demo", "href": "https://www.adspirer.com/book-demo?utm_source=docs&utm_medium=footer&utm_content=book-demo" },
           { "label": "GitHub", "href": "https://github.com/Adspirer/docs" },
           { "label": "Twitter", "href": "https://x.com/abhilashreddi" },
           { "label": "LinkedIn", "href": "https://www.linkedin.com/company/adspirer" }
