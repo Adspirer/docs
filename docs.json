@@ -117,6 +117,12 @@
               "agent-skills/tools",
               "agent-skills/workflows"
             ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "changelog"
+            ]
           }
         ]
       },
@@ -177,16 +183,6 @@
           "anchor": "Blog",
           "href": "https://www.adspirer.com/blog",
           "icon": "newspaper"
-        },
-        {
-          "anchor": "MCP Server",
-          "href": "https://mcp.adspirer.com",
-          "icon": "server"
-        },
-        {
-          "anchor": "Changelog",
-          "href": "/changelog",
-          "icon": "clock"
         }
       ]
     }
