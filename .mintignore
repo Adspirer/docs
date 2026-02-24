@@ -8,3 +8,5 @@ drafts/
 
 # Non-MDX markdown files
 AGENTS.md
+CLAUDE.md
+MINTLIFY-AUDIT.md

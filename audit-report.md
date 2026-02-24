@@ -1,3 +1,8 @@
+---
+title: "Mintlify Audit Report"
+description: "Thorough audit of the Adspirer documentation site built on Mintlify — features, issues, and recommendations."
+---
+
 # Adspirer Docs Mintlify Audit Report
 
 ## Overview
