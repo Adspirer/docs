@@ -220,14 +220,36 @@
       "chatgpt",
       "claude",
       "perplexity",
+      "grok",
       "mcp",
+      "add-mcp",
       "cursor",
-      "vscode"
+      "vscode",
+      {
+        "title": "View llms.txt",
+        "description": "Documentation index optimized for LLMs",
+        "icon": "file-lines",
+        "href": "https://www.adspirer.com/docs/llms.txt"
+      },
+      {
+        "title": "View Full LLM Context",
+        "description": "Complete documentation in a single file for AI tools",
+        "icon": "file-code",
+        "href": "https://www.adspirer.com/docs/llms-full.txt"
+      }
     ]
   },
   "seo": {
     "metatags": {
-      "canonical": "https://www.adspirer.com"
+      "canonical": "https://www.adspirer.com",
+      "og:site_name": "Adspirer Documentation",
+      "og:locale": "en_US",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@abhilashreddi",
+      "robots": "index, follow",
+      "author": "Adspirer",
+      "category": "Technology",
+      "language": "en"
     },
     "indexing": "all"
   },
