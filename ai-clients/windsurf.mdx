@@ -39,6 +39,10 @@ Manage ads from Windsurf without leaving your editor. 100+ tools, same workflow.
     MCP configs load on startup. Close Windsurf completely and reopen it.
   </Step>
   <Step title="Authenticate">
+    <Warning>
+    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before this step.** If you're already logged in, the OAuth flow won't trigger. Log out first, then continue.
+    </Warning>
+
     Open Windsurf's AI chat (default hotkey: Cmd+Shift+I or Ctrl+Shift+I) and say:
 
     ```
@@ -176,13 +180,15 @@ Your firewall or network might be blocking the MCP connection. Try:
 - Checking if your company VPN blocks external HTTP connections
 - Testing with a different network to isolate the issue
 
-### OAuth flow not opening in browser
+### OAuth flow not opening or not triggering
 
-Some browser settings block automatic redirects. Try:
+**Most common cause:** You're already logged into [adspirer.ai](https://adspirer.ai) in your browser. Log out of Adspirer first, then retry authentication. The OAuth flow doesn't trigger when you have an active browser session — this is a known issue with CLI/IDE clients.
 
-- Manually visiting [adspirer.ai](https://adspirer.ai?utm_source=docs&utm_medium=page&utm_content=account) and signing in first
-- Checking your default browser settings (Windsurf uses your system default)
-- Disabling browser extensions that block pop-ups
+If that doesn't fix it:
+
+- Check your default browser settings (Windsurf uses your system default)
+- Disable browser extensions that block pop-ups
+- Try a different browser
 
 ### Tools returning errors or "limit exceeded"
 

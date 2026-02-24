@@ -47,6 +47,10 @@ When you connect Codex to Adspirer, you get 100+ advertising tools that run on a
     Look for `adspirer` in the output. It's normal for auth to show **Unsupported** at this point — that resolves after login.
   </Step>
   <Step title="Authenticate with Adspirer">
+    <Warning>
+    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before this step.** If you're already logged in, the OAuth flow won't trigger. Log out first, then continue.
+    </Warning>
+
     ```bash
     codex mcp login adspirer
     ```
@@ -125,6 +129,10 @@ When you connect Codex to Adspirer, you get 100+ advertising tools that run on a
     ```
   </Step>
   <Step title="Restart and Authenticate">
+    <Warning>
+    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before authenticating.** If you're already logged in, the OAuth flow won't trigger. Log out first.
+    </Warning>
+
     Restart Codex, then authenticate:
 
     ```bash
@@ -276,8 +284,8 @@ Bottom line: Autonomous doesn't mean uncontrolled. The agent analyzes, recommend
 |---------|----------|
 | MCP server not found | Run `codex mcp add adspirer --url https://mcp.adspirer.com/mcp` and restart |
 | MCP shows "Unsupported" | Run `codex mcp login adspirer` to complete OAuth authentication |
-| Authentication failed | Run `codex mcp login adspirer` to re-authenticate |
-| Install appears to hang | A browser window may have opened for OAuth — complete sign-in and return to terminal |
+| Authentication failed | **Log out of [adspirer.ai](https://adspirer.ai) first** — being logged in blocks the OAuth flow for CLI clients. Then run `codex mcp login adspirer` to re-authenticate |
+| Install appears to hang | **Log out of [adspirer.ai](https://adspirer.ai) first.** A browser window may have opened for OAuth — complete sign-in and return to terminal |
 | No ad platforms connected | Connect platforms at [adspirer.com](https://www.adspirer.com) |
 | Skills not showing | Verify: `ls ~/.agents/skills/` — should show `adspirer-*` directories |
 | No data returned | Check for active campaigns. Try longer lookback (60/90 days) |

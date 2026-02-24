@@ -30,19 +30,36 @@ npm install -g @anthropic-ai/claude-code
 
 <Tabs>
 <Tab title="Plugin Install (Recommended)">
-<Steps>
-  <Step title="Install the Plugin">
-    Run these commands in Claude Code:
 
+<Note>
+**Important:** The `/plugin` and `/mcp` commands below are **slash commands** — type them directly into the Claude Code input. Do not ask the AI to run them for you (that will cause a "nested session" error).
+</Note>
+
+<Steps>
+  <Step title="Add the Plugin from Marketplace">
     ```bash
     /plugin marketplace add amekala/ads-mcp
+    ```
+  </Step>
+  <Step title="Install the Plugin">
+    ```bash
     /plugin install adspirer
     ```
-
-    This installs the MCP server, slash commands, agent, and skills in one step.
+  </Step>
+  <Step title="Restart Claude Code">
+    Close and reopen Claude Code to load the new plugin. The plugin won't appear in `/mcp` until you restart.
   </Step>
   <Step title="Authenticate with Adspirer">
-    Run `/mcp` in Claude Code and find **plugin:adspirer:adspirer** in the list. Click to authenticate — your browser opens for OAuth 2.1 sign-in. Sign in, connect your ad platforms, return to Claude Code.
+    <Warning>
+    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before this step.** If you're already logged in, the OAuth flow won't trigger. Log out first, then continue.
+    </Warning>
+
+    1. Type `/mcp` to open the MCP server list
+    2. Find **plugin:adspirer:adspirer** — it will show ⚠ needs authentication
+    3. Select it and press Enter to authenticate
+    4. Your browser opens — sign in with your Adspirer account and authorize access
+    5. Connect your ad platforms when prompted
+    6. Return to Claude Code — run `/mcp` again to confirm it shows ✓ connected
   </Step>
   <Step title="Set Up Your Brand Workspace">
     ```bash
@@ -69,6 +86,10 @@ npm install -g @anthropic-ai/claude-code
     ```bash
     claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
     ```
+
+    <Warning>
+    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before authenticating.** If you're already logged in, the OAuth flow won't trigger. Log out first.
+    </Warning>
 
     Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization.
   </Step>
@@ -216,9 +237,23 @@ Adspirer's agent skills enforce safety rules to prevent accidental spend:
 
 ## Troubleshooting
 
+### "Nested session" error when installing
+
+If you see `Error: Claude Code cannot be launched inside another Claude Code session`, you're asking the AI to install the plugin instead of typing the slash command yourself. The `/plugin` commands must be typed directly into the Claude Code input — don't ask Claude to run them for you.
+
+### Plugin not showing in `/mcp` after install
+
+You need to restart Claude Code after running `/plugin install adspirer`. Close and reopen Claude Code, then type `/mcp` — you should see **plugin:adspirer:adspirer** in the list.
+
+### Authentication keeps failing
+
+**Most common cause:** You're already logged into [adspirer.ai](https://adspirer.ai) in your browser. Log out of Adspirer first, then retry authentication from Claude Code. This is a known issue with CLI clients — the OAuth flow doesn't trigger when you have an active session.
+
+If that doesn't fix it: clear your browser cache or try a different browser. The OAuth flow uses PKCE for security — some browser extensions can interfere. Disable ad blockers temporarily.
+
 ### MCP server not found
 
-If you used the plugin, run `/mcp` and look for **plugin:adspirer:adspirer**. Click it to authenticate.
+If you used the plugin, run `/mcp` and look for **plugin:adspirer:adspirer**. If it's missing, you may need to restart Claude Code or re-install the plugin.
 
 If you used the manual method, check your MCP config:
 
@@ -227,10 +262,6 @@ cat ~/.config/claude/mcp.json
 ```
 
 You should see an entry for "adspirer" with the URL `https://mcp.adspirer.com/mcp`.
-
-### Authentication keeps failing
-
-Clear your browser cache or try a different browser. The OAuth flow uses PKCE for security — some browser extensions can interfere. Disable ad blockers temporarily.
 
 ### Tools not working after connecting
 
@@ -248,12 +279,14 @@ You should see a SKILL.md file. If not, re-run the plugin install or manual copy
 
 ### Slash commands not available
 
-If `/adspirer:setup` isn't recognized, the plugin may not be installed. Run:
+If `/adspirer:setup` isn't recognized, the plugin may not be installed or Claude Code wasn't restarted. Run:
 
 ```bash
 /plugin marketplace add amekala/ads-mcp
 /plugin install adspirer
 ```
+
+Then **restart Claude Code** to load the plugin.
 
 ## FAQ
 
