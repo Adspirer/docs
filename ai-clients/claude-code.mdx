@@ -50,10 +50,6 @@ npm install -g @anthropic-ai/claude-code
     Close and reopen Claude Code to load the new plugin. The plugin won't appear in `/mcp` until you restart.
   </Step>
   <Step title="Authenticate with Adspirer">
-    <Warning>
-    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before this step.** If you're already logged in, the OAuth flow won't trigger. Log out first, then continue.
-    </Warning>
-
     1. Type `/mcp` to open the MCP server list
     2. Find **plugin:adspirer:adspirer** — it will show ⚠ needs authentication
     3. Select it and press Enter to authenticate
@@ -86,10 +82,6 @@ npm install -g @anthropic-ai/claude-code
     ```bash
     claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
     ```
-
-    <Warning>
-    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before authenticating.** If you're already logged in, the OAuth flow won't trigger. Log out first.
-    </Warning>
 
     Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization.
   </Step>
@@ -247,9 +239,7 @@ You need to restart Claude Code after running `/plugin install adspirer`. Close 
 
 ### Authentication keeps failing
 
-**Most common cause:** You're already logged into [adspirer.ai](https://adspirer.ai) in your browser. Log out of Adspirer first, then retry authentication from Claude Code. This is a known issue with CLI clients — the OAuth flow doesn't trigger when you have an active session.
-
-If that doesn't fix it: clear your browser cache or try a different browser. The OAuth flow uses PKCE for security — some browser extensions can interfere. Disable ad blockers temporarily.
+Clear your browser cache or try a different browser. The OAuth flow uses PKCE for security — some browser extensions can interfere. Disable ad blockers temporarily.
 
 ### MCP server not found
 

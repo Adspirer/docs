@@ -34,10 +34,6 @@ Manage ads from your code editor. One command to install, 100+ tools, automatic 
     Close and reopen Cursor to load the new MCP config.
   </Step>
   <Step title="Authenticate with Adspirer">
-    <Warning>
-    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before this step.** If you're already logged in, the OAuth flow won't trigger. Log out first, then continue.
-    </Warning>
-
     1. Open **Cursor Settings > MCP**
     2. Find `adspirer` in the server list
     3. Click on it to authenticate — a browser window opens for Adspirer login
@@ -118,10 +114,6 @@ Manage ads from your code editor. One command to install, 100+ tools, automatic 
     ```
   </Step>
   <Step title="Restart and Authenticate">
-    <Warning>
-    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before authenticating.** If you're already logged in, the OAuth flow won't trigger. Log out first.
-    </Warning>
-
     Restart Cursor. Open **Cursor Settings > MCP**, find `adspirer`, and click to authenticate via browser.
   </Step>
   <Step title="Set Up Your Brand Workspace">
@@ -266,8 +258,8 @@ Rules turn one vague prompt into a complete, validated workflow. You still contr
 | Install fails with permission/hooks error | Run the install from your **system terminal**, not Cursor's built-in terminal (it's sandboxed) |
 | MCP server not showing | Open Cursor Settings > MCP > Add server with URL `https://mcp.adspirer.com/mcp` |
 | MCP connection error | Click the server in Settings > MCP to re-authenticate via browser |
-| Authentication failed | **Log out of [adspirer.ai](https://adspirer.ai) first** — being logged in blocks the OAuth flow for CLI/IDE clients. Then remove and re-add the MCP server in Cursor Settings |
-| OAuth window doesn't open | **Log out of [adspirer.ai](https://adspirer.ai) first.** Also check browser pop-up blocker. Try restarting Cursor. |
+| Authentication failed | Remove and re-add the MCP server in Cursor Settings |
+| OAuth window doesn't open | Check browser pop-up blocker. Try restarting Cursor. |
 | No ad platforms connected | Connect platforms at [adspirer.com](https://www.adspirer.com) |
 | Skills not showing | Verify: `ls ~/.cursor/skills/` — should show `adspirer-*` directories |
 | Subagent not triggering | Ensure you're in **Agent mode** (not Ask or Edit). Try `/adspirer-setup` directly. |

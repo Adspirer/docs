@@ -35,10 +35,6 @@ You're deploying an expert, not configuring tools.
     This installs the plugin with all 100+ tools and the 14.4KB SKILL.md instruction file bundled in. No separate skill or agent installation needed.
   </Step>
   <Step title="Authenticate with Adspirer">
-    <Warning>
-    **You must be logged out of [adspirer.ai](https://adspirer.ai) in your browser before this step.** If you're already logged in, the OAuth flow won't trigger. Log out first, then continue.
-    </Warning>
-
     ```bash
     openclaw adspirer login
     ```
@@ -281,9 +277,7 @@ If you don't see `openclaw-adspirer`, re-run the install command from Step 1.
 
 ### "Not authenticated" error
 
-**First check:** Are you logged into [adspirer.ai](https://adspirer.ai) in your browser? Log out first — being logged in blocks the OAuth flow for CLI clients.
-
-Then re-authenticate:
+Your login session may have expired. Re-authenticate:
 
 ```
 openclaw adspirer login

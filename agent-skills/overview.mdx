@@ -77,12 +77,16 @@ Skills turn a vague prompt into a complete, validated workflow.
 | [Codex](/ai-clients/codex) | <Badge color="green">Full</Badge> + Agent Config | `~/.agents/skills/` + `~/.codex/agents/` |
 | [OpenClaw](/ai-clients/openclaw) | <Badge color="green">Bundled</Badge> (14.4KB SKILL.md) | Auto-installed with plugin |
 | [Windsurf](/ai-clients/windsurf) | <Badge color="yellow">Coming soon</Badge> | -- |
+| Claude (Web/Desktop) | <Badge color="green">Supported</Badge> | Upload via **Customize → Skills** |
 | ChatGPT | <Badge>Connector only</Badge> | Use via connectors |
-| Claude (Web/Desktop) | <Badge>Connector only</Badge> | Use via connectors |
 
 ## How to Install Skills
 
 Installation varies by client. All skills are available in the [ads-mcp GitHub repository](https://github.com/amekala/ads-mcp).
+
+### Claude (Web / Desktop)
+
+Go to **Customize → Skills** in Claude. Upload the [Adspirer SKILL.md](https://github.com/amekala/ads-mcp/blob/main/skills/ad-campaign-management/SKILL.md) content as a new skill. See the [Claude Setup Guide](/ai-clients/claude#add-the-adspirer-skill-optional) for step-by-step instructions.
 
 ### Claude Code
 
@@ -236,7 +240,9 @@ Skills transform a tool connection into an advertising management *system*.
     Yes. Skills are plain markdown files. Edit them to change default behaviors, add custom workflows, or modify safety rules. Changes take effect immediately (or after restarting your AI client).
   </Accordion>
   <Accordion title="Do skills work with ChatGPT and Claude web?">
-    No. ChatGPT and Claude (web/desktop) don't support skills files. They use Adspirer via MCP connectors, which have full tool access but no workflow enforcement. Consider switching to [Claude Code](/ai-clients/claude-code) or [Cursor](/ai-clients/cursor) if you want skills.
+    **Claude:** Yes. Go to **Customize → Skills** in Claude and upload the Adspirer skill. See the [Claude Setup Guide](/ai-clients/claude#add-the-adspirer-skill-optional) for instructions.
+
+    **ChatGPT:** No. ChatGPT doesn't support skills files. It uses Adspirer via MCP connectors, which have full tool access but no workflow enforcement.
   </Accordion>
   <Accordion title="How big are skill files?">
     It varies by client:

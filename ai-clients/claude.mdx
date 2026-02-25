@@ -25,12 +25,12 @@ The best MCP experience for advertising. Anthropic created the Model Context Pro
   <Step title="Open Claude Connectors">
     Open the Connectors settings directly:
 
-    [Open Claude Connectors →](https://claude.ai/settings/connectors)
+    [Open Claude Connectors →](https://claude.ai/customize/connectors)
 
-    Or navigate manually: **Settings → Connectors** in Claude. You need a Pro, Max, Team, or Enterprise subscription to access connectors.
+    Or navigate manually: **Customize → Connectors** in Claude. You need a Pro, Max, Team, or Enterprise subscription to access connectors.
   </Step>
   <Step title="Add Custom Connector">
-    Click **Add custom connector** (or [open this direct link](https://claude.ai/settings/connectors?modal=add-custom-connector)) and enter:
+    Click **Add custom connector** (or [open this direct link](https://claude.ai/customize/connectors)) and enter:
 
     | Field | Value |
     |-------|-------|
@@ -140,17 +140,44 @@ Give me a prioritized action list with estimated monthly savings.
 For organizations using Claude Team or Enterprise:
 
 **Admin Setup:**
-1. Go to **Admin Settings → Connectors**
+1. Go to **Admin Settings → Customize → Connectors**
 2. Click **Add custom connector**
 3. Enter: Name `Ads MCP`, URL `https://mcp.adspirer.com/mcp`, Auth `OAuth`
 4. Enable for the organization
 
 **Team Member Setup:**
-1. Go to **Settings → Connectors**
+1. Go to **Customize → Connectors**
 2. Find **Ads MCP** → Click **Connect**
 3. Complete OAuth to link your individual ad accounts
 
 Each team member authenticates with their own ad accounts while using the org-wide connector.
+
+## Add the Adspirer Skill (Optional)
+
+Claude now supports **Skills** — instruction files that teach Claude proven workflows for using your tools. Adding the Adspirer skill means Claude will automatically research keywords before creating campaigns, validate assets before launching, and follow platform-specific best practices.
+
+<Steps>
+  <Step title="Open Claude Skills">
+    Go to [Customize](https://claude.ai/customize/connectors) in Claude, then click the **Skills** tab.
+  </Step>
+  <Step title="Upload the Adspirer Skill">
+    Click **Upload skill** and paste the content from the [Adspirer SKILL.md file](https://github.com/amekala/ads-mcp/blob/main/skills/ad-campaign-management/SKILL.md).
+
+    Or create a new skill with these details:
+
+    | Field | Value |
+    |-------|-------|
+    | **Name** | `ad-campaign-management` |
+    | **Description** | `Manage ad campaigns across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads. Use when the user wants to analyze campaign performance, research keywords, create campaigns, optimize budgets, or manage ad accounts via the Adspirer MCP server.` |
+  </Step>
+  <Step title="Verify">
+    Start a new chat and ask Claude to create a campaign. With the skill installed, Claude will automatically follow the correct workflow — check connections, research keywords, validate assets, then create the campaign (paused) — instead of guessing the tool order.
+  </Step>
+</Steps>
+
+<Tip>
+Without the skill, Claude has access to 100+ tools but guesses the order. With the skill, Claude follows proven workflows with safety rules (campaigns always created paused, user confirmation before spend). See [Agent Skills Overview](/agent-skills/overview) for details.
+</Tip>
 
 ## FAQ
 
