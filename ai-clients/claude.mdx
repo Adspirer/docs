@@ -41,6 +41,47 @@ The best MCP experience for advertising. Anthropic created the Model Context Pro
   <Step title="Authenticate via Adspirer">
     Click to connect. Your browser opens and redirects to Adspirer's OAuth page. Sign in and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
   </Step>
+  <Step title="Add the Adspirer Skill (Recommended)">
+    Skills teach Claude the *right way* to use Adspirer's 100+ tools — research before creating, validate before launching, confirm before spending. Without a skill, Claude guesses the tool order. With it, Claude follows proven advertising workflows with safety rules.
+
+    **Option A: Copy from GitHub**
+
+    Open the raw skill file, select all, and copy:
+
+    <Card
+      title="Copy SKILL.md from GitHub"
+      icon="copy"
+      href="https://raw.githubusercontent.com/amekala/ads-mcp/main/skills/ad-campaign-management/SKILL.md"
+      horizontal
+    >
+      Opens the raw file — press ⌘A then ⌘C (or Ctrl+A, Ctrl+C) to copy the full content.
+    </Card>
+
+    **Option B: Download and upload**
+
+    Download the file to your desktop, then upload it in Claude:
+
+    <Card
+      title="Download SKILL.md"
+      icon="download"
+      href="https://raw.githubusercontent.com/amekala/ads-mcp/main/skills/ad-campaign-management/SKILL.md"
+      horizontal
+    >
+      Right-click → "Save Link As" to download the file to your computer.
+    </Card>
+
+    **Then add it to Claude:**
+
+    1. Go to [Customize → Skills](https://claude.ai/customize/connectors) in Claude
+    2. Click the **Skills** tab
+    3. Click **Upload skill** and either paste the copied content (Option A) or upload the downloaded file (Option B)
+    4. Set the skill name to `ad-campaign-management`
+    5. Set the description to: `Manage ad campaigns across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads. Use when the user wants to analyze campaign performance, research keywords, create campaigns, optimize budgets, or manage ad accounts via the Adspirer MCP server.`
+
+    <Tip>
+    The skill file is maintained in the [ads-mcp GitHub repository](https://github.com/amekala/ads-mcp/blob/main/skills/ad-campaign-management/SKILL.md) and always reflects the latest tools and workflows. Check back for updates as new platforms and tools are added.
+    </Tip>
+  </Step>
   <Step title="Start a New Chat">
     Return to Claude and click **Connect apps** below the text input. Enable **Ads MCP**, then start managing your campaigns with natural language.
 
@@ -151,33 +192,6 @@ For organizations using Claude Team or Enterprise:
 3. Complete OAuth to link your individual ad accounts
 
 Each team member authenticates with their own ad accounts while using the org-wide connector.
-
-## Add the Adspirer Skill (Optional)
-
-Claude now supports **Skills** — instruction files that teach Claude proven workflows for using your tools. Adding the Adspirer skill means Claude will automatically research keywords before creating campaigns, validate assets before launching, and follow platform-specific best practices.
-
-<Steps>
-  <Step title="Open Claude Skills">
-    Go to [Customize](https://claude.ai/customize/connectors) in Claude, then click the **Skills** tab.
-  </Step>
-  <Step title="Upload the Adspirer Skill">
-    Click **Upload skill** and paste the content from the [Adspirer SKILL.md file](https://github.com/amekala/ads-mcp/blob/main/skills/ad-campaign-management/SKILL.md).
-
-    Or create a new skill with these details:
-
-    | Field | Value |
-    |-------|-------|
-    | **Name** | `ad-campaign-management` |
-    | **Description** | `Manage ad campaigns across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads. Use when the user wants to analyze campaign performance, research keywords, create campaigns, optimize budgets, or manage ad accounts via the Adspirer MCP server.` |
-  </Step>
-  <Step title="Verify">
-    Start a new chat and ask Claude to create a campaign. With the skill installed, Claude will automatically follow the correct workflow — check connections, research keywords, validate assets, then create the campaign (paused) — instead of guessing the tool order.
-  </Step>
-</Steps>
-
-<Tip>
-Without the skill, Claude has access to 100+ tools but guesses the order. With the skill, Claude follows proven workflows with safety rules (campaigns always created paused, user confirmation before spend). See [Agent Skills Overview](/agent-skills/overview) for details.
-</Tip>
 
 ## FAQ
 
