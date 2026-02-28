@@ -114,6 +114,8 @@
             "group": "Agent Skills",
             "pages": [
               "agent-skills/overview",
+              "agent-skills/skills",
+              "agent-skills/agent",
               "agent-skills/tools",
               "agent-skills/workflows"
             ]
