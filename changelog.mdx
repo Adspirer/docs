@@ -5,6 +5,33 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="February 27, 2025" description="v1.4.0" tags={["Documentation", "Agent Skills", "Strategy"]}>
+
+## Skill Reference & Performance Marketing Agent Docs
+
+Added 2 new pages to the Agent Skills section:
+
+- **[Skill Reference](/agent-skills/skills)** — Complete reference for all 5 Adspirer skills with invocation commands per IDE (Claude Code, Cursor, Codex), step-by-step execution details, and example prompts
+- **[Performance Marketing Agent](/agent-skills/agent)** — How the agent orchestrates skills with brand knowledge, strategy persistence, and memory across sessions
+
+### Strategy-Aware Execution
+
+Skills now read `STRATEGY.md` before executing — a persistent file where strategic decisions (AVOID, PREFER, CONSTRAINT, REQUIRE directives) survive across sessions:
+
+- **Campaign creation** loads strategy directives at Step 0 and flags conflicts with research results
+- **Keyword research** cross-references results against AVOID/PREFER directives
+- **Performance review** flags "Strategy Drift" when campaigns violate active directives
+- **Wasted spend** prioritizes campaigns violating strategy as waste sources
+
+### Agent Documentation Highlights
+
+- Mermaid architecture diagram showing Agent → Context + Strategy + Memory → Skills → Tools → Platforms
+- IDE comparison table for agent features across Claude Code, Cursor, and Codex
+- Brand Workspace setup flow and context file structure
+- Cursor Rules and Codex Safety Rules explained with before/after examples
+
+</Update>
+
 <Update label="February 22, 2025" description="v1.3.3" tags={["Documentation", "Components", "Guides"]}>
 
 ## Guides & Knowledge Base Components
