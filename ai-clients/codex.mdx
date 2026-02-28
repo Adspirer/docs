@@ -281,7 +281,7 @@ Bottom line: Autonomous doesn't mean uncontrolled. The agent analyzes, recommend
 | No ad platforms connected | Connect platforms at [adspirer.com](https://www.adspirer.com) |
 | Skills not showing | Verify: `ls ~/.agents/skills/` — should show `adspirer-*` directories |
 | No data returned | Check for active campaigns. Try longer lookback (60/90 days) |
-| Rate limit hit | Check Adspirer tier (Free: 10/mo, Plus: 50, Pro: 100, Enterprise: unlimited) |
+| Rate limit hit | Check Adspirer tier (Free: 15/mo, Plus: 150, Pro: 600, Max: 3,000) |
 
 ## FAQ
 
@@ -299,7 +299,7 @@ Edit the `default_prompt` in `~/.codex/agents/performance-marketing-agent.toml`.
 Yes. Create separate agent config files with different default prompts. Each agent can specify which Adspirer account to use via the `switch_primary_account` tool.
 </Accordion>
 <Accordion title="How much does this cost?">
-Adspirer pricing is based on tool calls. Free tier: 10 calls/month. Plus: $25/mo for 50 calls. Pro: $75/mo for 100 calls. Autonomous agents typically use 2-5 tool calls per run. See [full pricing details](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
+Adspirer pricing is based on tool calls. Free tier: 15 calls/month. Plus: $49/mo for 150 calls. Pro: $99/mo for 600 calls. Max: $199/mo for 3,000 calls. Autonomous agents typically use 2-5 tool calls per run. See [full pricing details](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
 </Accordion>
 </AccordionGroup>
 
