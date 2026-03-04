@@ -1,0 +1,215 @@
+---
+title: "Frequently Asked Questions"
+sidebarTitle: "FAQ"
+description: "Common questions about Adspirer — what it is, how it works, pricing, security, supported platforms, and troubleshooting. Everything you need to know before getting started."
+icon: "circle-question"
+keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer safe", "adspirer pricing"]
+---
+
+## What Is Adspirer?
+
+<AccordionGroup>
+  <Accordion title="What is Adspirer?">
+    Adspirer is an <Tooltip tip="Model Context Protocol — an open standard for connecting AI assistants to external tools">MCP</Tooltip> server that connects AI assistants to advertising platforms. It gives your AI (Claude, ChatGPT, Cursor, Codex) access to 100+ tools for managing Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads through natural language.
+
+    Instead of logging into 4 different ad platforms, you describe what you want — "find wasted spend across all platforms" or "create a Google Search campaign for my SaaS" — and your AI handles it.
+  </Accordion>
+  <Accordion title="Is Adspirer an AI agent or a tool?">
+    Both. At the core, Adspirer is an **MCP server** that provides 100+ advertising tools. On top of that, it ships a **performance marketing agent** — a specialized AI agent with brand awareness, strategy persistence, and proven workflows.
+
+    - **Tools only:** Connect the MCP server and use raw tools. Good for quick queries.
+    - **Agent + tools:** Install the full plugin (agent, skills, slash commands). The agent follows proven workflows, remembers your brand, and persists strategic decisions.
+
+    See [Agent Skills Overview](/agent-skills/overview) for details.
+  </Accordion>
+  <Accordion title="How is Adspirer different from other ad management tools?">
+    Traditional tools have dashboards you click through. Adspirer is different in two ways:
+
+    1. **Natural language interface.** You describe what you want. No dashboards, no button hunting, no learning a new UI.
+    2. **AI-native workflows.** The agent researches your competitors, pulls real keyword data, writes brand-voice ad copy, and creates campaigns — all in one conversation.
+
+    It's not a dashboard replacement. It's an AI-powered advertising manager that connects directly to your ad platforms.
+  </Accordion>
+  <Accordion title="Which AI clients work with Adspirer?">
+    Any MCP-compatible AI client. Currently supported with setup guides:
+
+    | Client | Agent Support | Setup Guide |
+    |--------|:------------:|:-----------:|
+    | [Claude Code](/ai-clients/claude-code) | Full (subagent + skills) | [Guide](/ai-clients/claude-code) |
+    | [Claude](/ai-clients/claude) | Skill upload | [Guide](/ai-clients/claude) |
+    | [Cursor](/ai-clients/cursor) | Full (subagent + rules) | [Guide](/ai-clients/cursor) |
+    | [Codex](/ai-clients/codex) | Full (agent config + skills) | [Guide](/ai-clients/codex) |
+    | [ChatGPT](/ai-clients/chatgpt) | Tools only | [Guide](/ai-clients/chatgpt) |
+    | [Windsurf](/ai-clients/windsurf) | Coming soon | [Guide](/ai-clients/windsurf) |
+    | [OpenClaw](/ai-clients/openclaw) | Bundled skill | [Guide](/ai-clients/openclaw) |
+  </Accordion>
+</AccordionGroup>
+
+## How It Works
+
+<AccordionGroup>
+  <Accordion title="How does Adspirer connect to my ad accounts?">
+    Through **OAuth 2.1 with PKCE** — the same standard used by banking apps. When you connect a platform:
+
+    1. Your browser opens to Google/Meta/LinkedIn/TikTok's login page
+    2. You sign in with your existing credentials (Adspirer never sees your password)
+    3. You authorize specific permissions (read campaigns, create ads, etc.)
+    4. Adspirer receives a scoped access token — not your password
+
+    You can revoke access anytime from your ad platform's security settings. See [Security](/knowledge-base/security).
+  </Accordion>
+  <Accordion title="Can Adspirer spend my money without permission?">
+    No. Multiple safety layers prevent unauthorized spending:
+
+    - All campaigns are created in **PAUSED** status — you review before anything goes live
+    - The agent **always asks** before any action that affects spend
+    - Skills enforce a **read-before-write** pattern — research and validation happen before creation
+    - Adspirer **never retries** a failed campaign creation automatically
+    - Budget guardrails from your brand context file are checked before spend-affecting actions
+  </Accordion>
+  <Accordion title="What is MCP?">
+    <Tooltip tip="Model Context Protocol">MCP</Tooltip> (Model Context Protocol) is an open standard created by Anthropic that allows AI assistants to connect to external tools and services. Think of it as a universal adapter between AI and the tools it needs.
+
+    Adspirer implements MCP so that any AI client — Claude, ChatGPT, Cursor, Codex — can access the same 100+ advertising tools through one connection. See [How MCP Works](/mcp).
+  </Accordion>
+  <Accordion title="What are skills and why do they matter?">
+    Skills are instruction files (`SKILL.md`) that teach AI assistants the *right* workflow for advertising tasks. Without skills, the AI guesses which tools to call. With skills:
+
+    - It follows proven workflows (research → validate → create → verify)
+    - Safety rules are enforced automatically
+    - Campaign creation works on the first try instead of failing mid-workflow
+
+    Skills are optional but highly recommended. See [Agent Skills Overview](/agent-skills/overview).
+  </Accordion>
+  <Accordion title="Do I need to install anything?">
+    It depends on your AI client:
+
+    - **Claude (web/desktop):** No install. Add a connector URL in settings. [Guide →](/ai-clients/claude)
+    - **ChatGPT:** No install. Add a connector in settings. [Guide →](/ai-clients/chatgpt)
+    - **Claude Code:** One command (`/plugin install adspirer`). [Guide →](/ai-clients/claude-code)
+    - **Cursor:** One command (bash installer). [Guide →](/ai-clients/cursor)
+    - **Codex:** One command (bash installer). [Guide →](/ai-clients/codex)
+  </Accordion>
+</AccordionGroup>
+
+## Ad Platforms
+
+<AccordionGroup>
+  <Accordion title="Which ad platforms does Adspirer support?">
+    Four platforms with 100+ tools:
+
+    | Platform | Tools | What You Can Do |
+    |----------|:-----:|-----------------|
+    | **Google Ads** | 39 | Keyword research, Search & PMax campaigns, wasted spend, budget optimization, ad extensions |
+    | **LinkedIn Ads** | 28 | Sponsored content, lead gen, B2B targeting, creative management |
+    | **Meta Ads** | 20 | Image/video/carousel campaigns, audience targeting, creative fatigue |
+    | **TikTok Ads** | 4 | In-feed campaigns, video asset validation |
+
+    See [Platform Comparison](/knowledge-base/platform-comparison) for a detailed breakdown.
+  </Accordion>
+  <Accordion title="Can I use Adspirer with multiple ad accounts?">
+    Yes. You can connect multiple accounts per platform. Use `switch_primary_account` to change which account you're managing, or specify the account ID in your prompts. See [Multi-Account Management](/knowledge-base/multi-account).
+  </Accordion>
+  <Accordion title="Does Adspirer work with agency accounts?">
+    Yes. Adspirer supports MCC (My Client Center) accounts for Google Ads and Business Manager accounts for Meta. You can manage multiple client accounts from one Adspirer connection. See [Multi-Client Management](/knowledge-base/multi-client).
+  </Accordion>
+  <Accordion title="Are campaigns created live or paused?">
+    **Always paused.** Every campaign Adspirer creates starts in PAUSED status. You review the campaign — targeting, keywords, ad copy, budget — and manually enable it when you're ready. This is enforced at both the skill level and the tool level.
+  </Accordion>
+</AccordionGroup>
+
+## Pricing & Billing
+
+<AccordionGroup>
+  <Accordion title="How much does Adspirer cost?">
+    Pricing is based on **tool calls**, not ad spend:
+
+    | Plan | Price | Tool Calls | Best For |
+    |------|-------|:----------:|----------|
+    | **Free** | $0/mo | 15/month | Try it out |
+    | **Plus** | $49/mo | 150/month | Small advertisers |
+    | **Pro** | $99/mo | 600/month | Active campaign managers |
+    | **Max** | $199/mo | 3,000/month | Agencies and power users |
+
+    A "tool call" is one Adspirer MCP tool invocation (e.g., `get_campaign_performance`, `research_keywords`). A typical campaign creation uses 8-12 tool calls. See [full pricing](/knowledge-base/pricing).
+  </Accordion>
+  <Accordion title="Is there a free tier?">
+    Yes. 15 free tool calls per month, no credit card required. Enough to try a performance review, keyword research, or wasted spend analysis. [Sign up free →](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=faq&utm_content=signup)
+  </Accordion>
+  <Accordion title="Do I pay separately for each AI client?">
+    No. Your Adspirer plan works across all AI clients. The same account and tool call quota applies whether you use Claude, ChatGPT, Cursor, or Codex.
+  </Accordion>
+</AccordionGroup>
+
+## Security & Privacy
+
+<AccordionGroup>
+  <Accordion title="Is my data safe?">
+    Yes. Key protections:
+
+    - **OAuth 2.1 with PKCE** — Adspirer never sees your passwords
+    - **Scoped permissions** — you authorize exactly what Adspirer can do
+    - **Encrypted tokens** — access tokens encrypted at rest, auto-refreshed
+    - **Revocable access** — revoke anytime from your ad platform's security settings
+    - **No billing data** — Adspirer never accesses credit cards or payment information
+
+    See [Security & Data Privacy](/knowledge-base/security) for full details.
+  </Accordion>
+  <Accordion title="Can I revoke Adspirer's access?">
+    Yes, anytime. Go to your ad platform's security or connected apps settings:
+
+    - **Google Ads:** [myaccount.google.com/permissions](https://myaccount.google.com/permissions)
+    - **Meta:** Settings & Privacy → Settings → Business Integrations
+    - **LinkedIn:** Settings → Data Privacy → Permitted Services
+    - **TikTok:** Settings → Security → Authorized Apps
+  </Accordion>
+  <Accordion title="Does Adspirer store my ad data?">
+    Adspirer reads your campaign data in real-time from ad platform APIs and returns it to your AI client. It does not permanently store campaign performance data, ad copy, or targeting settings. OAuth tokens are stored encrypted for session management.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Why isn't Adspirer connecting to my ad account?">
+    Common causes:
+
+    1. **Ad platform not connected:** Visit [adspirer.ai](https://adspirer.ai) and connect your Google/Meta/LinkedIn/TikTok account
+    2. **OAuth expired:** Re-authenticate by clicking the MCP server connection in your AI client
+    3. **Browser extension interference:** Disable ad blockers temporarily during OAuth
+    4. **Wrong account:** Use `switch_primary_account` to select the correct ad account
+  </Accordion>
+  <Accordion title="Why do I see 'token expired' errors?">
+    Access tokens expire after 1 hour. Adspirer auto-refreshes them, but if the refresh token (30-day lifetime) has also expired, you'll need to re-authenticate:
+
+    - **Claude Code:** Run `/mcp`, select the Adspirer server, and re-authenticate
+    - **Claude:** Reconnect the connector in Customize → Connectors
+    - **Cursor:** Re-connect via MCP settings
+  </Accordion>
+  <Accordion title="I hit my tool call limit. What now?">
+    Your free tier includes 15 tool calls/month. Options:
+
+    1. Wait for the monthly reset
+    2. Upgrade to Plus ($49/mo for 150 calls) or Pro ($99/mo for 600 calls)
+    3. Check your usage with `get_usage_status`
+
+    [View pricing →](/knowledge-base/pricing)
+  </Accordion>
+  <Accordion title="Campaign creation failed. What should I do?">
+    Don't retry automatically. Common causes:
+
+    - **Missing keyword research:** Run `research_keywords` before creating Search campaigns
+    - **Invalid assets:** Run `validate_and_prepare_assets` to check image dimensions, headline lengths
+    - **Platform not connected:** Run `get_connections_status` to verify
+    - **Budget below minimum:** Google/LinkedIn require $10/day minimum, Meta $5/day
+
+    If using skills, the workflow handles all of these automatically.
+  </Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Security & Data Privacy](/knowledge-base/security) — OAuth, token lifecycle, data access
+- [Pricing](/knowledge-base/pricing) — Plans and tool call limits
+- [Platform Comparison](/knowledge-base/platform-comparison) — Google vs Meta vs LinkedIn vs TikTok
+- [Agent Skills Overview](/agent-skills/overview) — Skills, workflows, and safety rules

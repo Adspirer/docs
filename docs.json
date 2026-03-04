@@ -31,7 +31,7 @@
     "timestamp": true
   },
   "banner": {
-    "content": "**New:** TikTok Ads support is live with 4 tools for in-feed video campaigns. [Try it now →](/docs/ad-platforms/tiktok-ads)",
+    "content": "**New:** YouTube Ads campaign support is now live. Create video ad campaigns from your AI client. [See what's new →](/docs/changelog)",
     "dismissible": true
   },
   "search": {
@@ -85,7 +85,8 @@
             "pages": [
               "introduction",
               "quickstart",
-              "mcp"
+              "mcp",
+              "how-it-works"
             ]
           },
           {
@@ -107,7 +108,8 @@
               "ad-platforms/google-ads",
               "ad-platforms/meta-ads",
               "ad-platforms/linkedin-ads",
-              "ad-platforms/tiktok-ads"
+              "ad-platforms/tiktok-ads",
+              "ad-platforms/youtube-ads"
             ]
           },
           {
@@ -116,6 +118,10 @@
               "agent-skills/overview",
               "agent-skills/skills",
               "agent-skills/agent",
+              "agent-skills/claude-code-agent",
+              "agent-skills/cursor-agent",
+              "agent-skills/codex-agent",
+              "agent-skills/openclaw-agent",
               "agent-skills/tools",
               "agent-skills/workflows"
             ]
@@ -173,7 +179,10 @@
               "knowledge-base/platform-comparison",
               "knowledge-base/multi-account",
               "knowledge-base/multi-client",
-              "knowledge-base/capabilities"
+              "knowledge-base/capabilities",
+              "knowledge-base/faq",
+              "knowledge-base/glossary",
+              "knowledge-base/support"
             ]
           }
         ]
@@ -190,6 +199,11 @@
           "anchor": "MCP Server",
           "href": "https://mcp.adspirer.com",
           "icon": "server"
+        },
+        {
+          "anchor": "Support",
+          "href": "/knowledge-base/support",
+          "icon": "life-ring"
         }
       ]
     }

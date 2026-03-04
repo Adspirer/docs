@@ -5,7 +5,58 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
-<Update label="February 27, 2025" description="v1.4.0" tags={["Documentation", "Agent Skills", "Strategy"]}>
+<Update label="March 3, 2026" description="v2.4.0" tags={["Platform", "LinkedIn", "Performance"]}>
+
+## LinkedIn Exhaustive Campaign Features
+
+Extended LinkedIn campaign tools with exhaustive targeting and management capabilities. Fixed Google `list_campaign_extensions` returning incorrect data.
+
+### Database Performance
+
+Phase 1 database performance improvements for faster query execution across campaign metrics and user analytics.
+
+### Documentation: Agent Pages & Support
+
+Added 8 new documentation pages:
+
+- **[Claude Code Agent](/agent-skills/claude-code-agent)**, **[Cursor Agent](/agent-skills/cursor-agent)**, **[Codex Agent](/agent-skills/codex-agent)**, **[OpenClaw Agent](/agent-skills/openclaw-agent)** — per-client agent architecture docs
+- **[How It Works](/how-it-works)** — 5-layer architecture page
+- **[FAQ](/knowledge-base/faq)**, **[Glossary](/knowledge-base/glossary)**, **[Support](/knowledge-base/support)** — knowledge base expansion
+- Added Support tab to top navigation
+
+</Update>
+
+<Update label="February 28, 2026" description="v2.3.0" tags={["Pricing", "Billing", "OpenClaw"]}>
+
+## Pricing V2
+
+Updated pricing across all tiers:
+
+| Plan | Price | Tool Calls |
+|------|-------|:----------:|
+| **Free** | $0/mo | 15/month |
+| **Plus** | $49/mo | 150/month |
+| **Pro** | $99/mo | 600/month |
+| **Max** | $199/mo | 3,000/month |
+
+- Annual pricing option now available with savings
+- Tool call counter resets to 0 on tier upgrade
+- Fixed subscription cancellation on upgrade to prevent double-billing
+- Stripe webhook handlers now sync quota correctly
+
+### MCC/Manager Account Warnings
+
+Connections page now warns users attempting to connect MCC (Google) or Business Manager (Meta) accounts instead of individual ad accounts.
+
+### OpenClaw Plugin Updates
+
+- `openclaw adspirer uninstall` CLI command added
+- OAuth retry logic improved
+- Skill metadata updated with security section and privacy policy
+
+</Update>
+
+<Update label="February 27, 2026" description="v2.2.1" tags={["Documentation", "Agent Skills", "Strategy"]}>
 
 ## Skill Reference & Performance Marketing Agent Docs
 
@@ -32,85 +83,71 @@ Skills now read `STRATEGY.md` before executing — a persistent file where strat
 
 </Update>
 
-<Update label="February 22, 2025" description="v1.3.3" tags={["Documentation", "Components", "Guides"]}>
+<Update label="February 26, 2026" description="v2.2.0" tags={["Platform", "CLI", "Tracking"]}>
 
-## Guides & Knowledge Base Components
+## Asset Discovery & PMax Validation
 
-Extended Mintlify components to 7 guide pages and 6 knowledge base pages:
+- Fixed asset discovery across platforms
+- YouTube logo upload support for PMax campaigns
+- Mandatory extensions enforcement for Google Ads
+- PMax logo validation improvements
 
-- **Tooltip** — Added CPC, CPM, MCP, and PKCE hover definitions across guides and knowledge base
-- **Badge** — Intent level indicators (HIGH/MEDIUM/LOW) on keyword research guide
+### CLI OAuth Fix
 
-</Update>
+Resolved OAuth failures for CLI clients (Claude Code, Codex). Loopback redirect now correctly routes web vs CLI authentication flows.
 
-<Update label="February 22, 2025" description="v1.3.2" tags={["Documentation", "Components", "UX"]}>
+### Cross-Domain Attribution
 
-## Enhanced Mintlify Components
+Added referrer-based UTM fallback for cross-domain tracking between adspirer.com and adspirer.ai.
 
-Added 5 new component types across the documentation for better readability and user experience:
+### Help & Contact Page
 
-- **Frame** — All 7 YouTube video embeds now wrapped with captions and styled borders
-- **Badge** — Visual status indicators for tool types (Read/Write), pricing plans (Free/Plus/Pro), and AI client skill support levels
-- **Check** — Success callouts after setup completion on all 7 AI client pages
-- **Info** — Informational callouts for MCP server URL and security highlights
-- **Tooltip** — Hover definitions for technical acronyms (MCP, CPA, ROAS, CTR, PKCE, SSE) on user-facing pages
-
-## Tabbed Install Methods
-
-Converted Claude Code setup page from sequential Method 1/Method 2 sections to side-by-side Tabs for cleaner comparison between Plugin Install and Manual Setup.
+Added in-app Help page with documentation link and contact options.
 
 </Update>
 
-<Update label="February 22, 2025" description="v1.3.1" tags={["Documentation", "Navigation", "Analytics"]}>
+<Update label="February 22, 2026" description="v2.1.0" tags={["Platform", "YouTube", "Automation"]}>
 
-## Resend-Style Navigation
+## YouTube Ads Campaign Support
 
-Redesigned the top navbar and sidebar to match Resend's clean layout:
+Added YouTube Ads campaign creation to the Google Ads toolset. Create video ad campaigns targeting YouTube viewers with budget controls and audience targeting.
 
-- **Clean top navbar** — `Logo | Search ⌘K | Book Meeting | [Get Started] | 🌙` — minimal, focused
-- **Sidebar tabs restored** — Documentation (`book-open`), Guides (`compass`), Knowledge Base (`lightbulb`) with icon tabs for section switching
-- **Sidebar anchors** — Blog, MCP Server, and Changelog as icon links in sidebar
-- **Book Meeting fixed** — Now links to `/book-demo` (Cal.com embed)
+### Automation Tools
 
-## Google Analytics 4
+Launched 8 automation tools:
 
-Added GA4 tracking (`G-ZX09MFTP89`) to documentation site via Mintlify's `integrations.ga4` config. Page views, search queries, and feedback now flow to the same GA4 property as the main website.
+- **Scheduled briefs** — automated performance summaries on a recurring schedule
+- **Performance monitors** — alerts when campaigns cross KPI thresholds
+- **Cross-platform reports** — unified reporting across Google, Meta, and LinkedIn
 
-</Update>
+### UI Redesign
 
-<Update label="February 22, 2025" description="v1.3.0" tags={["Documentation", "Knowledge Base"]}>
+Mobile dropdown and desktop tab redesign for the main app. Removed trial language from onboarding flow.
 
-## Knowledge Base
+### Documentation Updates
 
-Added 6 new knowledge base articles consolidating FAQs from across the docs into dedicated reference pages:
-
-- [Pricing & Plans](/knowledge-base/pricing) — tool call limits, plan comparison, billing
-- [Security & Privacy](/knowledge-base/security) — OAuth 2.1, data handling, token management
-- [Platform Comparison](/knowledge-base/platform-comparison) — Google vs Meta vs LinkedIn vs TikTok
-- [Multi-Account Management](/knowledge-base/multi-account) — agencies, multiple ad accounts
-- [Using Multiple AI Clients](/knowledge-base/multi-client) — one account across ChatGPT, Claude, Cursor, etc.
-- [Capabilities & Limitations](/knowledge-base/capabilities) — what Adspirer can and can't do
-
-## MCP Explainer Page
-
-New [How MCP Works](/mcp) page with architecture diagrams, OAuth 2.1 PKCE authentication flow, transport details, tool discovery, execution pipeline, quota system, and infrastructure overview.
-
-## Mermaid Workflow Diagrams
-
-Added visual flowcharts to all 9 workflows on the [Core Workflows](/agent-skills/workflows) page — campaign creation flows for Google Search, PMax, Meta, LinkedIn, TikTok, plus budget optimization, account management, and automation workflows.
-
-## Interactive Setup Steps
-
-Converted all AI client setup guides to use interactive `<Steps>` components for clearer onboarding:
-- [ChatGPT](/ai-clients/chatgpt), [Claude](/ai-clients/claude), [Custom GPT](/ai-clients/custom-gpt), [OpenClaw](/ai-clients/openclaw), [Windsurf](/ai-clients/windsurf)
-
-## UTM Tracking
-
-Added UTM parameters to all CTA links across the docs for attribution tracking (`utm_source=docs`).
+- Enhanced Mintlify components: Frame, Badge, Check, Info, Tooltip across all pages
+- Tabbed install methods for Claude Code setup
+- Resend-style navbar redesign
+- GA4 tracking added to docs site
+- 6 new Knowledge Base articles, MCP explainer page, Mermaid workflow diagrams
+- UTM tracking on all CTA links
 
 </Update>
 
-<Update label="February 2025" description="v1.2.0" tags={["Platform", "AI Clients", "Documentation"]}>
+<Update label="February 16, 2026" description="v2.0.1" tags={["Onboarding", "AI Clients"]}>
+
+## Expanded Onboarding Setup Guides
+
+Onboarding now includes 6 platform-specific setup tabs with step-by-step instructions for connecting Adspirer to each AI client.
+
+### OpenClaw Plugin v0.3.0
+
+Fixed OpenClaw OAuth client registration and plugin authentication flow.
+
+</Update>
+
+<Update label="February 2026" description="v2.0.0" tags={["Platform", "AI Clients", "Documentation"]}>
 
 ## Documentation Site Launch
 
@@ -141,36 +178,126 @@ Released zero-configuration OpenClaw plugin with bundled 14.4KB skill file. Inst
 
 </Update>
 
-<Update label="January 2025" description="v1.1.0" tags={["Platform", "Tools"]}>
+<Update label="January 2026" description="v1.9.0" tags={["AI Clients", "LinkedIn", "Enterprise"]}>
 
-## LinkedIn Ads Integration
+## ChatGPT MCP Connector Fix
 
-Launched 28 tools for LinkedIn Ads management:
+Fixed dynamic client registration to correctly detect Claude vs ChatGPT during OAuth. Claude clients now receive the correct redirect URIs instead of ChatGPT credentials.
 
-- Sponsored content campaigns with lead gen forms
-- B2B targeting by job title, industry, company size, and seniority
-- Creative performance analysis and audience insights
-- Budget optimization across campaign groups
+### OpenAI Apps SDK Integration
 
-## TikTok Ads Integration
+Added domain verification, OAuth protected resource endpoints, MCP annotations for tool hints, and OpenAI Platform redirect URI for app submission.
 
-Added 4 tools for TikTok In-Feed video campaigns:
+### LinkedIn Campaign Fixes
 
-- Campaign creation with video asset validation
-- Performance analysis and spend tracking
-- Asset management for video creatives
+Fixed LinkedIn campaign creation and update workflows. Resolved API version errors.
 
-## Agent Skills System
+### Conversion Tracking
 
-Introduced SKILL.md instruction files that teach AI assistants proven advertising workflows. Skills enforce safety rules like creating campaigns PAUSED, requiring user confirmation before spend, and following research-before-create sequences.
+Set up end-to-end conversion tracking infrastructure for measuring signup-to-paid funnel. Multiple fixes to Google Ads metrics accuracy.
+
+### Onboarding Revamp
+
+Redesigned onboarding flow with mobile-responsive screens, auto-completion logic, and MCP OAuth gating to prevent onboarding bypass.
+
+### Enterprise Readiness
+
+Account lifecycle management, metrics pause for inactive accounts, and sign-in/sign-up page revamp.
+
+### Meta Ads Traffic Management
+
+Added Meta video and carousel campaign creation, ad management workflows, and traffic management tools.
+
+### GTM Cross-Domain Tracking
+
+Added Google Tag Manager (GTM-PQGBFK5Q) to frontend. GA4 sessions now persist across domains via the `_gl` parameter.
 
 </Update>
 
-<Update label="December 2024" description="v1.0.0" tags={["Platform", "Launch"]}>
+<Update label="December 2025" description="v1.8.0" tags={["Platform", "LinkedIn", "Meta"]}>
 
-## Adspirer MCP Server Launch
+## LinkedIn Ads Full Integration
 
-Initial release of Adspirer's MCP server at `mcp.adspirer.com` with 100+ tools across 4 ad platforms.
+Complete LinkedIn Ads integration across 8 phases:
+
+- LinkedIn account setup and OAuth
+- Single image sponsored content campaigns
+- Campaign performance analytics
+- Unified tools for cross-platform management
+
+### Meta Video & Carousel Campaigns
+
+Added video campaign creation and carousel ad support for Meta Ads.
+
+### Local Currency Support
+
+Fixed currency handling across all MCP tools and backend APIs. Campaigns now display metrics in the user's local currency.
+
+### Smart Metric Collection
+
+Automated background metric collection for historical performance tracking.
+
+</Update>
+
+<Update label="November 2025" description="v1.7.0" tags={["Platform", "MCP", "Performance"]}>
+
+## Asset Reuse & PMax Improvements
+
+- Smart asset discovery and reuse for Performance Max campaigns
+- Domain filtering for sitelinks
+- Location targeting fix for MCP/ADK PMax campaigns
+
+### Account Tier System
+
+Account tier infrastructure with 120-day metric backfill for new users. Accurate daily metrics via `segments.date` in queries.
+
+### ChatGPT Apps SDK Widgets
+
+In-app quota widget and account management tools for ChatGPT users. OAuth improvements for API routes.
+
+### Custom GPT Support
+
+Added ChatGPT Actions support with OAuth compatibility for Custom GPT configurations.
+
+### MCP Protocol Improvements
+
+- Progress streaming (MCP 2025-03-26) for real-time updates during campaign creation
+- False success message elimination
+- OAuth token rotation on reconnect
+- JWT expiry fix and performance routing improvements
+
+</Update>
+
+<Update label="October 2025" description="v1.6.0" tags={["Platform", "TikTok", "MCP"]}>
+
+## TikTok Ads Integration
+
+Complete TikTok Ads platform integration:
+
+- OAuth setup and multi-platform architecture
+- In-feed video campaign creation
+- Image upload and asset validation
+- Session handling and location targeting
+
+### MCP Server Launch
+
+Initial MCP server deployment at `mcp.adspirer.com`:
+
+- OAuth 2.1 with PKCE authentication
+- Complete PMax campaign creation via ChatGPT
+- Modular architecture for multi-platform support
+
+### Creative Canvas
+
+Multi-image upload UX improvements and character limit enforcement for PMax campaigns.
+
+</Update>
+
+<Update label="September 2025" description="v1.0.0" tags={["Platform", "Launch"]}>
+
+## Adspirer Launch
+
+Initial release with 100+ tools across Google Ads and Meta Ads.
 
 ### Google Ads (39 tools)
 - Keyword research with real CPC data from Google Keyword Planner
@@ -186,6 +313,6 @@ Initial release of Adspirer's MCP server at `mcp.adspirer.com` with 100+ tools a
 ### Core Features
 - OAuth 2.1 authentication with PKCE
 - Multi-platform account management
-- Claude Code and Cursor support via MCP
+- Agent skills system with SKILL.md instruction files
 
 </Update>
