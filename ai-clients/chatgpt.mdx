@@ -34,12 +34,22 @@ Manage ad campaigns from ChatGPT. Add Adspirer's MCP connector in under 2 minute
 
     | Field | Value |
     |-------|-------|
-    | **Name** | `Ads MCP` |
-    | **URL** | `https://mcp.adspirer.com/mcp` |
-    | **Authentication** | OAuth 2.1 |
+    | **Name** | `Adspirer-MCP` |
+    | **Description** | `adspirer-mcp` (optional) |
+    | **MCP Server URL** | `https://mcp.adspirer.com/mcp` |
+    | **Authentication** | `OAuth` |
+
+    <Info>
+    ChatGPT will show **Advanced settings** with OAuth details (Dynamic Client Registration, scopes, etc.). You do not need to change anything — the defaults are auto-discovered from the server.
+    </Info>
+
+    Check the **"I understand and want to continue"** checkbox at the bottom, then click **Add**.
+  </Step>
+  <Step title="Configure Preferences">
+    After adding the connector, ChatGPT shows a **Preferences** screen. You'll see a **"Reference memories and chats"** toggle — this lets ChatGPT use your past conversations and memories when working with Adspirer for more helpful responses. Leave it enabled (recommended) or disable it based on your preference.
   </Step>
   <Step title="Complete OAuth Flow">
-    Click to authenticate. Your browser opens and redirects to Adspirer's login page. Sign in (or create an account) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
+    Click **Connect** to authenticate. Your browser opens and redirects to Adspirer's login page. Sign in (or create an account) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
   </Step>
   <Step title="Start Managing Ads">
     Return to ChatGPT and start a new conversation. Ask about your campaigns, create new ads, or analyze performance — all in natural language.
@@ -69,9 +79,9 @@ You're connected. Start any new ChatGPT conversation and Adspirer's 100+ tools a
 ## MCP Server Details
 
 ```
-Name:           Ads MCP
-URL:            https://mcp.adspirer.com/mcp
-Authentication: OAuth 2.1
+Name:           Adspirer-MCP
+MCP Server URL: https://mcp.adspirer.com/mcp
+Authentication: OAuth
 Required Plan:  ChatGPT Plus or Pro
 ```
 

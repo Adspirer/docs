@@ -34,9 +34,9 @@ The best MCP experience for advertising. Anthropic created the Model Context Pro
 
     | Field | Value |
     |-------|-------|
-    | **Name** | `Ads MCP` |
     | **URL** | `https://mcp.adspirer.com/mcp` |
-    | **Authentication** | OAuth |
+
+    Leave all other fields empty — Claude auto-discovers the server name and authentication settings.
   </Step>
   <Step title="Authenticate via Adspirer">
     Click to connect. Your browser opens and redirects to Adspirer's OAuth page. Sign in and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
@@ -97,11 +97,11 @@ You're connected. Claude will automatically use Adspirer tools when you ask abou
 <Tabs>
 <Tab title="Claude Web / Desktop">
 ```
-Name:           Ads MCP
 URL:            https://mcp.adspirer.com/mcp
-Authentication: OAuth
 Required Plan:  Pro, Max, Team, or Enterprise
 ```
+
+Claude auto-discovers the server name and authentication method — just paste the URL.
 </Tab>
 <Tab title="Claude Code (Terminal)">
 For developer/terminal setup, see the full [Claude Code Setup Guide](/ai-clients/claude-code):
@@ -168,7 +168,7 @@ For organizations using Claude Team or Enterprise:
 **Admin Setup:**
 1. Go to **Admin Settings → Customize → Connectors**
 2. Click **Add custom connector**
-3. Enter: Name `Ads MCP`, URL `https://mcp.adspirer.com/mcp`, Auth `OAuth`
+3. Paste the URL `https://mcp.adspirer.com/mcp` and leave other fields empty
 4. Enable for the organization
 
 **Team Member Setup:**
