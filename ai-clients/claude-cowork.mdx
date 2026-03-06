@@ -1,0 +1,228 @@
+---
+title: "Claude Cowork Setup Guide"
+sidebarTitle: "Claude Cowork"
+description: "Connect Claude Cowork to Adspirer via plugin. Manage Google Ads, Meta Ads, LinkedIn Ads, and TikTok campaigns with 100+ tools, brand-aware skills, and a performance marketing agent."
+icon: "users"
+keywords: ["claude cowork", "anthropic", "plugin", "mcp connector", "claude max", "brand workspace"]
+---
+
+Your brand-aware advertising workspace. Install the Adspirer plugin in Claude Cowork to get 100+ ad management tools, proven slash commands, and a performance marketing agent — all grounded in your brand folder.
+
+<Frame caption="Claude Cowork + Adspirer: 30 Days of Ads Analyzed in One Prompt">
+  <iframe width="100%" height="400" src="https://www.youtube.com/embed/zgNjF1y6GzY" title="Claude Cowork + Adspirer: 30 Days of Ads Analyzed in One Prompt" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</Frame>
+
+## Prerequisites
+
+<Note>
+- A Claude **Max**, **Team**, or **Enterprise** subscription (Cowork requires Max or above)
+- An Adspirer account ([free to start](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=page&utm_content=signup))
+- At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
+</Note>
+
+## Setup (5 Minutes)
+
+<Steps>
+  <Step title="Open Claude Cowork">
+    Open Claude and click the **Cowork** tab at the top.
+
+    <Frame caption="Select the Cowork tab in Claude">
+      <img src="/images/claude-cowork/cowork-tab.png" alt="Claude Cowork tab" />
+    </Frame>
+  </Step>
+  <Step title="Go to Customize">
+    Click **Customize** in the left sidebar. You'll see options for Skills, Connectors, and Browse Plugins.
+
+    <Frame caption="Customize page with Skills, Connectors, and Browse Plugins">
+      <img src="/images/claude-cowork/customize-page.png" alt="Claude Cowork Customize page" />
+    </Frame>
+  </Step>
+  <Step title="Browse Plugins">
+    Click **Browse plugins**, then switch to the **Personal** tab. Click the **+** button and select **Add marketplace from GitHub**.
+
+    <Frame caption="Personal tab with Add marketplace options">
+      <img src="/images/claude-cowork/browse-plugins-add.png" alt="Browse plugins Personal tab with add options" />
+    </Frame>
+  </Step>
+  <Step title="Add Adspirer Marketplace">
+    In the URL field, enter:
+
+    ```
+    amekala/ads-mcp
+    ```
+
+    Click **Sync**.
+
+    <Frame caption="Enter the marketplace URL and click Sync">
+      <img src="/images/claude-cowork/add-marketplace-github.png" alt="Add marketplace from GitHub dialog" />
+    </Frame>
+  </Step>
+  <Step title="Install the Plugin">
+    After syncing, the **Adspirer** plugin appears in your Personal tab. Click on it to install.
+
+    <Frame caption="Adspirer plugin synced and ready to install">
+      <img src="/images/claude-cowork/plugin-synced.png" alt="Adspirer plugin in Personal tab" />
+    </Frame>
+  </Step>
+  <Step title="Review Plugin Contents">
+    Once installed, you'll see everything included in the Adspirer plugin:
+
+    **Commands** — Slash commands that trigger proven advertising workflows:
+    - `/performance-review` — Run a cross-platform performance review
+    - `/refresh-brand-context` — Re-scan brand docs and update CLAUDE.md
+    - `/setup` — Set up your brand workspace
+    - `/wasted-spend` — Find and fix wasted ad spend across all platforms
+    - `/write-ad-copy` — Write brand-voice-compliant ad copy
+
+    **Skills** — Two skills that teach Claude advertising best practices
+
+    **Agents** — A Performance Marketing Agent that specializes in using Adspirer's 100+ tools
+
+    <Frame caption="Adspirer plugin showing Commands, Skills, and Agents">
+      <img src="/images/claude-cowork/plugin-commands.png" alt="Adspirer plugin commands, skills, and agents" />
+    </Frame>
+  </Step>
+  <Step title="Install the Connector">
+    In the left sidebar under the Adspirer plugin, click **Connectors**. You'll see the **adspirer** connector. Click **Install**.
+
+    <Frame caption="Click Install on the adspirer connector">
+      <img src="/images/claude-cowork/connectors-install.png" alt="Adspirer connector with Install button" />
+    </Frame>
+  </Step>
+  <Step title="Add the Connector">
+    A popup appears with the connector pre-filled (name: `adspirer`, URL: `https://mcp.adspirer.com/mcp`). Click **Add**.
+
+    <Frame caption="Add custom connector popup — just click Add">
+      <img src="/images/claude-cowork/add-custom-connector.png" alt="Add custom connector dialog" />
+    </Frame>
+  </Step>
+  <Step title="Authenticate with Adspirer">
+    Your browser opens and redirects to Adspirer's OAuth page. Sign in (or create an account) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
+
+    Once authorized, you'll see the connector status change to **connected** with all 100+ tools listed under tool permissions.
+
+    <Frame caption="Adspirer connector connected with tool permissions">
+      <img src="/images/claude-cowork/connector-connected.png" alt="Connected Adspirer connector showing tools" />
+    </Frame>
+
+    <Tip>
+    If the connector doesn't show as connected right away, restart Claude and check again.
+    </Tip>
+  </Step>
+  <Step title="Work in a Brand Folder">
+    Back on the Cowork main screen, click **Work in a folder** and select the folder containing your brand documents — voice of customer research, brand guidelines, previous campaigns, keyword research, audience targeting docs, or any other brand context.
+
+    Claude Cowork will use this folder as your brand workspace. The more context you provide, the better Adspirer's recommendations and ad copy will be.
+
+    <Info>
+    Your brand folder can contain docs or be completely empty — the agent builds context from your live ad platform data either way. More docs = better brand context = better ad copy and recommendations.
+    </Info>
+  </Step>
+  <Step title="Try It Now">
+    <Card
+      title="Sign up for Adspirer — free to start"
+      icon="rocket"
+      href="https://adspirer.ai/sign-up?utm_source=docs&utm_medium=setup-cta&utm_content=claude-cowork"
+      horizontal
+    >
+      10 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
+    </Card>
+  </Step>
+</Steps>
+
+<Check>
+You're connected. Claude Cowork now has access to 100+ advertising tools, brand-aware skills, and a performance marketing agent.
+</Check>
+
+## Slash Commands
+
+The plugin includes 5 slash commands that trigger proven workflows:
+
+| Command | What it Does |
+|---------|-------------|
+| `/setup` | Bootstrap a brand workspace — connect accounts, scan docs, pull data, create CLAUDE.md |
+| `/performance-review` | Cross-platform performance scorecard with KPI comparison |
+| `/write-ad-copy` | Brand-voice ad copy from real keyword and performance data |
+| `/wasted-spend` | Find and fix wasted spend across all platforms |
+| `/refresh-brand-context` | Re-scan docs and update CLAUDE.md with latest data |
+
+You don't need to remember these — just describe what you want and Claude will use the right workflow.
+
+## What You Can Do
+
+100+ tools across 4 ad platforms:
+
+| Platform | Tools | Key Capabilities |
+|----------|-------|-----------------|
+| **Google Ads** | 39 | Keyword research with real CPC data, Search & PMax campaigns, wasted spend analysis, budget optimization |
+| **Meta Ads** | 20 | Image/video/carousel campaigns, audience targeting, creative fatigue detection |
+| **LinkedIn Ads** | 28 | Sponsored content, lead gen forms, B2B targeting by job title, industry, seniority |
+| **TikTok Ads** | 4 | In-feed campaigns, asset validation, performance analysis |
+
+## Example Prompts
+
+### Research Keywords
+
+<Prompt description="Keyword research with real CPC data from Google Keyword Planner." actions={["copy", "cursor"]}>
+Research Google Ads keywords for "project management software" —
+show search volume, CPC, and competition level
+</Prompt>
+
+### Create a Campaign
+
+<Prompt description="Google Search campaign with keyword research and intent grouping." actions={["copy", "cursor"]}>
+Create a Google Ads search campaign for my SaaS product:
+- Product: project management tool for remote teams
+- Budget: $60/day
+- Research keywords first, then group by intent
+</Prompt>
+
+### Cross-Platform Audit
+
+<Prompt description="Multi-platform audit with prioritized action list and savings estimate." actions={["copy", "cursor"]}>
+Audit all my ad accounts for the last 30 days:
+- Google: find wasted spend (keywords with clicks but zero conversions)
+- Meta: check for creative fatigue (frequency > 3, declining CTR)
+- LinkedIn: compare CPA across audience segments
+
+Give me a prioritized action list with estimated monthly savings.
+</Prompt>
+
+## Why Claude Cowork for Advertising
+
+- **Brand-Aware** — Works in your brand folder. Claude reads your brand docs, voice guidelines, and past campaigns before writing ads or making recommendations.
+- **Plugin Ecosystem** — One install gives you the MCP connector, slash commands, skills, and a performance marketing agent. No manual config.
+- **Performance Marketing Agent** — A specialized agent that knows how to use all 100+ Adspirer tools in the right order with safety rules.
+- **Progress Streaming** — Real-time updates during long operations. See campaign creation progress as it happens.
+- **Native MCP** — Anthropic created the Model Context Protocol. Claude has the deepest, most reliable integration.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="What is Claude Cowork?">
+Claude Cowork is Claude's workspace mode where you can work in a folder, use plugins, and have Claude act as a persistent collaborator. It's ideal for brand-specific advertising work because Claude reads your entire brand folder for context.
+</Accordion>
+<Accordion title="How is Cowork different from Claude Chat?">
+Claude Chat uses connectors (just the MCP server). Cowork uses **plugins** — which bundle the MCP connector, slash commands, skills, and agents together. Cowork also works in a folder, so Claude has your brand context. For advertising, Cowork gives you the richest experience.
+</Accordion>
+<Accordion title="Which Claude plans support Cowork?">
+Cowork is available on Claude Max, Team, and Enterprise plans. Pro plans have access to Chat connectors but not the full Cowork experience.
+</Accordion>
+<Accordion title="What does the Adspirer plugin include?">
+The plugin installs: the MCP server connection, 5 slash commands (setup, performance-review, write-ad-copy, wasted-spend, refresh-brand-context), 2 advertising skills, and 1 performance marketing agent.
+</Accordion>
+<Accordion title="Can I use both Cowork and Claude Chat?">
+Yes. The Cowork plugin and Chat connector work independently. You can use Cowork for brand-aware workspace sessions and Chat for quick ad questions. Both connect to the same Adspirer MCP server.
+</Accordion>
+<Accordion title="How much does this cost?">
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 15 calls/month. Plus: $49/mo for 150 calls. Pro: $99/mo for 600 calls. Max: $199/mo for 3,000 calls. See [full pricing](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
+</Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Claude Chat Setup](/ai-clients/claude) — Claude's MCP connector (no plugin required)
+- [Claude Code Setup](/ai-clients/claude-code) — Terminal-based setup for developers
+- [Agent Skills Overview](/agent-skills/overview) — Teach Claude the right workflows
+- [Google Ads Integration](/ad-platforms/google-ads) — Full Google Ads tool reference
+- [Pricing & Plans](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing)

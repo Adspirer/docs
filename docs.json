@@ -94,6 +94,7 @@
             "pages": [
               "ai-clients/chatgpt",
               "ai-clients/claude",
+              "ai-clients/claude-cowork",
               "ai-clients/claude-code",
               "ai-clients/cursor",
               "ai-clients/codex",
