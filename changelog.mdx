@@ -5,6 +5,38 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="March 7, 2026" description="v2.6.0" tags={["Authentication", "OpenClaw", "Security"]}>
+
+## API Key Authentication (Personal Access Tokens)
+
+Adspirer now supports **Personal Access Tokens** for headless and remote server authentication. Generate API keys from the dashboard and use them on remote servers, Docker containers, and CI/CD pipelines where browser-based OAuth isn't available.
+
+### What's New
+
+- **API Key Management UI** — Generate, name, and revoke API keys from [adspirer.ai/keys](https://adspirer.ai/keys)
+- **OpenClaw `--token` flag** — `openclaw adspirer login --token sk_live_...` for headless authentication
+- **`ADSPIRER_API_KEY` env var** — Set the environment variable for zero-config server authentication
+- **Tier-based key limits** — Free: 2 keys, Plus: 5, Pro: 10, Max: 20
+- **Key expiration** — Optional expiration (30 days, 90 days, 1 year, or never)
+- **Admin controls** — Admin dashboard for API key analytics, per-user key management, and emergency revocation
+- **Auth method tracking** — Tool call logs now track whether each call used OAuth or an API key
+
+### Security
+
+- Keys use `sk_live_` prefix for easy identification
+- SHA-256 hashed storage — raw tokens never stored server-side
+- Instant revocation with audit trail
+- Keys cannot be used to create other keys (prevents privilege escalation)
+
+### Documentation
+
+- [OpenClaw Remote Server Setup](/ai-clients/openclaw#remote-server-setup) — Step-by-step guide
+- [Security — API Key Authentication](/knowledge-base/security#api-key-authentication) — Security model and comparison
+- Updated [How MCP Works](/mcp) — Authentication section
+- Updated [FAQ](/knowledge-base/faq) — Remote server and API key questions
+
+</Update>
+
 <Update label="March 5, 2026" description="v2.5.0" tags={["Documentation", "AI Clients", "Cowork"]}>
 
 ## Claude Cowork Setup Guide

@@ -1,6 +1,6 @@
 ---
 title: "Security & Data Privacy"
-description: "How Adspirer protects your ad accounts. OAuth 2.1 with PKCE, no password storage, encrypted tokens, revocable access, and data handling policies."
+description: "How Adspirer protects your ad accounts. OAuth 2.1 with PKCE, API key authentication, no password storage, encrypted tokens, revocable access, and data handling policies."
 icon: "shield-halved"
 keywords: ["security", "oauth", "pkce", "data privacy", "encryption"]
 ---
@@ -27,6 +27,42 @@ When you connect an ad platform (Google Ads, Meta, LinkedIn, TikTok), Adspirer u
 | Refresh token | 30 days | Generates new access tokens without re-login |
 
 Tokens are encrypted at rest and automatically refreshed. If a token expires, your AI client prompts you to re-authenticate.
+
+## API Key Authentication
+
+For remote servers, Docker containers, and CI/CD pipelines where browser-based OAuth isn't possible, Adspirer supports **Personal Access Tokens** (API keys).
+
+### How API Keys Work
+
+1. You generate a key from the Adspirer dashboard at [adspirer.ai/keys](https://adspirer.ai/keys)
+2. The key starts with `sk_live_` and is shown **once** — copy it immediately
+3. Adspirer stores a **SHA-256 hash** of the key — the raw token is never stored
+4. On each request, the server hashes the provided token and looks up the hash in the database
+
+### API Key Security Properties
+
+| Property | Detail |
+|----------|--------|
+| **Format** | `sk_live_` prefix + 32 URL-safe random characters |
+| **Storage** | SHA-256 hash only — raw token never stored server-side |
+| **Lookup** | O(1) indexed hash lookup (no bcrypt iteration) |
+| **Expiration** | Optional — set at creation (30 days, 90 days, 1 year, or never) |
+| **Revocation** | Instant — revoked keys are rejected immediately |
+| **Scope** | Full account access (same as OAuth) — cannot manage other API keys |
+| **Tier limits** | Free: 2 keys, Plus: 5, Pro: 10, Max: 20 |
+
+### Revoking API Keys
+
+Revoke a key instantly from [adspirer.ai/keys](https://adspirer.ai/keys). Revoked keys return a `401` error on the next request. The key record is preserved for audit trail (revocation timestamp visible in admin).
+
+### API Keys vs OAuth
+
+| | OAuth 2.1 (PKCE) | API Key |
+|---|---|---|
+| **Best for** | Browser-based AI clients | Remote servers, Docker, CI/CD |
+| **Auth flow** | Browser redirect | `--token` flag or env var |
+| **Token rotation** | Automatic (1hr access, 30d refresh) | Manual (generate new key) |
+| **Security** | PKCE-protected code exchange | SHA-256 hashed token |
 
 ## What Data Adspirer Accesses
 
@@ -69,6 +105,8 @@ You can disconnect Adspirer at any time:
    - TikTok: Business Center > Settings > Authorized Partners
 
 Revoking from either side immediately stops all tool access.
+
+3. **API Keys:** Visit [adspirer.ai/keys](https://adspirer.ai/keys) and click **Revoke** on any active key. The key is invalidated immediately.
 
 ## Infrastructure Security
 

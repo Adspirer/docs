@@ -39,7 +39,11 @@ You're deploying an expert, not configuring tools.
     openclaw adspirer login
     ```
 
-    Your browser opens for OAuth 2.1 sign-in. Authorize OpenClaw to access your Adspirer account. No API keys, no passwords stored locally.
+    Your browser opens for OAuth 2.1 sign-in. Authorize OpenClaw to access your Adspirer account. No passwords stored locally.
+
+    <Info>
+    **On a remote server?** Use `openclaw adspirer login --token <key>` or set `ADSPIRER_API_KEY` instead. See [Remote Server Setup](#remote-server-setup) below.
+    </Info>
   </Step>
   <Step title="Connect Your Ad Platforms">
     ```bash
@@ -78,12 +82,89 @@ You're deploying an expert, not configuring tools.
 You're connected. OpenClaw is now a fully configured advertising agent with built-in workflows.
 </Check>
 
+## Remote Server Setup
+
+If you're running OpenClaw on a remote server (VPS, Docker, CI/CD), you can't use the browser-based OAuth login. Instead, use a **Personal Access Token** (API key).
+
+<Steps>
+  <Step title="Generate an API Key">
+    1. Go to [adspirer.ai/keys](https://adspirer.ai/keys)
+    2. Click **Generate New Key**
+    3. Give it a name (e.g., "Hostinger server", "CI/CD pipeline")
+    4. Copy the token — it starts with `sk_live_` and **won't be shown again**
+
+    <Warning>
+    Store your API key securely. Treat it like a password. If compromised, revoke it immediately from the dashboard and generate a new one.
+    </Warning>
+  </Step>
+  <Step title="Authenticate with the API Key">
+    <Tabs>
+      <Tab title="CLI Flag">
+        ```bash
+        openclaw adspirer login --token sk_live_your_token_here
+        ```
+      </Tab>
+      <Tab title="Environment Variable">
+        ```bash
+        export ADSPIRER_API_KEY=sk_live_your_token_here
+        ```
+
+        The environment variable takes priority over stored config. No `login` command needed.
+      </Tab>
+      <Tab title="Docker">
+        ```dockerfile
+        ENV ADSPIRER_API_KEY=sk_live_your_token_here
+        ```
+
+        Or pass it at runtime:
+
+        ```bash
+        docker run -e ADSPIRER_API_KEY=sk_live_your_token_here your-image
+        ```
+      </Tab>
+      <Tab title="CI/CD (GitHub Actions)">
+        ```yaml
+        env:
+          ADSPIRER_API_KEY: ${{ secrets.ADSPIRER_API_KEY }}
+        ```
+
+        Add your API key as a repository secret in GitHub Settings.
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Connect Your Ad Platforms">
+    API keys authenticate you with Adspirer, but you still need to connect your ad platforms from a browser:
+
+    1. Go to [adspirer.ai/connections](https://adspirer.ai/connections) from any machine with a browser
+    2. Connect Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads via OAuth
+    3. Your remote server's API key will then have access to those connected accounts
+  </Step>
+  <Step title="Verify">
+    ```bash
+    openclaw adspirer status
+    ```
+
+    You should see:
+
+    ```
+    ✅ Authenticated via API Key
+       Server: https://mcp.adspirer.com
+       Key prefix: sk_live_a1b2...
+    ```
+  </Step>
+</Steps>
+
+<Note>
+API key limits are tier-based: Free (2 keys), Plus (5), Pro (10), Max (20). Each key can be named, set to expire, and revoked independently.
+</Note>
+
 ## CLI Commands
 
 | Command | Description |
 |---------|-------------|
-| `openclaw adspirer login` | Authenticate via OAuth PKCE |
-| `openclaw adspirer logout` | Clear stored tokens |
+| `openclaw adspirer login` | Authenticate via OAuth PKCE (browser-based) |
+| `openclaw adspirer login --token <key>` | Authenticate with an API key (headless/remote) |
+| `openclaw adspirer logout` | Clear stored tokens and API keys |
 | `openclaw adspirer status` | Show auth status, connections, tool count |
 | `openclaw adspirer accounts` | List connected ad accounts |
 | `openclaw adspirer tools` | List registered tools by platform |
@@ -213,6 +294,7 @@ config:
 | `accessToken` | string | — | OAuth access token (set by login) |
 | `refreshToken` | string | — | OAuth refresh token (set by login) |
 | `tokenExpiresAt` | number | — | Token expiry timestamp (set by login) |
+| `apiKey` | string | — | Personal access token (`sk_live_...`) for headless auth. Set via `--token` flag or `ADSPIRER_API_KEY` env var. |
 | `defaultAccountId` | string | — | Default ad account ID |
 | `enabledGroups` | string[] | all groups | Platform groups to enable |
 | `enabledTools` | string[] | `[]` | Cherry-pick specific tools (overrides groups) |
@@ -306,6 +388,29 @@ openclaw plugins uninstall openclaw-adspirer
 openclaw plugins install openclaw-adspirer
 ```
 
+### "Invalid or expired API key"
+
+Your API key may have been revoked, expired, or mistyped:
+
+1. Go to [adspirer.ai/keys](https://adspirer.ai/keys) and check if the key is still **Active**
+2. If revoked or expired, generate a new key
+3. Re-authenticate: `openclaw adspirer login --token sk_live_new_key_here`
+
+### "No platform account connected" (with API key)
+
+API keys authenticate you with Adspirer, but you still need to connect your ad platforms via OAuth from a browser:
+
+1. Go to [adspirer.ai/connections](https://adspirer.ai/connections) from any machine with a browser
+2. Connect your Google Ads, Meta, LinkedIn, or TikTok accounts
+3. Your remote server's API key will then have access to those accounts
+
+### "API key authentication error"
+
+- Ensure the token starts with `sk_live_`
+- Check for extra whitespace or line breaks when copying
+- If using the environment variable, verify: `echo $ADSPIRER_API_KEY`
+- Try generating a new key from [adspirer.ai/keys](https://adspirer.ai/keys)
+
 ### Network permission errors
 
 If your firewall blocks the plugin, whitelist these domains:
@@ -330,6 +435,9 @@ Yes. Connect multiple Google Ads accounts, multiple Meta Business Managers, etc.
 </Accordion>
 <Accordion title="How much does this cost?">
 Adspirer pricing is based on tool calls, not ad spend. Free tier: 15 calls/month. Plus: $49/mo for 150 calls. Pro: $99/mo for 600 calls. Max: $199/mo for 3,000 calls. See [full pricing details](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
+</Accordion>
+<Accordion title="Can I use OpenClaw on a remote server or in Docker?">
+Yes. Generate an API key from [adspirer.ai/keys](https://adspirer.ai/keys), then use `openclaw adspirer login --token sk_live_...` or set the `ADSPIRER_API_KEY` environment variable. See [Remote Server Setup](#remote-server-setup).
 </Accordion>
 </AccordionGroup>
 

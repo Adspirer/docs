@@ -92,6 +92,17 @@ sequenceDiagram
 - **No passwords stored:** Adspirer never sees your Google, Meta, LinkedIn, or TikTok passwords. OAuth tokens are scoped to only the permissions you authorize.
 - **Revocable:** Disconnect anytime from your ad platform's security settings or from [adspirer.ai](https://adspirer.ai?utm_source=docs&utm_medium=page&utm_content=account).
 
+### API Key Authentication
+
+For headless environments (remote servers, Docker, CI/CD) where a browser isn't available, Adspirer also supports **Personal Access Tokens** (API keys):
+
+- Generate a key at [adspirer.ai/keys](https://adspirer.ai/keys) — starts with `sk_live_`
+- Pass it via `--token` flag or `ADSPIRER_API_KEY` environment variable
+- The server validates API keys using SHA-256 hash lookup (no browser redirect needed)
+- API keys provide the same access as OAuth tokens — same tools, same quotas
+
+See [Security & Data Privacy](/knowledge-base/security#api-key-authentication) for full details.
+
 ## Tool Discovery
 
 When an AI client connects, it discovers available tools via `tools/list`:
@@ -126,7 +137,7 @@ The server returns all 100+ tools with names, descriptions, and input schemas. T
 When the AI calls a tool, the server:
 
 1. **Validates input** — Checks types, ranges, and required fields against the tool's JSON Schema
-2. **Authenticates** — Verifies the OAuth token and resolves the user's ad accounts
+2. **Authenticates** — Verifies the OAuth token or API key and resolves the user's ad accounts
 3. **Checks quota** — Confirms the user has tool calls remaining on their plan
 4. **Executes** — Calls the relevant ad platform API (Google, Meta, LinkedIn, or TikTok)
 5. **Returns results** — Formatted text response with tables, recommendations, or confirmation

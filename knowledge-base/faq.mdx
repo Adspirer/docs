@@ -81,6 +81,16 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
 
     Skills are optional but highly recommended. See [Agent Skills Overview](/agent-skills/overview).
   </Accordion>
+  <Accordion title="Can I use Adspirer on a remote server or in Docker?">
+    Yes. Generate a **Personal Access Token** (API key) from [adspirer.ai/keys](https://adspirer.ai/keys), then authenticate using either:
+
+    - **CLI flag:** `openclaw adspirer login --token sk_live_your_key`
+    - **Environment variable:** `export ADSPIRER_API_KEY=sk_live_your_key`
+
+    You still need to connect your ad platforms via OAuth from a browser at [adspirer.ai/connections](https://adspirer.ai/connections). The API key on your remote server will then access those connected accounts.
+
+    See the [OpenClaw Remote Server Setup](/ai-clients/openclaw#remote-server-setup) guide.
+  </Accordion>
   <Accordion title="Do I need to install anything?">
     It depends on your AI client:
 
@@ -163,6 +173,9 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
     - **LinkedIn:** Settings → Data Privacy → Permitted Services
     - **TikTok:** Settings → Security → Authorized Apps
   </Accordion>
+  <Accordion title="How are API keys secured?">
+    API keys are hashed with SHA-256 before storage — the raw token is never stored server-side. Keys can be revoked instantly from the dashboard, set to expire after a specified period, and are tier-limited (Free: 2 keys, Plus: 5, Pro: 10, Max: 20). See [Security — API Key Authentication](/knowledge-base/security#api-key-authentication).
+  </Accordion>
   <Accordion title="Does Adspirer store my ad data?">
     Adspirer reads your campaign data in real-time from ad platform APIs and returns it to your AI client. It does not permanently store campaign performance data, ad copy, or targeting settings. OAuth tokens are stored encrypted for session management.
   </Accordion>
@@ -194,6 +207,16 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
     3. Check your usage with `get_usage_status`
 
     [View pricing →](/knowledge-base/pricing)
+  </Accordion>
+  <Accordion title="My API key isn't working. What should I check?">
+    Common causes:
+
+    1. **Key revoked or expired:** Check your key status at [adspirer.ai/keys](https://adspirer.ai/keys)
+    2. **Wrong format:** API keys start with `sk_live_` — check for extra whitespace or line breaks
+    3. **No ad platforms connected:** API keys authenticate you, but you still need to connect platforms at [adspirer.ai/connections](https://adspirer.ai/connections)
+    4. **Environment variable issue:** Verify with `echo $ADSPIRER_API_KEY`
+
+    Generate a new key if the existing one is compromised or expired.
   </Accordion>
   <Accordion title="Campaign creation failed. What should I do?">
     Don't retry automatically. Common causes:
