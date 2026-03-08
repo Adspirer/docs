@@ -35,15 +35,30 @@ You're deploying an expert, not configuring tools.
     This installs the plugin with all 100+ tools and the 14.4KB SKILL.md instruction file bundled in. No separate skill or agent installation needed.
   </Step>
   <Step title="Authenticate with Adspirer">
-    ```bash
-    openclaw adspirer login
-    ```
+    <Tabs>
+      <Tab title="Local (Browser)">
+        ```bash
+        openclaw adspirer login
+        ```
 
-    Your browser opens for OAuth 2.1 sign-in. Authorize OpenClaw to access your Adspirer account. No passwords stored locally.
+        Your browser opens for OAuth 2.1 sign-in. Authorize OpenClaw to access your Adspirer account. No passwords stored locally.
+      </Tab>
+      <Tab title="Remote Server (API Key)">
+        Generate a Personal Access Token at [adspirer.ai/keys](https://adspirer.ai/keys), then authenticate:
 
-    <Info>
-    **On a remote server?** Use `openclaw adspirer login --token <key>` or set `ADSPIRER_API_KEY` instead. See [Remote Server Setup](#remote-server-setup) below.
-    </Info>
+        ```bash
+        openclaw adspirer login --token sk_live_your_token_here
+        ```
+
+        Or set the environment variable instead:
+
+        ```bash
+        export ADSPIRER_API_KEY=sk_live_your_token_here
+        ```
+
+        See [Remote Server Setup](#remote-server-setup) for Docker, CI/CD, and more options.
+      </Tab>
+    </Tabs>
   </Step>
   <Step title="Connect Your Ad Platforms">
     ```bash
