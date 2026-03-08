@@ -18,15 +18,32 @@ You're deploying an expert, not configuring tools.
 ## Prerequisites
 
 <Note>
-- OpenClaw CLI installed ([download here](https://openclaw.com))
-- Node.js 18+ (for npm installation method)
+- Node.js 18+
 - An Adspirer account ([free to start](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=page&utm_content=signup))
-- At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
 </Note>
 
-## Setup (3 Minutes)
+## Setup
 
 <Steps>
+  <Step title="Install OpenClaw">
+    ```bash
+    npm install -g openclaw
+    ```
+  </Step>
+  <Step title="Initialize OpenClaw">
+    ```bash
+    openclaw init
+    ```
+
+    This creates `~/.openclaw/openclaw.json` with default settings.
+  </Step>
+  <Step title="Set Tools Profile">
+    ```bash
+    openclaw config set tools.profile full
+    ```
+
+    This gives the agent access to bash, file operations, and web tools.
+  </Step>
   <Step title="Install the Adspirer Plugin">
     ```bash
     openclaw plugins install openclaw-adspirer
@@ -36,52 +53,62 @@ You're deploying an expert, not configuring tools.
   </Step>
   <Step title="Authenticate with Adspirer">
     <Tabs>
-      <Tab title="Local (Browser)">
+      <Tab title="Web Login (OAuth)">
         ```bash
         openclaw adspirer login
         ```
 
-        Your browser opens for OAuth 2.1 sign-in. Authorize OpenClaw to access your Adspirer account. No passwords stored locally.
+        Your browser opens for OAuth 2.1 sign-in. After signing in at adspirer.ai, you'll be redirected back automatically. No passwords stored locally.
       </Tab>
-      <Tab title="Remote Server (API Key)">
-        Generate a Personal Access Token at [adspirer.ai/keys](https://adspirer.ai/keys), then authenticate:
+      <Tab title="API Key (Headless/Remote)">
+        Generate an API key at [adspirer.ai/keys](https://adspirer.ai/keys), then authenticate:
 
         ```bash
         openclaw adspirer login --token sk_live_your_token_here
         ```
 
-        Or set the environment variable instead:
-
-        ```bash
-        export ADSPIRER_API_KEY=sk_live_your_token_here
-        ```
-
-        See [Remote Server Setup](#remote-server-setup) for Docker, CI/CD, and more options.
+        See [Remote Server Setup](#remote-server-setup) for Docker, CI/CD, and environment variable options.
       </Tab>
     </Tabs>
+  </Step>
+  <Step title="Restart the Gateway">
+    ```bash
+    openclaw gateway restart
+    ```
+
+    This loads the plugin and registers all 100+ ad management tools.
   </Step>
   <Step title="Connect Your Ad Platforms">
     ```bash
     openclaw adspirer connect
     ```
 
-    This opens `adspirer.com` in your browser. Connect Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads — or any combination. Each platform has its own OAuth flow. Authorize the platforms you want to manage.
+    This opens [adspirer.ai/connections](https://adspirer.ai/connections) where you can link:
+
+    - Google Ads
+    - Meta Ads (Facebook & Instagram)
+    - LinkedIn Ads
+    - TikTok Ads
   </Step>
   <Step title="Verify Your Setup">
     ```bash
     openclaw adspirer status
     ```
 
-    You'll see a table showing:
-
-    - Connected platforms (Google, Meta, LinkedIn, TikTok)
-    - Account names and IDs
-    - Connection status (active/expired)
-    - Available tool count per platform
-
-    If everything shows "active," you're ready.
+    You should see your authentication status, connected platforms, and tool count.
   </Step>
-  <Step title="Try It Now">
+  <Step title="Start Using">
+    ```bash
+    openclaw
+    ```
+
+    Then ask the agent things like:
+
+    - "Show me my Google Ads campaign performance for the last 30 days"
+    - "What keywords are wasting spend?"
+    - "Create a new search campaign for..."
+    - "Pause campaign X"
+
     <Card
       title="Sign up for Adspirer — free to start"
       icon="rocket"
@@ -177,6 +204,10 @@ API key limits are tier-based: Free (2 keys), Plus (5), Pro (10), Max (20). Each
 
 | Command | Description |
 |---------|-------------|
+| `openclaw init` | Create `~/.openclaw/openclaw.json` with default settings |
+| `openclaw config set tools.profile full` | Enable bash, file operations, and web tools |
+| `openclaw plugins install openclaw-adspirer` | Install the Adspirer plugin |
+| `openclaw gateway restart` | Reload plugins and register tools |
 | `openclaw adspirer login` | Authenticate via OAuth PKCE (browser-based) |
 | `openclaw adspirer login --token <key>` | Authenticate with an API key (headless/remote) |
 | `openclaw adspirer logout` | Clear stored tokens and API keys |
