@@ -40,22 +40,60 @@ npm install -g @anthropic-ai/claude-code
     ```bash
     /plugin marketplace add amekala/ads-mcp
     ```
+
+    <Frame caption="Successfully added marketplace: adspirer-marketplace">
+      <img src="/images/claude-code/marketplace-added.png" alt="Plugin marketplace add success" />
+    </Frame>
   </Step>
   <Step title="Install the Plugin">
     ```bash
     /plugin install adspirer
     ```
+
+    Select **Install for you (user scope)** when prompted.
+
+    <Frame caption="Adspirer plugin details with install scope options">
+      <img src="/images/claude-code/plugin-details.png" alt="Adspirer plugin details and install scope selection" />
+    </Frame>
   </Step>
   <Step title="Restart Claude Code">
     Close and reopen Claude Code to load the new plugin. The plugin won't appear in `/mcp` until you restart.
+
+    <Frame caption="Type exit to close Claude Code, then reopen it">
+      <img src="/images/claude-code/exit-restart.png" alt="Typing exit to restart Claude Code" />
+    </Frame>
   </Step>
   <Step title="Authenticate with Adspirer">
     1. Type `/mcp` to open the MCP server list
     2. Find **plugin:adspirer:adspirer** — it will show ⚠ needs authentication
-    3. Select it and press Enter to authenticate
-    4. Your browser opens — sign in with your Adspirer account and authorize access
-    5. Connect your ad platforms when prompted
-    6. Return to Claude Code — run `/mcp` again to confirm it shows ✓ connected
+
+    <Frame caption="Type /mcp to see all MCP servers — find plugin:adspirer:adspirer">
+      <img src="/images/claude-code/mcp-server-list.png" alt="MCP server list showing plugin:adspirer:adspirer" />
+    </Frame>
+
+    3. Select it and press Enter — you'll see the server details with **Enable** and **Authenticate** options
+
+    <Frame caption="Server details showing status: disabled, auth: not authenticated">
+      <img src="/images/claude-code/mcp-needs-auth.png" alt="Adspirer MCP server needs authentication" />
+    </Frame>
+
+    4. Select **Enable**, then **Authenticate**
+
+    <Frame caption="Enable the server, then select Authenticate">
+      <img src="/images/claude-code/mcp-enable-auth.png" alt="Enable and authenticate the Adspirer MCP server" />
+    </Frame>
+
+    5. Your browser opens — sign in with your Adspirer account and authorize access
+
+    <Frame caption="Authorize Claude Code to access your Adspirer account">
+      <img src="/images/claude-code/oauth-authorize.png" alt="Adspirer OAuth authorization page" />
+    </Frame>
+
+    6. Return to Claude Code — you'll see "Authentication successful. Connected to plugin:adspirer:adspirer."
+
+    <Frame caption="Authentication successful — you're connected">
+      <img src="/images/claude-code/auth-successful.png" alt="Authentication successful message in Claude Code" />
+    </Frame>
   </Step>
   <Step title="Set Up Your Brand Workspace">
     ```bash
@@ -63,6 +101,10 @@ npm install -g @anthropic-ai/claude-code
     ```
 
     This connects to your accounts, scans your folder for brand docs, pulls live campaign data, and creates a `CLAUDE.md` brand workspace file.
+
+    <Frame caption="All Adspirer slash commands available after setup">
+      <img src="/images/claude-code/slash-commands.png" alt="Adspirer slash commands in Claude Code" />
+    </Frame>
   </Step>
   <Step title="Try It Now">
     <Card
