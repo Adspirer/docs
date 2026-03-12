@@ -44,7 +44,7 @@ Results should be formatted as a table with columns: Platform, Spend, Conversion
 
 ### Deep Analysis Tools (Optional)
 
-- `analyze_wasted_spend` (Google) -- Find keywords with spend but no conversions
+- `analyze_wasted_spend` (Google), `analyze_meta_wasted_spend` (Meta), `analyze_linkedin_wasted_spend` (LinkedIn) -- Find campaigns wasting spend. Campaigns in learning phase (< 14 days) or with insufficient data (< $20 spend) are excluded from waste totals automatically.
 - `detect_meta_creative_fatigue` (Meta) -- Identify declining ad performance
 - `explain_performance_anomaly` (any platform) -- Diagnose sudden CPA spikes or CTR drops
 
@@ -92,7 +92,7 @@ flowchart TD
 
 ## 3. Google PMax Campaign Creation
 
-Performance Max campaigns require high-quality assets. Four-step workflow.
+Performance Max campaigns require high-quality assets plus optional search themes and audience signals for targeting.
 
 ### Tool Sequence
 
@@ -102,7 +102,10 @@ Performance Max campaigns require high-quality assets. Four-step workflow.
 3. help_user_upload (if assets missing) → guide user to upload to Merchant Center or provide URLs
 4. validate_and_prepare_assets → PMax requires: 5+ images, 1+ video, 5+ headlines, 5+ descriptions
 5. create_pmax_campaign → campaign created PAUSED
-6. ASK USER FOR CONFIRMATION
+6. add_pmax_search_themes → add up to 50 search themes to guide targeting (recommended)
+7. search_audiences → find relevant in-market, affinity, and custom audiences
+8. add_pmax_audience_signal → combine audience segments into a targeting signal (recommended)
+9. ASK USER FOR CONFIRMATION
 ```
 
 ```mermaid
@@ -113,7 +116,10 @@ flowchart TD
     C -->|Complete| E[validate_and_prepare_assets]
     D --> E
     E --> F[create_pmax_campaign PAUSED]
-    F --> G{{USER CONFIRMATION}}
+    F --> G[add_pmax_search_themes]
+    G --> H[search_audiences]
+    H --> I[add_pmax_audience_signal]
+    I --> J{{USER CONFIRMATION}}
 ```
 
 ### Asset Requirements
@@ -123,6 +129,24 @@ flowchart TD
 - 5 headlines (max 30 chars each)
 - 5 descriptions (max 90 chars each)
 - 1 logo (1200x1200px)
+
+### Search Themes (PMax Only)
+
+Search themes are short phrases (max 50 per asset group) that tell Google which search queries your PMax campaign should target. They supplement Google's automated targeting with explicit intent signals.
+
+- Derive themes from keyword research, search term reports, and brand context
+- Max **50 themes** per asset group
+- Only support **add** and **remove** (no update — remove + re-add instead)
+- Tools: `add_pmax_search_themes`, `get_pmax_search_themes`, `remove_pmax_search_themes`
+
+### Audience Signals (PMax Only)
+
+Audience signals tell Google which audience segments are most likely to convert. They are **signals, not hard targeting** — Google uses them as starting points and expands from there.
+
+- Only **one audience signal** per asset group (combine multiple segments in one signal)
+- Supported types: in-market audiences, affinity audiences, custom audiences, user lists (remarketing)
+- Use `search_audiences` to find audience IDs by keyword
+- Tools: `add_pmax_audience_signal`, `get_pmax_audience_signals`, `remove_pmax_audience_signal`
 
 ## 4. Meta Campaign Creation
 

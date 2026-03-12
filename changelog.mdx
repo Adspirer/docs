@@ -5,6 +5,52 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="March 11, 2026" description="v2.7.0" tags={["Platform", "Google Ads", "PMax", "Agent Skills"]}>
+
+## PMax Search Themes & Audience Signals
+
+Added 7 new tools for managing search themes and audience signals on Google Ads Performance Max campaigns. These PMax-only features give you direct control over how Google's automation targets search queries and audience segments.
+
+### New Tools
+
+| Tool | Type | Description |
+|------|------|-------------|
+| `add_pmax_search_themes` | Write | Add search themes to guide PMax targeting (max 50 per asset group) |
+| `get_pmax_search_themes` | Read | View current search themes on a PMax campaign |
+| `remove_pmax_search_themes` | Write | Remove specific search themes |
+| `add_pmax_audience_signal` | Write | Add audience signal combining in-market, affinity, custom audiences, and user lists |
+| `get_pmax_audience_signals` | Read | View current audience signals |
+| `remove_pmax_audience_signal` | Write | Remove an audience signal |
+| `search_audiences` | Read | Search for audiences by keyword across all Google Ads audience types |
+
+### Search Themes
+
+Short phrases (max 50 per asset group) that tell Google which search queries your PMax campaign should target. They supplement Google's automated targeting with explicit intent signals. Supports add and remove operations — to update, remove and re-add.
+
+### Audience Signals
+
+Tell Google which audience segments are most likely to convert. Combine multiple segment types in a single signal:
+
+- **In-market audiences** — users actively researching products in a category
+- **Affinity audiences** — users with sustained interests and habits
+- **Custom audiences** — account-level custom audience segments
+- **User lists** — first-party data (website visitors, customer lists, CRM uploads)
+
+Only one audience signal per asset group. Signals are suggestions, not hard targeting — Google uses them as starting points and expands.
+
+### Agent Skills Updated
+
+The Ad Campaign Management skill and Performance Marketing Agent now include search themes and audience signals in the PMax campaign creation workflow (steps 9-10). The agent will automatically recommend search themes based on keyword research and suggest relevant audience segments.
+
+### Bug Fixes
+
+- Fixed GAQL query syntax for asset group signals (`campaign.id` instead of `asset_group.campaign.id`)
+- Fixed audience search returning zero results (replaced case-sensitive GAQL LIKE with client-side filtering + `taxonomy_type` enum)
+- Added `user_list_ids` support for remarketing lists in audience signals
+- Increased max search themes from 25 to 50 (Google's actual limit)
+
+</Update>
+
 <Update label="March 7, 2026" description="v2.6.0" tags={["Authentication", "OpenClaw", "Security"]}>
 
 ## API Key Authentication (Personal Access Tokens)

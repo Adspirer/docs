@@ -66,6 +66,16 @@ You should see your Google Ads account listed with account name, customer ID, an
 - `create_search_campaign` -- Launch Google Search campaigns (text ads on search results, created PAUSED)
 - `create_pmax_campaign` -- Launch Performance Max campaigns (ads across all Google channels, created PAUSED)
 
+### PMax Search Themes & Audience Signals
+
+- `add_pmax_search_themes` -- Add search themes to guide PMax targeting (max 50 per asset group)
+- `get_pmax_search_themes` -- View current search themes on a PMax campaign
+- `remove_pmax_search_themes` -- Remove specific search themes
+- `add_pmax_audience_signal` -- Add audience signal combining in-market, affinity, custom audiences, and user lists
+- `get_pmax_audience_signals` -- View current audience signals
+- `remove_pmax_audience_signal` -- Remove an audience signal
+- `search_audiences` -- Search for audiences by keyword across all types
+
 ### Campaign Management
 
 - `update_campaign_budget` -- Change daily budget for existing campaigns
@@ -75,7 +85,7 @@ You should see your Google Ads account listed with account name, customer ID, an
 - `manage_ad_extensions` -- Add sitelinks, callouts, structured snippets
 
 <Tip>
-Google Ads has the largest tool set in Adspirer (39 tools total). The tools listed above are the most commonly used. Additional tools cover ad group management, bidding strategies, audience targeting, geographic targeting, and more.
+Google Ads has the largest tool set in Adspirer. The tools listed above are the most commonly used. Additional tools cover ad group management, bidding strategies, geographic targeting, and more.
 </Tip>
 
 ## Campaign Types
@@ -114,7 +124,7 @@ Google Search campaigns follow a 5-step workflow. Skip steps and the campaign wi
 
 ## PMax Campaign Creation Workflow
 
-Performance Max requires more creative assets than Search. Four-step workflow:
+Performance Max requires creative assets plus optional search themes and audience signals for targeting:
 
 ```
 1. get_connections_status
@@ -127,6 +137,10 @@ Performance Max requires more creative assets than Search. Four-step workflow:
    -> (PMax requires: 5+ images, 1+ video, 5+ headlines, 5+ descriptions)
 5. create_pmax_campaign
    -> (campaign created PAUSED)
+6. add_pmax_search_themes
+   -> (add up to 50 search themes to guide targeting)
+7. search_audiences + add_pmax_audience_signal
+   -> (find and add audience signals: in-market, affinity, custom, user lists)
 ```
 
 ### PMax Asset Requirements
@@ -186,6 +200,21 @@ Create a Performance Max campaign for luxury watches:
 - Objective: Online sales
 
 Validate all assets meet PMax requirements first.
+</Prompt>
+
+### Add Search Themes to PMax
+
+<Prompt description="Add search themes to an existing PMax campaign to guide targeting." actions={["copy", "cursor"]}>
+Add search themes to my Performance Max campaign.
+Use themes related to: AI ad management, automated advertising, MCP tools for ads.
+Show me the current themes first, then add new ones.
+</Prompt>
+
+### Add Audience Signals to PMax
+
+<Prompt description="Find and add audience signals to a PMax campaign for better targeting." actions={["copy", "cursor"]}>
+Search for in-market and affinity audiences related to "advertising software" and "marketing automation".
+Add them as audience signals to my PMax campaign.
 </Prompt>
 
 ### Optimize Budget
@@ -310,6 +339,14 @@ Yes. Adspirer supports multi-platform management. You can pull Google Ads perfor
 **[Meta Ads](/ad-platforms/meta-ads):** Best for demand generation (reaching people who don't know you exist) and visual products. Interest-based targeting. Lower intent but cheaper clicks.
 
 Most advertisers run both: Google for high-intent searches, Meta for awareness and retargeting.
+</Accordion>
+
+<Accordion title="What are PMax search themes and audience signals?">
+**Search themes** are short phrases (max 50 per asset group) that tell Google which search queries your Performance Max campaign should target. They supplement Google's automated targeting.
+
+**Audience signals** tell Google which audience segments are most likely to convert — in-market audiences, affinity audiences, custom audiences, and user lists (remarketing). They are signals, not hard targeting — Google uses them as starting points and expands from there. Only one audience signal is allowed per asset group.
+
+Both are PMax-only features and do not apply to Search, Display, or other campaign types.
 </Accordion>
 
 <Accordion title="How much does Adspirer cost for Google Ads?">

@@ -148,7 +148,7 @@ Write new Google Ads headlines and descriptions for my top-performing campaign. 
 
 ### Wasted Spend
 
-Audits all connected platforms for wasted ad spend. Finds zero-conversion keywords, fatigued creatives, underperforming audiences, and budget misallocations.
+Audits all connected platforms for wasted ad spend. Finds zero-conversion keywords, fatigued creatives, underperforming audiences, and budget misallocations. Automatically detects campaigns in learning phase or with insufficient data and excludes them from waste totals.
 
 **When to use:** Monthly budget reviews, when CPA is climbing, or when you suspect money is being wasted on underperforming campaigns.
 
@@ -160,10 +160,18 @@ Audits all connected platforms for wasted ad spend. Finds zero-conversion keywor
    - Google: `analyze_wasted_spend` + `analyze_search_terms`
    - Meta: `analyze_meta_wasted_spend`
    - LinkedIn: `analyze_linkedin_wasted_spend`
-4. Runs budget optimization analysis
-5. Presents total wasted spend, top waste sources, and potential monthly savings
-6. Recommends fixes: negative keywords, audience exclusions, budget shifts
-7. Gets your approval before making changes
+4. Separates campaigns into three categories:
+   - **Learning phase** (< 14 days of data) — shown separately, excluded from waste totals
+   - **Insufficient data** (< $20 spend) — shown separately, excluded from waste totals
+   - **Established campaigns** — full ROAS-based waste analysis
+5. Runs budget optimization analysis
+6. Presents total wasted spend, top waste sources, and potential monthly savings
+7. Recommends fixes: negative keywords, audience exclusions, budget shifts
+8. Gets your approval before making changes
+
+<Note>
+New campaigns are never flagged as "wasted spend." The tool waits for 14 days of data and at least $20 in spend before judging performance, so you won't get false alarms on campaigns that just launched.
+</Note>
 
 <Prompt description="Cross-platform wasted spend audit with savings estimate." actions={["copy", "cursor"]}>
 Find wasted spend across all my platforms. Show me which keywords have spend but zero conversions, which Meta ads are fatigued, and how much I could save per month.

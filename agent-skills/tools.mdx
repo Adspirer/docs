@@ -22,7 +22,7 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 | `research_keywords` | <Badge color="green">Read</Badge> | Find keywords with real CPC data from Google Keyword Planner |
 | `create_search_campaign` | <Badge color="red">Write</Badge> | Launch Google Search campaign (created PAUSED) |
 | `create_pmax_campaign` | <Badge color="red">Write</Badge> | Launch Performance Max campaign (created PAUSED) |
-| `analyze_wasted_spend` | <Badge color="green">Read</Badge> | Find keywords with spend but zero conversions |
+| `analyze_wasted_spend` | <Badge color="green">Read</Badge> | Find campaigns with wasted spend. Excludes learning-phase (< 14 days) and insufficient-data (< $20 spend) campaigns from waste totals. |
 | `optimize_budget_allocation` | <Badge color="green">Read</Badge> | Recommend budget shifts based on ROAS/CPA |
 | `analyze_search_terms` | <Badge color="green">Read</Badge> | Review actual search queries triggering your ads |
 | `discover_existing_assets` | <Badge color="green">Read</Badge> | Check if account has images/headlines/descriptions |
@@ -35,7 +35,14 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 | `manage_ad_extensions` | <Badge color="red">Write</Badge> | Add sitelinks, callouts, structured snippets |
 | `explain_performance_anomaly` | <Badge color="green">Read</Badge> | Diagnose sudden CPA spikes or CTR drops |
 | `help_user_upload` | <Badge color="green">Read</Badge> | Guide user through asset upload process |
-| ...and 22 more | | Ad group management, bidding, audience targeting, etc. |
+| `add_pmax_search_themes` | <Badge color="red">Write</Badge> | Add search themes to a PMax campaign's asset group (max 50). Guides Google's automated targeting. |
+| `get_pmax_search_themes` | <Badge color="green">Read</Badge> | View current search themes on a PMax campaign (max 50 per asset group) |
+| `remove_pmax_search_themes` | <Badge color="red">Write</Badge> | Remove specific search themes from a PMax campaign |
+| `add_pmax_audience_signal` | <Badge color="red">Write</Badge> | Add audience signal to PMax campaign. Combines in-market, affinity, custom audiences, and user lists. |
+| `get_pmax_audience_signals` | <Badge color="green">Read</Badge> | View current audience signals on a PMax campaign |
+| `remove_pmax_audience_signal` | <Badge color="red">Write</Badge> | Remove an audience signal from a PMax campaign |
+| `search_audiences` | <Badge color="green">Read</Badge> | Search Google Ads audiences by keyword across in-market, affinity, and custom types |
+| ...and 15 more | | Ad group management, bidding, geographic targeting, etc. |
 
 </Expandable>
 
