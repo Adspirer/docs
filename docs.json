@@ -160,6 +160,12 @@
             ]
           },
           {
+            "group": "OpenClaw",
+            "pages": [
+              "guides/deploy-paid-media-agent-hostinger"
+            ]
+          },
+          {
             "group": "Strategy",
             "pages": [
               "guides/ai-advertising",

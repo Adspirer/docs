@@ -24,105 +24,190 @@ You're deploying an expert, not configuring tools.
 
 ## Setup
 
-<Steps>
-  <Step title="Install OpenClaw">
-    ```bash
-    npm install -g openclaw
-    ```
-  </Step>
-  <Step title="Initialize OpenClaw">
-    ```bash
-    openclaw init
-    ```
+<Tabs>
+  <Tab title="Local Install">
+    Install OpenClaw on your own machine (Mac, Linux, or Windows with WSL).
 
-    This creates `~/.openclaw/openclaw.json` with default settings.
-  </Step>
-  <Step title="Set Tools Profile">
-    ```bash
-    openclaw config set tools.profile full
-    ```
-
-    This gives the agent access to bash, file operations, and web tools.
-  </Step>
-  <Step title="Install the Adspirer Plugin">
-    ```bash
-    openclaw plugins install openclaw-adspirer
-    ```
-
-    This installs the plugin with all 100+ tools and the 14.4KB SKILL.md instruction file bundled in. No separate skill or agent installation needed.
-  </Step>
-  <Step title="Authenticate with Adspirer">
-    <Tabs>
-      <Tab title="Web Login (OAuth)">
+    <Steps>
+      <Step title="Install OpenClaw">
         ```bash
-        openclaw adspirer login
+        npm install -g openclaw
+        ```
+      </Step>
+      <Step title="Initialize OpenClaw">
+        ```bash
+        openclaw init
         ```
 
-        Your browser opens for OAuth 2.1 sign-in. After signing in at adspirer.ai, you'll be redirected back automatically. No passwords stored locally.
-      </Tab>
-      <Tab title="API Key (Headless/Remote)">
-        Generate an API key at [adspirer.ai/keys](https://adspirer.ai/keys), then authenticate:
+        This creates `~/.openclaw/openclaw.json` with default settings.
+      </Step>
+      <Step title="Set Tools Profile">
+        ```bash
+        openclaw config set tools.profile full
+        ```
+
+        This gives the agent access to bash, file operations, and web tools.
+      </Step>
+      <Step title="Install the Adspirer Plugin">
+        ```bash
+        openclaw plugins install openclaw-adspirer
+        ```
+
+        This installs the plugin with all 100+ tools and the 14.4KB SKILL.md instruction file bundled in. No separate skill or agent installation needed.
+      </Step>
+      <Step title="Authenticate with Adspirer">
+        <Tabs>
+          <Tab title="Web Login (OAuth)">
+            ```bash
+            openclaw adspirer login
+            ```
+
+            Your browser opens for OAuth 2.1 sign-in. After signing in at adspirer.ai, you'll be redirected back automatically. No passwords stored locally.
+          </Tab>
+          <Tab title="API Key (Headless/Remote)">
+            Generate an API key at [adspirer.ai/keys](https://adspirer.ai/keys), then authenticate:
+
+            ```bash
+            openclaw adspirer login --token sk_live_your_token_here
+            ```
+
+            See [Remote Server Setup](#remote-server-setup) for Docker, CI/CD, and environment variable options.
+          </Tab>
+        </Tabs>
+      </Step>
+      <Step title="Restart the Gateway">
+        ```bash
+        openclaw gateway restart
+        ```
+
+        This loads the plugin and registers all 100+ ad management tools.
+      </Step>
+      <Step title="Connect Your Ad Platforms">
+        ```bash
+        openclaw adspirer connect
+        ```
+
+        This opens [adspirer.ai/connections](https://adspirer.ai/connections) where you can link:
+
+        - Google Ads
+        - Meta Ads (Facebook & Instagram)
+        - LinkedIn Ads
+        - TikTok Ads
+      </Step>
+      <Step title="Verify Your Setup">
+        ```bash
+        openclaw adspirer status
+        ```
+
+        You should see your authentication status, connected platforms, and tool count.
+      </Step>
+      <Step title="Start Using">
+        ```bash
+        openclaw
+        ```
+
+        Then ask the agent things like:
+
+        - "Show me my Google Ads campaign performance for the last 30 days"
+        - "What keywords are wasting spend?"
+        - "Create a new search campaign for..."
+        - "Pause campaign X"
+
+        <Card
+          title="Sign up for Adspirer — free to start"
+          icon="rocket"
+          href="https://adspirer.ai/sign-up?utm_source=docs&utm_medium=setup-cta&utm_content=openclaw"
+          horizontal
+        >
+          15 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
+        </Card>
+      </Step>
+    </Steps>
+
+    <Check>
+    You're connected. OpenClaw is now a fully configured advertising agent with built-in workflows.
+    </Check>
+  </Tab>
+  <Tab title="Hostinger VPS">
+    Deploy OpenClaw on a Hostinger VPS with OpenClaw pre-installed. Your agent runs 24/7 and is accessible from WhatsApp, Telegram, Discord, or a web dashboard. No terminal experience required.
+
+    <Tip>
+    For a detailed walkthrough with agency use cases and cost breakdown, see the [full Hostinger deployment guide](/guides/deploy-paid-media-agent-hostinger).
+    </Tip>
+
+    <Steps>
+      <Step title="Buy a Hostinger VPS with OpenClaw">
+        Go to [Hostinger's VPS marketplace](https://www.hostinger.com/vps/openclaw), select a plan, and click **Deploy**. OpenClaw is auto-selected as the pre-installed application.
+      </Step>
+      <Step title="Configure Environment Variables">
+        Hostinger's setup screen asks for configuration values:
+
+        - **OPENCLAW_GATEWAY_TOKEN** — auto-generated. **Copy and save this** — it's your login password.
+        - **WHATSAPP_NUMBER** — optional. Enter your phone number to connect WhatsApp later.
+        - **AI API keys** — optional. Leave blank if you're only using Adspirer for ad management.
+
+        Complete the purchase and wait for the status to show **Running** (1–2 minutes).
+      </Step>
+      <Step title="Generate Your Adspirer API Key">
+        In a new browser tab:
+
+        1. Go to [adspirer.ai/keys](https://adspirer.ai/keys)
+        2. Click **Generate New Key**
+        3. Name it "Hostinger server"
+        4. Copy the key — it starts with `sk_live_` and **won't be shown again**
+      </Step>
+      <Step title="Access Your Server's Terminal">
+        In Hostinger's hPanel, open the **Terminal** or **SSH Access** for your VPS.
+      </Step>
+      <Step title="Install the Adspirer Plugin">
+        ```bash
+        openclaw plugins install openclaw-adspirer
+        ```
+      </Step>
+      <Step title="Authenticate with Adspirer">
+        Replace `sk_live_your_token_here` with your actual API key:
 
         ```bash
         openclaw adspirer login --token sk_live_your_token_here
         ```
+      </Step>
+      <Step title="Restart the Gateway">
+        ```bash
+        openclaw gateway restart
+        ```
+      </Step>
+      <Step title="Connect Your Ad Platforms">
+        Go to [adspirer.ai/connections](https://adspirer.ai/connections) from any browser and connect your Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads accounts via OAuth.
+      </Step>
+      <Step title="Log Into the Dashboard">
+        Open `http://your-server-ip:port` in your browser (find the IP and port in Hostinger's Docker Manager). Enter your `OPENCLAW_GATEWAY_TOKEN` to log in.
+      </Step>
+      <Step title="Connect WhatsApp (Optional)">
+        In the OpenClaw dashboard, go to **Channels** → click **Show QR code** → scan with WhatsApp (**Settings → Linked Devices → Link a Device**).
+      </Step>
+      <Step title="Start Managing Ads">
+        Send a message from WhatsApp, Telegram, or the web dashboard:
 
-        See [Remote Server Setup](#remote-server-setup) for Docker, CI/CD, and environment variable options.
-      </Tab>
-    </Tabs>
-  </Step>
-  <Step title="Restart the Gateway">
-    ```bash
-    openclaw gateway restart
-    ```
+        > "Show me my Google Ads performance for the last 7 days"
 
-    This loads the plugin and registers all 100+ ad management tools.
-  </Step>
-  <Step title="Connect Your Ad Platforms">
-    ```bash
-    openclaw adspirer connect
-    ```
+        Your always-on ad agent is live.
 
-    This opens [adspirer.ai/connections](https://adspirer.ai/connections) where you can link:
+        <Card
+          title="Sign up for Adspirer — free to start"
+          icon="rocket"
+          href="https://adspirer.ai/sign-up?utm_source=docs&utm_medium=setup-cta&utm_content=openclaw-hostinger"
+          horizontal
+        >
+          15 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
+        </Card>
+      </Step>
+    </Steps>
 
-    - Google Ads
-    - Meta Ads (Facebook & Instagram)
-    - LinkedIn Ads
-    - TikTok Ads
-  </Step>
-  <Step title="Verify Your Setup">
-    ```bash
-    openclaw adspirer status
-    ```
-
-    You should see your authentication status, connected platforms, and tool count.
-  </Step>
-  <Step title="Start Using">
-    ```bash
-    openclaw
-    ```
-
-    Then ask the agent things like:
-
-    - "Show me my Google Ads campaign performance for the last 30 days"
-    - "What keywords are wasting spend?"
-    - "Create a new search campaign for..."
-    - "Pause campaign X"
-
-    <Card
-      title="Sign up for Adspirer — free to start"
-      icon="rocket"
-      href="https://adspirer.ai/sign-up?utm_source=docs&utm_medium=setup-cta&utm_content=openclaw"
-      horizontal
-    >
-      15 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
-    </Card>
-  </Step>
-</Steps>
-
-<Check>
-You're connected. OpenClaw is now a fully configured advertising agent with built-in workflows.
-</Check>
+    <Check>
+    Your agent is running 24/7 on Hostinger with Adspirer's 100+ ad tools and the built-in SKILL.md instruction file. It's accessible from WhatsApp, Telegram, Discord, or your web browser.
+    </Check>
+  </Tab>
+</Tabs>
 
 ## Remote Server Setup
 
