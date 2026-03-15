@@ -32,13 +32,50 @@ Previously, usage warnings were only visible in ChatGPT's widget. Now they appea
 
 </Update>
 
-<Update label="March 14, 2026" description="v2.8.0" tags={["Platform", "Google Ads", "Meta Ads", "Demand Gen"]}>
+<Update label="March 14, 2026" description="v2.8.2" tags={["Platform", "Google Ads", "Demand Gen"]}>
 
-## Demand Gen Campaigns
+## Demand Gen: Multi-Region Ad Groups
+
+Add ad groups to existing Demand Gen campaigns with `add_demandgen_ad_group`:
+
+- Each ad group can target **different locations** (e.g., US cities vs India cities vs UAE cities)
+- Each ad group can have its own **audience signals** (in-market + affinity segments)
+- Reuse existing account images and YouTube videos across ad groups
+- Different creative variations per ad group
+
+### Meta Ads: City Targeting & Placement Creatives
+
+- **City-level targeting** — target specific cities in Meta campaigns with `search_meta_targeting`
+- **Placement-specific creatives** — upload different images for Feed, Stories, and Reels placements
+- **Emoji support** — use emoji in Meta ad headlines and descriptions
+
+### AI Client Input Resilience
+
+Adspirer now handles common input mistakes from AI clients automatically:
+
+- JSON strings sent as text instead of objects are auto-parsed
+- Integer IDs sent instead of strings are auto-coerced
+- Extra whitespace and unknown fields are silently handled
+- Works across all 100+ tools — no more validation errors from formatting issues
+
+</Update>
+
+<Update label="March 12, 2026" description="v2.8.1" tags={["Platform", "Google Ads", "PMax"]}>
+
+## PMax: Multiple Asset Groups & Bidding Control
+
+- **Multiple asset groups per campaign** — create campaigns with distinct asset groups for different product lines or audiences
+- **Bidding strategy control** — your explicit bidding choice (Maximize Conversions, Target ROAS, etc.) is now always honored
+- **Auto-derived search themes** — search themes are automatically suggested from your headlines and descriptions
+- **Post-creation nudge** — after creating a PMax campaign, you're prompted to add search themes and audience signals
+
+</Update>
+
+<Update label="March 10, 2026" description="v2.8.0" tags={["Platform", "Google Ads", "Meta Ads", "Demand Gen"]}>
+
+## Demand Gen Campaign Creation
 
 Full support for Google Demand Gen campaigns — reach users across YouTube, Discover, Gmail, Display, and Maps from a single campaign.
-
-### Campaign Creation
 
 Create Demand Gen campaigns with `create_demandgen_campaign`:
 
@@ -48,42 +85,17 @@ Create Demand Gen campaigns with `create_demandgen_campaign`:
 - Location and language targeting at the campaign level
 - All bidding strategies supported: Maximize Clicks, Maximize Conversions, Target CPA, Target ROAS
 
-### Multi-Region Ad Groups
-
-Add ad groups to existing Demand Gen campaigns with `add_demandgen_ad_group`:
-
-- Each ad group can target **different locations** (e.g., US cities vs India cities vs UAE cities)
-- Each ad group can have its own **audience signals** (in-market + affinity segments)
-- Reuse existing account images and YouTube videos across ad groups
-- Different creative variations per ad group
-
 ### Audience Targeting
 
 - In-market and affinity audience segments via `search_audiences`
 - Reuse existing audiences from Google Ads UI
 - Per-ad-group audience customization
 
-## Meta Ads: City Targeting & Placement Creatives
+### Meta Ads Fixes
 
-- **City-level targeting** — target specific cities in Meta campaigns with `search_meta_targeting`
-- **Placement-specific creatives** — upload different images for Feed, Stories, and Reels placements
-- **Emoji support** — use emoji in Meta ad headlines and descriptions
-
-## PMax: Multiple Asset Groups & Bidding Control
-
-- **Multiple asset groups per campaign** — create campaigns with distinct asset groups for different product lines or audiences
-- **Bidding strategy control** — your explicit bidding choice (Maximize Conversions, Target ROAS, etc.) is now always honored
-- **Auto-derived search themes** — search themes are automatically suggested from your headlines and descriptions
-- **Post-creation nudge** — after creating a PMax campaign, you're prompted to add search themes and audience signals
-
-## AI Client Input Resilience
-
-Adspirer now handles common input mistakes from AI clients automatically:
-
-- JSON strings sent as text instead of objects are auto-parsed
-- Integer IDs sent instead of strings are auto-coerced
-- Extra whitespace and unknown fields are silently handled
-- Works across all 100+ tools — no more validation errors from formatting issues
+- Fixed lead form handling for OUTCOME_LEADS and OUTCOME_ENGAGEMENT campaigns
+- Fixed Meta page and Instagram account lookup for business accounts
+- Wasted spend analysis now respects learning phase and minimum spend thresholds
 
 </Update>
 
