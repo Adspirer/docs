@@ -1,0 +1,341 @@
+---
+title: "Manus Setup Guide"
+description: "Connect Manus AI to Adspirer MCP. Manage Google, Meta, LinkedIn, and TikTok Ads from Manus with 100+ tools, autonomous research, scheduled briefs, and interactive dashboards."
+icon: "wand-magic-sparkles"
+keywords: ["manus", "manus ai", "manus mcp", "autonomous agent", "dashboard", "api key"]
+---
+
+Autonomous ad management with deep research. Manus connects to Adspirer as a custom MCP server, giving it 100+ advertising tools across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads.
+
+## What Makes Manus + Adspirer Powerful
+
+Manus is an autonomous AI agent that can browse the web, write code, and execute multi-step tasks. When connected to Adspirer, it gains direct access to your ad accounts and can:
+
+- **Generate interactive dashboards** with charts, KPI cards, and data tables
+- **Run deep research** — competitor analysis, keyword research, market landscape
+- **Schedule performance briefs** — daily or weekly reports delivered to your inbox
+- **Monitor campaigns 24/7** — get alerts when ROAS drops or spend exceeds thresholds
+- **Create and manage campaigns** across all platforms from a single conversation
+
+Unlike other MCP clients that use OAuth, Manus connects via **API key authentication** through custom headers.
+
+## Prerequisites
+
+<Note>
+- A [Manus](https://manus.im) account
+- An Adspirer account ([free to start](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=page&utm_content=signup))
+- At least one ad platform account: Google Ads, Meta Ads, LinkedIn Ads, or TikTok Ads
+</Note>
+
+## Setup
+
+<Steps>
+  <Step title="Generate an Adspirer API Key">
+    1. Go to [adspirer.ai/keys](https://adspirer.ai/keys)
+    2. Click **Create New Key**
+    4. Give it a name (e.g., "Manus")
+    5. **Copy the key immediately** — it starts with `sk_live_` and is only shown once
+
+    <Warning>
+    Save your API key somewhere safe. You cannot view it again after creation. If you lose it, you'll need to generate a new one.
+    </Warning>
+  </Step>
+
+  <Step title="Open Manus MCP Settings">
+    1. Go to [manus.im](https://manus.im)
+    2. Click the **Settings** icon (gear) in the left sidebar
+    3. Click **Integrations**
+    4. Click **+ Add Custom MCP Server**
+  </Step>
+
+  <Step title="Configure the MCP Server">
+    Fill in the following fields:
+
+    | Field | Value |
+    |-------|-------|
+    | **Server Name** | `Adspirer` |
+    | **Transport Type** | `HTTP` |
+    | **Server URL** | `https://mcp.adspirer.com/mcp` |
+
+    Then add a custom header:
+
+    | Header Name | Header Value |
+    |-------------|-------------|
+    | `Authorization` | `Bearer sk_live_YOUR_API_KEY_HERE` |
+
+    Replace `sk_live_YOUR_API_KEY_HERE` with the actual API key you copied in Step 1.
+
+    <Tip>
+    Make sure there is a space between `Bearer` and your key. The full value should look like: `Bearer sk_live_YOUR_API_KEY_HERE`
+    </Tip>
+  </Step>
+
+  <Step title="Add Skills (Recommended)">
+    Skills teach Manus the correct workflow order, input formatting, and platform-specific patterns. Without skills, Manus discovers the tools but may not use them optimally. With skills, it operates like an expert performance marketer.
+
+    1. In Manus, click **Settings** (gear icon) in the left sidebar
+    2. Click **Skills**
+    3. Click **+ Add** → **Import from GitHub**
+    4. Import each skill by pasting its GitHub URL:
+
+    <Tabs>
+      <Tab title="Performance Marketing Agent">
+        Paste this URL in the Import from GitHub dialog:
+
+        ```
+        https://github.com/amekala/ads-mcp/tree/main/skills/performance-marketing-agent
+        ```
+
+        This skill teaches Manus to:
+        - Always check connected platforms first (`get_connections_status`)
+        - Follow the correct workflow order: read data → analyze → act
+        - Present results in structured tables with key metrics
+        - Handle cross-platform performance dashboards
+        - Properly format tool inputs (string IDs, budget numbers, text limits)
+        - Execute keyword research, budget optimization, and ROAS tracking
+
+        **Best for:** Daily performance management, campaign analysis, optimization
+      </Tab>
+      <Tab title="Ad Campaign Management">
+        Paste this URL in the Import from GitHub dialog:
+
+        ```
+        https://github.com/amekala/ads-mcp/tree/main/skills/ad-campaign-management
+        ```
+
+        This skill teaches Manus to:
+        - Match user goals to the right tools and workflows
+        - Create campaigns across Google (Search, PMax, Demand Gen, YouTube), Meta, LinkedIn, and TikTok
+        - Research competitors and keywords before campaign creation
+        - Manage ad extensions, bidding strategies, and audience targeting
+        - Build cross-platform performance scorecards
+        - Set up monitoring alerts and scheduled reports
+
+        **Best for:** Campaign creation, multi-platform management, strategic planning
+      </Tab>
+    </Tabs>
+
+    5. Toggle **both skills on** after importing
+
+    <Tip>
+    Import both skills for maximum effectiveness. Together they give Manus the full context needed to act as a complete advertising operations agent.
+    </Tip>
+  </Step>
+
+  <Step title="Save and Test">
+    1. Click **Save** to store the configuration
+    2. Click **Try it out** to verify the connection
+    3. If successful, Manus will discover all 100+ Adspirer tools
+
+    <Note>
+    If the connection fails, see the [Troubleshooting](#troubleshooting) section below.
+    </Note>
+  </Step>
+
+  <Step title="Try It">
+    Go back to the Manus chat and try a prompt:
+
+    ```
+    Help me test the Adspirer connector and show me how to use its features.
+    Show any data you can fetch. Give me a brief about its capabilities.
+    The user authorization bearer token in the header is already provided.
+    ```
+
+    Manus will discover the available tools, fetch your campaign data, and show you what's possible.
+
+    <Card
+      title="Sign up for Adspirer — free to start"
+      icon="rocket"
+      href="https://adspirer.ai/sign-up?utm_source=docs&utm_medium=setup-cta&utm_content=manus"
+      horizontal
+    >
+      15 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
+    </Card>
+  </Step>
+</Steps>
+
+## Using Skills in Conversation
+
+Once you've imported and enabled skills, you can invoke specific workflows directly in your Manus conversation:
+
+### Performance Analysis
+```
+Run a cross-platform performance dashboard for the last 30 days.
+Show me a unified scorecard across all connected platforms.
+```
+
+Manus will follow the skill workflow: check connections → pull data from each platform → pull waste analysis → present a unified scorecard with recommendations.
+
+### Campaign Creation with Research
+```
+I want to create a Google Search campaign for my plumbing business in Austin, TX.
+Research the market first, then build the campaign.
+```
+
+Manus will follow the campaign research workflow: web search for competitor ads → keyword research → analyze search terms → propose campaign structure → create after your approval.
+
+### Budget Optimization
+```
+Where am I wasting ad spend? Analyze all platforms and tell me
+what to cut and where to reallocate.
+```
+
+### Scheduled Briefs
+```
+Set up a daily performance brief and email it to me every morning at 9 AM.
+```
+
+### Monitoring Alerts
+```
+Monitor my campaigns and alert me if ROAS drops below 2x
+or daily spend exceeds $500.
+```
+
+### Reports
+```
+Generate a detailed performance report for all my ad accounts
+and email it to marketing@mycompany.com.
+```
+
+## How It Works
+
+<Steps>
+  <Step title="You send a prompt in Manus" icon="message">
+    Ask Manus anything — "Show my campaign performance", "Create a Google Search campaign", or "Set up a daily performance brief".
+  </Step>
+  <Step title="Manus uses Adspirer skills and tools" icon="wand-magic-sparkles">
+    Manus reads the imported skill instructions, discovers 100+ Adspirer MCP tools, and follows the correct workflow order automatically.
+  </Step>
+  <Step title="Adspirer MCP server handles authentication" icon="key">
+    Your API key (sent via the `Authorization` header) is validated server-side via SHA-256 hash lookup. Your raw key is never stored.
+  </Step>
+  <Step title="Data is fetched from your ad accounts" icon="chart-line">
+    Adspirer connects to your Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads, and YouTube Ads accounts using your stored OAuth tokens. Manus never sees your ad platform credentials.
+  </Step>
+</Steps>
+
+## API Key Management
+
+### Viewing Your Keys
+Go to [adspirer.ai/keys?tab=api-keys](https://adspirer.ai/keys) to see all your active keys. You'll see:
+- Key name
+- Key prefix (first 12 characters)
+- Created date
+- Last used date
+
+### Revoking a Key
+If a key is compromised or no longer needed:
+1. Go to [adspirer.ai/keys](https://adspirer.ai/keys)
+2. Click the **Revoke** button next to the key
+3. Generate a new key and update your Manus configuration
+
+### Key Limits by Plan
+
+| Plan | Max API Keys |
+|------|-------------|
+| Free | 2 |
+| Plus | 5 |
+| Pro | 10 |
+| Max | 20 |
+| Enterprise | 50 |
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Connection fails with 'OAuth authentication error'">
+    This means the `Authorization` header is not reaching the server. Common causes:
+
+    1. **Missing `Bearer` prefix** — The header value must start with `Bearer ` (with a space)
+    2. **Extra spaces or newlines** — Copy the key cleanly, no trailing whitespace
+    3. **Expired or revoked key** — Check your key status at [adspirer.ai/keys?tab=api-keys](https://adspirer.ai/keys)
+    4. **Manus overriding the header** — If the issue persists after verifying the above, try removing and re-adding the MCP server in Manus settings
+
+    To verify your key works independently:
+
+    ```bash
+    curl -X POST https://mcp.adspirer.com/mcp \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer sk_live_YOUR_KEY" \
+      -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-03-26","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}'
+    ```
+
+    A successful response returns the server capabilities. A `401` means the key is invalid.
+  </Accordion>
+
+  <Accordion title="'No Google Ads account connected' error">
+    Your API key is valid, but you haven't connected an ad platform yet:
+
+    1. Go to [adspirer.ai](https://adspirer.ai)
+    2. Click **Connections** in the sidebar
+    3. Connect your Google Ads, Meta Ads, or other platform
+    4. Return to Manus and try again
+  </Accordion>
+
+  <Accordion title="Tools not showing up in Manus">
+    After adding the MCP server:
+
+    1. Make sure you clicked **Save** (not just filled in the fields)
+    2. Click **Try it out** to verify the connection
+    3. Start a **new conversation** in Manus — tools are discovered per-session
+    4. If still missing, remove the server and add it again
+  </Accordion>
+
+  <Accordion title="'Session Expired' error during tool use">
+    Your API key may have expired (default expiration: 365 days):
+
+    1. Check your key status at [adspirer.ai/keys?tab=api-keys](https://adspirer.ai/keys)
+    2. If expired, generate a new key
+    3. Update the `Authorization` header in Manus settings with the new key
+  </Accordion>
+
+  <Accordion title="Manus calls tools in wrong order or formats inputs incorrectly">
+    This usually means skills are not configured:
+
+    1. Go to **Settings > Skills** in Manus
+    2. Click **+ Add > Import from GitHub**
+    3. Import both skills from `https://github.com/amekala/ads-mcp/tree/main/skills/performance-marketing-agent` and `https://github.com/amekala/ads-mcp/tree/main/skills/ad-campaign-management`
+    4. Toggle both skills **on** and start a new conversation
+
+    Skills teach Manus the correct workflow order, input formatting rules, and platform-specific patterns.
+  </Accordion>
+
+  <Accordion title="Manus can't access my ad data directly">
+    This is by design. Manus runs in isolation and cannot call ad platform APIs directly. Adspirer uses a **pre-fetch pattern**:
+
+    1. Adspirer fetches your campaign data using your stored OAuth tokens
+    2. The data is passed to Manus for analysis and report generation
+    3. Manus generates insights, dashboards, or PDFs from the pre-fetched data
+
+    This keeps your ad platform credentials secure — Manus never sees your OAuth tokens.
+  </Accordion>
+</AccordionGroup>
+
+## Comparison with Other Clients
+
+| Feature | Manus | Claude | ChatGPT | Cursor |
+|---------|-------|--------|---------|--------|
+| Auth method | API Key | OAuth | OAuth | OAuth |
+| Autonomous tasks | Yes | Limited | Limited | No |
+| Web research | Yes | No | Yes (Browse) | No |
+| Dashboard generation | Yes | No | No | No |
+| Scheduled briefs | Yes | No | No | No |
+| Skill support | Skills (GitHub import) | `.claude/` | Custom GPT | `.cursor/` |
+| Campaign management | Yes | Yes | Yes | Yes |
+| Performance queries | Yes | Yes | Yes | Yes |
+
+## What's Next
+
+<CardGroup cols={2}>
+  <Card title="Performance Marketing Agent Skill" icon="chart-line" href="https://github.com/amekala/ads-mcp/blob/main/skills/performance-marketing-agent/SKILL.md">
+    Full skill reference for performance analysis, optimization, and reporting workflows.
+  </Card>
+  <Card title="Ad Campaign Management Skill" icon="bullhorn" href="https://github.com/amekala/ads-mcp/blob/main/skills/ad-campaign-management/SKILL.md">
+    Full skill reference for campaign creation, keyword research, and multi-platform management.
+  </Card>
+  <Card title="Explore All Tools" icon="wrench" href="/agent-skills/tools">
+    Browse the full catalog of 100+ advertising tools available through Manus.
+  </Card>
+  <Card title="Ad Platform Setup" icon="plug" href="/ad-platforms/google-ads">
+    Connect your Google Ads, Meta Ads, LinkedIn, or TikTok accounts.
+  </Card>
+</CardGroup>
