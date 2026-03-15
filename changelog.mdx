@@ -5,6 +5,88 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="March 15, 2026" description="v2.9.0" tags={["Platform", "Google Ads", "Reliability"]}>
+
+## Quota Experience & Error Clarity
+
+Completely overhauled how Adspirer communicates quota limits and errors across all AI clients.
+
+### Usage Warnings Before You Hit the Wall
+
+Tool responses now include a visible usage footer when you're approaching your quota limit:
+
+- **75%+ usage** — `📊 12/15 free calls used (80%) — 3 remaining. Upgrade: ...`
+- **90%+ usage** — `🚨 2 calls remaining! Upgrade now to avoid interruption: ...`
+
+Previously, usage warnings were only visible in ChatGPT's widget. Now they appear on **all clients** — Claude, Claude Code, Cursor, Codex, and ChatGPT.
+
+### Diagnostic Tools Always Available
+
+`get_usage_status`, `get_connections_status`, and `echo_test` now work even when your quota is exhausted. You can always check your usage and connection status regardless of your remaining calls. These tools don't count against your quota.
+
+### Clear Error Messages
+
+- **Quota exceeded** — shows a clean upgrade message with pricing and payment link (previously showed a generic "Error occurred during tool execution" on Claude)
+- **Session expired** — now tells you exactly what happened and how to reconnect (previously showed the same generic error)
+- **Server errors** — include the actual error details and retry guidance
+
+</Update>
+
+<Update label="March 14, 2026" description="v2.8.0" tags={["Platform", "Google Ads", "Meta Ads", "Demand Gen"]}>
+
+## Demand Gen Campaigns
+
+Full support for Google Demand Gen campaigns — reach users across YouTube, Discover, Gmail, Display, and Maps from a single campaign.
+
+### Campaign Creation
+
+Create Demand Gen campaigns with `create_demandgen_campaign`:
+
+- **Multi-asset format** — landscape, square, and portrait images with headlines and descriptions
+- **Video responsive format** — YouTube videos with text overlays
+- Automatic sitelink, callout, and structured snippet extensions
+- Location and language targeting at the campaign level
+- All bidding strategies supported: Maximize Clicks, Maximize Conversions, Target CPA, Target ROAS
+
+### Multi-Region Ad Groups
+
+Add ad groups to existing Demand Gen campaigns with `add_demandgen_ad_group`:
+
+- Each ad group can target **different locations** (e.g., US cities vs India cities vs UAE cities)
+- Each ad group can have its own **audience signals** (in-market + affinity segments)
+- Reuse existing account images and YouTube videos across ad groups
+- Different creative variations per ad group
+
+### Audience Targeting
+
+- In-market and affinity audience segments via `search_audiences`
+- Reuse existing audiences from Google Ads UI
+- Per-ad-group audience customization
+
+## Meta Ads: City Targeting & Placement Creatives
+
+- **City-level targeting** — target specific cities in Meta campaigns with `search_meta_targeting`
+- **Placement-specific creatives** — upload different images for Feed, Stories, and Reels placements
+- **Emoji support** — use emoji in Meta ad headlines and descriptions
+
+## PMax: Multiple Asset Groups & Bidding Control
+
+- **Multiple asset groups per campaign** — create campaigns with distinct asset groups for different product lines or audiences
+- **Bidding strategy control** — your explicit bidding choice (Maximize Conversions, Target ROAS, etc.) is now always honored
+- **Auto-derived search themes** — search themes are automatically suggested from your headlines and descriptions
+- **Post-creation nudge** — after creating a PMax campaign, you're prompted to add search themes and audience signals
+
+## AI Client Input Resilience
+
+Adspirer now handles common input mistakes from AI clients automatically:
+
+- JSON strings sent as text instead of objects are auto-parsed
+- Integer IDs sent instead of strings are auto-coerced
+- Extra whitespace and unknown fields are silently handled
+- Works across all 100+ tools — no more validation errors from formatting issues
+
+</Update>
+
 <Update label="March 11, 2026" description="v2.7.0" tags={["Platform", "Google Ads", "PMax", "Agent Skills"]}>
 
 ## PMax Search Themes & Audience Signals
