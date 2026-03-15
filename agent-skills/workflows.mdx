@@ -187,6 +187,12 @@ flowchart TD
 - **Video:** 1080x1080px, MP4/MOV, under 4GB, 1-240 seconds
 - **Carousel:** 2-10 cards, each 1080x1080px
 
+### Ad Copy Tips
+
+- Use emojis, line breaks (`\n`), and bullet points (•, ✅, ▸) in `primary_text` for higher engagement
+- `primary_text` max 125 characters, headline max 40 characters
+- For location targeting, use `search_meta_targeting` with `search_type='location'` to find cities, regions, or zip codes — pass the returned objects directly to campaign creation
+
 ### Safety Rules
 
 <Warning>
@@ -385,7 +391,7 @@ These rules apply to ALL workflows:
 <Note>
 - **IDs must be strings:** Pass all IDs (`campaign_id`, `video_id`, `ad_account_id`, etc.) as quoted strings, never bare integers
 - **Never modify IDs:** Copy IDs exactly as returned by list/discover tools — do not round or change digits
-- **Respect text limits:** Google headline max 30 chars, description max 90, Meta primary_text max 125
+- **Respect text limits:** Google headline max 30 chars, description max 90, Meta primary_text max 125. Meta primary_text supports emojis and line breaks
 - **Enum casing:** The server auto-normalizes, but prefer uppercase for status/objective/match_type and lowercase for date_range/campaign_type
 - **Budgets are numbers:** Pass as numbers in account's local currency (not cents, not strings)
 - **Keywords as objects:** `add_negative_keywords` expects `[{"text": "free", "match_type": "BROAD"}]`, not `["free"]`
