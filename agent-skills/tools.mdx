@@ -148,6 +148,65 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 - **Format results as tables:** Performance data should be scannable (columns: metric, value, change vs. previous period)
 </Note>
 
+## Input Format Requirements
+
+Follow these rules when calling Adspirer tools to avoid validation errors:
+
+### IDs Must Be Strings
+All IDs (`campaign_id`, `ad_account_id`, `video_id`, `image_hash`, `ad_group_id`, `keyword_id`, `organization_id`, `creative_id`) must be passed as quoted strings, never as bare integers.
+
+```json
+// ✅ Correct
+{"existing_video_id": "1333064875515942"}
+
+// ❌ Wrong
+{"existing_video_id": 1333064875515942}
+```
+
+### Never Modify IDs
+Copy IDs exactly as returned by list/discover tools. Do not round, truncate, or change any digits.
+
+### Always Call List/Discover Before Create/Update
+Many tools require IDs from prior tool calls:
+- `list_campaigns` → get `campaign_id` before update/pause/structure
+- `get_campaign_structure` → get `ad_group_id` before keyword operations
+- `discover_existing_assets` → get `image_hash`, `video_id` before campaign creation
+- `get_linkedin_organizations` → get `organization_id` and `account_id`
+
+### Text Length Limits
+The server will reject text that exceeds platform limits:
+
+| Field | Platform | Max Characters |
+|-------|----------|---------------|
+| Headline | Google Ads | 30 |
+| Description | Google Ads | 90 |
+| Sitelink text | Google Ads | 25 |
+| Callout | Google Ads | 25 |
+| primary_text | Meta Ads | 125 |
+| Headline | Meta Ads | 40 |
+
+### Enum Values Are Case-Insensitive
+The server auto-normalizes casing. Common enum values:
+- **status:** `ENABLED`, `PAUSED`, `ACTIVE`, `ARCHIVED`
+- **objective:** `OUTCOME_TRAFFIC`, `OUTCOME_SALES`, `OUTCOME_LEADS`
+- **match_type:** `EXACT`, `PHRASE`, `BROAD`
+- **date_range:** `last_7_days`, `last_30_days`, `last_90_days`
+- **campaign_type:** `search`, `pmax`, `image`, `video`, `carousel`
+
+### Budgets Are Numbers
+Pass budget fields as numbers, not strings. Budget is in the account's local currency (not cents).
+
+### Keywords Format
+For `add_negative_keywords`, each keyword must be an object with `text` and `match_type` fields:
+
+```json
+// ✅ Correct
+{"keywords": [{"text": "free", "match_type": "BROAD"}]}
+
+// ❌ Wrong
+{"keywords": ["free", "cheap"]}
+```
+
 ## Related Documentation
 
 - [Core Workflows](/agent-skills/workflows) -- See how these tools fit into step-by-step processes

@@ -380,6 +380,19 @@ These rules apply to ALL workflows:
 6. **Format results as tables:** Make data scannable (columns: metric name, value, change vs. previous period)
 </Note>
 
+## Input Format Rules
+
+<Note>
+- **IDs must be strings:** Pass all IDs (`campaign_id`, `video_id`, `ad_account_id`, etc.) as quoted strings, never bare integers
+- **Never modify IDs:** Copy IDs exactly as returned by list/discover tools — do not round or change digits
+- **Respect text limits:** Google headline max 30 chars, description max 90, Meta primary_text max 125
+- **Enum casing:** The server auto-normalizes, but prefer uppercase for status/objective/match_type and lowercase for date_range/campaign_type
+- **Budgets are numbers:** Pass as numbers in account's local currency (not cents, not strings)
+- **Keywords as objects:** `add_negative_keywords` expects `[{"text": "free", "match_type": "BROAD"}]`, not `["free"]`
+</Note>
+
+See [Tool Catalog — Input Format Requirements](/agent-skills/tools#input-format-requirements) for full details.
+
 ## Related Documentation
 
 - [Tool Catalog](/agent-skills/tools) -- All 100+ tools with parameters
