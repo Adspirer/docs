@@ -100,6 +100,7 @@
               "ai-clients/codex",
               "ai-clients/openclaw",
               "ai-clients/windsurf",
+              "ai-clients/manus",
               "ai-clients/custom-gpt"
             ]
           },
