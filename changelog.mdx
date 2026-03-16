@@ -5,6 +5,38 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="March 16, 2026" description="v2.9.1" tags={["Authentication", "Performance", "AI Clients", "Meta Ads", "LinkedIn"]}>
+
+## Persistent MCP Sessions & Faster Auth
+
+### No More Frequent Reconnects
+
+MCP access tokens now last **1 week** instead of 1 hour. Claude, ChatGPT, Codex, and Cursor sessions stay authenticated much longer — no more "Error occurred during tool execution" after stepping away for an hour.
+
+Diagnostic tools (`get_usage_status`, `get_connections_status`) remain available even when your quota is exhausted, so you can always check your account status.
+
+### Faster Tool Responses
+
+Added an in-process auth cache that eliminates repeated token verification overhead. Subsequent tool calls in the same session resolve authentication instantly instead of re-verifying on every request.
+
+### Manus AI Client Support
+
+New setup guide for connecting Adspirer to [Manus](/ai-clients/manus) — the autonomous AI agent. Manus connects via API key authentication with Streamable HTTP transport. Import Adspirer skills directly from GitHub for campaign management workflows.
+
+### Meta Ads Fix
+
+Meta tools now always pass the correct connected ad account ID. Previously, some Meta tools could fail with "No ad account found" even when an account was connected.
+
+### LinkedIn Ads Fix
+
+Fixed currency formatting for LinkedIn campaign metrics. Campaigns with non-USD currencies now display correctly instead of showing raw API values.
+
+### Faster Google Ads Account Loading
+
+Google Ads account connections now load with lazy pagination and parallel processing. The connections page loads instantly instead of waiting for all accounts to resolve.
+
+</Update>
+
 <Update label="March 15, 2026" description="v2.9.0" tags={["Platform", "Google Ads", "Reliability"]}>
 
 ## Quota Experience & Error Clarity
