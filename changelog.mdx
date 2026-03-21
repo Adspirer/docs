@@ -5,6 +5,56 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="March 21, 2026" description="v2.9.4" tags={["Platform", "Google Ads", "Demand Gen", "PMax"]}>
+
+## Audience Targeting Fixes for Demand Gen, YouTube & PMax
+
+### Custom Interest Audiences Now Work in Demand Gen & YouTube
+
+Custom interest audiences (custom segments) were not being applied when creating Demand Gen or YouTube campaigns — even though the tool response showed them as set up. Remarketing audiences worked correctly, but custom interest targeting was silently dropped. This is now fixed. All audience segment types (in-market, affinity, custom audiences, and remarketing lists) work consistently across PMax, Demand Gen, and YouTube campaigns.
+
+### PMax: No More Unwanted Search Themes on Remarketing Campaigns
+
+When creating a PMax campaign with only remarketing audiences and no search themes, the system was auto-generating search themes from your ad headlines. If you only ask for audience targeting, search themes will no longer be added automatically.
+
+</Update>
+
+<Update label="March 19, 2026" description="v2.9.3" tags={["Authentication", "Reliability"]}>
+
+## Stable MCP Sessions
+
+### No More Intermittent "Invalid Token" Errors
+
+Fixed an issue where some tool calls would randomly fail with "Invalid or expired token" — especially after being idle for a while. Sessions are now resilient to Clerk session expiry. If a session token becomes stale, the system automatically recovers without requiring you to reconnect.
+
+</Update>
+
+<Update label="March 18, 2026" description="v2.9.2" tags={["Billing", "Onboarding"]}>
+
+## Billing & Onboarding UX
+
+### Billing Page
+
+- Fixed pricing display and plan comparison layout
+- Fixed broken navigation between billing sections
+- Improved upgrade/downgrade CTA logic
+
+### Onboarding
+
+- Fixed layout and scroll issues on onboarding screens
+- Plan tier messaging now accurately reflects current pricing
+- Save badge visibility fixed
+
+</Update>
+
+<Update label="March 17, 2026" description="v2.9.1.1" tags={["Automation", "Meta Ads", "LinkedIn", "TikTok"]}>
+
+## Automation Tools: Multi-Platform Fix
+
+Scheduled briefs, monitoring alerts, and on-demand reports now work correctly for **all platforms** — Meta Ads, LinkedIn Ads, and TikTok Ads. Previously, automation tools only worked reliably for Google Ads. Monitors set to track "all platforms" were silently resolving to zero accounts.
+
+</Update>
+
 <Update label="March 16, 2026" description="v2.9.1" tags={["Authentication", "Performance", "AI Clients", "Meta Ads", "LinkedIn"]}>
 
 ## Persistent MCP Sessions & Faster Auth
