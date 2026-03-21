@@ -1,6 +1,6 @@
 ---
 title: "Quickstart"
-description: "Get started with Adspirer in under 5 minutes. Sign up, connect your AI client (ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, or Windsurf), link an ad platform, and run your first campaign query."
+description: "Get started with Adspirer in under 5 minutes. Sign up, connect your AI client (ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, Windsurf, or Perplexity), link an ad platform, and run your first campaign query."
 icon: "rocket"
 keywords: ["setup", "install", "getting started", "connect ai client", "mcp setup"]
 ---
@@ -41,6 +41,9 @@ keywords: ["setup", "install", "getting started", "connect ai client", "mcp setu
       </Card>
       <Card title="Windsurf" icon="/icons/windsurf.svg" href="/ai-clients/windsurf">
         Add MCP config to Windsurf settings.
+      </Card>
+      <Card title="Perplexity" icon="/icons/perplexity.svg" href="/ai-clients/perplexity">
+        Add custom connector in Perplexity Computer.
       </Card>
       <Card title="Custom GPT" icon="/icons/chatgpt.svg" href="/ai-clients/custom-gpt">
         Use Adspirer inside ChatGPT via the GPT Store.
@@ -86,6 +89,16 @@ keywords: ["setup", "install", "getting started", "connect ai client", "mcp setu
           }
         }
         ```
+      </Tab>
+      <Tab title="Perplexity">
+        In Perplexity Computer, click **Connectors** → **+ Custom connector** and enter:
+
+        | Field | Value |
+        |-------|-------|
+        | **Name** | `Adspirer` |
+        | **MCP Server URL** | `https://mcp.adspirer.com/mcp` |
+
+        Check the acknowledgment box and click **Add**, then complete OAuth.
       </Tab>
       <Tab title="ChatGPT / Claude">
         No config needed — add the MCP connector from your app's Settings page:

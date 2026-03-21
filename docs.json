@@ -101,6 +101,7 @@
               "ai-clients/openclaw",
               "ai-clients/windsurf",
               "ai-clients/manus",
+              "ai-clients/perplexity",
               "ai-clients/custom-gpt"
             ]
           },

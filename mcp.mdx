@@ -21,7 +21,7 @@ flowchart LR
     B -->|REST API| F[TikTok Ads]
 ```
 
-One server, any AI client. Your Adspirer account works with ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, and Windsurf — all connecting to the same endpoint.
+One server, any AI client. Your Adspirer account works with ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, Windsurf, Perplexity, and Manus — all connecting to the same endpoint.
 
 ## MCP Server URL
 
@@ -37,7 +37,7 @@ Adspirer supports two MCP transport mechanisms:
 
 | Transport | Used By | How It Works |
 |-----------|---------|-------------|
-| **Streamable HTTP** | ChatGPT, Claude, Cursor, Windsurf | HTTP POST for requests, <Tooltip tip="Server-Sent Events — one-way streaming from server to client over HTTP">SSE</Tooltip> for streaming responses. Supports progress updates during long operations. |
+| **Streamable HTTP** | ChatGPT, Claude, Cursor, Windsurf, Perplexity, Manus | HTTP POST for requests, <Tooltip tip="Server-Sent Events — one-way streaming from server to client over HTTP">SSE</Tooltip> for streaming responses. Supports progress updates during long operations. |
 | **STDIO** | Claude Code (local) | JSON-RPC over stdin/stdout. Used for local terminal-based tools. |
 
 ### Streamable HTTP
@@ -223,6 +223,8 @@ Any MCP-compatible client can connect. Currently tested and documented:
 | Codex | Streamable HTTP | [Codex Setup](/ai-clients/codex) |
 | OpenClaw | Streamable HTTP | [OpenClaw Setup](/ai-clients/openclaw) |
 | Windsurf | Streamable HTTP | [Windsurf Setup](/ai-clients/windsurf) |
+| Perplexity (Pro/Max/Enterprise) | Streamable HTTP | [Perplexity Setup](/ai-clients/perplexity) |
+| Manus | Streamable HTTP | [Manus Setup](/ai-clients/manus) |
 
 ## FAQ
 

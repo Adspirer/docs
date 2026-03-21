@@ -1,7 +1,7 @@
 ---
 title: "Using Adspirer Across Multiple AI Clients"
 sidebarTitle: "Multi-Client"
-description: "Use the same Adspirer account with ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, and Windsurf. One account, one tool call limit, any AI client."
+description: "Use the same Adspirer account with ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, Windsurf, Perplexity, and Manus. One account, one tool call limit, any AI client."
 icon: "users"
 keywords: ["multi-client", "multiple ai clients", "cross-platform"]
 ---
@@ -19,6 +19,8 @@ Your Adspirer account works with every supported AI client. Connect once, use ev
 | [Codex](/ai-clients/codex) | Autonomous agent | Scheduled tasks, daily monitoring |
 | [OpenClaw](/ai-clients/openclaw) | CLI agent | Pre-configured advertising agent |
 | [Windsurf](/ai-clients/windsurf) | IDE | Codeium users |
+| [Perplexity](/ai-clients/perplexity) | Chat app + Agent | Search-powered research + ad management |
+| [Manus](/ai-clients/manus) | Autonomous agent | Deep research, dashboards, scheduled briefs |
 | [Custom GPT](/ai-clients/custom-gpt) | ChatGPT Store | Zero setup, mobile-friendly |
 
 All clients connect to the same MCP server (`mcp.adspirer.com/mcp`) and share your tool call quota.
@@ -31,7 +33,7 @@ Both work well. Claude has deeper MCP integration (Anthropic created MCP) with p
 
 ### Chat Apps vs Developer Tools
 
-**Chat apps** (ChatGPT, Claude) are conversational — you describe what you want in natural language. No configuration files.
+**Chat apps** (ChatGPT, Claude, Perplexity) are conversational — you describe what you want in natural language. No configuration files.
 
 **Developer tools** (Claude Code, Cursor, Codex, OpenClaw, Windsurf) support **agent skills** — instruction files that teach the AI optimal advertising workflows. Skills enforce safety rules automatically and improve tool invocation accuracy.
 
@@ -45,7 +47,7 @@ Both work well. Claude has deeper MCP integration (Anthropic created MCP) with p
 
 Your monthly tool call limit applies across **all** clients. If your Plus plan has 150 calls/month:
 
-- 50 calls from ChatGPT + 50 from Claude + 50 from Cursor = 150 total
+- 50 calls from ChatGPT + 50 from Claude + 25 from Perplexity + 25 from Cursor = 150 total
 - Switching clients doesn't reset your limit
 
 Check usage from any client:
