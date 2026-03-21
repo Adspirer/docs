@@ -162,6 +162,12 @@
             ]
           },
           {
+            "group": "Perplexity",
+            "pages": [
+              "guides/perplexity-computer-ads"
+            ]
+          },
+          {
             "group": "OpenClaw",
             "pages": [
               "guides/deploy-paid-media-agent-hostinger"
@@ -189,6 +195,7 @@
               "knowledge-base/platform-comparison",
               "knowledge-base/multi-account",
               "knowledge-base/multi-client",
+              "knowledge-base/computer-use-agents",
               "knowledge-base/capabilities",
               "knowledge-base/faq",
               "knowledge-base/glossary",
