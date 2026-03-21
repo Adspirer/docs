@@ -65,6 +65,38 @@ Search-powered ad management. Connect Adspirer to Perplexity Computer and combin
       <img src="/images/perplexity/adspirer-connected.png" alt="Perplexity Connectors page showing Adspirer connected with green checkmark" />
     </Frame>
   </Step>
+  <Step title="Add the Adspirer Skill (Recommended)">
+    Skills teach Perplexity Computer the *right way* to use Adspirer's 100+ tools — which tools to call first, how to validate data before creating campaigns, when to ask for confirmation. Without a skill, Computer guesses the tool order. With it, Computer follows proven advertising workflows.
+
+    1. Download the SKILL.md file from GitHub:
+
+    <Card
+      title="Download SKILL.md from GitHub"
+      icon="download"
+      href="https://github.com/amekala/ads-mcp/raw/main/shared/skills/adspirer-ads/SKILL.md"
+      horizontal
+    >
+      Click to download the `adspirer-ads` skill file.
+    </Card>
+
+    2. In Perplexity Computer, click **Skills** in the left sidebar
+    3. Click **+ Create skill** in the top-right corner
+    4. In the **Upload skill** dialog, drag the downloaded `SKILL.md` file or click to upload it
+
+    <Frame caption="Upload the SKILL.md file — drag and drop or click to browse">
+      <img src="/images/perplexity/upload-skill-dialog.png" alt="Perplexity Upload skill dialog showing file requirements and drag-and-drop area" />
+    </Frame>
+
+    5. The skill appears as **adspirer-ads** in your Skills list. Perplexity applies it automatically when you ask about advertising.
+
+    <Frame caption="Adspirer skill installed — Perplexity applies it automatically when needed">
+      <img src="/images/perplexity/skill-detail.png" alt="Perplexity skill detail showing adspirer-ads skill with SKILL.md file and description" />
+    </Frame>
+
+    <Tip>
+    The skill file is maintained in the [ads-mcp GitHub repository](https://github.com/amekala/ads-mcp/blob/main/shared/skills/adspirer-ads/SKILL.md) and always reflects the latest tools and workflows. Check back for updates as new platforms and tools are added.
+    </Tip>
+  </Step>
   <Step title="Start Managing Ads">
     Go back to Perplexity Computer and start a new task. Adspirer's 100+ tools are now available:
 
@@ -181,7 +213,7 @@ All three use the same Adspirer MCP server, so the 100+ advertising tools are id
 Yes. Your Adspirer account works across all platforms. Connect the same MCP URL to Perplexity, ChatGPT, Claude, Cursor, or any MCP-compatible client. Your ad account connections carry across all of them.
 </Accordion>
 <Accordion title="Does Perplexity support Adspirer skills?">
-Perplexity connects via MCP connectors (tools only). It does not support agent files or skill uploads like Claude Code or Cursor. However, Perplexity Computer's built-in reasoning is strong enough to use the tools effectively without explicit skills.
+Yes. Perplexity Computer supports skills — upload a `SKILL.md` file via **Computer → Skills → + Create skill**. The `adspirer-ads` skill teaches Computer proven advertising workflows and is available in the [ads-mcp GitHub repo](https://github.com/amekala/ads-mcp/blob/main/shared/skills/adspirer-ads/SKILL.md). Perplexity applies skills automatically when relevant to your prompt.
 </Accordion>
 <Accordion title="How much does this cost?">
 Adspirer pricing is based on tool calls, not ad spend. Free tier: 15 calls/month. Plus: $49/mo for 150 calls. Pro: $99/mo for 600 calls. Max: $199/mo for 3,000 calls. See [full pricing](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing). Perplexity's subscription is separate.
