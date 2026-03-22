@@ -218,6 +218,11 @@
           "icon": "server"
         },
         {
+          "anchor": "Developer Docs",
+          "href": "https://developer.adspirer.com",
+          "icon": "code"
+        },
+        {
           "anchor": "Support",
           "href": "/knowledge-base/support",
           "icon": "life-ring"
@@ -291,6 +296,7 @@
       {
         "header": "Product",
         "items": [
+          { "label": "Website", "href": "https://www.adspirer.com?utm_source=docs&utm_medium=footer&utm_content=website" },
           { "label": "MCP Server", "href": "https://mcp.adspirer.com" },
           { "label": "Pricing", "href": "https://www.adspirer.com/pricing?utm_source=docs&utm_medium=footer&utm_content=pricing" },
           { "label": "Changelog", "href": "/docs/changelog" },
@@ -301,6 +307,7 @@
         "header": "Resources",
         "items": [
           { "label": "Blog", "href": "https://www.adspirer.com/blog?utm_source=docs&utm_medium=footer&utm_content=blog" },
+          { "label": "Developer Docs", "href": "https://developer.adspirer.com?utm_source=docs&utm_medium=footer&utm_content=developer-docs" },
           { "label": "Guides", "href": "/docs/guides/ai-advertising" },
           { "label": "Tool Catalog", "href": "/docs/agent-skills/tools" },
           { "label": "How MCP Works", "href": "/docs/mcp" }
