@@ -285,6 +285,19 @@ This ensures all ad platform operations go through Adspirer's authenticated, aud
   <Accordion title="Can I edit the agent prompt?">
     Yes. The agent prompt is a markdown file. Edit it to change default behaviors, add custom workflows, or modify how the agent interacts with you. The source is in the [ads-mcp repository](https://github.com/amekala/ads-mcp/tree/main/shared/agents).
   </Accordion>
+  <Accordion title="The agent can't connect to Adspirer. How do I fix it?">
+    If the agent can't reach the MCP server (all tools fail, not just one platform), follow these steps:
+
+    1. **Check tool permissions** — read tools should be set to **Always allow**, write tools to **Custom** (ask each time). Blocked tools prevent the agent from executing anything.
+    2. **Disconnect and reconnect** the Adspirer connector in your AI client settings, then complete the OAuth flow again.
+    3. **Refresh your Adspirer session** — log out of [adspirer.ai](https://adspirer.ai), log back in, then return to your AI client.
+
+    **Claude and ChatGPT web users:** Connectors may disconnect every 1–2 weeks. This is normal behavior for web-based clients — just re-enable and re-authenticate.
+
+    **Important:** If some platforms work but one doesn't (e.g., Google works but LinkedIn fails), that's a platform-specific issue, not a connection problem. Reconnect just that platform at [adspirer.ai/connections](https://adspirer.ai/connections).
+
+    See [Troubleshooting FAQ](/knowledge-base/faq#troubleshooting) for more details.
+  </Accordion>
 </AccordionGroup>
 
 ## Related Documentation

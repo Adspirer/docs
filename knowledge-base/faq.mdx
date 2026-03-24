@@ -186,6 +186,50 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
 ## Troubleshooting
 
 <AccordionGroup>
+  <Accordion title="Nothing is working — tools fail or I can't reach Adspirer">
+    If **no tools work at all** (even `get_connections_status` or `echo_test` fails), this is a connection issue between your AI client and the Adspirer MCP server. Follow these steps in order:
+
+    **Step 1: Check tool permissions**
+
+    Your AI client needs the right tool permission settings:
+    - **Read tools** (performance analysis, keyword research, connection status): Set to **Always allow**
+    - **Write tools** (campaign creation, budget changes): Set to **Custom** (ask each time)
+
+    If tools are set to "Block" or "Never allow," Adspirer can't execute anything. Check your connector settings and toggle permissions.
+
+    **Step 2: Disconnect and reconnect the Adspirer connector**
+
+    - **Claude (web/desktop):** Go to **Customize → Connectors**, find Ads MCP, click **Disconnect**, then **Connect** again and complete the OAuth flow
+    - **ChatGPT:** Go to **Settings → Connectors**, remove Adspirer-MCP, then re-add it with URL `https://mcp.adspirer.com/mcp` and complete OAuth
+    - **Claude Code:** Run `claude mcp remove adspirer`, then `claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp`, restart, and re-authenticate via `/mcp`
+    - **Cursor:** Re-connect via MCP settings
+
+    **Step 3: Refresh your Adspirer session**
+
+    If reconnecting the connector doesn't fix it, your Adspirer login session may have expired:
+    1. Go to [adspirer.ai](https://adspirer.ai)
+    2. Log out (click your avatar → Sign out)
+    3. Log back in
+    4. Return to your AI client and try again
+
+    <Note>
+    **When does this apply?** Only when *nothing* works — not even basic tools like `get_connections_status`. If some ad accounts work but one doesn't (e.g., Google works but LinkedIn fails), that's a platform-specific connection issue, not a general connection problem. In that case, reconnect just that platform at [adspirer.ai/connections](https://adspirer.ai/connections).
+    </Note>
+  </Accordion>
+  <Accordion title="Why does my connector keep disconnecting? (Claude / ChatGPT web)">
+    Claude (web/desktop) and ChatGPT periodically disconnect MCP connectors — typically every **1–2 weeks**. This is normal behavior for web-based AI clients, not an Adspirer issue.
+
+    **When it happens:**
+    1. Go to your AI client's connector settings
+    2. Find Adspirer / Ads MCP
+    3. Click **Connect** (or re-enable it)
+    4. Complete the OAuth flow if prompted
+    5. Verify tool permissions are set correctly (read tools → Always allow, write tools → Custom)
+
+    <Tip>
+    If you find yourself reconnecting frequently, make sure you're logged into [adspirer.ai](https://adspirer.ai) in the same browser. An active Adspirer session makes re-authentication faster (often just a single click).
+    </Tip>
+  </Accordion>
   <Accordion title="Why isn't Adspirer connecting to my ad account?">
     Common causes:
 
@@ -199,7 +243,10 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
 
     - **Claude Code:** Run `/mcp`, select the Adspirer server, and re-authenticate
     - **Claude:** Reconnect the connector in Customize → Connectors
+    - **ChatGPT:** Reconnect in Settings → Connectors
     - **Cursor:** Re-connect via MCP settings
+
+    If re-authenticating doesn't work, log out of [adspirer.ai](https://adspirer.ai) and log back in to refresh your session, then reconnect the connector.
   </Accordion>
   <Accordion title="I hit my tool call limit. What now?">
     Your free tier includes 15 tool calls/month. Options:

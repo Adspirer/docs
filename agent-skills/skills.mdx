@@ -214,6 +214,15 @@ Changes take effect immediately (or after restarting your AI client).
   <Accordion title="Do skills work across all IDEs?">
     The same skill content works in Claude Code, Cursor, and Codex — but with IDE-specific adaptations. Claude Code uses `CLAUDE.md` for brand context, Cursor uses `BRAND.md`, and Codex uses `AGENTS.md`. The [sync script](https://github.com/amekala/ads-mcp/blob/main/scripts/sync-skills.sh) generates IDE-specific versions from shared templates.
   </Accordion>
+  <Accordion title="Skills can't reach Adspirer — what do I do?">
+    If skills fail because the MCP server is unreachable, the issue is your connector, not the skill. Follow these steps:
+
+    1. **Check tool permissions** in your AI client's connector settings — read tools should be **Always allow**, write tools should be **Custom**
+    2. **Disconnect and reconnect** the Adspirer connector, then complete the OAuth flow again
+    3. **Refresh your Adspirer session** — log out of [adspirer.ai](https://adspirer.ai) and log back in
+
+    Claude and ChatGPT web connectors may disconnect every 1–2 weeks. This is normal — just re-enable and re-authenticate. See [Troubleshooting FAQ](/knowledge-base/faq#troubleshooting) for full details.
+  </Accordion>
 </AccordionGroup>
 
 ## Related Documentation
