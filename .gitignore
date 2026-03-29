@@ -16,3 +16,9 @@ logo/Frame*
 # Node
 node_modules/
 zscaler-design-brief.md
+strategy-aware-execution-plan.md
+docs-improvement-plan.md
+*.mp3
+generate-*.py
+MINTLIFY-AUDIT*
+MINTLIFY-AUDIT-TTS.md
