@@ -5,6 +5,113 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="March 25, 2026" description="v2.11.0" tags={["Platform", "Google Ads", "Meta Ads", "Lead Gen", "OpenClaw"]}>
+
+## Lead Gen Campaign Support
+
+Full lead generation support across Google Ads and Meta Ads — performance analysis, wasted spend, and audience tools now handle lead gen campaigns correctly.
+
+### Google Ads Lead Gen
+
+- Performance analysis, wasted spend, and audience tools now work for campaigns optimized for leads. Previously, tools could crash or show incorrect metrics for lead gen campaigns.
+- Conversion metrics now use primary conversions only (`metrics.conversions`), matching what you see in the Google Ads UI. Previously, Adspirer reported all conversions including secondary actions, which inflated numbers.
+- PMax search themes now correctly apply to the specified asset group, not the first one found.
+
+### Meta Ads Lead Gen
+
+- All performance tools — `analyze_meta_campaign_performance`, `analyze_meta_ad_performance`, `get_meta_wasted_spend`, and audience analysis — now support lead gen campaigns (OUTCOME_LEADS optimization).
+- CPA calculation now uses the ad set's optimization event instead of dividing by total conversions. If you're optimizing for leads, CPA reflects cost-per-lead, not cost-per-all-actions.
+- Audience CPA sort order now shows lowest CPA first for lead gen campaigns.
+
+### Audience Search Fix
+
+- `search_audiences` now returns results for multi-word queries (e.g., "digital marketing" or "home improvement"). Previously, multi-word searches returned zero results, causing AI clients to fabricate audience IDs.
+- DemandGen and YouTube tools now validate audience segment IDs against the API instead of accepting AI-generated IDs that don't exist.
+
+### OpenClaw Plugin Fix
+
+Fixed empty-argument bug affecting all 143 tools. The OpenClaw plugin now ships complete input schemas, so tools receive the parameters you provide instead of empty objects.
+
+### Faster Tool Responses
+
+- Google Ads account list cached in Redis (3-minute TTL) — subsequent tool calls skip the account discovery API call.
+- All Google Ads data cache TTLs increased to 10 minutes — repeat queries (e.g., checking campaign performance twice) return instantly from cache.
+
+</Update>
+
+<Update label="March 24, 2026" description="v2.10.0" tags={["Platform", "Google Ads", "Meta Ads", "Reliability"]}>
+
+## Google Ads Rate Limit Fix & MCC Reliability
+
+### Rate Limit Resolution (P0)
+
+Fixed a critical issue where Google Ads API rate limits (HTTP 429) could block **all users** — not just the affected account. The system now caches account list responses and includes an emergency recovery endpoint. Users who were seeing "Resource has been exhausted" errors should no longer be affected by other accounts' API usage.
+
+### MCC Account Fixes
+
+- Child accounts under MCC (My Client Center) manager accounts now correctly resolve their `login_customer_id` during onboarding and tool calls. Previously, some MCC child accounts would fail with "The caller does not have permission" errors.
+- Direct (non-MCC) accounts are no longer incorrectly mapped to an MCC manager, which caused "customer not found" errors for users with standalone ad accounts.
+- `login_customer_id` is now stored in the database, eliminating a `ListAccessibleCustomers` API call on every tool call — faster and more reliable.
+
+### Meta Ads CPA Fix
+
+CPA for Meta campaigns now uses the ad set's optimization event (e.g., cost per lead, cost per purchase) instead of dividing spend by total conversions. This was especially inaccurate for lead gen campaigns where secondary events inflated the denominator.
+
+</Update>
+
+<Update label="March 22, 2026" description="v2.9.7" tags={["Platform", "Google Ads", "LinkedIn", "Meta Ads", "Authentication"]}>
+
+## Error Clarity, LinkedIn & Meta Fixes
+
+### Google Ads Error Messages
+
+- Centralized error parsing across all 18 Google Ads write operations. Errors now show the specific field and issue (e.g., "headline exceeds 30 characters") instead of raw API codes.
+- `add_keywords` now detects policy violations (trademark, restricted content) and provides specific guidance.
+- `update_bid_strategy` returns actionable error details when a strategy change fails, instead of just the strategy name.
+
+### LinkedIn Improvements
+
+- `search_linkedin_targeting` now uses LinkedIn's typeahead API for better, faster targeting search results. Facet names (job title, company, industry) are correctly mapped to LinkedIn's API format.
+- Fixed parameter mismatches, null handling, and error parsing across LinkedIn Ads tools.
+
+### Meta Ads Fixes
+
+- `add_meta_ad` and `add_meta_ad_set` now honor the name you provide. Previously, the user-provided name was silently ignored.
+- `add_keywords` routing fix — calls now use the correct code path with policy violation detection.
+
+### OAuth Fix
+
+Fixed a 500 error on the OAuth authorization page. Users connecting via ChatGPT or Claude would see a server error instead of the consent screen.
+
+</Update>
+
+<Update label="March 21, 2026" description="v2.9.6" tags={["Platform", "LinkedIn", "Google Ads", "Automation"]}>
+
+## LinkedIn Creatives & Campaign Enhancements
+
+### LinkedIn Creatives
+
+- Fixed `list_linkedin_creatives` returning empty results for large accounts (22,000+ creatives). Pagination now handles all account sizes correctly.
+- Fixed duplicate creatives appearing in results due to pagination overlap.
+- Rewrote creative filtering to use LinkedIn's server-side FINDER API, eliminating timeouts on campaign-level creative lookups.
+- Fixed LinkedIn metrics silently dropping to zero, MCP timeout on large result sets, and pagination breaking on no-match scenarios.
+
+### Google Ads Campaign Extensions
+
+- Added `MAXIMIZE_CONVERSION_VALUE` as a supported bidding strategy for all campaign types.
+- Extensions (sitelinks, callouts, snippets) are now added in a single batch operation instead of individually, reducing API calls and errors.
+- Automatic retry on `CONCURRENT_MODIFICATION` errors when multiple operations target the same campaign.
+
+### PMax, Demand Gen & YouTube
+
+Your business logo is now automatically injected into PMax, Demand Gen, and YouTube campaigns during creation — no need to provide it manually if one exists at the account level.
+
+### Monitoring
+
+Fixed `create_monitor` using a 30-minute default check interval, which was below the API minimum of 1,440 minutes (24 hours). Monitors now default to a valid interval.
+
+</Update>
+
 <Update label="March 21, 2026" description="v2.9.5" tags={["AI Clients", "Documentation", "Perplexity"]}>
 
 ## Perplexity Computer Support
