@@ -31,7 +31,7 @@
     "timestamp": true
   },
   "banner": {
-    "content": "**New:** YouTube Ads campaign support is now live. Create video ad campaigns from your AI client. [See what's new →](/docs/changelog)",
+    "content": "**New:** Adspirer is now an official Claude plugin. Search \"adspirer\" in Claude Code or Cowork to install. [See what's new →](/docs/changelog)",
     "dismissible": true
   },
   "search": {
