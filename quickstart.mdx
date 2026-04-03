@@ -1,6 +1,6 @@
 ---
 title: "Quickstart"
-description: "Get started with Adspirer in under 5 minutes. Sign up, connect your AI client (ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, Windsurf, or Perplexity), link an ad platform, and run your first campaign query."
+description: "Get started with Adspirer in under 5 minutes. Sign up, connect your AI client (ChatGPT, Claude, Claude Code, Gemini CLI, Cursor, Codex, OpenClaw, Windsurf, or Perplexity), link an ad platform, and run your first campaign query."
 icon: "rocket"
 keywords: ["setup", "install", "getting started", "connect ai client", "mcp setup"]
 ---
@@ -29,6 +29,9 @@ keywords: ["setup", "install", "getting started", "connect ai client", "mcp setu
     <CardGroup cols={2}>
       <Card title="Claude Code" icon="/icons/claude-code.svg" href="/ai-clients/claude-code">
         Plugin install or one MCP command from your terminal.
+      </Card>
+      <Card title="Gemini CLI" icon="/icons/gemini.svg" href="/ai-clients/gemini-cli">
+        One-command extension install from your terminal.
       </Card>
       <Card title="Cursor" icon="/icons/cursor.svg" href="/ai-clients/cursor">
         One-command installer with 5 skills and subagent.
@@ -76,6 +79,12 @@ keywords: ["setup", "install", "getting started", "connect ai client", "mcp setu
         openclaw plugins install openclaw-adspirer
         openclaw adspirer login
         ```
+      </Tab>
+      <Tab title="Gemini CLI">
+        ```bash
+        gemini extensions install https://github.com/amekala/ads-mcp
+        ```
+        Browser opens automatically for OAuth on first tool use.
       </Tab>
       <Tab title="Windsurf">
         Add to `~/.codeium/windsurf/mcp_config.json`:

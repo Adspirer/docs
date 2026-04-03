@@ -96,6 +96,7 @@
               "ai-clients/claude",
               "ai-clients/claude-cowork",
               "ai-clients/claude-code",
+              "ai-clients/gemini-cli",
               "ai-clients/cursor",
               "ai-clients/codex",
               "ai-clients/openclaw",
