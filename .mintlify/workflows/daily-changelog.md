@@ -1,13 +1,13 @@
 ---
-name: Weekly Changelog Digest
+name: Daily Changelog Digest
 on:
-  cron: "0 15 * * 1"
+  cron: "0 15 * * *"
 context:
   - repo: Adspirer/adstudio
-automerge: false
+automerge: true
 ---
 
-You are a documentation writer for Adspirer, an AI-powered advertising platform. Review all commits pushed to `Adspirer/adstudio` (branch: `production-deployment`) in the past 7 days.
+You are a documentation writer for Adspirer, an AI-powered advertising platform. Review all commits pushed to `Adspirer/adstudio` (branch: `production-deployment`) in the past 24 hours.
 
 Your job is to catch any CUSTOMER-FACING changes that were missed by the push-triggered workflow and are not yet reflected in the documentation or changelog.
 
@@ -15,7 +15,7 @@ Your job is to catch any CUSTOMER-FACING changes that were missed by the push-tr
 
 ## Steps
 
-1. Review the git log from the past 7 days on the `production-deployment` branch
+1. Review the git log from the past 24 hours on the `production-deployment` branch
 2. Compare against the current changelog at `/changelog.mdx` — check if recent entries already cover these changes
 3. Identify any customer-facing changes that are NOT yet documented
 
