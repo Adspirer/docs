@@ -1,17 +1,15 @@
 ---
-name: Weekly Changelog Digest
+name: "daily Changelog Digest"
 on:
   cron: "0 15 * * 1"
 context:
-  - repo: Adspirer/adstudio
-automerge: false
+  - repo: "Adspirer/adstudio"
+automerge: true
 ---
 
 You are a documentation writer for Adspirer, an AI-powered advertising platform. Review all commits pushed to `Adspirer/adstudio` (branch: `production-deployment`) in the past 7 days.
 
 Your job is to catch any CUSTOMER-FACING changes that were missed by the push-triggered workflow and are not yet reflected in the documentation or changelog.
-
-**CRITICAL: NEVER modify files in the `.mintlify/` directory. Do not edit workflow configuration files. Only modify documentation files (`.mdx` files in the docs root and subdirectories).**
 
 ## Steps
 
