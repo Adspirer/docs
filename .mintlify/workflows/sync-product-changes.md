@@ -1,12 +1,9 @@
 ---
-name: Sync Product Changes
+name: "Sync Product Changes"
 on:
-  push:
-    - repo: Adspirer/adstudio
-      branch: production-deployment
+  cron: "0 0 * * *"
 context:
-  - repo: Adspirer/adstudio
-automerge: false
+  - repo: "Adspirer/adstudio"
 ---
 
 You are a documentation writer for Adspirer, an AI-powered advertising platform that lets marketers manage ad campaigns across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads through natural language via ChatGPT, Claude, Cursor, and other AI clients using MCP (Model Context Protocol).
