@@ -5,6 +5,30 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="April 8, 2026" description="v2.15.1" tags={["Platform", "Meta Ads"]}>
+
+## Meta Ads: ad set parity and custom audience reliability
+
+### `add_meta_ad_set` now supports all campaign-level features
+
+When adding ad sets to existing Meta campaigns, you can now use the same parameters that were previously only available at campaign creation:
+
+- **Lifetime budgets** — set `budget_lifetime` on individual ad sets
+- **End dates** — set `end_time` on ad sets (required when using lifetime budgets)
+- **Multi-advertiser opt-out** — control `multi_advertiser` per ad set
+- **Granular placements** — set `publisher_platforms`, `facebook_positions`, and `instagram_positions` per ad set
+
+### Custom conversion tracking fix
+
+`custom_conversion_id` is now properly decomposed into its underlying pixel and event configuration before being sent to Meta. Previously, passing a custom conversion ID could cause a Meta API error on campaign or ad set creation. Adspirer now automatically resolves the conversion via the Meta API and applies the correct pixel ID and event type.
+
+### `list_meta_custom_audiences` reliability
+
+- Timeout increased from 30 seconds to 90 seconds — accounts with 1,000+ audiences no longer time out
+- Audience status now displays as clean labels ("Active", "Paused") instead of raw SDK objects
+
+</Update>
+
 <Update label="April 7, 2026" description="v2.15.0" tags={["Platform", "TikTok", "Performance Analytics"]}>
 
 ## TikTok Ads: full performance analytics
