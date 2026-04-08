@@ -1,6 +1,6 @@
 ---
 title: "Meta Ads Integration"
-description: "Manage Facebook and Instagram campaigns with Adspirer's 21 MCP tools. Create image, video, and carousel ads, detect creative fatigue, optimize audiences, and analyze performance across Meta placements."
+description: "Manage Facebook and Instagram campaigns with Adspirer's 23 MCP tools. Create image, video, and carousel ads, add ad sets and ads to existing campaigns, detect creative fatigue, optimize audiences, and analyze performance across Meta placements."
 icon: "image"
 keywords: ["meta ads", "facebook ads", "instagram ads", "social media ads", "carousel"]
 ---
@@ -32,7 +32,7 @@ Check my connected ad platforms
 
 You should see your Meta ad account listed with account name, ID, and active status.
 
-## What You Can Do (21 Tools)
+## What You Can Do (23 Tools)
 
 ### Performance Analysis
 
@@ -56,6 +56,8 @@ You should see your Meta ad account listed with account name, ID, and active sta
 - `create_meta_image_campaign` — Launch single-image campaigns (supports lifetime budgets, end dates, placement controls)
 - `create_meta_video_campaign` — Launch video campaigns (supports lifetime budgets, end dates, placement controls)
 - `create_meta_carousel_campaign` — Launch multi-card carousel campaigns (supports lifetime budgets, end dates, placement controls)
+- `add_meta_ad_set` — Add a new ad set with targeting and creative to an existing campaign (supports lifetime budgets, end dates, placement controls, multi-advertiser opt-out)
+- `add_meta_ad` — Add a new ad creative to an existing ad set (supports multi-advertiser opt-out, placement-specific creatives)
 
 ### Optimization
 
@@ -86,6 +88,15 @@ Meta campaigns follow a 6-step workflow. Skip steps and the campaign will fail v
 6. create_meta_*_campaign
    ↓ (image/video/carousel — campaign created PAUSED)
 ```
+
+### Scaling existing campaigns
+
+Once a campaign is live, use `add_meta_ad_set` to add new ad sets with different targeting or budgets to the same campaign, and `add_meta_ad` to add new creatives to an existing ad set.
+
+- **Different audiences or budgets** → same campaign, different ad sets → use `add_meta_ad_set`
+- **Different creatives, same audience** → same ad set, different ads → use `add_meta_ad`
+
+`add_meta_ad_set` supports all the same options as campaign creation: lifetime budgets, end dates, placement controls (`publisher_platforms`, `facebook_positions`, `instagram_positions`), and multi-advertiser opt-out.
 
 ## Example Prompts
 
