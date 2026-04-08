@@ -5,6 +5,34 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="April 8, 2026" description="v2.15.1" tags={["Platform", "Meta Ads"]}>
+
+## Meta Ads: `add_meta_ad_set` and `add_meta_ad` now at full parity
+
+The `add_meta_ad_set` tool now supports all the same options as campaign creation — lifetime budgets, end dates, placement controls, and multi-advertiser opt-out. Previously, these parameters were only available when creating a new campaign, not when adding ad sets to existing ones.
+
+### New parameters on `add_meta_ad_set`
+
+- `budget_lifetime` — Set a lifetime budget (mutually exclusive with daily budget, requires `end_time`)
+- `end_time` — Schedule when the ad set stops running (ISO format)
+- `publisher_platforms` — Choose platforms: `facebook`, `instagram`, `audience_network`, `messenger`
+- `facebook_positions` — Control Facebook placements: `feed`, `right_hand_column`, `story`, `facebook_reels`, etc.
+- `instagram_positions` — Control Instagram placements: `stream`, `story`, `reels`, `explore`, etc.
+- `multi_advertiser` — Set to `false` to opt out of Meta's multi-advertiser ad format
+
+### New parameter on `add_meta_ad`
+
+- `multi_advertiser` — Set to `false` to opt out of multi-advertiser format on individual ads
+
+### Bug fixes
+
+- Custom conversion tracking (`custom_conversion_id`) now works correctly on `add_meta_ad_set` — previously the value was silently dropped
+- `list_meta_custom_audiences` no longer fails on accounts with certain audience statuses
+- Switching between daily and lifetime budgets now returns a clear error instead of a raw API message
+- Invalid pixel event names are rejected with guidance on valid values
+
+</Update>
+
 <Update label="April 7, 2026" description="v2.15.0" tags={["Platform", "TikTok", "Performance Analytics"]}>
 
 ## TikTok Ads: full performance analytics
