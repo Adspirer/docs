@@ -1,14 +1,13 @@
 ---
 title: "TikTok Ads Integration Guide"
-description: "Create and manage TikTok In-Feed video campaigns with AI. 4 tools for video asset management, campaign creation, and performance tracking."
+description: "Create and manage TikTok ad campaigns with AI. 31 tools for campaign management, Spark Ads, Carousel Ads, targeting, performance analytics, and budget optimization."
 icon: "video"
-tag: "New"
-keywords: ["tiktok ads", "video ads", "in-feed", "tiktok campaigns"]
+keywords: ["tiktok ads", "video ads", "in-feed", "tiktok campaigns", "spark ads", "carousel ads"]
 ---
 
 # TikTok Ads Integration
 
-Reach TikTok's billion-plus users with AI-powered campaign management. Create In-Feed video ads, validate creative assets, and track performance with 4 specialized tools.
+Reach TikTok's billion-plus users with AI-powered campaign management. Create In-Feed video, Spark, and Carousel ads, manage campaigns at every level, and analyze performance with 31 specialized tools.
 
 ## Prerequisites
 
@@ -37,38 +36,74 @@ Check my connected ad platforms
 
 You should see your TikTok ad account listed with advertiser name, account ID, and active status.
 
-## What You Can Do (4 Tools)
+## What You Can Do (31 Tools)
 
 ### Performance Analysis
 
-- `get_tiktok_campaign_performance` -- Pull metrics for TikTok campaigns (video views, engagement, conversions, cost metrics)
+- `get_tiktok_campaign_performance` -- Campaign summary with TikTok-specific video and engagement metrics
+- `get_tiktok_ad_performance` -- Ad-level analysis with hook rate, video completion, and engagement
+- `analyze_tiktok_wasted_spend` -- ROAS-based waste detection with campaign status awareness
+- `optimize_tiktok_budget` -- Budget allocation recommendations based on performance
+- `detect_tiktok_creative_fatigue` -- Hook rate decline as the primary fatigue signal
+- `explain_tiktok_anomaly` -- Diagnose sudden changes in TikTok campaign performance
+- `get_tiktok_audience_insights` -- Age/gender breakdown with CPA ranking
+- `analyze_tiktok_geo_performance` -- Country-level performance analysis
 
 ### Creative Management
 
 - `discover_tiktok_assets` -- Check existing video creatives in your TikTok account
 - `validate_and_prepare_tiktok_assets` -- Verify video files meet TikTok's requirements (9:16 vertical, 5-60 seconds, MP4/MOV)
+- `upload_tiktok_images` -- Upload images to TikTok Asset Library
 
 ### Campaign Creation
 
 - `create_tiktok_campaign` -- Launch In-Feed video campaigns (created PAUSED)
+- `add_tiktok_ad_group` -- Add ad groups with full targeting to existing campaigns
+- `add_tiktok_ad` -- Add ads to existing ad groups (image, video, Spark Ads, Carousel)
+- `create_tiktok_carousel_card` -- Create carousel cards from multiple images
 
-<Tip>
-TikTok Ads is Adspirer's newest integration with a focused tool set. Additional tools for audience targeting, budget optimization, and ad group management are on the roadmap. The current 4 tools cover the core workflow: check assets, validate creatives, create campaigns, and track performance.
-</Tip>
+### Campaign Management
+
+- `list_tiktok_campaigns` -- List all campaigns with status, objective, and budget
+- `get_tiktok_campaign_details` -- Detailed campaign info
+- `update_tiktok_campaign` -- Update name, budget, budget mode
+- `pause_tiktok_campaign` / `resume_tiktok_campaign` -- Control campaign status
+- `list_tiktok_ad_groups` -- List ad groups, filter by campaign
+- `update_tiktok_ad_group` -- Update name, budget, targeting, schedule
+- `pause_tiktok_ad_group` / `resume_tiktok_ad_group` -- Control ad group status
+- `list_tiktok_ads` -- List ads, filter by ad group or campaign
+- `pause_tiktok_ad` / `resume_tiktok_ad` -- Control ad status
+
+### Targeting & Research
+
+- `search_tiktok_targeting` -- Search interests, keywords, regions, languages, action categories, carriers, and device models
 
 ## Campaign Creation Workflow
 
-TikTok campaigns follow a streamlined 4-step workflow:
+TikTok campaigns follow a 5-step workflow:
 
 ```
 1. get_connections_status
-   -> (verify TikTok Ads is connected)
-2. discover_tiktok_assets
-   -> (check existing videos in your account)
-3. validate_and_prepare_tiktok_assets
-   -> (verify video meets TikTok requirements: 9:16 vertical, 5-60 seconds)
-4. create_tiktok_campaign
-   -> (campaign created PAUSED -- you review before launching)
+   ↓ (verify TikTok Ads is connected)
+2. search_tiktok_targeting
+   ↓ (find your target audience by interests, keywords, regions)
+3. discover_tiktok_assets
+   ↓ (check existing videos in your account)
+4. validate_and_prepare_tiktok_assets
+   ↓ (verify video meets TikTok requirements: 9:16 vertical, 5-60 seconds)
+5. create_tiktok_campaign
+   ↓ (campaign created PAUSED — you review before launching)
+```
+
+### Adding ads to existing campaigns
+
+```
+1. list_tiktok_campaigns
+   ↓ (find the campaign to add to)
+2. add_tiktok_ad_group
+   ↓ (create ad group with targeting)
+3. add_tiktok_ad
+   ↓ (add image, video, Spark Ad, or Carousel ad)
 ```
 
 ## Example Prompts
@@ -142,15 +177,29 @@ The `validate_and_prepare_tiktok_assets` tool checks these automatically:
 - **Sound on:** Unlike other platforms, most TikTok users watch with sound on. Use music and voiceover.
 - **Short and punchy:** 9-15 seconds is the sweet spot for In-Feed ads
 
-## Ad Format: In-Feed Ads
+## Ad Formats
+
+### In-Feed Ads
 
 TikTok In-Feed ads appear in users' For You feed and blend with organic content. They support:
 
 - **Traffic objective:** Drive users to your website or landing page
 - **Conversions objective:** Optimize for specific actions (purchases, signups, add to cart)
-- **App installs:** Drive mobile app downloads
+- **App installs:** Drive mobile app downloads (APP_PROMOTION objective)
 
 In-Feed ads auto-play with sound as users scroll through their feed. Users can like, comment, share, and follow directly from the ad.
+
+### Spark Ads
+
+Boost existing TikTok organic posts as ads. Provide the `tiktok_item_id` of an organic post to promote it with paid reach while keeping all engagement (likes, comments, shares) on the original post.
+
+### Carousel Ads
+
+Multi-image carousel format for showcasing multiple products or features. Create carousel cards with `create_tiktok_carousel_card`, then reference the `card_id` when creating an ad.
+
+### Campaign Budget Optimization (CBO)
+
+TikTok campaigns support campaign-level budget optimization via the `budget_optimize_on` parameter. CBO is on by default — set to `false` to manage budgets per ad group manually.
 
 ## Targeting Options
 
@@ -235,7 +284,7 @@ Your creative may not be engaging enough for TikTok's audience. Common fixes:
 
 <AccordionGroup>
 <Accordion title="Can I create image ads on TikTok through Adspirer?">
-Not currently. TikTok is a video-first platform, and Adspirer supports In-Feed video ads. While TikTok does support some image-based formats (like Spark Ads), the current integration focuses on video campaigns. Image ad support may be added in the future based on TikTok's API capabilities.
+Yes. You can create image ads, Carousel Ads (multi-image), and Spark Ads in addition to video ads. Use `upload_tiktok_images` to upload images, then reference the image IDs when creating ads with `add_tiktok_ad`. For Carousel, create cards first with `create_tiktok_carousel_card`.
 </Accordion>
 
 <Accordion title="Does Adspirer generate TikTok video content?">
@@ -251,11 +300,11 @@ Many advertisers run both: TikTok for awareness and discovery, Meta for retarget
 </Accordion>
 
 <Accordion title="Can I boost existing TikTok organic posts?">
-Not through Adspirer currently. Boosting organic posts (Spark Ads) requires additional API permissions. The current integration creates new In-Feed ads with your uploaded video creatives. Spark Ads support is being evaluated for a future release.
+Yes. Spark Ads let you promote existing organic TikTok posts as paid ads. Provide the `tiktok_item_id` of the organic post when creating an ad with `add_tiktok_ad` or `create_tiktok_campaign`. All engagement (likes, comments, shares) stays on the original post.
 </Accordion>
 
 <Accordion title="How much does Adspirer cost for TikTok Ads?">
-Adspirer pricing is based on tool calls, not ad spend. Free tier: 15 calls/month. Plus: $49/mo for 150 calls. Pro: $99/mo for 600 calls. Max: $199/mo for 3,000 calls. A typical TikTok campaign creation uses 3-4 tool calls. See [full pricing](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 15 calls/month. Plus: $49/mo for 150 calls. Pro: $99/mo for 600 calls. Max: $199/mo for 3,000 calls. A typical TikTok campaign creation uses 4-6 tool calls. See [full pricing](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
 </Accordion>
 
 <Accordion title="Is my TikTok advertising data secure?">

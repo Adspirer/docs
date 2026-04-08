@@ -1,8 +1,8 @@
 ---
 title: "LinkedIn Ads Integration Guide"
-description: "Connect LinkedIn Ads to Adspirer for B2B campaign management. Target by job title, industry, and seniority with 28 AI-powered tools for sponsored content and lead generation."
+description: "Connect LinkedIn Ads to Adspirer for B2B campaign management. Target by job title, industry, seniority, and 14 additional facets with 30+ AI-powered tools for sponsored content and lead generation."
 icon: "briefcase"
-keywords: ["linkedin ads", "b2b advertising", "sponsored content", "lead gen"]
+keywords: ["linkedin ads", "b2b advertising", "sponsored content", "lead gen", "campaign groups"]
 ---
 
 # LinkedIn Ads Integration
@@ -11,7 +11,7 @@ keywords: ["linkedin ads", "b2b advertising", "sponsored content", "lead gen"]
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/BxjtR_intmY" title="LinkedIn Ads with Claude Mobile App and Adspirer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </Frame>
 
-B2B advertising done right. Target decision-makers by job title, industry, and seniority with 28 specialized tools.
+B2B advertising done right. Target decision-makers by job title, industry, seniority, and 14 additional facets with 30+ specialized tools. Full campaign group hierarchy, carousel creatives, and rollback logic.
 
 ## Prerequisites
 
@@ -41,17 +41,17 @@ Check my connected ad platforms
 
 You should see your LinkedIn ad account listed with organization name, account ID, and active status.
 
-## What You Can Do (28 Tools)
+## What You Can Do (30+ Tools)
 
 ### Performance Analysis
 
-- `get_linkedin_campaign_performance` -- Pull metrics for campaigns, ad groups, or individual sponsored posts
+- `get_linkedin_campaign_performance` -- Pull metrics for campaigns, ad groups, or individual sponsored posts. Filter by campaign ID or name.
 - `analyze_linkedin_creative_performance` -- Deep analysis of which images/copy combinations perform best
 - `explain_linkedin_anomaly` -- Diagnose sudden changes in CTR, CPC, or conversion rate
 
 ### Targeting & Research
 
-- `search_linkedin_targeting` -- Find audiences by job title, industry, company size, seniority, skills, groups
+- `search_linkedin_targeting` -- Find audiences by job title, industry, company size, seniority, skills, groups, and 14 additional facets
 - `research_business_for_linkedin_targeting` -- Input a competitor or target company, get suggested targeting criteria
 
 ### Organizations
@@ -60,20 +60,23 @@ You should see your LinkedIn ad account listed with organization name, account I
 
 ### Campaign Creation
 
-- `discover_linkedin_assets` -- Check if you have existing creatives in LinkedIn
+- `discover_linkedin_assets` -- Check if you have existing creatives in LinkedIn (includes videos uploaded via Campaign Manager)
 - `validate_and_prepare_linkedin_assets` -- Verify images meet LinkedIn's requirements (dimensions, file size)
 - `create_linkedin_image_campaign` -- Launch sponsored content campaigns (image-based)
+- `add_linkedin_campaign_to_group` -- Add a new campaign to an existing campaign group (different audience, same group)
 
 ### Creative Management
 
 - `add_linkedin_creative` -- Add new sponsored posts to existing campaigns
+- `add_linkedin_carousel_creative` -- Add carousel creative variations to campaigns
 - `update_linkedin_creative` -- Edit copy or creative assets on live ads
 
 ### Campaign Management
 
-- `update_linkedin_campaign` -- Change budgets, bids, or targeting
+- `update_linkedin_campaign` -- Change budgets, bids, or targeting (all 19 targeting facets supported)
 - `pause_linkedin_campaign` -- Stop campaigns or ad groups
 - `resume_linkedin_campaign` -- Restart paused campaigns
+- `list_linkedin_campaigns` -- List campaigns, filter by campaign group
 
 ### Optimization
 
@@ -172,6 +175,16 @@ LinkedIn's targeting is the most precise for B2B. Here's what you can target:
 - **Groups:** Target members of specific LinkedIn groups
 - **Interests:** Categories professionals engage with
 
+### Additional targeting facets
+
+All 19 targeting facets are supported on both campaign creation and update:
+
+- Degrees, fields of study, schools
+- Member behaviors, buyer groups
+- Age ranges, genders
+- Employers, followed companies
+- Years of experience ranges
+
 ## Budget Guidelines
 
 - **Minimum:** $10/day (LinkedIn's requirement)
@@ -180,9 +193,15 @@ LinkedIn's targeting is the most precise for B2B. Here's what you can target:
 - **CPC range:** Expect $8-15+ per click (higher than Meta/Google but higher quality leads)
 - **Cost per lead:** B2B leads typically $40-150 depending on industry and targeting
 
+## Campaign Groups
+
+LinkedIn campaigns can be organized into campaign groups. All create tools accept `campaign_group_id` and `campaign_group_name`. Use `add_linkedin_campaign_to_group` to add campaigns with different audiences to the same group.
+
+If a campaign creation fails after the campaign is created but before the creative is added, Adspirer automatically archives the orphaned campaign to prevent duplicates on retry.
+
 ## Creative Requirements
 
-LinkedIn sponsored content uses single images. The `validate_and_prepare_linkedin_assets` tool checks:
+LinkedIn sponsored content supports single images and carousel formats. The `validate_and_prepare_linkedin_assets` tool checks:
 
 - **Dimensions:** 1200x627px (1.91:1 aspect ratio) or 1200x1200px (1:1)
 - **Format:** JPG or PNG

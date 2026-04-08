@@ -5,6 +5,104 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="April 7, 2026" description="v2.15.0" tags={["Platform", "TikTok", "Performance Analytics"]}>
+
+## TikTok Ads: full performance analytics
+
+8 new performance analytics tools bring TikTok to parity with Google and Meta for campaign analysis. Total TikTok tools: 4 → 31.
+
+### New analytics tools
+
+| Tool | Description |
+|------|-------------|
+| `get_tiktok_campaign_performance` | Campaign summary with TikTok-specific video and engagement metrics |
+| `get_tiktok_ad_performance` | Ad-level analysis with hook rate, video completion, and engagement |
+| `analyze_tiktok_wasted_spend` | ROAS-based waste detection with campaign status awareness |
+| `optimize_tiktok_budget` | LP-based budget allocation recommendations |
+| `detect_tiktok_creative_fatigue` | Hook rate decline as the primary fatigue signal |
+| `explain_tiktok_anomaly` | Statistical deviation detection with TikTok-specific metrics |
+| `get_tiktok_audience_insights` | Age/gender breakdown with CPA ranking |
+| `analyze_tiktok_geo_performance` | Country-level performance analysis |
+
+### TikTok now fully available
+
+TikTok Ads is no longer marked "Coming Soon" during onboarding. You can connect your TikTok Ads account directly from the setup flow.
+
+</Update>
+
+<Update label="April 5, 2026" description="v2.14.1" tags={["Platform", "TikTok", "Google Ads"]}>
+
+## TikTok campaign management and creation
+
+19 new tools for full campaign lifecycle management on TikTok — from campaign creation through ad group and ad management, including Spark Ads, Carousel, and APP_PROMOTION support.
+
+### New campaign management tools (12)
+
+- `list_tiktok_campaigns` — List all campaigns with status, objective, and budget
+- `get_tiktok_campaign_details` — Detailed campaign info
+- `pause_tiktok_campaign` / `resume_tiktok_campaign` — Control campaign status
+- `update_tiktok_campaign` — Update name, budget, budget mode
+- `list_tiktok_ad_groups` / `pause_tiktok_ad_group` / `resume_tiktok_ad_group` / `update_tiktok_ad_group` — Full ad group management
+- `list_tiktok_ads` / `pause_tiktok_ad` / `resume_tiktok_ad` — Ad-level management
+
+### New campaign creation tools (7)
+
+- `add_tiktok_ad_group` — Add ad groups with full targeting to existing campaigns
+- `add_tiktok_ad` — Add ads to existing ad groups (image, video, Spark Ads, Carousel)
+- `create_tiktok_carousel_card` — Create carousel cards from multiple images
+- `upload_tiktok_images` — Upload images to TikTok Asset Library
+- `search_tiktok_targeting` — Search interests, keywords, regions, languages, action categories, carriers, and device models
+
+### New ad formats
+
+- **Spark Ads** — Boost existing TikTok organic posts as ads
+- **Carousel Ads** — Multi-image carousel format
+- **APP_PROMOTION** — App install campaign objective with app ID configuration
+
+### Campaign Budget Optimization (CBO)
+
+TikTok campaigns now support `budget_optimize_on` for campaign-level budget optimization. TikTok CBO is on by default — set to `false` to manage budgets per ad group manually.
+
+### Google Ads fixes
+
+- `get_campaign_targeting` — New tool to view location targeting on existing campaigns
+- `get_campaign_structure` — Now paginated for large accounts
+- `analyze_search_terms` — New `raw_report` mode shows actual search terms users type into Google
+- Keyword removal now validates IDs before attempting deletion, with per-keyword error reporting
+
+</Update>
+
+<Update label="April 3, 2026" description="v2.13.1" tags={["Platform", "LinkedIn", "Meta Ads"]}>
+
+## LinkedIn Ads overhaul + Meta Ads gaps closed
+
+### LinkedIn campaign hierarchy and targeting
+
+Complete overhaul of LinkedIn campaign tools with campaign group support, rollback logic, and 14 new targeting facets.
+
+- **Campaign groups** — `campaign_group_id` and `campaign_group_name` on all create tools. New `add_linkedin_campaign_to_group` tool for adding campaigns to existing groups.
+- **Carousel creatives** — New `add_linkedin_carousel_creative` tool
+- **Creative naming** — `creative_name` field added to all 4 campaign creation tools
+- **14 new targeting facets** — skills, job functions, interests, degrees, fields of study, employers, groups, age ranges, genders, schools, member behaviors, years of experience, followed companies, and buyer groups. All facets work on both create and update.
+- **Video discovery** — Now finds videos uploaded via LinkedIn Campaign Manager UI, not just API uploads
+- **Rollback logic** — Failed campaigns are automatically archived to prevent duplicates on retry
+- **Campaign filtering** — `list_linkedin_campaigns` now filters by campaign group
+
+### Meta Ads: 6 critical gaps
+
+- **Lifetime budgets** — Set `budget_lifetime` at campaign creation (mutually exclusive with daily budget)
+- **End dates** — `end_time` support on campaigns and ad sets
+- **Custom audiences** — New `list_meta_custom_audiences` tool for viewing database lists, lookalikes, website, and engagement audiences
+- **Granular placements** — Control `publisher_platforms`, `facebook_positions`, and `instagram_positions` at campaign creation
+- **Multi-advertiser opt-out** — New `multi_advertiser` field to opt out of Meta's multi-advertiser ads
+- **Custom conversion tracking** — Fixed `custom_conversion_id` being silently dropped on image and carousel campaigns
+
+### Monitoring
+
+- New `delete_monitor` tool — Previously, deleting monitors required knowing about `manage_scheduled_task`, which AI clients couldn't discover
+
+</Update>
+
 <Update label="April 3, 2026" description="v2.13.0" tags={["AI Clients", "Gemini CLI"]}>
 
 ## Gemini CLI Extension

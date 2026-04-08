@@ -1,7 +1,7 @@
 ---
 title: "Tool Catalog"
 sidebarTitle: "Tool Catalog"
-description: "Complete reference of all 100+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
+description: "Complete reference of all 130+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
 icon: "wrench"
 mode: "wide"
 keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
@@ -12,9 +12,9 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 - <Badge color="green">Read</Badge> Safe to run anytime. Pulls data, analyzes performance, provides insights. No spending impact.
 - <Badge color="red">Write</Badge> Requires user confirmation. Creates campaigns, updates budgets, modifies targeting. Affects spend.
 
-## Google Ads Tools (39)
+## Google Ads Tools (40+)
 
-<Expandable title="View all 39 Google Ads tools" defaultOpen>
+<Expandable title="View all Google Ads tools" defaultOpen>
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
@@ -42,13 +42,14 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 | `get_pmax_audience_signals` | <Badge color="green">Read</Badge> | View current audience signals on a PMax campaign |
 | `remove_pmax_audience_signal` | <Badge color="red">Write</Badge> | Remove an audience signal from a PMax campaign |
 | `search_audiences` | <Badge color="green">Read</Badge> | Search Google Ads audiences by keyword across in-market, affinity, and custom types |
+| `get_campaign_targeting` | <Badge color="green">Read</Badge> | View location targeting on existing campaigns |
 | ...and 15 more | | Ad group management, bidding, geographic targeting, etc. |
 
 </Expandable>
 
-## LinkedIn Ads Tools (28)
+## LinkedIn Ads Tools (30+)
 
-<Expandable title="View all 28 LinkedIn Ads tools">
+<Expandable title="View all LinkedIn Ads tools">
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
@@ -56,8 +57,10 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 | `get_linkedin_organizations` | <Badge color="green">Read</Badge> | List user's LinkedIn company pages (required before campaign creation) |
 | `search_linkedin_targeting` | <Badge color="green">Read</Badge> | Find B2B audiences by job title, industry, company size, seniority |
 | `research_business_for_linkedin_targeting` | <Badge color="green">Read</Badge> | Input competitor name, get targeting suggestions |
-| `create_linkedin_image_campaign` | <Badge color="red">Write</Badge> | Launch sponsored content campaign (created PAUSED) |
-| `discover_linkedin_assets` | <Badge color="green">Read</Badge> | Check existing creatives in LinkedIn |
+| `create_linkedin_image_campaign` | <Badge color="red">Write</Badge> | Launch sponsored content campaign (created PAUSED). Supports campaign groups and creative naming. |
+| `add_linkedin_campaign_to_group` | <Badge color="red">Write</Badge> | Add a campaign to an existing campaign group |
+| `add_linkedin_carousel_creative` | <Badge color="red">Write</Badge> | Add carousel creative variations to campaigns |
+| `discover_linkedin_assets` | <Badge color="green">Read</Badge> | Check existing creatives in LinkedIn (includes videos uploaded via Campaign Manager) |
 | `validate_and_prepare_linkedin_assets` | <Badge color="green">Read</Badge> | Verify images meet LinkedIn requirements (1200x627px or 1200x1200px) |
 | `add_linkedin_creative` | <Badge color="red">Write</Badge> | Add new sponsored posts to existing campaigns |
 | `analyze_linkedin_creative_performance` | <Badge color="green">Read</Badge> | See which images/copy combinations perform best |
@@ -70,9 +73,9 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 
 </Expandable>
 
-## Meta Ads Tools (20)
+## Meta Ads Tools (21)
 
-<Expandable title="View all 20 Meta Ads tools">
+<Expandable title="View all 21 Meta Ads tools">
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
@@ -93,18 +96,48 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 | `update_meta_campaign` | <Badge color="red">Write</Badge> | Change budgets, bids, or targeting |
 | `pause_meta_campaign` | <Badge color="red">Write</Badge> | Stop campaigns or ad sets |
 | `browse_meta_targeting` | <Badge color="green">Read</Badge> | Explore Meta's targeting categories |
+| `list_meta_custom_audiences` | <Badge color="green">Read</Badge> | View custom audiences (database lists, lookalikes, website, engagement) |
 | ...and 3 more | | Resume campaigns, audience insights, etc. |
 
 </Expandable>
 
-## TikTok Ads Tools (4)
+## TikTok Ads Tools (31)
+
+<Expandable title="View all 31 TikTok Ads tools">
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
-| `get_tiktok_campaign_performance` | <Badge color="green">Read</Badge> | Pull metrics for TikTok campaigns |
+| `get_tiktok_campaign_performance` | <Badge color="green">Read</Badge> | Campaign summary with TikTok-specific video and engagement metrics |
+| `get_tiktok_ad_performance` | <Badge color="green">Read</Badge> | Ad-level analysis with hook rate, video completion, and engagement |
+| `analyze_tiktok_wasted_spend` | <Badge color="green">Read</Badge> | ROAS-based waste detection with campaign status awareness |
+| `optimize_tiktok_budget` | <Badge color="green">Read</Badge> | Budget allocation recommendations based on performance |
+| `detect_tiktok_creative_fatigue` | <Badge color="green">Read</Badge> | Hook rate decline as the primary fatigue signal |
+| `explain_tiktok_anomaly` | <Badge color="green">Read</Badge> | Diagnose sudden changes in TikTok campaign performance |
+| `get_tiktok_audience_insights` | <Badge color="green">Read</Badge> | Age/gender breakdown with CPA ranking |
+| `analyze_tiktok_geo_performance` | <Badge color="green">Read</Badge> | Country-level performance analysis |
 | `discover_tiktok_assets` | <Badge color="green">Read</Badge> | Check existing videos in TikTok |
 | `validate_and_prepare_tiktok_assets` | <Badge color="green">Read</Badge> | Verify videos meet TikTok requirements (9:16 vertical, 5-60 seconds) |
+| `upload_tiktok_images` | <Badge color="red">Write</Badge> | Upload images to TikTok Asset Library |
 | `create_tiktok_campaign` | <Badge color="red">Write</Badge> | Launch in-feed video campaign (created PAUSED) |
+| `add_tiktok_ad_group` | <Badge color="red">Write</Badge> | Add ad group with full targeting to existing campaign |
+| `add_tiktok_ad` | <Badge color="red">Write</Badge> | Add ad to existing ad group (image, video, Spark Ads, Carousel) |
+| `create_tiktok_carousel_card` | <Badge color="red">Write</Badge> | Create carousel card from multiple images |
+| `search_tiktok_targeting` | <Badge color="green">Read</Badge> | Search interests, keywords, regions, languages, action categories, carriers, device models |
+| `list_tiktok_campaigns` | <Badge color="green">Read</Badge> | List all campaigns with status, objective, and budget |
+| `get_tiktok_campaign_details` | <Badge color="green">Read</Badge> | Detailed campaign info |
+| `update_tiktok_campaign` | <Badge color="red">Write</Badge> | Update campaign name, budget, budget mode |
+| `pause_tiktok_campaign` | <Badge color="red">Write</Badge> | Pause a TikTok campaign |
+| `resume_tiktok_campaign` | <Badge color="red">Write</Badge> | Resume a paused TikTok campaign |
+| `list_tiktok_ad_groups` | <Badge color="green">Read</Badge> | List ad groups, filter by campaign |
+| `update_tiktok_ad_group` | <Badge color="red">Write</Badge> | Update ad group name, budget, targeting, schedule |
+| `pause_tiktok_ad_group` | <Badge color="red">Write</Badge> | Pause a TikTok ad group |
+| `resume_tiktok_ad_group` | <Badge color="red">Write</Badge> | Resume a paused TikTok ad group |
+| `list_tiktok_ads` | <Badge color="green">Read</Badge> | List ads, filter by ad group or campaign |
+| `pause_tiktok_ad` | <Badge color="red">Write</Badge> | Pause a TikTok ad |
+| `resume_tiktok_ad` | <Badge color="red">Write</Badge> | Resume a paused TikTok ad |
+| ...and 3 more | | Additional TikTok tools |
+
+</Expandable>
 
 ## Audit Tools (1)
 
