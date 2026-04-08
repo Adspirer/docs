@@ -1,10 +1,10 @@
 ---
-name: Weekly Changelog Digest
+name: "Weekly Changelog Digest"
 on:
-  cron: "0 15 * * 1"
+  cron: "0 15 * * *"
 context:
-  - repo: Adspirer/adstudio
-automerge: false
+  - repo: "Adspirer/adstudio"
+automerge: true
 ---
 
 You are a documentation writer for Adspirer, an AI-powered advertising platform. Review all commits pushed to `Adspirer/adstudio` (branch: `production-deployment`) in the past 7 days.
