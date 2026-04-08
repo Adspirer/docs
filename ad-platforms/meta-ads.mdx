@@ -1,8 +1,8 @@
 ---
 title: "Meta Ads Integration"
-description: "Manage Facebook and Instagram campaigns with Adspirer's 21 MCP tools. Create image, video, and carousel ads, detect creative fatigue, optimize audiences, and analyze performance across Meta placements."
+description: "Manage Facebook and Instagram campaigns with Adspirer's 36 MCP tools. Create image, video, carousel, and DCO ads, detect creative fatigue, optimize audiences, and analyze performance across Meta placements."
 icon: "image"
-keywords: ["meta ads", "facebook ads", "instagram ads", "social media ads", "carousel"]
+keywords: ["meta ads", "facebook ads", "instagram ads", "social media ads", "carousel", "dco"]
 ---
 
 ## Prerequisites
@@ -32,13 +32,15 @@ Check my connected ad platforms
 
 You should see your Meta ad account listed with account name, ID, and active status.
 
-## What You Can Do (21 Tools)
+## What You Can Do (36 Tools)
 
 ### Performance Analysis
 
 - `get_meta_campaign_performance` — Pull metrics for campaigns, ad sets, or individual ads
 - `analyze_meta_ad_performance` — Deep analysis of ad-level performance with recommendations
-- `analyze_meta_audiences` — See which audience segments perform best
+- `analyze_meta_audiences` — See which audience segments perform best by demographics
+- `get_meta_audience_insights` — Audience demographics, placement breakdown, and device targeting insights
+- `analyze_meta_wasted_spend` — Identify underperforming campaigns, placement waste, and creative fatigue
 - `detect_meta_creative_fatigue` — Identify ads losing effectiveness over time
 - `explain_meta_anomaly` — Diagnose sudden changes in performance (CPA spikes, CTR drops)
 
@@ -56,17 +58,38 @@ You should see your Meta ad account listed with account name, ID, and active sta
 - `create_meta_image_campaign` — Launch single-image campaigns (supports lifetime budgets, end dates, placement controls)
 - `create_meta_video_campaign` — Launch video campaigns (supports lifetime budgets, end dates, placement controls)
 - `create_meta_carousel_campaign` — Launch multi-card carousel campaigns (supports lifetime budgets, end dates, placement controls)
+- `create_meta_dco_ad` — Create a Dynamic Creative Optimization ad that lets Meta automatically test multiple images to find the best combination
+
+### Ad Set & Ad Management
+
+- `add_meta_ad_set` — Add a new ad set to an existing campaign (supports image, video, carousel, DCO, CBO spend controls, and custom conversion tracking)
+- `add_meta_ad` — Add another ad/creative variation to an existing ad set
+- `list_meta_ad_sets` — View ad sets within a campaign with targeting, budgets, and optimization settings
+- `list_meta_ads` — View individual ads within an ad set with status and creative info
+- `update_meta_ad_set` — Edit targeting, budget, bid, placements, schedule, or optimization settings
+- `update_meta_ad` — Update an individual ad (pause/resume, rename, or swap creative)
+
+### Campaign Management
+
+- `list_meta_campaigns` — Browse all Meta campaigns with status and budget info
+- `get_meta_campaign_details` — View full campaign structure including ad sets, ads, targeting, and budgets
+- `update_meta_campaign` — Change budgets, bids, or targeting
+- `pause_meta_campaign` — Stop campaigns or ad sets
+- `resume_meta_campaign` — Restart paused campaigns
+- `duplicate_meta_campaign` — Copy an existing campaign with all ad sets, ads, and settings
 
 ### Optimization
 
 - `optimize_meta_budget` — Reallocate budget based on ROAS or CPA performance
 - `optimize_meta_placements` — Shift spend to best-performing placements (Feed, Stories, Reels, etc.)
 
-### Management
+### Account & Creative Tools
 
-- `update_meta_campaign` — Change budgets, bids, or targeting
-- `pause_meta_campaign` — Stop campaigns or ad sets
-- `resume_meta_campaign` — Restart paused campaigns
+- `list_meta_instagram_accounts` — Find Instagram account IDs for running Instagram ads
+- `list_meta_pixels` — View Meta Pixels for conversion tracking setup
+- `get_meta_ad_creatives` — See ad creatives, ad copy, and media URLs
+- `list_meta_lead_forms` — Browse lead generation forms
+- `get_meta_lead_form_submissions` — View lead data collected from Meta lead forms
 
 ## Campaign Creation Workflow
 

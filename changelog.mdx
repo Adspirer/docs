@@ -5,6 +5,40 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features"]
 ---
 
+<Update label="April 8, 2026" description="v2.15.1" tags={["Platform", "Meta Ads", "Monitoring"]}>
+
+## Meta Ads: expanded tool coverage and fixes
+
+Meta Ads now has **36 tools** (up from 21), covering the full campaign lifecycle — from browsing and creation to ad set management, creative rotation, and lead form submissions.
+
+### New tools documented
+
+- `add_meta_ad_set` — Add ad sets to existing campaigns with full support for image, video, carousel, and DCO (Dynamic Creative Optimization). Supports CBO spend controls (`daily_min_spend_target`, `daily_spend_cap`) and custom conversion tracking via `custom_conversion_id`.
+- `add_meta_ad` — Add creative variations to existing ad sets
+- `create_meta_dco_ad` — Let Meta automatically test multiple images to find the best combination
+- `duplicate_meta_campaign` — Copy an existing campaign with all ad sets, ads, and settings
+- `list_meta_campaigns`, `get_meta_campaign_details` — Browse and inspect campaign structure
+- `list_meta_ad_sets`, `list_meta_ads` — View ad sets and ads within campaigns
+- `update_meta_ad_set`, `update_meta_ad` — Edit ad set targeting, budgets, and ad creatives
+- `analyze_meta_wasted_spend` — Identify underperforming campaigns and placement waste
+- `get_meta_audience_insights` — Audience demographics and device breakdown
+- `list_meta_instagram_accounts`, `list_meta_pixels` — Account and tracking setup
+- `get_meta_ad_creatives` — View ad copy and media URLs
+- `list_meta_lead_forms`, `get_meta_lead_form_submissions` — Lead gen form management
+
+### Meta Ads fixes
+
+- `add_meta_ad_set` now has full parity with campaign creation tools — same targeting, placement, and creative options
+- `custom_conversion_id` correctly applied on all campaign types (previously silently dropped on image and carousel)
+- Custom audiences API updated to v21.0 for improved reliability
+
+### Monitoring improvements
+
+- `create_monitor` descriptions now list all 15 supported metrics (roas, ctr, cpc, cpa, cpm, cpv, spend, conversions, impressions, clicks, cost\_per\_lead, conversion\_rate, budget\_utilization, video\_views, engagement\_rate)
+- Advanced monitoring features: multiple conditions with AND/OR logic, consecutive-day triggers, relative thresholds, percentage change detection, campaign-level targeting, and auto-actions (pause campaign, adjust budget)
+
+</Update>
+
 <Update label="April 7, 2026" description="v2.15.0" tags={["Platform", "TikTok", "Performance Analytics"]}>
 
 ## TikTok Ads: full performance analytics
