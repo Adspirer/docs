@@ -1,14 +1,14 @@
 ---
 title: "Multi-Account Management"
 sidebarTitle: "Multi-Account"
-description: "Manage multiple ad accounts across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads from a single Adspirer connection. Switch accounts, manage clients, and run cross-account reports."
+description: "Manage multiple ad accounts across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads from a single Adspirer connection. Activate accounts, pass account IDs, and run cross-account reports."
 icon: "building"
-keywords: ["multi-account", "agency", "multiple accounts", "account management"]
+keywords: ["multi-account", "agency", "multiple accounts", "account management", "list_connected_accounts"]
 ---
 
-Connect multiple ad accounts per platform and switch between them in conversation.
+Connect multiple ad accounts per platform and manage them all from a single conversation.
 
-## How It Works
+## How it works
 
 Your Adspirer account can connect to multiple ad accounts on each platform:
 
@@ -17,44 +17,96 @@ Your Adspirer account can connect to multiple ad accounts on each platform:
 - Multiple LinkedIn Campaign Manager accounts
 - Multiple TikTok Ads Manager accounts
 
-When you first connect, one account per platform is set as **primary** — all tool calls default to that account.
+All connected accounts are marked as **active** — there's no hierarchy between them. When you connect during onboarding, you select which accounts to activate using multi-select checkboxes.
 
-## Switching Accounts
+### Account resolution
 
-To change which account you're managing:
+Adspirer automatically resolves which account to use based on how many you have:
+
+| Scenario | Behavior |
+|----------|----------|
+| **1 account** on a platform | Auto-selected — no action needed |
+| **2+ active accounts** on a platform | You must pass the account ID to each tool call |
+
+If you have multiple active accounts on a platform and don't specify which one, the tool will return your account list and ask you to pick one.
+
+## Discovering your accounts
+
+Start every session by listing your connected accounts:
 
 ```
-Switch to my Google Ads account 123-456-7890
+List my connected ad accounts
 ```
 
-Or use the tool directly:
+Or call the tool directly:
 
 ```
-switch_primary_account(platform="google_ads", account_id="1234567890")
+list_connected_accounts()
 ```
 
-The switch persists for your current session. All subsequent tool calls target the new account until you switch again.
+This returns all active accounts with their platform, account ID, name, and status. Use it to:
 
-## For Agencies
+- See which accounts are available before running any tool
+- Match a client or business name to an account ID
+- Get the exact parameter name for each platform (`customer_id`, `ad_account_id`, `advertiser_id`, `account_id`)
+
+<Tip>
+`list_connected_accounts` makes zero API calls — it reads directly from the database, so it's instant and doesn't count against platform rate limits.
+</Tip>
+
+You can also filter by platform:
+
+```
+list_connected_accounts(platform="google_ads")
+```
+
+## Targeting a specific account
+
+When you have multiple accounts on a platform, pass the account ID to any tool call. The parameter name varies by platform:
+
+| Platform | Parameter | Example |
+|----------|-----------|---------|
+| Google Ads | `customer_id` | `"123-456-7890"` |
+| Meta Ads | `ad_account_id` | `"act_123456789"` |
+| TikTok Ads | `advertiser_id` | `"7012345678901234"` |
+| LinkedIn Ads | `account_id` | `"512345678"` |
+
+Example:
+
+```
+Show me campaign performance for my Google Ads account 123-456-7890
+```
+
+Or in a tool call:
+
+```
+get_campaign_performance(customer_id="1234567890")
+```
+
+## For agencies
 
 If you manage ads for multiple clients:
 
-1. **Connect all client accounts** through OAuth (each client authorizes separately)
-2. **Start each session** by confirming which client you're working with:
+1. **Connect all client accounts** through OAuth during onboarding — select multiple accounts using the multi-select checkboxes
+2. **Start each session** by listing accounts:
    ```
-   Show me all my connected ad accounts
+   List my connected ad accounts
    ```
-3. **Switch to the client** you want to manage:
+3. **Reference the specific account** when calling tools:
    ```
-   Switch to the Google Ads account for [Client Name]
+   Show campaign performance for customer_id="1234567890"
    ```
-4. **Run your workflow** — all tool calls target that client's account
+4. **Run your workflow** — pass the account ID to each tool call in the session
 
 <Tip>
-Always verify the active account before creating campaigns. Running `get_connections_status` at the start of each session prevents accidentally modifying the wrong client's campaigns.
+If a user mentions a business name (e.g., "check performance for Acme Corp"), match it against the `account_name` from `list_connected_accounts` to find the right account ID.
 </Tip>
 
-## Cross-Account Reports
+## Managing active accounts
+
+You can change which accounts are active from the Adspirer dashboard at [adspirer.ai/connections](https://adspirer.ai/connections). Use the "Activate accounts" option to add or remove accounts from your active set.
+
+## Cross-account reports
 
 Pull performance data from multiple accounts in one request:
 
@@ -72,7 +124,10 @@ No hard limit. Connect as many ad accounts as you manage. Tool call limits apply
 <Accordion title="Can different team members manage different accounts?">
 Yes, with Claude Team or Enterprise. Each team member authenticates with their own Adspirer account and connects their own set of ad accounts. See the [Claude setup guide](/ai-clients/claude) for details.
 </Accordion>
-<Accordion title="Does switching accounts cost a tool call?">
-No. Account switching is a session operation and does not count against your tool call limit.
+<Accordion title="Does listing accounts or switching cost a tool call?">
+`list_connected_accounts` and `get_connections_status` are diagnostic tools that don't count against your tool call quota.
+</Accordion>
+<Accordion title="What happened to the primary account model?">
+Previously, one account per platform was designated as "primary" and all tool calls defaulted to it. Now all accounts are treated equally as "active." If you only have one account on a platform, it's still auto-selected. If you have multiple, you specify which one to use.
 </Accordion>
 </AccordionGroup>

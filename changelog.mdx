@@ -5,6 +5,38 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency"]
 ---
 
+<Update label="April 12, 2026" description="v2.16.0" tags={["Multi-Account", "Agency", "MCP"]}>
+
+## Multi-account support for agencies
+
+Adspirer now supports managing multiple ad accounts per platform without a primary/secondary hierarchy. All connected accounts are treated equally as "active."
+
+### New tool: `list_connected_accounts`
+
+Call `list_connected_accounts` at the start of every session to discover all available accounts. Returns account IDs, names, platforms, and status — with zero API calls (reads directly from the database).
+
+- Filter by platform with `list_connected_accounts(platform="google_ads")`
+- Returns the exact parameter name per platform (`customer_id`, `ad_account_id`, `advertiser_id`, `account_id`)
+- Doesn't count against your tool call quota
+
+### Account resolution
+
+| Scenario | Behavior |
+|----------|----------|
+| 1 account on a platform | Auto-selected |
+| 2+ active accounts | Pass the account ID to each tool call |
+
+If you have multiple active accounts and don't specify which one, the tool will list your accounts and ask you to pick.
+
+### Onboarding changes
+
+- Multi-select checkboxes replace the old "Set as Primary" button during account connection
+- "Activate N accounts" flow lets you select exactly which accounts to manage
+
+See the updated [Multi-Account Management](/knowledge-base/multi-account) guide.
+
+</Update>
+
 <Update label="April 8, 2026" description="v2.15.1" tags={["Platform", "Meta Ads"]}>
 
 ## Meta Ads: ad set parity and custom audience reliability
