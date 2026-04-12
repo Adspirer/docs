@@ -5,6 +5,19 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency"]
 ---
 
+<Update label="April 12, 2026" description="v2.15.2" tags={["System", "Multi-Account"]}>
+
+## Multi-account activation with `switch_primary_account`
+
+`switch_primary_account` now accepts an `account_ids` parameter (list) so you can activate multiple ad accounts on the same platform in a single call. All listed accounts become active; unlisted accounts are deactivated.
+
+- **Single account** — use `account_id` (unchanged, works the same as before)
+- **Multiple accounts** — use `account_ids` with a list of IDs from `list_connected_accounts`
+
+This is available to users with multi-account access enabled. Single-account users continue to use `account_id` as before.
+
+</Update>
+
 <Update label="April 8, 2026" description="v2.15.1" tags={["Platform", "Meta Ads"]}>
 
 ## Meta Ads: ad set parity and custom audience reliability

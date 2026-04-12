@@ -19,7 +19,7 @@ Your Adspirer account can connect to multiple ad accounts on each platform:
 
 When you first connect, one account per platform is set as **primary** — all tool calls default to that account.
 
-## Switching Accounts
+## Switching accounts
 
 To change which account you're managing:
 
@@ -34,6 +34,20 @@ switch_primary_account(platform="google_ads", account_id="1234567890")
 ```
 
 The switch persists for your current session. All subsequent tool calls target the new account until you switch again.
+
+## Activating multiple accounts at once
+
+If you manage several accounts on the same platform, you can activate multiple accounts simultaneously using `account_ids`:
+
+```
+switch_primary_account(platform="google_ads", account_ids=["1234567890", "9876543210"])
+```
+
+All listed accounts become active, and any unlisted accounts on that platform are deactivated. This is useful for agencies running cross-account workflows without switching back and forth.
+
+<Note>
+Multi-account activation is available to users with multi-account access enabled. If you only have single-account access, use `account_id` (single) as before — passing `account_ids` will return an error.
+</Note>
 
 ## For Agencies
 
