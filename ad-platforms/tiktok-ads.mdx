@@ -264,6 +264,13 @@ Run validation separately to diagnose:
 Validate this TikTok video creative: [your URL]
 ```
 
+### "Invalid media format" or TikTok page URL error
+
+If you pass a TikTok page URL (e.g., `https://tiktok.com/@user/video/123`) as a video URL, the tool returns an error because that's a web page, not a downloadable video file. Two options:
+
+- **Spark Ads:** Use the `tiktok_item_id` parameter instead to boost the organic post as a Spark Ad
+- **Video ad:** Provide a direct link to the video file (MP4 or MOV) from Google Drive, Dropbox, S3, or any publicly accessible URL
+
 ### "Campaign creation failed" error
 
 Most common reason: skipping the asset validation step. TikTok campaigns require `validate_and_prepare_tiktok_assets` before `create_tiktok_campaign`. The validation tool uploads and processes the video in TikTok's system.
