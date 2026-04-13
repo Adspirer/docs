@@ -5,6 +5,20 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency"]
 ---
 
+<Update label="April 13, 2026" description="v2.15.2" tags={["Platform", "TikTok"]}>
+
+## TikTok Ads: campaign creation reliability
+
+5 fixes to TikTok campaign creation from production testing.
+
+- **Spark Ads now work with `create_tiktok_campaign`** — creating campaigns with a `tiktok_item_id` (Spark Ads) or `card_id` (Carousel) no longer fails with "Unknown error". Spark and Carousel ads are now created directly without requiring an image upload.
+- **All TikTok CTAs accepted** — previously, only 6 call-to-action values (like LEARN_MORE and SHOP_NOW) were allowed. Now any CTA supported by TikTok works — including CONTACT_US, BOOK_NOW, GET_QUOTE, and others. TikTok validates CTAs server-side.
+- **Automatic placement fix** — campaigns using automatic placement no longer fail with "Missing required field(s): placements."
+- **TikTok page URL detection** — passing a TikTok page URL (e.g., `https://tiktok.com/@user/video/123`) as a video URL now returns a clear error explaining you should use `tiktok_item_id` for Spark Ads or provide a direct MP4/MOV link.
+- **CTA auto-default** — when creating an ad with a `landing_page_url` but no `call_to_action`, Adspirer now defaults to LEARN_MORE instead of failing with "External_URL and Call_to_action must exist together."
+
+</Update>
+
 <Update label="April 8, 2026" description="v2.15.1" tags={["Platform", "Meta Ads"]}>
 
 ## Meta Ads: ad set parity and custom audience reliability
