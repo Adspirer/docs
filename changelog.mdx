@@ -5,6 +5,16 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency"]
 ---
 
+<Update label="April 16, 2026" description="v2.15.3" tags={["Platform", "TikTok"]}>
+
+## TikTok Ads: corrected optimization event values
+
+The `optimization_event` parameter for TikTok conversion campaigns now uses the correct TikTok API enum values. Previously, some values like `SUBMIT_FORM`, `ADD_TO_CART`, `VIEW_CONTENT`, and `COMPLETE_REGISTRATION` were accepted but rejected by TikTok's API. These have been replaced with the actual values: `FORM`, `ON_WEB_CART`, `ON_WEB_DETAIL`, `ON_WEB_REGISTER`, `DOWNLOAD_FINISH`, `CONSULT`, `CLICK_LANDING_PAGE`, `CONVERSION_LEADS`, `PAGE_VISIT`, and `PHONE_CONNECT`.
+
+If you were using any of the old values, update your prompts to use the corrected names. See the full list on the [TikTok Ads page](/ad-platforms/tiktok-ads#conversion-tracking).
+
+</Update>
+
 <Update label="April 13, 2026" description="v2.15.2" tags={["Platform", "TikTok"]}>
 
 ## TikTok Ads: campaign creation reliability
