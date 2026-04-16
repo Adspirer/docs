@@ -50,6 +50,8 @@ You should see your Google Ads account listed with account name, customer ID, an
 - `explain_performance_anomaly` -- Diagnose sudden CPA spikes or CTR drops
 - `optimize_budget_allocation` -- Recommend budget shifts based on ROAS/CPA
 
+All performance tools accept `raw_data: true` to return clean JSON metrics without recommendations or commentary. Ask for "raw data", "just the numbers", or "no recommendations" and your AI client will pass the flag automatically.
+
 ### Keyword Research
 
 - `research_keywords` -- Find keywords with real CPC data from Google Keyword Planner (search volume, competition, estimated bids)
@@ -216,6 +218,13 @@ Show me the current themes first, then add new ones.
 <Prompt description="Find and add audience signals to a PMax campaign for better targeting." actions={["copy", "cursor"]}>
 Search for in-market and affinity audiences related to "advertising software" and "marketing automation".
 Add them as audience signals to my PMax campaign.
+</Prompt>
+
+### Get raw metrics
+
+<Prompt description="Get raw performance data as JSON without recommendations." actions={["copy", "cursor"]}>
+Give me raw data for my Google Ads campaigns over the last 30 days.
+Just the numbers — spend, clicks, impressions, conversions, CPA, ROAS by campaign. No recommendations.
 </Prompt>
 
 ### Optimize Budget

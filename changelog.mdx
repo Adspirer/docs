@@ -5,6 +5,29 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency"]
 ---
 
+<Update label="April 16, 2026" description="v2.15.4" tags={["Platform", "Google Ads", "Meta Ads", "LinkedIn", "TikTok", "Performance Analytics"]}>
+
+## Raw data mode for all performance tools
+
+All performance and analysis tools across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads now support a `raw_data` parameter. Pass `raw_data: true` to get clean JSON metrics without recommendations, severity labels, or commentary — useful when you want to process the numbers yourself or feed them into spreadsheets.
+
+### How to use it
+
+Ask your AI client for "raw data", "raw metrics", "just the numbers", or "no recommendations" — or pass `raw_data: true` directly in tool arguments.
+
+### Supported tools
+
+| Platform | Tools |
+|----------|-------|
+| Google Ads | `get_campaign_performance`, `analyze_wasted_spend`, `optimize_budget_allocation`, `analyze_search_terms`, `explain_performance_anomaly` |
+| Meta Ads | `get_meta_campaign_performance`, `analyze_meta_ad_performance`, `analyze_meta_wasted_spend`, `optimize_meta_budget`, `get_meta_audience_insights`, `detect_meta_creative_fatigue`, `optimize_meta_placements`, `explain_meta_anomaly`, `analyze_meta_audiences`, `get_meta_ad_creatives` |
+| LinkedIn Ads | `get_linkedin_campaign_performance`, `get_linkedin_engagement_metrics`, `get_linkedin_audience_insights`, `analyze_linkedin_wasted_spend`, `optimize_linkedin_budget`, `explain_linkedin_anomaly`, `analyze_linkedin_creative_performance` |
+| TikTok Ads | `get_tiktok_campaign_performance`, `get_tiktok_ad_performance`, `analyze_tiktok_wasted_spend`, `optimize_tiktok_budget`, `detect_tiktok_creative_fatigue`, `explain_tiktok_anomaly`, `get_tiktok_audience_insights`, `analyze_tiktok_geo_performance` |
+
+Default is `false` (full formatted analysis with recommendations).
+
+</Update>
+
 <Update label="April 16, 2026" description="v2.15.3" tags={["Platform", "TikTok"]}>
 
 ## TikTok Ads: correct optimization event values
