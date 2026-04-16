@@ -103,6 +103,18 @@ LinkedIn campaigns follow a 5-step workflow:
    ↓ (campaign created PAUSED)
 ```
 
+## Raw data mode
+
+All performance tools (`get_linkedin_campaign_performance`, `get_linkedin_engagement_metrics`, `get_linkedin_audience_insights`, `analyze_linkedin_wasted_spend`, `optimize_linkedin_budget`, `explain_linkedin_anomaly`, `analyze_linkedin_creative_performance`) accept an optional `raw_data` parameter. When set to `true`, the tool returns a compact JSON code block with only raw metrics (spend, clicks, impressions, conversions, CPA, CPC, CTR, CVR, engagement rate, lead form completion rate) — no severity labels, suggested bids/budgets, industry benchmarks, or optimization recommendations.
+
+Default is `false` (full formatted analysis with recommendations).
+
+**When to use:** You run your own attribution model, want to pipe data into a spreadsheet, or want to minimize token usage.
+
+```
+Show me raw LinkedIn campaign data for the last 30 days — just the numbers, no recommendations.
+```
+
 ## Example Prompts
 
 ### Analyze Performance

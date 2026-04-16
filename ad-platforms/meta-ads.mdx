@@ -110,6 +110,18 @@ Meta campaigns follow a 6-step workflow. Skip steps and the campaign will fail v
    ↓ (image/video/carousel — campaign created PAUSED)
 ```
 
+## Raw data mode
+
+All performance and analytics tools (`get_meta_campaign_performance`, `analyze_meta_ad_performance`, `analyze_meta_wasted_spend`, `optimize_meta_budget`, `get_meta_audience_insights`, `detect_meta_creative_fatigue`, `optimize_meta_placements`, `explain_meta_anomaly`, `analyze_meta_audiences`, `get_meta_ad_creatives`) accept an optional `raw_data` parameter. When set to `true`, the tool returns a compact JSON code block with only raw metrics (spend, clicks, impressions, conversions, CPA, CPC, CTR, CVR, ROAS, frequency, reach) — no severity labels, suggested bids/budgets, industry benchmarks, or optimization recommendations.
+
+Default is `false` (full formatted analysis with recommendations).
+
+**When to use:** You run your own attribution model, want to pipe data into a spreadsheet, or want to minimize token usage.
+
+```
+Give me raw Meta Ads performance data for the last 14 days — just the numbers, no commentary.
+```
+
 ## Example Prompts
 
 ### Analyze Performance

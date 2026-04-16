@@ -5,6 +5,29 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency"]
 ---
 
+<Update label="April 16, 2026" description="v2.15.4" tags={["Platform", "Google Ads", "Meta Ads", "LinkedIn", "TikTok", "Performance Analytics"]}>
+
+## Raw data mode for all performance tools
+
+All 30 performance and analytics tools across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads now accept an optional `raw_data` parameter. Set `raw_data: true` to get a compact JSON code block with only raw metrics (spend, clicks, impressions, conversions, CPA, CPC, CTR, CVR, ROAS) — severity labels, suggested bids/budgets, industry benchmarks, and optimization recommendations are stripped.
+
+Default is `false` — existing formatted output is unchanged.
+
+**When to use:** You run your own attribution model, want to pipe data into a spreadsheet or downstream tool, or want to minimize token usage.
+
+**How to trigger it:** Ask for "raw data", "raw metrics", "just the numbers", "no recommendations", or "no commentary" in your prompt. Or pass `raw_data: true` directly in the tool arguments.
+
+### Supported tools
+
+| Platform | Tools |
+|----------|-------|
+| Google Ads | `get_campaign_performance`, `analyze_wasted_spend`, `optimize_budget_allocation`, `analyze_search_terms`, `explain_performance_anomaly` |
+| Meta Ads | `get_meta_campaign_performance`, `analyze_meta_ad_performance`, `analyze_meta_wasted_spend`, `optimize_meta_budget`, `get_meta_audience_insights`, `detect_meta_creative_fatigue`, `optimize_meta_placements`, `explain_meta_anomaly`, `analyze_meta_audiences`, `get_meta_ad_creatives` |
+| LinkedIn Ads | `get_linkedin_campaign_performance`, `get_linkedin_engagement_metrics`, `get_linkedin_audience_insights`, `analyze_linkedin_wasted_spend`, `optimize_linkedin_budget`, `explain_linkedin_anomaly`, `analyze_linkedin_creative_performance` |
+| TikTok Ads | `get_tiktok_campaign_performance`, `get_tiktok_ad_performance`, `analyze_tiktok_wasted_spend`, `optimize_tiktok_budget`, `detect_tiktok_creative_fatigue`, `explain_tiktok_anomaly`, `get_tiktok_audience_insights`, `analyze_tiktok_geo_performance` |
+
+</Update>
+
 <Update label="April 16, 2026" description="v2.15.3" tags={["Platform", "TikTok"]}>
 
 ## TikTok Ads: correct optimization event values

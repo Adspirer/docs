@@ -106,6 +106,18 @@ TikTok campaigns follow a 5-step workflow:
    ↓ (add image, video, Spark Ad, or Carousel ad)
 ```
 
+## Raw data mode
+
+All performance tools (`get_tiktok_campaign_performance`, `get_tiktok_ad_performance`, `analyze_tiktok_wasted_spend`, `optimize_tiktok_budget`, `detect_tiktok_creative_fatigue`, `explain_tiktok_anomaly`, `get_tiktok_audience_insights`, `analyze_tiktok_geo_performance`) accept an optional `raw_data` parameter. When set to `true`, the tool returns a compact JSON code block with only raw metrics (spend, clicks, impressions, conversions, CPA, CPC, CTR, CVR, ROAS, hook rate, video completion rate, engagement rate) — no severity labels, suggested bids/budgets, industry benchmarks, or optimization recommendations.
+
+Default is `false` (full formatted analysis with recommendations).
+
+**When to use:** You run your own attribution model, want to pipe data into a spreadsheet, or want to minimize token usage.
+
+```
+Give me raw TikTok performance data for the last 14 days — just the numbers, no commentary.
+```
+
 ## Example Prompts
 
 ### Check Performance
