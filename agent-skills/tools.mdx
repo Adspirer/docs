@@ -188,7 +188,15 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 | `get_usage_status` | <Badge color="green">Read</Badge> | Check Adspirer plan limits (tool calls used/remaining this month) |
 | `get_business_profile` | <Badge color="green">Read</Badge> | View user's Adspirer account details and subscription info |
 
-## Tool Call Best Practices
+## Raw data mode
+
+All performance and analytics tools across every platform accept an optional `raw_data` parameter (default: `false`). When set to `true`, the tool returns a compact JSON code block containing only raw metrics — severity labels, suggested bids/budgets, industry benchmarks, and optimization recommendations are stripped.
+
+Use raw data mode when you run your own attribution model, want to pipe data into a spreadsheet, or want to minimize token usage. Just ask for "raw data", "raw metrics", "just the numbers", or "no recommendations" in your prompt.
+
+Supported on 30 tools across Google Ads (5), Meta Ads (10), LinkedIn Ads (7), and TikTok Ads (8).
+
+## Tool call best practices
 
 <Note>
 - **Always start with `get_connections_status`:** Verify the correct ad account is active before using platform-specific tools

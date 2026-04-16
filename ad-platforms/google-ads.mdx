@@ -152,6 +152,18 @@ Performance Max requires creative assets plus optional search themes and audienc
 - **Descriptions:** 5 (max 90 characters each)
 - **Logo:** 1 (1200x1200px)
 
+## Raw data mode
+
+All performance tools (`get_campaign_performance`, `analyze_wasted_spend`, `optimize_budget_allocation`, `analyze_search_terms`, `explain_performance_anomaly`) accept an optional `raw_data` parameter. When set to `true`, the tool returns a compact JSON code block with only raw metrics (spend, clicks, impressions, conversions, CPA, CPC, CTR, CVR, ROAS) — no severity labels, suggested bids/budgets, industry benchmarks, or optimization recommendations.
+
+Default is `false` (full formatted analysis with recommendations).
+
+**When to use:** You run your own attribution model, want to pipe data into a spreadsheet, or want to minimize token usage.
+
+```
+Show me raw performance data for my Google Ads campaigns over the last 30 days — just the numbers, no recommendations.
+```
+
 ## Example Prompts
 
 ### Analyze Performance
