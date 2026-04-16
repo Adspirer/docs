@@ -5,6 +5,30 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency"]
 ---
 
+<Update label="April 16, 2026" description="v2.15.3" tags={["Platform", "TikTok"]}>
+
+## TikTok Ads: correct optimization event values
+
+The `optimization_event` parameter on `create_tiktok_campaign`, `add_tiktok_ad_group`, and `add_tiktok_ad` previously listed invalid values (`SUBMIT_FORM`, `ADD_TO_CART`, `VIEW_CONTENT`, `COMPLETE_REGISTRATION`, `DOWNLOAD`, `CONTACT`, `BUTTON_CLICK`) that TikTok's API would reject.
+
+**Correct values you should use:**
+
+| Old (invalid) | New (correct) | Meaning |
+|---|---|---|
+| `SUBMIT_FORM` | `FORM` | Form submission |
+| `ADD_TO_CART` | `ON_WEB_CART` | Add to cart |
+| `VIEW_CONTENT` | `ON_WEB_DETAIL` | View content / product page |
+| `COMPLETE_REGISTRATION` | `ON_WEB_REGISTER` | Registration |
+| `DOWNLOAD` | `DOWNLOAD_FINISH` | App or file download |
+| `CONTACT` | `CONSULT` | Contact / consultation |
+| `BUTTON_CLICK` | `CLICK_LANDING_PAGE` | Landing page click |
+
+Additional supported values: `COMPLETE_PAYMENT`, `CONVERSION_LEADS`, `PAGE_VISIT`, `PHONE_CONNECT`, `SEARCH`, `SUBSCRIBE`, `INITIATE_ORDER`, `ON_WEB_SUBSCRIBE`.
+
+If you were passing the old values and getting TikTok API errors, update to the new values above.
+
+</Update>
+
 <Update label="April 13, 2026" description="v2.15.2" tags={["Platform", "TikTok"]}>
 
 ## TikTok Ads: campaign creation reliability
