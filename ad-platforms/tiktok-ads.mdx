@@ -184,7 +184,7 @@ The `validate_and_prepare_tiktok_assets` tool checks these automatically:
 TikTok In-Feed ads appear in users' For You feed and blend with organic content. They support:
 
 - **Traffic objective:** Drive users to your website or landing page
-- **Conversions objective:** Optimize for specific actions (purchases, signups, add to cart)
+- **Conversions objective:** Optimize for specific conversion events (requires a TikTok Pixel ID and `optimization_event`)
 - **App installs:** Drive mobile app downloads (APP_PROMOTION objective)
 
 In-Feed ads auto-play with sound as users scroll through their feed. Users can like, comment, share, and follow directly from the ad.
@@ -196,6 +196,38 @@ Boost existing TikTok organic posts as ads. Provide the `tiktok_item_id` of an o
 ### Carousel Ads
 
 Multi-image carousel format for showcasing multiple products or features. Create carousel cards with `create_tiktok_carousel_card`, then reference the `card_id` when creating an ad.
+
+### Conversion tracking
+
+For campaigns with the CONVERSIONS objective, you need a TikTok Pixel ID and an `optimization_event`. The `optimization_event` tells TikTok which conversion action to optimize for.
+
+Supported `optimization_event` values:
+
+| Value | Description |
+|-------|-------------|
+| `COMPLETE_PAYMENT` | Purchase or payment completed (default) |
+| `ON_WEB_CART` | Add to cart |
+| `ON_WEB_DETAIL` | View content / product page |
+| `ON_WEB_REGISTER` | Registration completed |
+| `FORM` | Form submission |
+| `CONVERSION_LEADS` | Lead generation |
+| `INITIATE_ORDER` | Checkout initiated |
+| `PAGE_VISIT` | Page view |
+| `CLICK_LANDING_PAGE` | Landing page click |
+| `ON_WEB_SUBSCRIBE` | Subscription signup |
+| `PHONE_CONNECT` | Phone call connected |
+| `CONSULT` | Consultation request |
+| `SEARCH` | Site search |
+| `SUBSCRIBE` | Subscribe action |
+| `DOWNLOAD_FINISH` | Download completed |
+
+Example prompt:
+
+<Prompt description="TikTok conversion campaign with pixel tracking." actions={["copy", "cursor"]}>
+Create a TikTok campaign optimizing for add-to-cart events.
+Use pixel ID 12345, optimization event ON_WEB_CART.
+Budget: $50/day, targeting women 18-34 interested in fashion.
+</Prompt>
 
 ### Campaign Budget Optimization (CBO)
 
