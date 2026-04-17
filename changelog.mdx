@@ -5,6 +5,61 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency"]
 ---
 
+<Update label="April 16, 2026" description="v2.15.4" tags={["Platform", "Google Ads", "Meta Ads", "LinkedIn", "TikTok", "Performance Analytics"]}>
+
+## Raw data mode for all performance tools
+
+All 30 performance and analytics tools across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads now accept a `raw_data` parameter. When set to `true`, tools return a compact JSON code block with only raw metrics (spend, clicks, impressions, conversions, CPA, CPC, CTR, CVR, ROAS) — stripped of severity labels, suggested bids/budgets, industry benchmarks, and optimization recommendations.
+
+**Default behavior is unchanged.** Existing markdown output with recommendations is returned unless you explicitly pass `raw_data=true`.
+
+### When to use raw data mode
+
+- You run your own attribution model and want raw numbers only
+- You want to minimize token usage in AI client responses
+- You're piping metrics into a spreadsheet, dashboard, or external tool
+
+### Supported tools
+
+| Platform | Tools with `raw_data` support |
+|----------|-------------------------------|
+| Google Ads | `get_campaign_performance`, `analyze_wasted_spend`, `optimize_budget_allocation`, `analyze_search_terms`, `explain_performance_anomaly` |
+| Meta Ads | `analyze_meta_campaign_performance`, `analyze_meta_ad_performance`, `analyze_meta_wasted_spend`, `optimize_meta_budget`, `analyze_meta_audiences`, `detect_meta_creative_fatigue`, `optimize_meta_placements`, `explain_meta_anomaly`, `get_meta_audience_insights` |
+| LinkedIn | `get_linkedin_campaign_performance`, `analyze_linkedin_engagement`, `get_linkedin_audience_insights`, `analyze_linkedin_wasted_spend`, `optimize_linkedin_budget`, `explain_linkedin_anomaly`, `analyze_linkedin_creative_performance` |
+| TikTok | `get_tiktok_campaign_performance`, `get_tiktok_ad_performance`, `analyze_tiktok_wasted_spend`, `optimize_tiktok_budget`, `detect_tiktok_creative_fatigue`, `explain_tiktok_anomaly`, `get_tiktok_audience_insights`, `analyze_tiktok_geo_performance` |
+
+### Example
+
+```
+"Show me last 30 days campaign performance with raw data"
+```
+
+The tool returns a fenced JSON block like:
+
+```json
+{
+  "campaigns": [
+    {
+      "name": "Brand Search - US",
+      "spend": 1250.00,
+      "clicks": 3400,
+      "impressions": 45000,
+      "conversions": 85,
+      "cpa": 14.71,
+      "cpc": 0.37,
+      "ctr": 0.0756,
+      "roas": 4.2
+    }
+  ]
+}
+```
+
+### Free tier access fix
+
+Free-tier users who previously had a failed or paused Stripe subscription attempt were incorrectly blocked from using MCP tools. This is now fixed — free-tier users are gated only by their usage quota, as intended.
+
+</Update>
+
 <Update label="April 16, 2026" description="v2.15.3" tags={["Platform", "TikTok"]}>
 
 ## TikTok Ads: correct optimization event values
