@@ -188,7 +188,17 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 | `get_usage_status` | <Badge color="green">Read</Badge> | Check Adspirer plan limits (tool calls used/remaining this month) |
 | `get_business_profile` | <Badge color="green">Read</Badge> | View user's Adspirer account details and subscription info |
 
-## Tool Call Best Practices
+## Raw data mode
+
+All performance and analytics tools accept an optional `raw_data` parameter. When set to `true`, the tool returns a compact JSON code block with only raw metrics — no severity labels, suggested bids/budgets, industry benchmarks, or optimization recommendations. Default is `false` (full markdown output with recommendations).
+
+Use `raw_data=true` when you run your own attribution model, want to minimize token usage, or need to pipe metrics into an external tool.
+
+```json
+{"raw_data": true, "date_range": "last_30_days"}
+```
+
+## Tool call best practices
 
 <Note>
 - **Always start with `get_connections_status`:** Verify the correct ad account is active before using platform-specific tools
@@ -196,6 +206,7 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 - **Ask for user confirmation before Write tools:** Present the plan, get approval, then execute.
 - **Never retry Write tools on error:** If a campaign creation fails, report the error and wait for user input. Don't auto-retry.
 - **Format results as tables:** Performance data should be scannable (columns: metric, value, change vs. previous period)
+- **Use `raw_data=true` for compact output:** When you need just the numbers without recommendations, pass `raw_data=true` to any performance tool.
 </Note>
 
 ## Input Format Requirements
