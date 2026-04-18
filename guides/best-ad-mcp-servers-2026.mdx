@@ -1,0 +1,451 @@
+---
+title: "The 10 Best Ad MCP Servers in 2026 — Honest Comparison"
+sidebarTitle: "Best Ad MCP Servers 2026"
+description: "A no-marketing comparison of the best MCP servers for Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads in 2026. Ranked with honest strengths, limitations, and pricing."
+keywords: ["best mcp servers ads", "ad mcp server 2026", "google ads mcp", "meta ads mcp", "linkedin ads mcp", "tiktok ads mcp", "pipeboard", "synter", "windsor.ai"]
+---
+
+Model Context Protocol (MCP) has quietly become the connective tissue between AI assistants and the systems that actually run businesses. Nowhere is that more visible than in advertising — there are now dozens of MCP servers promising to let you manage Google Ads, Meta, LinkedIn, or TikTok through ChatGPT or Claude.
+
+Most of them don't do what you think they do. Some are read-only when you need writes. Some are single-platform when you need four. Some are solo-maintained side projects that will break the week Meta ships its next Graph API change.
+
+This guide ranks every credible ad MCP server we've tested, with honest strengths and limitations for each. No superlatives, no fluff — the criteria are below, and Adspirer is included because it's ours and we think it's earned a spot. When one of the alternatives is the right answer, we say so.
+
+<Info>
+**Full disclosure:** Adspirer made this list, and we made this list. We've tried to be honest about where competitors beat us. If you want the raw comparison table, jump to the [quick comparison](#quick-comparison-table). If you want the full breakdown, keep reading.
+</Info>
+
+## How We Ranked These
+
+Six criteria. Every MCP gets evaluated against the same checklist.
+
+| Criterion | What we're asking |
+|-----------|-------------------|
+| **Platform coverage** | How many ad platforms does it actually support — and at what depth? |
+| **Read vs. write depth** | Can it launch campaigns and change budgets, or just answer questions? |
+| **Provisioning overhead** | How many OAuth flows, configs, and credentials to manage? |
+| **Maintenance and longevity** | Is this a commercial product, an active OSS project, or a repo that stopped shipping six months ago? |
+| **Safety rails** | What does it refuse to do? Are destructive operations structurally prevented? |
+| **Support model** | Commercial SLA vs. "open a GitHub issue" |
+
+A tool that scores well on most criteria but fails on one is still dangerous — a read-only MCP is great for diagnostics and useless for ad ops. A well-maintained but single-platform tool is fine if you run one platform and terrible if you run three.
+
+## Quick Comparison Table
+
+| MCP | Platforms | Read/Write | Hosting | Pricing | Maintainer |
+|-----|-----------|-----------|---------|---------|-----------|
+| **[Adspirer](https://www.adspirer.com)** | Google, Meta, LinkedIn, TikTok | Full R/W, 100+ tools | Remote SaaS | Free → $199/mo | Commercial |
+| **Synter** | 14 platforms | Full R/W | Remote SaaS | From ~$199/mo | Commercial (stealth → 2026) |
+| **Pipeboard (Meta)** | Meta (separate MCPs for Google + TikTok) | Full R/W | Remote SaaS + OSS | Freemium | Commercial (pipeboard.co) |
+| **Google Ads MCP (official)** | Google only | **Read-only (GAQL)** | Self-host | Free | Google team |
+| **Ryze / irinabuht12 MCP** | Google, Meta, GA4 | Full R/W | Self-host | Free OSS | Solo + commercial Ryze |
+| **Flyweel MCP** | Google, Meta | **Read-only** | Remote | Free with Flyweel account | Commercial |
+| **AdsMCP TikTok** | TikTok only | Full R/W | Self-host | Free | Community |
+| **DanielPopaMD LinkedIn** | LinkedIn only | Full R/W (25+ tools) | Self-host | Free | Solo community |
+| **GoMarble Facebook** | Meta only | R/W (basic) | Self-host | Free OSS | Community |
+| **Windsor.ai MCP** | 325+ data sources | **Read-focused (BI)** | Remote | Windsor subscription | Commercial |
+
+Now the per-MCP breakdowns.
+
+## 1. Adspirer — Unified Four-Platform Ad Ops
+
+### What it actually is
+
+Adspirer is a remote MCP server that connects your AI assistant — ChatGPT, Claude, Cursor, Codex, Windsurf, OpenClaw, Gemini CLI, Manus, or Perplexity — to [Google Ads](/ad-platforms/google-ads), [Meta Ads](/ad-platforms/meta-ads), [LinkedIn Ads](/ad-platforms/linkedin-ads), and [TikTok Ads](/ad-platforms/tiktok-ads) with full read and write access. 100+ tools across the four platforms, plus cross-platform analysis and [agent skills](/agent-skills/overview) for Claude Code, Cursor, Codex, and OpenClaw.
+
+### Who it's for
+
+Marketers and agencies running two or more platforms who want to launch, optimize, and pace campaigns from chat — not just query them. Teams that value safety rails over maximum permissiveness. Anyone whose AI client isn't Claude Desktop (because most community MCPs only document Claude Desktop).
+
+### What we like
+
+- **Real writes, not just reads.** Launch Search, Performance Max, Image, Video, Carousel, and Sponsored Content campaigns. See the [capability matrix](/knowledge-base/capabilities).
+- **One OAuth per platform, one config.** Add all four platforms to one Adspirer account; configure your AI client once.
+- **Structural safety rails.** Cannot delete existing campaigns, cannot pause running campaigns, cannot modify existing budgets. New campaigns are created paused by default.
+- **Broadest AI-client coverage on the market.** See the [AI Clients section](/ai-clients/chatgpt) for setup across twelve supported clients.
+- **Agent skills for developer stacks.** Claude Code, Cursor, Codex, and OpenClaw have purpose-built agent packages — not just generic MCP tool use.
+
+### What we don't like
+
+- **Only four platforms.** If your stack needs Reddit, Pinterest, X, Amazon DSP, or Microsoft Ads, Synter's wider list is the better match today.
+- **Commercial by design.** Free tier exists (15 tool calls/month forever), but it's not free forever at scale. See [pricing](/knowledge-base/pricing).
+- **Remote-only.** Self-hosted deployment is available under [Enterprise](/knowledge-base/enterprise); there's no OSS-yourself path.
+
+### When this is the right pick
+
+You run 2+ platforms, you need writes, and your team includes people using Cursor, Claude Code, Codex, OpenClaw, or ChatGPT — not just Claude Desktop.
+
+## 2. Synter — The Broadest-Coverage Unified MCP
+
+### What it actually is
+
+Synter is a commercial unified MCP server that emerged from stealth in 2026. It covers **14 platforms** — Google, Meta, LinkedIn, TikTok, Reddit, Pinterest, Snapchat, X, Microsoft, Taboola, and more — through direct OAuth connections to each platform's official API. Full read and write. Pricing starts around $199/month.
+
+### Who it's for
+
+Advertisers and agencies whose stack goes beyond the "big four." If Reddit Ads or Pinterest is a meaningful chunk of spend, Synter is the most direct unified option.
+
+### What we like
+
+- **Platform list nobody else matches.** 14 is 14.
+- **Full read+write across all of them.** This isn't a reporting tool.
+- **Unified budget control and conversion tracking management** built in.
+
+### What we don't like
+
+- **Newer product.** Less public case-study depth than older tools. Not a reason to avoid it — just something to weight.
+- **Claude Desktop-centric positioning.** Documentation leans heavily toward Claude Desktop and Cursor. Agent-skill packages for other AI clients are thinner than Adspirer's.
+
+### When this is the right pick
+
+You need coverage outside Google/Meta/LinkedIn/TikTok. Reddit Ads and Pinterest are the classic tiebreakers.
+
+## 3. Pipeboard — Mature, but Still Split per Platform
+
+### What it actually is
+
+Pipeboard is the most mature single-platform Meta Ads MCP in the ecosystem — 791 stars, 133 releases, 489 commits on GitHub as of April 2026. Licensed under Business Source License 1.1 (converts to Apache 2.0 in 2029). Read + write: campaign creation, ad set and ad creation, creative upload, targeting, budget schedules, bid modifications. Campaigns are paused by default.
+
+Pipeboard also ships **separate** MCPs for Google Ads and TikTok Ads as different remote services at different URLs. Not LinkedIn.
+
+### Who it's for
+
+Meta-heavy advertisers who want the most actively-maintained Meta-specific MCP. Teams willing to manage three separate MCPs (Meta, Google, TikTok) in exchange for best-in-class depth on each.
+
+### What we like
+
+- **Genuinely active maintenance.** Release velocity on the Meta MCP is the highest in the category.
+- **Paused-by-default safety** on campaign creation.
+- **Legitimate company** with a real product roadmap, not a side project.
+
+### What we don't like
+
+- **No LinkedIn support.** Hard stop for B2B.
+- **Three separate installs** if you want Meta + Google + TikTok. Same operational shape as any DIY stack, just with one vendor.
+- **Cross-platform reasoning is awkward.** Asking a single question spanning Meta and Google means the LLM reconciles two tool namespaces across two MCPs.
+
+### When this is the right pick
+
+Meta is 80%+ of your spend and you're comfortable installing two or three separate MCPs from the same vendor.
+
+## 4. Google Ads MCP (Official, `google-marketing-solutions/google_ads_mcp`)
+
+### What it actually is
+
+Google's own open-source MCP server for the Google Ads API, released in early 2026. Exposes exactly two tools: `list_accessible_customers` (list your accounts) and `search` (run raw <Tooltip tip="Google Ads Query Language — Google's SQL-like syntax for Ads API data">GAQL</Tooltip> queries). Free. Self-hosted. Gemini-focused by design.
+
+### Who it's for
+
+Developers and analysts who want to ask diagnostic questions about Google Ads performance in natural language, and who are comfortable writing GAQL (or letting an LLM write it).
+
+### What we like
+
+- **Free and official.** No subscription, no OAuth intermediary.
+- **GAQL is powerful.** If your LLM writes valid GAQL, you can query almost anything about historical performance.
+- **Google-maintained.** API compatibility is guaranteed.
+
+### What we don't like
+
+- **Read-only. Full stop.** From Google's own documentation: "the initial version of the MCP Server is read-only, designed for diagnostics and analytics." It cannot modify bids, pause campaigns, or create new assets.
+- **Google Ads only.** No Meta, LinkedIn, TikTok.
+- **GAQL expertise dependency.** When the LLM writes invalid GAQL, you debug it.
+- **Self-host overhead.** You're running and maintaining it.
+
+### When this is the right pick
+
+You only need to *ask questions* about Google Ads in chat, you're fine with self-hosting, and you'll never need writes. See our [full breakdown](/knowledge-base/why-not-official-google-ads-mcp) of what this MCP does and doesn't do.
+
+## 5. Ryze / irinabuht12-oss/google-meta-ads-ga4-mcp
+
+### What it actually is
+
+A unified open-source MCP server covering Google Ads (150+ tools), Meta Ads (80+ tools), and GA4 (20+ tools). Full read + write. MIT licensed. 273 GitHub stars, 35 forks. Tied to Ryze AI, a commercial autonomous optimization platform.
+
+### Who it's for
+
+Advertisers who want a single unified MCP across Google + Meta + GA4, are comfortable self-hosting, and don't need LinkedIn or TikTok.
+
+### What we like
+
+- **Unified three-surface MCP** with full R/W across Google, Meta, and GA4.
+- **GA4 inclusion is unusual** — nobody else on this list combines ad platform writes with analytics reads natively.
+- **Legitimate OSS foundation** tied to a funded commercial platform.
+
+### What we don't like
+
+- **Early-stage.** Only 3 commits on the main branch at time of writing. Mature enough to try, not mature enough to bet mission-critical spend on without monitoring.
+- **No LinkedIn or TikTok.**
+- **Self-host overhead.**
+
+### When this is the right pick
+
+You're an engineer, you run Google + Meta only, and GA4 reads inside the same MCP sound useful.
+
+## 6. Flyweel MCP
+
+### What it actually is
+
+A remote MCP from Flyweel that links your Google Ads and Meta Ads to Claude, Cursor, or VS Code. Included free with a Flyweel account (optional; can be used standalone). Takes about 30 seconds to set up.
+
+### Who it's for
+
+Flyweel customers who want to ask questions in chat about data that's already flowing through Flyweel.
+
+### What we like
+
+- **Fast setup.** Drop a config, start asking questions.
+- **Clear positioning.** "Never posting or changing anything" is honest.
+
+### What we don't like
+
+- **Read-only.** It's a chat-native dashboard, not an ad-ops tool.
+- **Two platforms only.** Google + Meta.
+
+### When this is the right pick
+
+You're already a Flyweel customer and you just want performance-query chat over the data you've already unified.
+
+## 7. AdsMCP TikTok Ads MCP
+
+### What it actually is
+
+An open-source MCP server for the TikTok Business API — campaign management, performance analytics, audience management, creative uploads, and custom reports. MIT licensed, built-in rate limiting (1000 req/hour).
+
+### Who it's for
+
+TikTok-heavy advertisers who want a standalone MCP specifically for TikTok Ads.
+
+### What we like
+
+- **Read + write** with real campaign management (not just diagnostics).
+- **Built-in rate limiting and retry logic** — surprisingly solid operational hygiene for a community repo.
+
+### What we don't like
+
+- **TikTok only.**
+- **Self-host.**
+
+### When this is the right pick
+
+TikTok is the majority of your spend and you want a dedicated tool.
+
+## 8. DanielPopaMD LinkedIn Ads MCP
+
+### What it actually is
+
+The most complete community LinkedIn Ads MCP — 25+ tools covering accounts, campaigns, creatives, audiences, conversions, and analytics. Read + write. Self-hosted.
+
+### Who it's for
+
+B2B advertisers who need LinkedIn campaign management in chat and don't care about other platforms.
+
+### What we like
+
+- **Deepest community LinkedIn coverage.**
+- **Full campaign lifecycle**, not just reads.
+
+### What we don't like
+
+- **LinkedIn only.**
+- **Solo-maintained.** Worth monitoring for commit velocity.
+- **Self-host overhead.**
+
+### When this is the right pick
+
+LinkedIn is your only platform and you want maximum tool depth without a subscription.
+
+## 9. GoMarble Facebook Ads MCP
+
+### What it actually is
+
+Free, open-source local Facebook Ads MCP. Requires Node.js, Meta API credentials, and CLI comfort. Read + basic write.
+
+### Who it's for
+
+Developers who want a locally-run Meta Ads MCP with no vendor dependency.
+
+### What we like
+
+- **Fully transparent** — read the code before running it.
+- **No subscription.**
+
+### What we don't like
+
+- **Self-host is real work.**
+- **Meta only.**
+- **Community-paced maintenance.**
+
+### When this is the right pick
+
+You're a dev who values running everything locally and won't install a remote service.
+
+## 10. Windsor.ai MCP (Different Category)
+
+### What it actually is
+
+Windsor.ai is a marketing data pipeline — 325+ data connectors syncing ad spend, analytics, CRM, and commerce data into a unified warehouse. Their MCP lets an LLM query that warehouse in natural language ("what campaigns had the best ROAS last month?").
+
+### Who it's for
+
+Teams using Windsor.ai as their marketing data layer who want AI-native reporting over that layer.
+
+### What we like
+
+- **Cross-channel BI in chat.** If your data is already in Windsor, this makes it queryable without SQL.
+- **Massive source coverage** (325+).
+
+### What we don't like
+
+- **Not a campaign management tool.** Don't come here to launch campaigns or change budgets — that's a different product category.
+- **Early-stage MCP repo** (3 stars, 9 commits).
+
+### When this is the right pick
+
+Your job is cross-warehouse reporting, not campaign execution. Pair Windsor (for reporting) with Adspirer or Synter (for execution). They're complementary, not substitutes.
+
+## Honorable Mentions
+
+Not every MCP merited its own breakdown, but these are worth knowing about:
+
+- **`cohnen/mcp-google-ads`** — Nicer developer experience than Google's official, same read-only ceiling.
+- **`brijr/meta-mcp`** — Thorough Meta lifecycle, solo-maintained.
+- **`Facebook Ads Library MCP` (trypeggy)** — Public ads library research, not account management. Complementary to any of the above.
+- **`ysntony/tiktok-ads-mcp`** — TikTok read-only.
+- **`radiateb2b/mcp-linkedin-ads`** — LinkedIn analysis and benchmarking focus (not full write).
+- **`promobase/unified-ads-mcp`** — Early-stage unified Google + Meta experiment.
+
+The [awesome-agentic-advertising](https://github.com/jshorwitz/awesome-agentic-advertising) index on GitHub is worth bookmarking if you want to watch the space move.
+
+## How to Choose
+
+Four decision axes cover almost every buyer.
+
+### By how many platforms you run
+
+<CardGroup cols={2}>
+<Card title="One platform, one account, reads only" icon="magnifying-glass">
+Use the platform's free MCP. Google's official for Google Ads. Pipeboard free tier for Meta. Community options for LinkedIn or TikTok.
+</Card>
+<Card title="One platform, need writes" icon="pen">
+Pipeboard (Meta), AdsMCP (TikTok), or DanielPopaMD (LinkedIn). Adspirer starting plans also fit here.
+</Card>
+<Card title="Two to four platforms" icon="layer-group">
+Adspirer. Unified surface beats a stack of separate MCPs once you cross one platform.
+</Card>
+<Card title="More than four platforms" icon="grid">
+Synter. 14-platform coverage is the decision.
+</Card>
+</CardGroup>
+
+### By AI client
+
+<CardGroup cols={2}>
+<Card title="Claude Desktop only" icon="message">
+Most options work. Pipeboard, Synter, Adspirer, community MCPs — all documented.
+</Card>
+<Card title="ChatGPT, Cursor, Codex, OpenClaw" icon="code">
+Adspirer has first-class documented setups for all of these. See [AI Clients](/ai-clients/chatgpt).
+</Card>
+<Card title="Claude Code with agent skills" icon="terminal">
+Adspirer, OpenClaw, and a few community agents. See our [Claude Code agent](/agent-skills/claude-code-agent).
+</Card>
+<Card title="Gemini CLI / Perplexity / Manus" icon="robot">
+Adspirer supports all three. Most alternatives don't document them.
+</Card>
+</CardGroup>
+
+### By what you value most
+
+| You care most about | The pick |
+|---------------------|----------|
+| "Free and official" | Google's official MCP (read-only accepted) |
+| "Maximum platform breadth" | Synter |
+| "Meta depth + mature OSS" | Pipeboard |
+| "Unified + write + safety rails" | Adspirer |
+| "Cross-warehouse BI, not campaign ops" | Windsor.ai |
+| "I'm a developer who wants to self-host everything" | Community repos (GoMarble, brijr, DanielPopaMD) |
+
+### The combo many teams end up running
+
+Multiple MCPs is a legitimate pattern. A common agency setup:
+
+1. **Adspirer** for Google + Meta + LinkedIn + TikTok writes, multi-client routing, and the conversational surface team members already use.
+2. **Windsor.ai MCP** (or similar) for warehouse-BI queries across more data sources than any single ad MCP covers.
+3. **Facebook Ads Library MCP** for competitor research, which is read-public-data and fits nowhere else.
+
+These three solve different jobs. They don't conflict.
+
+## Safety: the Thing No One Talks About
+
+Most MCP comparisons stop at features. Safety is where the interesting differences show up.
+
+An LLM with write access to a production ad account will, eventually, be asked something like *"delete everything that didn't perform last week."* The question is whether the tool layer can say no.
+
+Three models exist in the ecosystem:
+
+1. **Prompt-only safety.** The MCP exposes destructive tools, and a system prompt tells the LLM not to use them. This is fragile. Prompt injection or a misread intent is all it takes.
+2. **Confirmation-required safety.** The tool runs, but asks the user to confirm. Better — but depends on the user reading the confirmation carefully every time.
+3. **Structural safety.** The destructive tools simply don't exist in the MCP server. An LLM can't call what isn't there.
+
+Adspirer uses model 3 for the worst classes of action. **We cannot delete existing campaigns. We cannot pause running campaigns. We cannot modify existing budgets.** The tools for those operations aren't in the server at all. Full detail in the [capabilities doc](/knowledge-base/capabilities).
+
+Most community MCPs use model 1 or 2 (when they document safety at all). This isn't a condemnation — it's fine for personal accounts and read-heavy workflows. It's a real risk for agency or team workloads running real spend.
+
+A broader security note: Astrix Security's research found that **53%** of public MCP servers use long-lived static credentials (API keys, PATs), and only **8.5%** use OAuth. Many community ad MCPs ask you to paste a write-scoped access token into a config file. That token, sitting in plaintext on a laptop, is a different security posture than OAuth 2.1 with PKCE. For the full Adspirer security model, see [security](/knowledge-base/security).
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Is Google's free MCP actually usable for running ads?">
+Not for managing campaigns — it's read-only. It's excellent for asking questions about historical performance via GAQL. The moment you need to launch, pause, adjust a budget, or change a bid, you need a different tool. See [Why not just use Google's free MCP?](/knowledge-base/why-not-official-google-ads-mcp).
+</Accordion>
+
+<Accordion title="Can I mix and match MCPs — for example, Adspirer for writes and Windsor.ai for reads?">
+Yes, and for some teams this is the right answer. MCP clients can have multiple MCP servers configured simultaneously. Windsor.ai for cross-warehouse BI + Adspirer for campaign execution is a reasonable stack.
+</Accordion>
+
+<Accordion title="What happens when Meta ships a breaking Graph API change?">
+Commercial MCPs (Adspirer, Synter, Pipeboard, Flyweel, Ryze) absorb that change server-side — your config doesn't need updating. Self-hosted community MCPs need a maintainer to push a fix, then you pull the update. Repos with low commit velocity are where this gets risky.
+</Accordion>
+
+<Accordion title="Why is Pipeboard a separate entry from Google Ads MCP and TikTok Ads MCP even though they're the same company?">
+Because Pipeboard ships them as **three separate remote services** with different URLs, different configurations, and different auth. If you install all three, you're managing three MCPs — not one unified tool. That's different from Synter or Adspirer, which expose all platforms through a single MCP endpoint.
+</Accordion>
+
+<Accordion title="Does Adspirer work with Claude Desktop only, or more clients?">
+Adspirer works with ChatGPT, Claude Desktop, Claude Web, Claude Code, Claude Cowork, Cursor, Codex, Windsurf, OpenClaw, Gemini CLI, Manus, Perplexity, and Custom GPTs. Setup guides are in the [AI Clients](/ai-clients/chatgpt) section.
+</Accordion>
+
+<Accordion title="What's the minimum I can spend to test this approach?">
+Zero. Adspirer has a free tier — 15 tool calls per month forever, no credit card — that's enough to connect accounts, pull performance, and create 2-3 campaigns. See [pricing](/knowledge-base/pricing). Several community MCPs are also free if you're willing to self-host.
+</Accordion>
+
+<Accordion title="Is it safe to give an AI assistant write access to my ad accounts?">
+It depends heavily on the MCP you choose. Structural safety rails (can't delete, can't pause running campaigns, can't modify budgets) are different from confirmation-based or prompt-only safety. OAuth-backed credentials are different from pasted API keys sitting in a config file. The honest answer: it's safer with some MCPs than others, and the safest approach is to understand what each tool is architecturally able to do — not just what it usually does.
+</Accordion>
+</AccordionGroup>
+
+## Related Reading
+
+<CardGroup cols={3}>
+<Card title="Adspirer vs other MCP servers (KB)" icon="scale-unbalanced" href="/knowledge-base/mcp-server-comparison">
+The Knowledge Base pillar — how we compare across six axes.
+</Card>
+<Card title="Why not Google's free MCP?" icon="circle-question" href="/knowledge-base/why-not-official-google-ads-mcp">
+What Google's official Ads MCP does, doesn't, and why it's read-only.
+</Card>
+<Card title="What Adspirer can & can't do" icon="list-check" href="/knowledge-base/capabilities">
+The honest capability and limitation list.
+</Card>
+<Card title="Security model" icon="shield" href="/knowledge-base/security">
+OAuth 2.1, PKCE, encryption, and data handling.
+</Card>
+<Card title="Platform comparison" icon="scale-balanced" href="/knowledge-base/platform-comparison">
+Google vs Meta vs LinkedIn vs TikTok for advertisers.
+</Card>
+<Card title="Pricing" icon="credit-card" href="/knowledge-base/pricing">
+Free tier, paid plans, and tool call usage examples.
+</Card>
+</CardGroup>
+
+Prefer the opinion-driven version? Read the blog post: [The 10 Best Ad MCP Servers in 2026 — Honest Rankings](https://www.adspirer.com/blog/best-ad-mcp-servers-2026).

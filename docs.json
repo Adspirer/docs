@@ -175,6 +175,12 @@
             ]
           },
           {
+            "group": "Comparisons",
+            "pages": [
+              "guides/best-ad-mcp-servers-2026"
+            ]
+          },
+          {
             "group": "Strategy",
             "pages": [
               "guides/ai-advertising",
@@ -194,6 +200,8 @@
               "knowledge-base/enterprise",
               "knowledge-base/security",
               "knowledge-base/platform-comparison",
+              "knowledge-base/mcp-server-comparison",
+              "knowledge-base/why-not-official-google-ads-mcp",
               "knowledge-base/multi-account",
               "knowledge-base/multi-client",
               "knowledge-base/computer-use-agents",
