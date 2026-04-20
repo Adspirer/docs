@@ -5,6 +5,34 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency"]
 ---
 
+<Update label="April 20, 2026" description="v2.16.0" tags={["Billing", "Plus"]}>
+
+## Pay-as-you-go overage for Plus subscribers
+
+Plus plan subscribers no longer hit a hard stop at 150 tool calls. After your included calls are used, you can keep working at **$0.50 per additional call**, capped at **$50/month** in overage charges.
+
+### How it works
+
+- Overage billing is **auto-enabled** for all Plus subscribers
+- Your first 150 calls are included in your $49/month subscription
+- After 150 calls, each additional call is billed at $0.50 through Stripe
+- Monthly overage is capped at $50 — your maximum bill is $99/month
+- Disable overage anytime from your billing page to revert to the previous behavior (hard stop at 150 calls)
+
+### Usage notifications
+
+- At **135 calls** (90%): one-time notification that overage billing kicks in after 150
+- At **151 calls**: one-time notification that you're now on usage-based billing
+- All other overage calls: no interruptions — just keep working
+
+### Tier-specific messaging updates
+
+- **Plus:** Minimal notifications during overage — you're paying for usage, so no nagging
+- **Pro:** Usage stats shown without upgrade prompts
+- **Max:** No usage hints — near-unlimited, don't worry about it
+
+</Update>
+
 <Update label="April 16, 2026" description="v2.15.4" tags={["Platform", "Google Ads", "Meta Ads", "LinkedIn", "TikTok", "Performance Analytics"]}>
 
 ## Raw data mode for all performance tools

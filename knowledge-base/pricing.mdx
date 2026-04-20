@@ -16,6 +16,10 @@ Adspirer pricing is based on **tool calls**, not ad spend. Every time your AI as
 | <Badge color="purple">Pro</Badge> | 600 | $99/mo | $999/yr | Individual marketers, 1 ad account |
 | <Badge color="yellow">Max</Badge> | 3,000 | $199/mo | $2,000/yr | Multi-platform, 2 ad accounts |
 
+<Info>
+**Plus plan includes pay-as-you-go overage.** After your 150 included calls, you can keep using tools at $0.50 per additional call, capped at $50/month in overage charges. Overage billing is auto-enabled for Plus subscribers — you can disable it anytime from your billing page.
+</Info>
+
 See [full pricing details](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=page&utm_content=pricing).
 
 <Info>
@@ -112,6 +116,32 @@ Check my Adspirer usage status
 
 This returns your current plan, calls used this month, and calls remaining.
 
+## Overage billing (Plus plan)
+
+Plus subscribers get **pay-as-you-go overage** after their 150 included tool calls:
+
+| | Details |
+|---|---|
+| **Rate** | $0.50 per additional tool call |
+| **Monthly cap** | $50 (100 extra calls max) |
+| **Auto-enabled** | Yes — active by default for all Plus subscribers |
+| **Disable anytime** | Toggle off from your billing page at [adspirer.ai](https://adspirer.ai) |
+
+### How it works
+
+1. Your first 150 tool calls each month are included in your $49 Plus subscription
+2. After 150 calls, each additional call costs $0.50 — billed through Stripe at the end of your billing cycle
+3. Overage charges are capped at $50/month (100 extra calls), so your maximum monthly bill is $99
+4. If you hit the $50 cap, tools are paused until your next billing cycle — or you can upgrade to Pro
+
+### Disabling overage
+
+If you prefer the previous behavior (tools stop at 150 calls), toggle overage off from your billing page. When disabled, you'll see an upgrade prompt at 150 calls instead of being billed per call.
+
+<Tip>
+Overage billing is only available on the Plus plan. Pro and Max plans have higher included limits (600 and 3,000 calls respectively) without per-call overage.
+</Tip>
+
 ## Upgrading
 
 If you hit your limit mid-month, upgrade takes effect immediately and resets your counter. Visit [adspirer.ai](https://adspirer.ai?utm_source=docs&utm_medium=page&utm_content=account) to manage your plan.
@@ -123,7 +153,7 @@ If you hit your limit mid-month, upgrade takes effect immediately and resets you
 No. Tool call limits reset monthly. Unused calls do not carry over to the next month.
 </Accordion>
 <Accordion title="Can I pay per call instead of monthly?">
-Not currently. All plans are monthly or annual subscriptions with included tool call limits.
+Plus subscribers get per-call overage billing after their 150 included calls — $0.50 per additional call, capped at $50/month. Pro and Max plans are fixed subscriptions without per-call billing.
 </Accordion>
 <Accordion title="Does the same Adspirer account work across all AI clients?">
 Yes. Your tool call limit is shared across ChatGPT, Claude, Perplexity, Cursor, and all other clients. One account, one limit.
@@ -132,7 +162,13 @@ Yes. Your tool call limit is shared across ChatGPT, Claude, Perplexity, Cursor, 
 Yes. The free plan includes 15 tool calls/month. A typical Google Search campaign uses 5-6 calls, Meta uses 4-6, and TikTok uses 3-4. So you can create 2-3 campaigns per month on the free tier.
 </Accordion>
 <Accordion title="What happens if I run out of tool calls mid-month?">
-You'll see a message suggesting an upgrade. You can upgrade immediately — your new limit takes effect right away and resets your counter. Or wait for the monthly reset. For urgent needs, email abhi@adspirer.com.
+It depends on your plan:
+
+- **Plus:** With overage billing enabled (default), you keep using tools at $0.50/call up to a $50/month cap. If you hit the cap or have overage disabled, you'll see a prompt to upgrade or wait for reset.
+- **Pro / Max:** You'll see a message suggesting an upgrade or you can wait for the monthly reset.
+- **Free:** You'll see an upgrade prompt. Upgrade takes effect immediately and resets your counter.
+
+For urgent needs, email abhi@adspirer.com.
 </Accordion>
 <Accordion title="How do I know which plan I need?">
 It depends on how many platforms you use, how many campaigns you create, and how often you check performance. See the "Which Plan Do I Need?" section above. You can also try our [pricing calculator](https://www.adspirer.com/pricing?utm_source=docs&utm_medium=faq).

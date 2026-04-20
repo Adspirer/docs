@@ -139,11 +139,11 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
     | Plan | Price | Tool Calls | Best For |
     |------|-------|:----------:|----------|
     | **Free** | $0/mo | 15/month | Try it out |
-    | **Plus** | $49/mo | 150/month | Small advertisers |
+    | **Plus** | $49/mo | 150/month + overage | Small advertisers |
     | **Pro** | $99/mo | 600/month | Active campaign managers |
     | **Max** | $199/mo | 3,000/month | Agencies and power users |
 
-    A "tool call" is one Adspirer MCP tool invocation (e.g., `get_campaign_performance`, `research_keywords`). A typical campaign creation uses 8-12 tool calls. See [full pricing](/knowledge-base/pricing).
+    Plus subscribers get pay-as-you-go overage after 150 calls at $0.50/call, capped at $50/month. A "tool call" is one Adspirer MCP tool invocation (e.g., `get_campaign_performance`, `research_keywords`). A typical campaign creation uses 8-12 tool calls. See [full pricing](/knowledge-base/pricing).
   </Accordion>
   <Accordion title="Is there a free tier?">
     Yes. 15 free tool calls per month, no credit card required. Enough to try a performance review, keyword research, or wasted spend analysis. [Sign up free →](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=faq&utm_content=signup)
@@ -249,13 +249,13 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
     If re-authenticating doesn't work, log out of [adspirer.ai](https://adspirer.ai) and log back in to refresh your session, then reconnect the connector.
   </Accordion>
   <Accordion title="I hit my tool call limit. What now?">
-    Your free tier includes 15 tool calls/month. Options:
+    It depends on your plan:
 
-    1. Wait for the monthly reset
-    2. Upgrade to Plus ($49/mo for 150 calls) or Pro ($99/mo for 600 calls)
-    3. Check your usage with `get_usage_status`
+    - **Free (15 calls):** Upgrade to Plus ($49/mo) or wait for the monthly reset.
+    - **Plus (150 calls):** Overage billing is enabled by default — you keep using tools at $0.50/call, capped at $50/month. If you've hit the $50 cap, upgrade to Pro or wait for reset.
+    - **Pro / Max:** Upgrade to the next tier or wait for reset.
 
-    [View pricing →](/knowledge-base/pricing)
+    Check your current usage with `get_usage_status`. [View pricing →](/knowledge-base/pricing)
   </Accordion>
   <Accordion title="My API key isn't working. What should I check?">
     Common causes:
