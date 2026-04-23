@@ -5,6 +5,37 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="April 22, 2026" description="v2.16.0" tags={["Docs", "REST API", "n8n", "Zapier"]}>
+
+## REST API Reference now live
+
+Every Adspirer tool is now callable over plain HTTP and documented at [adspirer.com/docs/api-reference](/api-reference/introduction). Same 178 endpoints as the MCP server — same auth, same quota, same write-guards — but over request/response JSON so consumers that can't speak SSE (n8n, Zapier, Make, cron jobs, GitHub Actions, your own backend) can use them.
+
+### What's included
+
+- **178 auto-generated endpoint pages** grouped by platform: Google Ads (51), Meta Ads (36), LinkedIn Ads (45), TikTok Ads (29), monitoring (13), general (3), audit (1)
+- **Interactive "Try it" playground** — authorize once with your `sk_live_...` key, call any endpoint from the browser against the real API
+- **REST API overview** with use-case patterns for Slack ChatOps, daily account briefings, portfolio rollups, alert / auto-pause, SaaS product embedding, and headless CI
+- **Architecture sequence diagrams** for each pattern showing how ingress → Adspirer → egress wires up
+
+### Base URLs
+
+| | |
+| :--- | :--- |
+| Endpoints | `https://api.adspirer.ai/api/v1/tools/<tool_name>/execute` |
+| Swagger UI | [api.adspirer.ai/docs](https://api.adspirer.ai/docs) |
+| OpenAPI spec | [api.adspirer.ai/openapi.json](https://api.adspirer.ai/openapi.json) |
+
+### Auth
+
+Pass your API key as `Authorization: Bearer sk_live_...` — same keys you already use for headless MCP. Generate one at [adspirer.ai/keys](https://adspirer.ai/keys). Free tier includes 15 calls / month.
+
+### Idempotency
+
+Write operations accept an `Idempotency-Key` header. Strongly recommended for n8n, Zapier, and any retry-prone client — a repeated call with the same key returns the cached result instead of creating duplicates.
+
+</Update>
+
 <Update label="April 16, 2026" description="v2.15.4" tags={["Platform", "Google Ads", "Meta Ads", "LinkedIn", "TikTok", "Performance Analytics"]}>
 
 ## Raw data mode for all performance tools
