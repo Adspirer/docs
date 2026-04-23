@@ -45,10 +45,18 @@ npm install -g @anthropic-ai/claude-code
 
     In the **Discover** tab, search for `adspirer` (or `ads`). You'll see **adspirer-ads-agent** from `claude-plugins-official` — the official Anthropic marketplace, enabled by default.
 
+    <Frame caption="Adspirer in the Discover tab of the official claude-plugins-official marketplace">
+      <img src="/images/claude-code/plugin-discover-search.png" alt="Plugin Discover tab showing adspirer-ads-agent from claude-plugins-official" />
+    </Frame>
+
     Press Enter on the plugin, then choose an install scope:
     - **Install for you (user scope)** — recommended, available across all your projects
     - **Install for all collaborators on this repository (project scope)**
     - **Install for you, in this repo only (local scope)**
+
+    <Frame caption="Plugin details page with install scope options">
+      <img src="/images/claude-code/plugin-install-scopes.png" alt="adspirer-ads-agent plugin details with user/project/local scope options" />
+    </Frame>
 
     Or install directly from the command line:
 
@@ -64,15 +72,33 @@ npm install -g @anthropic-ai/claude-code
     ```
 
     Or close and reopen Claude Code.
+
+    <Frame caption="Post-install output — plugins, skills, agents, and MCP servers loaded">
+      <img src="/images/claude-code/plugin-reloaded.png" alt="Claude Code reload-plugins output showing 2 plugins, 7 skills, 6 agents, 2 plugin MCP servers" />
+    </Frame>
   </Step>
   <Step title="Authenticate with Adspirer">
     The plugin's MCP server needs a one-time OAuth sign-in. Use either path:
 
-    **From the plugin manager (recommended):** type `/plugin`, open the **Installed** tab, and select **adspirer**. You'll see **Plugin:adspirer-ads-agent:adspirer MCP Server** with status "needs authentication". Choose **Authenticate** — your browser opens for OAuth sign-in.
+    **From the plugin manager (recommended):** type `/plugin`, open the **Installed** tab, and select **adspirer**. You'll see it flagged as "needs attention".
+
+    <Frame caption="Installed tab — adspirer flagged as needs authentication">
+      <img src="/images/claude-code/plugin-installed-tab.png" alt="Plugin manager Installed tab showing adspirer plugin needs authentication" />
+    </Frame>
+
+    Select the plugin to open its detail view — you'll see **Plugin:adspirer-ads-agent:adspirer MCP Server** with status "needs authentication". Choose **Authenticate** — your browser opens for OAuth sign-in.
+
+    <Frame caption="Plugin MCP server detail view with Authenticate option">
+      <img src="/images/claude-code/plugin-auth-view.png" alt="adspirer MCP server detail view showing Authenticate option" />
+    </Frame>
 
     **From `/mcp`:** type `/mcp`, find **plugin:adspirer-ads-agent:adspirer MCP Server** in the list, select it, then choose **Authenticate**.
 
     Sign in with your Adspirer account and authorize the requested scopes (campaigns:read/write, reporting:read, accounts:read). Return to Claude Code — you'll see "Authentication successful".
+
+    <Frame caption="OAuth authorization — review and approve the requested scopes">
+      <img src="/images/claude-code/oauth-scopes.png" alt="Adspirer OAuth authorization page showing requested scopes" />
+    </Frame>
   </Step>
   <Step title="Set Up Your Brand Workspace">
     ```bash
