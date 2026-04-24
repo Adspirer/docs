@@ -148,7 +148,68 @@ Audience signals tell Google which audience segments are most likely to convert.
 - Use `search_audiences` to find audience IDs by keyword
 - Tools: `add_pmax_audience_signal`, `get_pmax_audience_signals`, `remove_pmax_audience_signal`
 
-## 4. Meta Campaign Creation
+## 4. Google Display Campaign Creation
+
+Six-step workflow for standard Display (full manual targeting) and Smart Display (Google-managed). See the [Display Ads guide](/ad-platforms/google-display-ads) for complete details.
+
+### Tool Sequence
+
+```
+1. get_connections_status → verify Google Ads is connected
+2. resolve_google_locations → names → exact geoTargetConstants/<id>
+                             → rejects ambiguity ("Baja" surfaces 5 candidates)
+3. list_google_languages → validate ISO language codes
+4. search_audiences (standard Display, if using audience targeting)
+   → find real in-market / affinity / custom audience IDs
+5. Prepare creative: 1-5 short headlines ≤30 chars, 1 long headline ≤90,
+                     1-5 descriptions ≤90, ≥1 landscape + ≥1 square image
+6. create_display_campaign → campaign + ad group + RDA created PAUSED
+7. add_sitelinks + add_callout_extensions + add_structured_snippets
+8. ASK USER FOR CONFIRMATION
+```
+
+```mermaid
+flowchart TD
+    A[get_connections_status] --> B[resolve_google_locations]
+    B --> C[list_google_languages]
+    C --> D{Standard or Smart?}
+    D -->|Standard| E[search_audiences + topics/placements/keywords]
+    D -->|Smart Display| F[Conversion tracking check]
+    E --> G[Prepare creative]
+    F --> G
+    G --> H[create_display_campaign PAUSED]
+    H --> I[Add extensions]
+    I --> J{{USER CONFIRMATION}}
+```
+
+### Targeting Surfaces (Standard Display)
+
+Five independent surfaces that intersect — mix and match:
+- **Audiences** — in-market, affinity, custom, user lists (use `search_audiences`)
+- **Topics** — Google content categories
+- **Managed placements** — specific websites, apps, YouTube channels/videos
+- **Display keywords** — contextual (always BROAD match)
+- **Demographics** — age, gender, parental status, income exclusions
+
+Each surface has GET / ADD / REMOVE tools, plus a unified `remove_display_criteria` for cleanup.
+
+### Smart Display Rules
+
+- Requires `bidding_strategy=TARGET_CPA` + `target_cpa` set
+- Requires 50+ Display conversions in the last 30 days
+- **Rejects** manual targeting fields — fully Google-managed
+- Set `smart_display=true` on `create_display_campaign`
+
+### Safety Rules
+
+<Warning>
+- ALWAYS resolve locations + languages before creation — no silent US fallback
+- Never fabricate audience IDs — run `search_audiences` first
+- Smart Display + manual targeting is rejected; use one or the other
+- Campaign created PAUSED — user reviews before launching
+</Warning>
+
+## 5. Meta Campaign Creation
 
 Six-step workflow for Facebook & Instagram campaigns.
 
@@ -201,7 +262,7 @@ flowchart TD
 - Minimum $5/day budget per ad set
 </Warning>
 
-## 5. LinkedIn Campaign Creation
+## 6. LinkedIn Campaign Creation
 
 Five-step workflow for B2B sponsored content.
 
@@ -244,7 +305,7 @@ flowchart TD
 - Image dimensions: 1200x627px or 1200x1200px
 </Warning>
 
-## 6. TikTok Campaign Creation
+## 7. TikTok Campaign Creation
 
 Three-step workflow (simpler than other platforms).
 
@@ -273,7 +334,7 @@ flowchart TD
 - Format: MP4 or MOV
 - File size: Under 500MB
 
-## 7. Budget Optimization Workflow
+## 8. Budget Optimization Workflow
 
 Reallocate spend based on performance data.
 
@@ -311,7 +372,7 @@ flowchart TD
 - Decrease or pause campaigns with CPA 2x+ above target
 - Maintain minimum budgets per platform ($10 Google/LinkedIn, $5 Meta)
 
-## 8. Account Management Workflow
+## 9. Account Management Workflow
 
 Managing multiple ad accounts and checking system status.
 
@@ -337,7 +398,7 @@ flowchart LR
 - Before creating campaigns (confirm you're in the right ad account)
 - When switching between client accounts (agencies managing multiple advertisers)
 
-## 9. Automation Workflow
+## 10. Automation Workflow
 
 Schedule recurring tasks and set up monitoring.
 

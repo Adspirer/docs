@@ -110,6 +110,7 @@
             "group": "Ad Platforms",
             "pages": [
               "ad-platforms/google-ads",
+              "ad-platforms/google-display-ads",
               "ad-platforms/meta-ads",
               "ad-platforms/linkedin-ads",
               "ad-platforms/tiktok-ads",

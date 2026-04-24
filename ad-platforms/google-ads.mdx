@@ -1,13 +1,13 @@
 ---
 title: "Google Ads Integration Guide"
-description: "Manage Google Search and Performance Max campaigns with AI. 40+ tools for keyword research, ad copy generation, performance analysis, and budget optimization."
+description: "Manage Google Search, Performance Max, Display, YouTube, and Demand Gen campaigns with AI. 60+ tools for keyword research, ad copy generation, performance analysis, and budget optimization."
 icon: "magnifying-glass-dollar"
-keywords: ["google ads", "search ads", "pmax", "keyword research", "google adwords", "ppc", "sem"]
+keywords: ["google ads", "search ads", "pmax", "display ads", "gdn", "keyword research", "google adwords", "ppc", "sem"]
 ---
 
 # Google Ads Integration
 
-The most comprehensive ad platform integration. Create Search and Performance Max campaigns, research keywords with real CPC data, generate ad copy, and optimize performance with 40+ specialized tools.
+The most comprehensive ad platform integration. Create Search, Performance Max, Display, YouTube, and Demand Gen campaigns, research keywords with real CPC data, generate ad copy, and optimize performance with 60+ specialized tools.
 
 <Frame caption="Google Ads + Claude: Instant Clarity with Adspirer">
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/xf4mRLs1VR8" title="Google Ads + Claude: Instant Clarity with Adspirer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -102,6 +102,18 @@ Text ads that appear when people search specific keywords on Google. Best for ca
 AI-powered campaigns that show ads across all Google channels: Search, Display, YouTube, Gmail, Maps, and Discover. Google's algorithm automatically optimizes placement and creative combinations.
 
 **When to use:** E-commerce (especially with product feeds), broad awareness + conversions, when you have strong creative assets (images + video).
+
+### Display Campaigns <Badge color="green">New</Badge>
+
+Responsive Display Ads across 2M+ websites, apps, and YouTube display slots. Supports standard Display (full manual control over 5 targeting surfaces: audiences, topics, placements, keywords, demographics) and Smart Display (Google-managed with AI-driven targeting + bidding). 27 dedicated tools covering full CRUD — creation, ad groups, ads, targeting, creative edits, frequency caps, and schedules.
+
+**When to use:** Retargeting website visitors, brand awareness, local businesses beyond Search, visual storytelling with image + video creative. → [Full Display Ads guide](/ad-platforms/google-display-ads)
+
+### YouTube Campaigns
+
+Video ads on YouTube (In-Feed, In-Stream, Shorts). Uses Demand Gen format with YouTube-only channel controls.
+
+**When to use:** Video-first creative, product demos, brand storytelling. → [Full YouTube Ads guide](/ad-platforms/youtube-ads)
 
 ## Search Campaign Creation Workflow
 
@@ -326,6 +338,14 @@ Common issue with new campaigns. Troubleshoot:
 **Performance Max campaigns** use Google's AI to show ads across all Google channels (Search, Display, YouTube, Gmail, Maps, Discover). You provide creative assets and a conversion goal, and Google optimizes everything automatically. Best when you have strong creative assets and want broad reach with automated optimization.
 </Accordion>
 
+<Accordion title="When should I use Display instead of Performance Max?">
+Use **[Display](/ad-platforms/google-display-ads)** when you want precise control — specific audiences, specific websites, specific keywords — or for retargeting website visitors. Display runs on the Display Network only (2M+ sites and apps).
+
+Use **Performance Max** when you want Google's AI to optimize across every channel (Search, Display, YouTube, Gmail, Maps, Discover) with minimal manual targeting. PMax is broader but less controllable.
+
+Run Display for retargeting and specific placements; run PMax for broad automated reach.
+</Accordion>
+
 <Accordion title="Does Adspirer generate images or videos for Google Ads?">
 No. Adspirer generates ad copy (headlines and descriptions) through the `suggest_ad_content` tool, but it does not create images or videos. For PMax campaigns, you provide image/video URLs from Google Drive, Dropbox, S3, or any public URL. The `validate_and_prepare_assets` tool ensures your assets meet Google's specifications.
 </Accordion>
@@ -361,6 +381,8 @@ Yes. Adspirer uses OAuth 2.1 authentication -- your Google Ads credentials are n
 
 ## Related Documentation
 
+- [Google Display Ads Integration](/ad-platforms/google-display-ads) — Display Network, retargeting, Smart Display
+- [YouTube Ads Integration](/ad-platforms/youtube-ads) — Video campaigns on YouTube
 - [Meta Ads Integration](/ad-platforms/meta-ads)
 - [LinkedIn Ads Integration](/ad-platforms/linkedin-ads)
 - [TikTok Ads Integration](/ad-platforms/tiktok-ads)

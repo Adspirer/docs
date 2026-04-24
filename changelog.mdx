@@ -5,6 +5,37 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="April 23, 2026" description="v2.17.0" tags={["Google Ads", "Display", "Campaign Creation", "MCP", "OpenClaw"]}>
+
+## Google Display Ads — end-to-end CRUD
+
+Full Google Display Network support joins Search, PMax, YouTube, and Demand Gen. Ships with 27 new MCP tools verified live against Google Ads API v21. Standard Display (full manual control) and Smart Display (Google-managed) are both supported. [Display Ads guide →](/ad-platforms/google-display-ads)
+
+### What's new
+
+- **`create_display_campaign`** — Standard Display (channel=DISPLAY) and Smart Display (sub_type=DISPLAY_SMART_CAMPAIGN) with a single flag. Creates campaign + default ad group + Responsive Display Ad, all PAUSED.
+- **5 targeting surfaces — GET / ADD / REMOVE on each:**
+  - `add_display_audiences` — In-market, affinity, custom audiences, user lists, combined audiences
+  - `add_display_topics` — Google content categories
+  - `add_display_placements` — Specific websites, apps, YouTube channels, YouTube videos
+  - `add_display_keywords` — Contextual (always BROAD match on Display)
+  - `update_display_demographics` — Age, gender, parental status, income exclusions
+  - `remove_display_criteria` — Unified removal across all 5 surfaces
+- **Full CRUD:** `add_display_ad_group`, `add_display_ad`, `update_display_ad_creative` (colors, CTA, images, videos, promo, format_setting), `update_display_ad_group`, `update_display_campaign_schedule`, `update_display_frequency_caps`, plus remove variants
+- **Geo + language resolvers** — `resolve_google_locations` and `list_google_languages` reject ambiguous inputs ("Baja" surfaces 5 candidates) instead of silently falling back to US. All Google campaign types benefit.
+- **RSA + RDA dispatch** — `update_ad_headlines`, `update_ad_descriptions`, and `update_ad_content` now dispatch on ad type. Responsive Search Ads (3–15 headlines, 2–4 descriptions) and Responsive Display Ads (1–5 headlines, 1–5 descriptions, plus `long_headline`) work side-by-side.
+- **`select_google_campaign_type`** — Now includes `'display'` and `'demandgen'` alongside `'search'`, `'pmax'`, and `'youtube'` with full decision-tree workflows.
+
+### OpenClaw plugin update
+
+OpenClaw bumps to **v2026.4.13**. Tool count goes from 95 → 119 — adds all 22 Display Ads tools + 2 helpers. [OpenClaw agent guide →](/agent-skills/openclaw-agent)
+
+### Regressions
+
+None. RSA users see identical behavior plus clearer validator errors. PMax, Demand Gen, and YouTube still hit the same unchanged paths.
+
+</Update>
+
 <Update label="April 22, 2026" description="v2.16.0" tags={["Docs", "REST API", "n8n", "Zapier"]}>
 
 ## REST API Reference now live
