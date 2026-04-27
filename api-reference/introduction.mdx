@@ -384,7 +384,7 @@ Technically yes, but don't. An API key in browser JavaScript is visible to anyon
 If an upstream ad platform rate-limits us, you'll see `HTTP 429`. Back off and retry — typically 30–60 seconds is enough. Adspirer's internal rate limits (`HTTP 402` for quota) are separate from upstream limits.
 </Accordion>
 <Accordion title="Is there a webhook or subscription API?">
-Not yet. For "run every X hours" style jobs, use `create_monitor` — it polls on our side and emits alerts you can wire into Slack or email. For true push-based webhooks, [book a call](https://www.adspirer.com/book-demo?utm_source=docs&utm_medium=api-reference&utm_content=faq-webhooks).
+Not yet. For "run every X hours" style jobs, use `create_monitor` — it polls on our side and emits alerts you can wire into Slack or email. For true push-based webhooks, [book a call](https://www.adspirer.com/book-demo).
 </Accordion>
 <Accordion title="Can I use the same API key from multiple machines?">
 Yes. Keys aren't pinned to a device. Just be aware that concurrent calls share one quota — if you parallelize heavily, you may hit `HTTP 402` sooner.
