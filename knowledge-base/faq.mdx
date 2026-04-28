@@ -133,23 +133,40 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
 ## Pricing & Billing
 
 <AccordionGroup>
+  <Accordion title="What's a tool call? Is it the same as a task?">
+    Yes — a tool call is a **task** your AI assistant performs for you, on a complexity spectrum:
+
+    - **Simple task (1 call):** "What's my Google Ads ROAS this month?" · keyword research · pull last week's performance
+    - **Medium task (8–12 calls):** Launch a single campaign — research keywords, write ad copy, validate assets, create paused, summarize for review
+    - **Complex task (25–40+ calls):** "Take my Q2 media plan and launch paused campaigns across Google, Meta, and LinkedIn" — multi-platform research, asset validation, and creation in one prompt
+
+    The same plan covers tasks at every level — you just use more calls when the task is bigger. See [full breakdown](/knowledge-base/pricing#whats-a-tool-call).
+  </Accordion>
   <Accordion title="How much does Adspirer cost?">
     Pricing is based on **tool calls**, not ad spend:
 
     | Plan | Price | Tool Calls | Best For |
     |------|-------|:----------:|----------|
-    | **Free** | $0/mo | 15/month | Try it out |
-    | **Plus** | $49/mo | 150/month | Small advertisers |
-    | **Pro** | $99/mo | 600/month | Active campaign managers |
+    | **Free** | $0/mo | 15/month | Setup verification + 1 trial campaign |
+    | **Plus** | $49/mo | 150/month | Solo advertisers, single platform |
+    | **Pro** | $99/mo | 600/month | Active multi-platform campaign managers |
     | **Max** | $199/mo | 3,000/month | Agencies and power users |
 
-    A "tool call" is one Adspirer MCP tool invocation (e.g., `get_campaign_performance`, `research_keywords`). A typical campaign creation uses 8-12 tool calls. See [full pricing](/knowledge-base/pricing).
+    A typical single-campaign launch uses **8–12 tool calls**; a multi-platform launch from one media plan uses **25–40+**. The Pro plan ($99/mo) delivers ~120 hours of equivalent specialist work — about **76× cheaper than an in-house specialist** ($7,500/mo) and **15× cheaper than an Upwork contractor** ($1,500/mo). See [full pricing](/knowledge-base/pricing).
   </Accordion>
   <Accordion title="Is there a free tier?">
-    Yes. 15 free tool calls per month, no credit card required. Enough to try a performance review, keyword research, or wasted spend analysis. [Sign up free →](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=faq&utm_content=signup)
+    Yes — 15 tool calls/month, no credit card required. The free tier is sized to **verify Adspirer connects to your AI client and ad accounts** and to run **one** end-to-end campaign as a taste test. It's an evaluation tier — not enough for ongoing production work. For active campaign management, plan on Plus ($49/mo) or above. [Sign up free →](https://adspirer.ai/sign-up?utm_source=docs&utm_medium=faq&utm_content=signup)
+  </Accordion>
+  <Accordion title="Do I need a paid ChatGPT or Claude subscription to use Adspirer?">
+    **It depends on your AI client.** Custom MCP connectors require:
+
+    - **Claude:** Pro, Max, Team, or Enterprise (connectors aren't available on the Claude free tier)
+    - **ChatGPT:** Plus or Pro (connectors aren't available on the ChatGPT free tier)
+
+    These are *AI platform* requirements set by Anthropic and OpenAI, not Adspirer's. **Free alternatives** that connect to Adspirer without a paid Claude or ChatGPT subscription: [Claude Code](/ai-clients/claude-code), [Cursor](/ai-clients/cursor), [Codex](/ai-clients/codex), [Windsurf](/ai-clients/windsurf), [OpenClaw](/ai-clients/openclaw), and [Gemini CLI](/ai-clients/gemini-cli).
   </Accordion>
   <Accordion title="Do I pay separately for each AI client?">
-    No. Your Adspirer plan works across all AI clients. The same account and tool call quota applies whether you use Claude, ChatGPT, Perplexity, Cursor, or Codex.
+    No. Your Adspirer plan works across all AI clients. The same account and tool call quota applies whether you use Claude, ChatGPT, Perplexity, Cursor, Codex, Claude Code, Windsurf, or any other MCP-compatible client.
   </Accordion>
 </AccordionGroup>
 

@@ -5,7 +5,21 @@ icon: "credit-card"
 keywords: ["pricing", "plans", "free tier", "tool calls", "billing"]
 ---
 
-Adspirer pricing is based on **tool calls**, not ad spend. Every time your AI assistant calls an Adspirer tool (like pulling performance data or creating a campaign), it counts as one tool call.
+Adspirer pricing is based on **tool calls**, not ad spend. A tool call is a **task** your AI assistant performs for you — anything from a one-line question to a full multi-platform campaign launch.
+
+## What's a Tool Call?
+
+Think of a tool call as a **task**, on a complexity spectrum. The same plan covers tasks at every level — you just use more calls when the task is bigger.
+
+| Task Type | Tool Calls | What It Looks Like |
+|-----------|:----------:|--------------------|
+| **Simple** | 1 | "What's my Google Ads ROAS this month?" · "Pull last week's Meta performance" · "Research keywords for 'project management software'" |
+| **Medium** | 8–12 | Launch a single Google Search or Meta campaign — research keywords, write ad copy, validate assets, create paused, summarize for review |
+| **Complex** | 25–40+ | "Take my Q2 media plan and launch paused campaigns across Google, Meta, and LinkedIn" — one prompt, multi-platform research + asset validation + creation per platform + cross-platform reconciliation |
+
+<Tip>
+**Why tasks vary so much:** A single sentence to your AI can trigger anywhere from one tool call to forty, depending on what you ask for. The Pro plan (600 calls/month) is sized to handle real production work — typically 50–60 medium tasks or a smaller number of complex multi-platform launches.
+</Tip>
 
 ## Plans
 
@@ -49,19 +63,20 @@ Each tool invocation counts as 1 call, regardless of:
 
 ### Typical Usage by Task
 
-| Task | Tool Calls | Notes |
-|------|-----------|-------|
-| Check connected platforms | 1 | `get_connections_status` |
-| Pull campaign performance | 1 | Per platform |
-| Keyword research | 1 | Returns full keyword list with CPC data |
-| Create Google Search campaign | 5-6 | Research + assets + validate + create |
-| Create Meta image campaign | 4-6 | Targeting + type + assets + validate + create |
-| Create LinkedIn campaign | 5-6 | Org + targeting + assets + validate + create |
-| Create TikTok campaign | 3-4 | Assets + validate + create |
-| Cross-platform performance report | 4-5 | 1 call per connected platform + analysis |
-| Wasted spend analysis | 1-2 | Analysis + optional optimization |
-| Budget optimization | 2-3 | Performance pull + <Tooltip tip="Return on Ad Spend">ROAS</Tooltip>/<Tooltip tip="Cost Per Acquisition">CPA</Tooltip> recommendation |
-| Audit conversion tracking | 1 | Checks pixel health, CAPI, attribution across platforms |
+| Task | Tool Calls | Complexity | Notes |
+|------|-----------|:----------:|-------|
+| Check connected platforms | 1 | Simple | `get_connections_status` |
+| Pull campaign performance | 1 | Simple | Per platform |
+| Keyword research | 1 | Simple | Returns full keyword list with CPC data |
+| Audit conversion tracking | 1 | Simple | Checks pixel health, CAPI, attribution across platforms |
+| Wasted spend analysis | 1–2 | Simple | Analysis + optional optimization |
+| Budget optimization | 2–3 | Simple | Performance pull + <Tooltip tip="Return on Ad Spend">ROAS</Tooltip>/<Tooltip tip="Cost Per Acquisition">CPA</Tooltip> recommendation |
+| Cross-platform performance report | 4–5 | Simple | 1 call per connected platform + analysis |
+| Create Google Search campaign | 8–12 | Medium | Research + ad copy + assets + validate + create + summary |
+| Create Meta image/video campaign | 8–12 | Medium | Targeting + type + assets + validate + create + summary |
+| Create LinkedIn campaign | 8–12 | Medium | Org + targeting + ad copy + validate + create + summary |
+| Create TikTok campaign | 6–10 | Medium | Targeting + assets + validate + create + summary |
+| Multi-platform launch from a media plan | 25–40+ | Complex | One prompt builds paused campaigns across 2–4 platforms in a single run |
 
 ### Full Workflow Cost Examples
 
@@ -69,27 +84,51 @@ Most users don't run individual tools — they run workflows. Here's what typica
 
 | Workflow | Total Calls | What Happens |
 |----------|-------------|-------------|
-| Create & launch a Google Search campaign | 5-6 | Business profile + keyword research + ad copy + validate + create |
-| Create & launch a Meta image campaign | 4-6 | Select type + targeting + validate assets + create |
-| Create campaign + monitor it for a month | 9-14 | Creation (5-6) + 4 weekly performance checks (4) + 1 optimization review (2-3) |
-| Weekly cross-platform health check | 2-5 | 1 call per connected platform + optional wasted spend analysis |
-| Full account audit + optimization plan | 3-5 | Audit (1) + wasted spend (1) + budget optimization (2-3) |
-| Research + create + optimize a campaign over 30 days | 15-25 | Research (2) + create (5-6) + 4 weekly checks (4) + 2 optimizations (4-6) |
+| Create & launch a Google Search campaign | 8–12 | Business profile + keyword research + ad copy + validate + create + summary |
+| Create & launch a Meta image campaign | 8–12 | Select type + targeting + validate assets + create + summary |
+| Multi-platform launch from a single media plan | 25–40+ | One prompt → research + assets + paused campaigns across Google, Meta, and LinkedIn |
+| Create campaign + monitor it for a month | 14–18 | Creation (8–12) + 4 weekly performance checks (4) + 1 optimization review (2) |
+| Weekly cross-platform health check | 4–6 | 1 call per connected platform + optional wasted spend analysis |
+| Full account audit + optimization plan | 3–5 | Audit (1) + wasted spend (1) + budget optimization (2–3) |
+| Research + create + optimize a campaign over 30 days | 20–30 | Research (2) + create (8–12) + 4 weekly checks (4) + 2 optimizations (4–6) |
 
 <Info>
-**Can I create campaigns on the free plan?** Yes. A typical campaign creation uses 5-6 tool calls, so the free tier (15 calls) lets you create 2-3 campaigns per month.
+**Can I create campaigns on the free plan?** Yes — **one campaign**, if you know exactly what you want. A medium campaign launch uses 8–12 tool calls, so the free tier (15 calls) is sized to verify Adspirer connects to your AI client and ad accounts and to run **one** end-to-end campaign as a taste test. For ongoing production work, plan on Plus or above.
 </Info>
 
 ### Monthly Usage Examples
 
 | Scenario | Estimated Calls | Recommended Plan |
 |----------|----------------|-----------------|
-| Weekly performance check (1 platform) | 4-5/mo | Free |
-| Weekly check + 1 campaign/month | 10-15/mo | Free or Plus |
-| Daily monitoring (2 platforms) | 40-60/mo | Plus |
-| Agency managing 3 clients | 60-150/mo | Plus or Pro |
-| Heavy usage: daily + campaigns + audits | 150-600/mo | Pro |
-| Agency, multi-client, high-volume | 600+/mo | Max |
+| Setup verification + 1 trial campaign | 12–15/mo | <Badge>Free</Badge> |
+| Weekly check (1 platform) + 1 campaign/month | 12–18/mo | <Badge>Free</Badge> or <Badge color="blue">Plus</Badge> |
+| Daily monitoring (2 platforms) + 2 campaigns/mo | 40–80/mo | <Badge color="blue">Plus</Badge> |
+| Active multi-platform: 4–6 campaigns + weekly audits | 100–200/mo | <Badge color="blue">Plus</Badge> or <Badge color="purple">Pro</Badge> |
+| Heavy usage: daily monitoring, frequent launches, audits | 200–600/mo | <Badge color="purple">Pro</Badge> |
+| Agency, multi-client, high-volume | 600+/mo | <Badge color="yellow">Max</Badge> |
+
+## How Adspirer Pro Compares to Hiring
+
+The Pro plan (600 tool calls/month for $99) delivers roughly **120 hours of equivalent specialist work** per month — the same workload an in-house paid media specialist or contracted PPC freelancer would cover.
+
+| Option | Monthly Cost | Hourly Equivalent | Coverage |
+|--------|:-----------:|:------------------:|----------|
+| **In-house Paid Media Specialist** | $7,500/mo | ~$62/hr | Full ownership, full cost |
+| **Contracted Specialist (Upwork, ~25 hrs)** | $1,500/mo | $60/hr | ~20% of the work needed |
+| **Adspirer Pro** | **$99/mo** | **$0.83/hr equivalent** | Full workload via your AI assistant |
+
+**The math:**
+- Adspirer Pro is **~76× cheaper than building it in-house**
+- And **~15× cheaper than even a part-time Upwork contractor** (who only covers ~20% of the workload)
+- **Annual savings vs in-house:** $88,812
+- **Annual savings vs Upwork contractor:** $16,812
+- **Total Adspirer Pro spend per year:** $1,188
+
+Reference scenario: a benchmark account spending ~$10K/month on Google Ads with 2–3 active campaigns. See the [full breakdown in our research](https://www.adspirer.com/blog/research/cost-of-paid-media.html).
+
+<Tip>
+**Why this comparison matters:** Pricing pages typically frame "$99/mo" as a cost. The real frame is what $99/mo *replaces* — the difference between Adspirer Pro and the cheapest alternative that does the same workload is over $1,400/month.
+</Tip>
 
 ## What Counts as a Tool Call
 
@@ -129,7 +168,15 @@ Not currently. All plans are monthly or annual subscriptions with included tool 
 Yes. Your tool call limit is shared across ChatGPT, Claude, Perplexity, Cursor, and all other clients. One account, one limit.
 </Accordion>
 <Accordion title="Can I create campaigns on the free plan?">
-Yes. The free plan includes 15 tool calls/month. A typical Google Search campaign uses 5-6 calls, Meta uses 4-6, and TikTok uses 3-4. So you can create 2-3 campaigns per month on the free tier.
+Yes — **one campaign**, if you know exactly what you want. A typical campaign launch (Google Search, Meta image/video, or LinkedIn) uses 8–12 tool calls when you include keyword research, ad copy, asset validation, and creation. The free tier (15 calls/month) is sized to **verify Adspirer connects to your AI client and ad accounts** and to run one end-to-end campaign as a taste test — not for ongoing production work. For active campaign management, plan on Plus or above.
+</Accordion>
+<Accordion title="Do I need a paid ChatGPT or Claude subscription to use Adspirer?">
+**It depends on your AI client.** Custom MCP connectors require:
+
+- **Claude:** Pro, Max, Team, or Enterprise (connectors aren't available on the Claude free tier)
+- **ChatGPT:** Plus or Pro (connectors aren't available on the ChatGPT free tier)
+
+These are *AI platform* requirements, not Adspirer's. **Free alternatives:** [Claude Code](/ai-clients/claude-code), [Cursor](/ai-clients/cursor), [Codex](/ai-clients/codex), [Windsurf](/ai-clients/windsurf), [OpenClaw](/ai-clients/openclaw), and [Gemini CLI](/ai-clients/gemini-cli) connect to Adspirer through their own MCP support — no paid subscription to Claude or ChatGPT required.
 </Accordion>
 <Accordion title="What happens if I run out of tool calls mid-month?">
 You'll see a message suggesting an upgrade. You can upgrade immediately — your new limit takes effect right away and resets your counter. Or wait for the monthly reset. For urgent needs, email abhi@adspirer.com.
