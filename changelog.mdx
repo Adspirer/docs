@@ -5,6 +5,16 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="April 30, 2026" description="v2.17.2" tags={["OAuth", "Bug Fix", "Metric Collection"]}>
+
+## Reconnect now resumes metric collection
+
+Fixed an issue where reconnecting an ad account after an authentication error wouldn't actually resume background metric collection. Previously, if Adspirer auto-paused an account because the platform returned a 401/403 (expired token, revoked permissions), reconnecting through the connections page issued a fresh OAuth token but left `metrics_collection_enabled` set to false — so daily collection kept skipping the account. Customers were effectively reconnecting for nothing.
+
+Reconnect flows for **Meta Ads, Google Ads, TikTok Ads, and LinkedIn Ads** now automatically clear auth-error pauses on the same user and platform once the new token is saved, restoring daily metric collection without manual intervention. Admin pauses, free-tier pauses, and other auto-pause types are untouched.
+
+</Update>
+
 <Update label="April 29, 2026" description="v2.17.1" tags={["Max", "Multi-Account", "Agency"]}>
 
 ## Sequential sub-agents for Max plan
