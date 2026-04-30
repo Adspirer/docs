@@ -5,6 +5,25 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="April 29, 2026" description="v2.17.1" tags={["Max", "Multi-Account", "Agency"]}>
+
+## Sequential sub-agents for Max plan
+
+Max plan users can now run sequential sub-agents across multiple active ad accounts in a single conversation. Instead of switching primary accounts one at a time, mark multiple accounts as active and let Adspirer fan out tool calls across each — perfect for agencies running cross-account audits, weekly briefs, or bulk optimizations from a single prompt.
+
+### What's new
+
+- **Active accounts model** — Max users can have multiple ad accounts marked active per platform simultaneously. Lower tiers continue with the primary-account model.
+- **`list_connected_accounts`** — New system tool that returns every active account across platforms with IDs, names, and status. Reads directly from the database (zero API calls, doesn't count against your quota).
+- **Cross-account workflows** — A single prompt like "run last week's performance brief across all my Google Ads accounts" now triggers per-account sub-agents that aggregate into one consolidated response.
+- **Active set management** — Add or remove accounts from your active set at [adspirer.ai/connections](https://adspirer.ai/connections).
+
+### Who this is for
+
+Agencies, portfolio managers, and anyone managing 3+ ad accounts who currently bounces between primaries. See the updated [Multi-Account Management guide](/knowledge-base/multi-account#sequential-sub-agents-max-plan).
+
+</Update>
+
 <Update label="April 23, 2026" description="v2.17.0" tags={["Google Ads", "Display", "Campaign Creation", "MCP", "OpenClaw"]}>
 
 ## Google Display Ads — end-to-end CRUD
@@ -64,6 +83,36 @@ Pass your API key as `Authorization: Bearer sk_live_...` — same keys you alrea
 ### Idempotency
 
 Write operations accept an `Idempotency-Key` header. Strongly recommended for n8n, Zapier, and any retry-prone client — a repeated call with the same key returns the cached result instead of creating duplicates.
+
+</Update>
+
+<Update label="April 20, 2026" description="v2.15.5" tags={["Billing", "Plus"]}>
+
+## Pay-as-you-go overage for Plus subscribers
+
+Plus plan subscribers no longer hit a hard stop at 150 tool calls. After your included calls are used, you can keep working at **$0.50 per additional call**, capped at **$50/month** in overage charges.
+
+### How it works
+
+- Overage billing is **auto-enabled** for all Plus subscribers
+- Your first 150 calls are included in your $49/month subscription
+- After 150 calls, each additional call is billed at $0.50 through Stripe
+- Monthly overage is capped at $50 — your maximum bill is $99/month
+- Disable overage anytime from your billing page to revert to the previous behavior (hard stop at 150 calls)
+
+### Usage notifications
+
+- At **135 calls** (90%): one-time notification that overage billing kicks in after 150
+- At **151 calls**: one-time notification that you're now on usage-based billing
+- All other overage calls: no interruptions — just keep working
+
+### Tier-specific messaging
+
+- **Plus:** Minimal notifications during overage — you're paying for usage, so no nagging
+- **Pro:** Usage stats shown without upgrade prompts
+- **Max:** No usage hints — high included limit, don't worry about it
+
+See the updated [Pricing & Tool Calls](/knowledge-base/pricing#overage-billing-plus-plan) page.
 
 </Update>
 
@@ -146,7 +195,7 @@ If you were passing the old values and getting TikTok API errors, update to the 
 
 </Update>
 
-<Update label="April 13, 2026" description="v2.15.2" tags={["Platform", "TikTok"]}>
+<Update label="April 13, 2026" description="v2.15.2" tags={["Platform", "TikTok", "Meta Ads", "Onboarding"]}>
 
 ## TikTok Ads: campaign creation reliability
 
@@ -158,9 +207,38 @@ If you were passing the old values and getting TikTok API errors, update to the 
 - **TikTok page URL detection** — passing a TikTok page URL (e.g., `https://tiktok.com/@user/video/123`) as a video URL now returns a clear error explaining you should use `tiktok_item_id` for Spark Ads or provide a direct MP4/MOV link.
 - **CTA auto-default** — when creating an ad with a `landing_page_url` but no `call_to_action`, Adspirer now defaults to LEARN_MORE instead of failing with "External_URL and Call_to_action must exist together."
 
+## Meta Ads: disclaimer acceptance before connecting
+
+When connecting your Meta Ads account, you now see a disclaimer checkbox after entering your email. You must accept the disclaimer — confirming you understand that Adspirer operates independently from Meta's account enforcement systems — before the Connect button becomes available. Acceptance is recorded for compliance purposes. See [Connecting Meta Ads](/ad-platforms/meta-ads#connecting-meta-ads).
+
+## Platform Terms & Conditions
+
+New users now accept Platform Terms & Conditions as part of onboarding before connecting ad accounts. The terms cover account authorization requirements, rate limit safeguards, platform enforcement policies, financial responsibility, and liability. This replaces the previous per-platform disclaimer prompts with a single, comprehensive agreement.
+
+## Faster email support
+
+Email support response time improved from 1 business day to **2–4 hours** (San Francisco / PST). Reach us at support@adspirer.com.
+
 </Update>
 
-<Update label="April 8, 2026" description="v2.15.1" tags={["Platform", "Meta Ads"]}>
+<Update label="April 8, 2026" description="v2.15.1" tags={["Platform", "Meta Ads", "Monitoring"]}>
+
+## Meta Ads: expanded tool coverage (21 → 36)
+
+Meta Ads now has **36 tools** (up from 21), covering the full campaign lifecycle — from browsing and creation to ad set management, creative rotation, and lead form submissions.
+
+### New tools
+
+- **Ad set & ad management:** `add_meta_ad_set`, `add_meta_ad`, `update_meta_ad_set`, `update_meta_ad`, `list_meta_ad_sets`, `list_meta_ads`
+- **Campaign management:** `list_meta_campaigns`, `get_meta_campaign_details`, `duplicate_meta_campaign`, `resume_meta_campaign`
+- **Creative & lead gen:** `create_meta_dco_ad` (Dynamic Creative Optimization), `get_meta_ad_creatives`, `list_meta_lead_forms`, `get_meta_lead_form_submissions`
+- **Account discovery:** `list_meta_instagram_accounts`, `list_meta_pixels`
+- **Analytics:** `analyze_meta_wasted_spend`, `get_meta_audience_insights`
+
+### Monitoring improvements
+
+- `create_monitor` now lists all 15 supported metrics (roas, ctr, cpc, cpa, cpm, cpv, spend, conversions, impressions, clicks, cost\_per\_lead, conversion\_rate, budget\_utilization, video\_views, engagement\_rate)
+- Advanced monitoring: AND/OR logic across multiple conditions, consecutive-day triggers, relative thresholds, percentage change detection, campaign-level targeting, and auto-actions (pause campaign, adjust budget)
 
 ## Meta Ads: ad set parity and custom audience reliability
 

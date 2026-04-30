@@ -73,7 +73,7 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 
 </Expandable>
 
-## Meta Ads Tools (21)
+## Meta Ads Tools (36)
 
 <Expandable title="View all 36 Meta Ads tools">
 
@@ -179,11 +179,12 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "100 tools"]
 
 </Expandable>
 
-## System Tools (4)
+## System Tools (5)
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
 | `get_connections_status` | <Badge color="green">Read</Badge> | Show all connected ad platforms and account IDs |
+| `list_connected_accounts` | <Badge color="green">Read</Badge> | List all active ad accounts across platforms — used by Max-tier sequential sub-agents to fan out work across accounts. Accepts optional `platform` filter. Zero API calls (reads from database). |
 | `switch_primary_account` | <Badge color="red">Write</Badge> | Change active ad account (for users managing multiple accounts) |
 | `get_usage_status` | <Badge color="green">Read</Badge> | Check Adspirer plan limits (tool calls used/remaining this month) |
 | `get_business_profile` | <Badge color="green">Read</Badge> | View user's Adspirer account details and subscription info |
