@@ -280,6 +280,10 @@
     },
     "gtm": {
       "tagId": "GTM-PQGBFK5Q"
+    },
+    "posthog": {
+      "apiKey": "phc_rjinAsLd6D4ye5qWeAbWrN7fJEJWEG28BQY4br2t7dgB",
+      "apiHost": "https://us.i.posthog.com"
     }
   },
   "contextual": {
