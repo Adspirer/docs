@@ -28,39 +28,25 @@ When you connect Codex to Adspirer, you get 100+ advertising tools that run on a
 ## Setup
 
 <Tabs>
-<Tab title="Quick Install (Recommended)">
+<Tab title="Plugin Marketplace (Recommended)">
 <Steps>
-  <Step title="Run the Installer">
+  <Step title="Add the Adspirer Marketplace">
     ```bash
-    bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/codex/adspirer/install.sh)
+    codex plugin marketplace add amekala/ads-mcp
+    ```
+    This registers the Adspirer marketplace in Codex. No git or curl required.
+  </Step>
+  <Step title="Install the Plugin">
+    Launch Codex and open the plugin browser:
+
+    ```bash
+    codex
     ```
 
-    This installs all 5 skills, the agent config, MCP server, and multi-agent support automatically.
-  </Step>
-  <Step title="Restart Codex">
-    Close and reopen Codex to load the new config.
-  </Step>
-  <Step title="Verify the MCP Server">
-    ```bash
-    codex mcp list
-    ```
-
-    Look for `adspirer` in the output. It's normal for auth to show **Unsupported** at this point — that resolves after login.
+    Then type `/plugins` → navigate to the **Adspirer** tab → select **Adspirer Ads Agent** → press **Enter to install**.
   </Step>
   <Step title="Authenticate with Adspirer">
-    ```bash
-    codex mcp login adspirer
-    ```
-
-    A browser window will open. Sign in with your Adspirer account and authorize access. Return to your terminal when complete.
-
-    Verify auth succeeded:
-
-    ```bash
-    codex mcp list
-    ```
-
-    `adspirer` should now show as **enabled**.
+    On first use, a browser window opens automatically for OAuth. Sign in with your Adspirer account and authorize access. Return to your terminal when complete.
   </Step>
   <Step title="Set Up Your Brand Workspace">
     Open your brand folder and launch Codex:
@@ -81,6 +67,37 @@ When you connect Codex to Adspirer, you get 100+ advertising tools that run on a
     >
       15 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
     </Card>
+  </Step>
+</Steps>
+</Tab>
+<Tab title="Shell Installer">
+<Steps>
+  <Step title="Run the Installer">
+    ```bash
+    bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/codex/adspirer/install.sh)
+    ```
+
+    This installs all 5 skills, the agent config, MCP server, and multi-agent support automatically.
+  </Step>
+  <Step title="Restart Codex">
+    Close and reopen Codex to load the new config.
+  </Step>
+  <Step title="Authenticate with Adspirer">
+    ```bash
+    codex mcp login adspirer
+    ```
+
+    A browser window will open. Sign in with your Adspirer account and authorize access. Return to your terminal when complete.
+  </Step>
+  <Step title="Set Up Your Brand Workspace">
+    Open your brand folder and launch Codex:
+
+    ```bash
+    cd ~/Clients/YourBrand
+    codex
+    ```
+
+    Say "set up my brand workspace". The agent will connect to your ad accounts, scan for brand docs, pull live campaign data, and create `AGENTS.md`. If it doesn't trigger automatically, run: `$adspirer-setup`
   </Step>
 </Steps>
 </Tab>
@@ -275,7 +292,7 @@ Bottom line: Autonomous doesn't mean uncontrolled. The agent analyzes, recommend
 
 | Problem | Solution |
 |---------|----------|
-| MCP server not found | Run `codex mcp add adspirer --url https://mcp.adspirer.com/mcp` and restart |
+| MCP server not found | Run `codex plugin marketplace add amekala/ads-mcp`, then `/plugins` to install. Or: `codex mcp add adspirer --url https://mcp.adspirer.com/mcp` |
 | MCP shows "Unsupported" | Run `codex mcp login adspirer` to complete OAuth authentication |
 | Authentication failed | Run `codex mcp login adspirer` to re-authenticate |
 | Install appears to hang | A browser window may have opened for OAuth — complete sign-in and return to terminal |

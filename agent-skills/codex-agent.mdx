@@ -47,12 +47,19 @@ The one-command installer sets up everything:
 | **Safety rules** | `rules/campaign-safety.rules` | Block direct ad platform API calls |
 
 <Tabs>
-  <Tab title="One-Command Install (Recommended)">
+  <Tab title="Plugin Marketplace (Recommended)">
+    ```bash
+    codex plugin marketplace add amekala/ads-mcp
+    ```
+
+    Then inside Codex, run `/plugins` → navigate to the **Adspirer** tab → select **Adspirer Ads Agent** → press **Enter to install**. OAuth runs automatically on first use.
+  </Tab>
+  <Tab title="Shell Installer">
     ```bash
     bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/codex/adspirer/install.sh)
     ```
 
-    Installs MCP server, agent config, all 5 skills, and safety rules. Restart Codex after installing.
+    Installs MCP server, agent config, all 5 skills, and safety rules. Restart Codex after installing, then run `codex mcp login adspirer` to authenticate.
   </Tab>
   <Tab title="Manual Install">
     ```bash
