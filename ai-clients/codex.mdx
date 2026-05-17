@@ -29,34 +29,73 @@ When you connect Codex to Adspirer, you get 100+ advertising tools that run on a
 
 <Tabs>
 <Tab title="Plugin Marketplace (Recommended)">
+
+<Note>
+**Important:** The `/plugins` command below is a **slash command** — type it directly into the Codex input. Do not ask the AI to run it for you.
+</Note>
+
 <Steps>
-  <Step title="Add the Adspirer Marketplace">
-    ```bash
-    codex plugin marketplace add amekala/ads-mcp
-    ```
-    This registers the Adspirer marketplace in Codex. No git or curl required.
-  </Step>
-  <Step title="Install the Plugin">
-    Launch Codex and open the plugin browser:
+  <Step title="Open Codex">
+    Launch a Codex session in your terminal:
 
     ```bash
     codex
     ```
-
-    Then type `/plugins` → navigate to the **Adspirer** tab → select **Adspirer Ads Agent** → press **Enter to install**.
   </Step>
-  <Step title="Authenticate with Adspirer">
-    On first use, a browser window opens automatically for OAuth. Sign in with your Adspirer account and authorize access. Return to your terminal when complete.
+  <Step title="Add the Adspirer Marketplace">
+    You have two options:
+
+    **Option A — type this directly in the Codex prompt:**
+
+    ```
+    codex plugin marketplace add amekala/ads-mcp
+    ```
+
+    Codex runs the command and confirms: *"Added the marketplace adspirer-marketplace from amekala/ads-mcp."*
+
+    <Frame caption="Codex runs the marketplace add command and confirms the install path">
+      <img src="/images/codex/marketplace-add.png" alt="Codex running codex plugin marketplace add amekala/ads-mcp and confirming adspirer-marketplace added" />
+    </Frame>
+
+    **Option B — use the plugin browser:** type `/plugins` → navigate to the **Add Marketplace** tab → enter `amekala/ads-mcp`.
+  </Step>
+  <Step title="Find and Install Adspirer Ads Agent">
+    Type `/plugins` to open the plugin browser. Navigate to the **Adspirer** tab using the `</>` keys — you'll see **Adspirer Ads Agent** listed as **Available**.
+
+    <Frame caption="Plugin browser — Adspirer tab showing Adspirer Ads Agent as Available">
+      <img src="/images/codex/plugin-list-available.png" alt="Codex plugin browser Adspirer tab with Adspirer Ads Agent available" />
+    </Frame>
+
+    Press **Enter** to open the plugin detail view. You'll see the 5 skills, MCP server (`adspirer`), and an **Install plugin** option.
+
+    <Frame caption="Plugin detail view — skills, MCP server, and Install plugin option">
+      <img src="/images/codex/plugin-detail.png" alt="Adspirer Ads Agent detail view showing 5 skills, adspirer MCP server, and Install plugin option" />
+    </Frame>
+
+    Select **Install plugin**.
+  </Step>
+  <Step title="Authorize with Adspirer">
+    A browser window opens with the Adspirer OAuth 2.1 screen. Sign in to your Adspirer account and click **Authorize** to grant Codex access.
+
+    <Frame caption="Adspirer OAuth — review and authorize the requested scopes">
+      <img src="/images/codex/oauth-authorize.png" alt="Adspirer OAuth authorization page showing Codex requesting campaigns:read, campaigns:write, performance:read, accounts:read" />
+    </Frame>
+
+    Return to your terminal — you'll see *"Installed Adspirer Ads Agent plugin."* The plugin now appears as **Installed** in `/plugins`.
+
+    <Frame caption="Adspirer Ads Agent installed — visible in the Installed tab">
+      <img src="/images/codex/plugin-installed.png" alt="Codex plugin browser showing Adspirer Ads Agent as Installed with checkmark" />
+    </Frame>
   </Step>
   <Step title="Set Up Your Brand Workspace">
-    Open your brand folder and launch Codex:
+    Open your brand folder and start a new Codex session:
 
     ```bash
     cd ~/Clients/YourBrand
     codex
     ```
 
-    Say "set up my brand workspace". The agent will connect to your ad accounts, scan for brand docs, pull live campaign data, and create `AGENTS.md`. If it doesn't trigger automatically, run: `$adspirer-setup`
+    Say "set up my brand workspace". The agent connects to your ad accounts, scans for brand docs, pulls live campaign data, and creates `AGENTS.md`. If it doesn't trigger automatically, type: `$adspirer-setup`
   </Step>
   <Step title="Try It Now">
     <Card
