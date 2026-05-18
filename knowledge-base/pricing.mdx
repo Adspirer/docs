@@ -74,19 +74,32 @@ To work with current data, you need to upgrade to **Plus or above**.
 
 ### Plus, Pro & Max — Ongoing Background Sync
 
-Paid plans run **daily background metric collection** — Adspirer continuously syncs campaign structures, keywords, performance metrics, and budget data from your connected ad accounts. When you ask "what's my ROAS this week?" you get live data, not a stale snapshot.
+Paid plans run regular background metric collection — Adspirer syncs campaign structures, keywords, performance metrics, and budget data from your connected ad accounts automatically. When you ask "what's my ROAS this week?" you get current data, not a stale snapshot.
+
+Sync frequency varies by platform:
+
+| Platform | Sync Frequency | Notes |
+|----------|---------------|-------|
+| **Meta Ads** | Daily | |
+| **LinkedIn Ads** | Daily | |
+| **TikTok Ads** | Daily | |
+| **Google Ads** | 3× per week | Google Ads API rate limits and reliability constraints prevent daily syncing |
 
 | Plan | Data Sync | Historical Lookback |
 |------|-----------|-------------------|
 | <Badge>Free</Badge> | One-time at signup | 90 days (at signup) |
-| <Badge color="blue">Plus</Badge> | Daily background sync | 90 days rolling |
-| <Badge color="purple">Pro</Badge> | Daily background sync | 90 days rolling |
-| <Badge color="yellow">Max</Badge> | Daily background sync | 90 days rolling |
-| <Badge color="green">Enterprise</Badge> | Daily background sync | 12 months rolling |
+| <Badge color="blue">Plus</Badge> | Regular background sync (see above) | 90 days rolling |
+| <Badge color="purple">Pro</Badge> | Regular background sync (see above) | 90 days rolling |
+| <Badge color="yellow">Max</Badge> | Regular background sync (see above) | 90 days rolling |
+| <Badge color="green">Enterprise</Badge> | Regular background sync (see above) | 12 months rolling |
 
 <Info>
 If you're on the Free plan and your data feels outdated, upgrading to Plus immediately triggers a fresh sync. You'll have current data within minutes of upgrading.
 </Info>
+
+<Note>
+**Google Ads sync cadence:** Google Ads background collection runs 3 times per week rather than daily. This is due to Google Ads API rate limits and reliability constraints that affect background collection jobs. For on-demand live data, use tools like `get_campaign_performance` directly — those always pull fresh data from the API in real time, regardless of sync schedule.
+</Note>
 
 ## Which Plan Do I Need?
 
