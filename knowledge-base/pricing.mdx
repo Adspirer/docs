@@ -60,6 +60,34 @@ There are no monthly resets — use your calls whenever you need them.
 - Annual subscribers **never** hit overage charges; the yearly pool is their total budget for the year.
 </Info>
 
+## Performance Data & Historical Lookback
+
+How up-to-date your campaign data is depends on your plan.
+
+### Free Plan — One-Time Data Sync
+
+When you first connect an ad account on the **Free plan**, Adspirer pulls a one-time snapshot of your last **90 days** of campaign performance. That snapshot is used for analysis, keyword research, and wasted-spend detection.
+
+**The data is not refreshed after signup.** If you return a month later, your performance data will be a month stale. Tools like `get_campaign_performance` and `analyze_wasted_spend` will reflect the state of your account at the time you signed up, not today.
+
+To work with current data, you need to upgrade to **Plus or above**.
+
+### Plus, Pro & Max — Ongoing Background Sync
+
+Paid plans run **daily background metric collection** — Adspirer continuously syncs campaign structures, keywords, performance metrics, and budget data from your connected ad accounts. When you ask "what's my ROAS this week?" you get live data, not a stale snapshot.
+
+| Plan | Data Sync | Historical Lookback |
+|------|-----------|-------------------|
+| <Badge>Free</Badge> | One-time at signup | 90 days (at signup) |
+| <Badge color="blue">Plus</Badge> | Daily background sync | 90 days rolling |
+| <Badge color="purple">Pro</Badge> | Daily background sync | 90 days rolling |
+| <Badge color="yellow">Max</Badge> | Daily background sync | 90 days rolling |
+| <Badge color="green">Enterprise</Badge> | Daily background sync | 12 months rolling |
+
+<Info>
+If you're on the Free plan and your data feels outdated, upgrading to Plus immediately triggers a fresh sync. You'll have current data within minutes of upgrading.
+</Info>
+
 ## Which Plan Do I Need?
 
 Use this guide based on your situation:

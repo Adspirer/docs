@@ -5,6 +5,134 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="May 16, 2026" description="v2.19.0" tags={["Billing", "Quota", "Annual Plans", "Max"]}>
+
+## Annual Plans & Max Quota
+
+### Annual Quota Pooling
+
+Annual subscribers now get a **single pooled allowance for the full year** instead of per-month caps. No monthly resets — use your calls whenever you need them.
+
+| Plan | Annual Price | Annual Pool | Monthly Equivalent |
+|------|-------------|-------------|-------------------|
+| Plus | $485/year | 1,800 calls | ~150/month |
+| Pro | $999/year | 7,200 calls | ~600/month |
+| Max | $2,000/year | 50,000 calls | ~4,167/month |
+
+- Pool renews on your subscription anniversary date. Unused calls do **not** roll over.
+- Annual subscribers are **never charged overage** — the yearly pool is your total budget for the year.
+- Max annual (50,000) is intentionally higher than 12× monthly (36,000) as the upgrade incentive for high-volume months.
+
+### Max Plan: 3,000 calls/month
+
+The Max plan monthly limit is now formalized at **3,000 calls/month** (previously displayed as "unlimited"). This aligns with the Stripe product metadata and all enforcement layers. Max annual subscribers retain the 50,000/year pool with no monthly cap.
+
+See the updated [Pricing & Tool Calls](/knowledge-base/pricing#annual-plans--pooled-tool-call-quota) page.
+
+</Update>
+
+<Update label="May 15, 2026" description="v2.18.2" tags={["GDPR", "Compliance", "Bug Fix"]}>
+
+## GDPR Article 17 — Right to Erasure
+
+Account deletion requests (submitted via **support@adspirer.com**) now correctly pseudonymize all associated audit log rows, satisfying GDPR Article 17 right-to-erasure requirements. A bug in the deletion pipeline previously left historical audit rows intact. A one-time backfill also pseudonymized rows from prior deletion requests that had been processed without full erasure.
+
+<Note>
+Account deletion is handled by the Adspirer support team. To request account deletion, email **support@adspirer.com**.
+</Note>
+
+</Update>
+
+<Update label="May 14, 2026" description="v2.18.1" tags={["Platform", "TikTok", "Bug Fix"]}>
+
+## TikTok: 3 Customer-Blocking Fixes
+
+Three bugs from live tool call logs that were causing TikTok campaign creation failures.
+
+### Local Currency for Budget Floors
+
+TikTok campaign budget pre-flight checks were using USD as the hardcoded currency regardless of the advertiser's local currency. This caused incorrect minimum budget enforcement for non-USD accounts. The fix fetches the correct currency and timezone from TikTok's API at OAuth connect time, and backfills existing accounts. A one-time database backfill corrected 167 of 170 affected accounts (3 had expired tokens).
+
+### Disclaimer Text Format
+
+Ad disclaimer text must be passed as a structured object (`{"text": "..."}`) rather than a plain string per TikTok's API requirements. Campaigns with a `disclaimer_text` were silently failing at TikTok's server even though the tool accepted the input. The fix wraps string input into the correct object format automatically. Disclaimer text is also now enforced at a max of 90 characters (TikTok's hard limit).
+
+### CTA Autocorrect & Full Whitelist
+
+The `call_to_action` field on TikTok ads previously accepted stale values that TikTok's API would reject at campaign creation time. The field is now backed by:
+
+- **30-value authoritative whitelist** extracted from TikTok's rejection response
+- **14-alias autocorrect map** for commonly used old values:
+
+| Old (accepted, now autocorrected) | New (correct) |
+|---|---|
+| `DOWNLOAD` | `DOWNLOAD_NOW` |
+| `BUY_NOW` | `SHOP_NOW` |
+| `INSTALL` | `INSTALL_NOW` |
+| `WATCH` | `WATCH_NOW` |
+| `GET_OFFER` | `GET_QUOTE` |
+| `BOOK` | `BOOK_NOW` |
+
+Autocorrect applies to all 4 CTA schema fields (campaign creation, video ads, `add_tiktok_ad`, carousel). Invalid values that don't map to an alias return a clear error with the full allowed list.
+
+</Update>
+
+<Update label="May 12, 2026" description="v2.18.0" tags={["Platform", "Google Ads", "Campaign Creation", "Campaign Management"]}>
+
+## Google Ads: Campaign Control Expansion
+
+18 new capabilities across campaign management, search campaign creation, and asset tools, resolving the top customer-reported gaps from production.
+
+### Ad Group Pause / Resume
+
+Two new tools give you ad group-level control without touching the parent campaign:
+
+- **`pause_ad_group`** — Pause an individual ad group while leaving the campaign running
+- **`resume_ad_group`** — Resume a paused ad group
+
+### `update_campaign` — Expanded Controls
+
+`update_campaign` now accepts 6 new parameters:
+
+| Parameter | What it does |
+|---|---|
+| `search_partners` | Enable or disable the Google Search Partners network |
+| `display_expansion` | Enable or disable Display Expansion for Search campaigns |
+| `language_codes` | **Replace** the campaign's language targeting (ISO-639-1 codes like `"en"`, `"es"`, `"fr"` or `languageConstants/<id>` resource names from `list_google_languages`) |
+| `locations_to_add` | Append geo targets (free-text or `geoTargetConstants/<id>` resource names) |
+| `locations_to_remove` | Remove geo targets by criterion resource name |
+| `audience_targeting_mode` | Set `OBSERVATION` (bid adjustments only) or `TARGETING` (targeting restriction) |
+| `ai_max_enabled` | Enable or disable AI Max for eligible Search campaigns |
+
+### `create_search_campaign` — Per-Keyword Match Types
+
+Initial keywords in `create_search_campaign` now accept a mixed format:
+
+- Plain strings default to BROAD (backward compatible)
+- Objects like `{"text": "running shoes", "match_type": "PHRASE"}` set EXACT or PHRASE on individual keywords
+
+Previously, all initial keywords were forced to BROAD match — requiring a separate `add_keywords` call to set correct match types.
+
+### New Asset Tools
+
+Three new tools for attaching assets to Search campaigns:
+
+- **`add_business_name_asset`** — Attach a business name text asset (max 25 characters) at the campaign level
+- **`add_call_asset`** — Attach a phone number call asset with country code. Accepts an optional `call_conversion_action` resource name to enable call conversion tracking.
+- **`add_search_campaign_image`** — Attach image assets to Search campaigns (logo, landscape, square, portrait). Accepts HTTP URLs or base64-encoded data URIs.
+
+### `get_campaign_structure` — Expanded Fields
+
+`get_campaign_structure` now surfaces `network_settings` (Search Partners, Display Expansion), EU political content eligibility, and geo target type for each campaign. `get_campaign_targeting` responses now include `resource_name` on each criterion row so you can pass exact IDs to `locations_to_remove`.
+
+### Callout Extension Policy
+
+CTA words in callout extensions (e.g., "Learn More", "Sign Up") were previously silently dropped. They now generate a **warning** in the tool response instead of being removed — giving you visibility into which callouts were affected without blocking campaign creation.
+
+**Google Ads tool count: 89 → 92**
+
+</Update>
+
 <Update label="April 30, 2026" description="v2.17.2" tags={["OAuth", "Bug Fix", "Metric Collection"]}>
 
 ## Reconnect now resumes metric collection

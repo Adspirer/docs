@@ -1,12 +1,15 @@
 ---
 title: "Multi-Account Management"
 sidebarTitle: "Multi-Account"
-description: "Manage multiple ad accounts across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads from a single Adspirer connection. Switch primary accounts, run agency workflows, and use Max-tier sequential sub-agents to fan out across accounts in parallel."
+description: "Manage multiple ad accounts across Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads from a single Adspirer connection. All plans support unlimited connected accounts — Free, Plus, and Pro work with one active account at a time, while Max activates up to 50 accounts simultaneously for sequential sub-agent workflows."
 icon: "building"
 keywords: ["multi-account", "agency", "multiple accounts", "account management", "sequential sub-agents", "max plan"]
 ---
 
-Connect multiple ad accounts per platform. On Free, Plus, and Pro plans you switch between accounts one at a time. On the **Max plan**, sequential sub-agents fan out tool calls across multiple active accounts in a single conversation.
+You can connect **unlimited ad accounts** across all plans — there is no restriction on how many accounts you link. The difference between plans is how many accounts can be **active** (used by the agent) at once:
+
+- **Free, Plus, Pro** — one active account per platform at a time. Switch between them using `switch_primary_account`.
+- **Max** — up to 50 accounts active simultaneously. Sequential sub-agents fan out tool calls across all active accounts in a single conversation.
 
 ## How it works
 
@@ -74,7 +77,7 @@ list_connected_accounts(platform="google_ads")
 
 ### Example: cross-account weekly brief
 
-A Max user managing five client Google Ads accounts can run:
+A Max user managing multiple client Google Ads accounts can run:
 
 ```
 Run last week's performance brief across all my Google Ads accounts.
@@ -138,7 +141,7 @@ Yes, with Claude Team or Enterprise. Each team member authenticates with their o
 No. Account switching is a session operation and does not count against your tool call limit.
 </Accordion>
 <Accordion title="Do I need the Max plan for multi-account management?">
-No — you can connect multiple ad accounts per platform on any paid plan. The difference is **how** you work across them. Free, Plus, and Pro use the primary-account model: switch primaries one at a time with `switch_primary_account`. The Max plan unlocks **sequential sub-agents** — multiple accounts active simultaneously, with Adspirer fanning out tool calls across all of them in a single prompt. Use Max when you regularly run cross-account audits, briefs, or bulk optimizations.
+No — you can connect unlimited ad accounts on **any** plan. The difference is how many can be **active** at once. Free, Plus, and Pro keep one active account per platform at a time — switch with `switch_primary_account`. The Max plan activates up to 50 accounts simultaneously, with sequential sub-agents fanning out tool calls across all of them in a single prompt. Use Max when you regularly run cross-account audits, briefs, or bulk optimizations.
 </Accordion>
 <Accordion title="What does `list_connected_accounts` return?">
 A list of all your active ad accounts across platforms — with platform name, account ID, account name, and status. It's primarily used by Max-tier sequential sub-agents to fan out work, but it's available on any plan. Costs zero tool calls and makes zero API calls (reads from the database).
