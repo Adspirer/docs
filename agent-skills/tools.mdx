@@ -1,7 +1,7 @@
 ---
 title: "Tool Catalog"
 sidebarTitle: "Tool Catalog"
-description: "Complete reference of all 135+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
+description: "Complete reference of all 190+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
 icon: "wrench"
 mode: "wide"
 keywords: ["tools", "mcp tools", "api", "tool catalog", "190 tools", "190+ tools"]
@@ -49,7 +49,9 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "190 tools", "190+ tools
 | `add_business_name_asset` | <Badge color="red">Write</Badge> | Attach a business name asset to a Search campaign (max 25 characters) |
 | `add_call_asset` | <Badge color="red">Write</Badge> | Attach a phone number call asset with optional call conversion tracking |
 | `add_search_campaign_image` | <Badge color="red">Write</Badge> | Attach image assets (logos, marketing images) to Search campaigns |
-| ...and 12 more | | Bidding strategies, geographic targeting, ad scheduling, etc. |
+| `list_conversion_actions` | <Badge color="green">Read</Badge> | List all conversion actions in the account (purchases, form fills, calls) with status and tracking method |
+| `get_conversion_action_performance` | <Badge color="green">Read</Badge> | Pull conversion volume, value, and CPA broken down by conversion action — see which actions drive results |
+| ...and 10 more | | Bidding strategies, geographic targeting, ad scheduling, etc. |
 
 </Expandable>
 
@@ -79,9 +81,9 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "190 tools", "190+ tools
 
 </Expandable>
 
-## Meta Ads Tools (36)
+## Meta Ads Tools (37)
 
-<Expandable title="View all 36 Meta Ads tools">
+<Expandable title="View all 37 Meta Ads tools">
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
@@ -121,12 +123,13 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "190 tools", "190+ tools
 | `get_meta_lead_form_submissions` | <Badge color="green">Read</Badge> | Pull lead submissions from a form |
 | `list_meta_instagram_accounts` | <Badge color="green">Read</Badge> | View connected Instagram accounts |
 | `list_meta_pixels` | <Badge color="green">Read</Badge> | View Meta Pixels in your ad account |
+| `get_meta_adset_performance` | <Badge color="green">Read</Badge> | Pull spend, clicks, CTR, CPA, ROAS, and conversions broken down by ad set within a campaign — middle layer between campaign and ad performance |
 
 </Expandable>
 
-## TikTok Ads Tools (31)
+## TikTok Ads Tools (33)
 
-<Expandable title="View all 31 TikTok Ads tools">
+<Expandable title="View all 33 TikTok Ads tools">
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
@@ -158,7 +161,8 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "190 tools", "190+ tools
 | `list_tiktok_ads` | <Badge color="green">Read</Badge> | List ads, filter by ad group or campaign |
 | `pause_tiktok_ad` | <Badge color="red">Write</Badge> | Pause a TikTok ad |
 | `resume_tiktok_ad` | <Badge color="red">Write</Badge> | Resume a paused TikTok ad |
-| ...and 3 more | | Additional TikTok tools |
+| `explain_tiktok_objective` | <Badge color="green">Read</Badge> | Given your goal (leads, sales, traffic, app installs), returns the correct TikTok campaign objective, recommended ad format, and compatibility constraints — eliminates trial-and-error objective selection |
+| ...and 4 more | | Additional TikTok tools |
 
 </Expandable>
 
@@ -168,20 +172,40 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "190 tools", "190+ tools
 |-----------|------|-------------|
 | `audit_conversion_tracking` | <Badge color="green">Read</Badge> | Audit conversion tracking health across platforms. Checks Meta Pixel (event volume, CAPI, dedup), LinkedIn (conversion rules, CAPI, Insight Tag), and Google Ads (conversion actions, enhanced conversions, attribution). Returns health score (0-100), grade (A-F), and actionable recommendations. |
 
-## Automation Tools (8)
+## Automation Tools (16)
 
-<Expandable title="View all 8 Automation tools">
+<Expandable title="View all 16 Automation tools" defaultOpen>
+
+### Watch Agent (Proactive Signal)
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
-| `schedule_brief` | <Badge color="red">Write</Badge> | Schedule daily/weekly performance summaries via email or Slack |
-| `create_monitor` | <Badge color="red">Write</Badge> | Set alerts for CPA spikes, budget overspend, CTR drops |
-| `list_monitors` | <Badge color="green">Read</Badge> | View all active performance monitors |
-| `delete_monitor` | <Badge color="red">Write</Badge> | Remove a monitor |
-| `generate_report_now` | <Badge color="green">Read</Badge> | Generate ad-hoc cross-platform performance report |
-| `list_scheduled_tasks` | <Badge color="green">Read</Badge> | View all scheduled briefs and reports |
-| `update_scheduled_task` | <Badge color="red">Write</Badge> | Change frequency or parameters of scheduled briefs |
-| `delete_scheduled_task` | <Badge color="red">Write</Badge> | Remove a scheduled brief or report |
+| `run_watch_now` | <Badge color="green">Read</Badge> | Trigger an on-demand Watch Agent scan immediately. The agent reviews all connected ad accounts, writes a finding, and emails a re-entry prompt. Normally runs automatically every 15 minutes. |
+| `get_signal_briefing` | <Badge color="green">Read</Badge> | Pull the advisory briefing and pre-staged fix actions for a specific Watch Agent finding. Use after receiving a finding email or after `run_watch_now`. |
+| `apply_signal_actions` | <Badge color="red">Write</Badge> | Apply the pre-staged actions from a Watch Agent finding. Executes approved campaign adjustments (pause, bid change, add negatives) in one call. |
+| `list_pending_actions` | <Badge color="green">Read</Badge> | List all actions staged by the Watch Agent that are waiting for your approval (pending_approval, executed, rejected, expired). |
+| `manage_action` | <Badge color="red">Write</Badge> | Approve or reject a specific pending action staged by the Watch Agent. |
+
+### Monitors & Alerts
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `create_monitor` | <Badge color="red">Write</Badge> | Set a metric alert. Supports CPA, ROAS, CTR, CPC, spend, conversions, impressions, clicks, cost per lead, conversion rate, budget utilization. Same alerts visible in the [Monitors web UI](https://adspirer.ai/monitors). |
+| `list_monitors` | <Badge color="green">Read</Badge> | View all active performance monitors (excludes deleted/tombstoned alerts). |
+| `delete_monitor` | <Badge color="red">Write</Badge> | Remove a monitoring alert permanently. |
+| `get_monitor_history` | <Badge color="green">Read</Badge> | View all past trigger events for a specific alert — timestamps, metric values, and what triggered it. |
+| `test_monitor` | <Badge color="green">Read</Badge> | Dry-run a monitor against today's data. See whether the alert would fire right now without waiting for the next scheduled check. |
+
+### Scheduled Briefs & Reports
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `schedule_brief` | <Badge color="red">Write</Badge> | Schedule daily/weekly performance summaries via email. Briefs now attach a PDF. |
+| `generate_report_now` | <Badge color="green">Read</Badge> | Generate an ad-hoc cross-platform performance report immediately. |
+| `list_scheduled_tasks` | <Badge color="green">Read</Badge> | View all scheduled briefs, monitors, and reports with status. |
+| `manage_scheduled_task` | <Badge color="red">Write</Badge> | Unified pause, resume, or delete for any scheduled task (brief, monitor, or report). Pass `task_id` from `list_scheduled_tasks` and `action`: `'pause'`, `'resume'`, or `'delete'`. |
+| `start_research` | <Badge color="red">Write</Badge> | Launch an async AI-powered research job (competitor analysis, keyword research, market landscape, audience insights, campaign strategy). |
+| `get_research_status` | <Badge color="green">Read</Badge> | Check the status and results of an in-progress or completed research job. |
 
 </Expandable>
 

@@ -398,27 +398,75 @@ flowchart LR
 - Before creating campaigns (confirm you're in the right ad account)
 - When switching between client accounts (agencies managing multiple advertisers)
 
-## 10. Automation Workflow
+## 10. Automation & Proactive Monitoring
 
-Schedule recurring tasks and set up monitoring.
+Schedule recurring tasks, set alerts, and use the Watch Agent for proactive campaign monitoring.
 
-### Available Automation Tools
+### Watch Agent (Proactive Signal)
 
-- `schedule_brief` -- Schedule daily/weekly performance summaries
-- `create_monitor` -- Set alerts for CPA spikes, budget overspend, etc.
-- `list_monitors` -- View active monitors
-- `generate_report_now` -- Generate ad-hoc cross-platform reports
-- `list_scheduled_tasks` -- View all scheduled briefs and reports
+The Watch Agent runs automatically in the background every 15 minutes, scanning your connected ad accounts for issues. When it finds something actionable, it emails you a copy-paste prompt to act on it immediately.
+
+**Tool Sequence — on-demand scan:**
+
+```
+1. run_watch_now → kicks off a Watch Agent session right now (async)
+2. [email arrives with signal_id and re-entry prompt]
+3. get_signal_briefing(signal_id) → advisory + pre-staged fix actions
+4. apply_signal_actions(signal_id) → execute the fixes (with confirmation)
+```
+
+```mermaid
+flowchart TD
+    A[run_watch_now] --> B[Watch Agent scans accounts]
+    B --> C{Issues found?}
+    C -->|Yes| D[Finding + email with signal_id]
+    C -->|No| E[No action]
+    D --> F[get_signal_briefing]
+    F --> G[Review recommendations]
+    G --> H{{USER APPROVAL}}
+    H --> I[apply_signal_actions]
+```
+
+**Managing staged actions:**
+
+```
+1. list_pending_actions → see all Watch Agent staged fixes waiting for approval
+2. manage_action(action_id, decision="approve") → approve one action
+   OR apply_signal_actions(signal_id) → approve all staged actions for a finding
+```
+
+### Monitors & Alerts
+
+**Tool Sequence — create a metric alert:**
+
+```
+1. create_monitor(metric, operator, threshold) → set the alert
+   OR use the Monitors web UI at adspirer.ai/monitors
+2. list_monitors → verify it's active
+3. [alert fires when threshold is crossed, email sent]
+4. get_monitor_history(alert_id) → see all past trigger events
+   test_monitor(alert_id) → dry-run against today's data
+```
+
+### Scheduled Briefs
+
+```
+1. schedule_brief(delivery_destination, schedule_type, time, platforms)
+   → set up daily or weekly email report (now includes PDF attachment)
+2. list_scheduled_tasks → see all active briefs and monitors
+3. manage_scheduled_task(task_id, action="pause") → pause, resume, or delete
+```
 
 ### Example: Daily Performance Brief
 
 ```python Daily Performance Brief
 schedule_brief(
-  platforms=["google", "meta", "linkedin"],
-  frequency="daily",
-  time="08:00 AM",
-  metrics=["spend", "conversions", "cpa"],
-  delivery_method="email"
+  name="Morning Standup Brief",
+  delivery_destination="team@company.com",
+  schedule_type="daily",
+  time="08:00",
+  timezone="America/New_York",
+  platforms=["google_ads", "meta_ads", "linkedin_ads"]
 )
 ```
 
@@ -426,12 +474,23 @@ schedule_brief(
 
 ```python CPA Spike Alert
 create_monitor(
-  platform="google",
   metric="cpa",
-  threshold=50,  # alert if CPA goes above $50
-  condition="exceeds",
-  alert_method="slack"
+  operator="greater_than",
+  threshold=50,        # alert if CPA exceeds $50
+  consecutive_days=2,  # only alert if it stays above for 2 days (reduces noise)
+  platforms=["google_ads"]
 )
+```
+
+### Example: On-Demand Watch Agent Scan
+
+```
+"Run the watch agent on my accounts now"
+→ run_watch_now()
+→ [email arrives] "Show me the briefing for signal abc123"
+→ get_signal_briefing(signal_id="abc123")
+→ "Apply the staged fixes"
+→ apply_signal_actions(signal_id="abc123")
 ```
 
 ## Workflow Principles

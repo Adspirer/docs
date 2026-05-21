@@ -5,6 +5,83 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="May 20, 2026" description="v2.20.0" tags={["Automation", "Watch Agent", "Monitors", "Proactive Signal", "MCP"]}>
+
+## Watch Agent, Monitors & Alerts Web UI, and 8 New MCP Tools
+
+### Watch Agent — Proactive Signal
+
+The **Watch Agent** is a server-side AI agent that scans your connected ad accounts every 15 minutes, identifies issues, and emails you a copy-paste re-entry prompt so you can act immediately inside your AI client. No more waiting for weekly reviews to catch a broken campaign.
+
+**What the Watch Agent does:**
+- Analyzes ROAS, CPA, CTR, spend, and conversion rate across all connected platforms
+- Distinguishes true anomalies from normal variance (noise suppression built in)
+- Stages pre-validated fix actions (pause campaign, adjust bid, add negatives) alongside each finding
+- Sends a finding email with a ready-to-paste prompt when severity ≥ medium is detected
+
+**MCP tools for the Watch Agent:**
+
+| Tool | Type | Description |
+|------|------|-------------|
+| `run_watch_now` | Read | Trigger an on-demand Watch Agent scan immediately — don't wait for the next scheduled run |
+| `get_signal_briefing` | Read | Pull the advisory briefing and pre-staged fixes for a specific Watch Agent finding |
+| `apply_signal_actions` | Write | Apply the pre-staged fixes from a finding — approve with one call |
+| `list_pending_actions` | Read | See all actions staged by the Watch Agent waiting for your approval |
+| `manage_action` | Write | Approve or reject an individual staged action |
+
+**Example:**
+```
+"Run the watch agent on my accounts now"
+→ run_watch_now
+
+"Show me the briefing for signal abc123"
+→ get_signal_briefing(signal_id="abc123")
+
+"Apply the staged fixes"
+→ apply_signal_actions(signal_id="abc123")
+```
+
+The Watch Agent runs automatically for all connected accounts — no setup required.
+
+### Monitors & Alerts — Web UI
+
+A new **Monitors** page at [adspirer.ai/monitors](https://adspirer.ai/monitors) lets you create and manage performance alerts without opening your AI client. Every alert you create on the web goes to the same backend as the MCP `create_monitor` tool — the Watch Agent reads from one unified table regardless of which surface created the alert.
+
+**What you can do on the Monitors page:**
+- Create alerts for CPA, ROAS, CTR, CPC, spend, conversions, impressions, clicks, cost per lead, conversion rate, or budget utilization
+- Set thresholds with "goes above" or "drops below" operators
+- Optional: trigger only after N consecutive days (1–14) — filter out one-off noise
+- Scope to specific platforms (Google Ads, Meta, LinkedIn, TikTok) or all connected
+- Edit, pause, resume, test (dry-run), and delete alerts in the dashboard
+
+**Supported alert metrics:**
+
+| Metric | Example threshold |
+|--------|-----------------|
+| CPA | Alert when CPA goes above $50 |
+| ROAS | Alert when ROAS drops below 2x |
+| CTR | Alert when CTR drops below 1% |
+| Spend | Alert when daily spend goes above $500 |
+| Budget utilization | Alert when pacing exceeds 110% |
+| Conversions | Alert when conversions drop below 1 |
+| Clicks, Impressions | Volume monitoring |
+
+### 3 More New Monitoring Tools
+
+| Tool | Type | Description |
+|------|------|-------------|
+| `get_monitor_history` | Read | See all past trigger events for a specific alert — when it fired, what values triggered it |
+| `test_monitor` | Read | Dry-run a monitor against today's data — see whether it would fire without waiting |
+| `manage_scheduled_task` | Write | Unified pause, resume, or delete for any brief, monitor, or scheduled task |
+
+### PDF Reports for Scheduled Briefs
+
+Scheduled performance briefs now **attach a PDF** to the email. The PDF contains the same tables and charts as the email body — useful for sharing with stakeholders who don't have Adspirer access.
+
+**Monitoring tool count: 8 → 16**
+
+</Update>
+
 <Update label="May 16, 2026" description="v2.19.0" tags={["Billing", "Quota", "Annual Plans", "Max"]}>
 
 ## Annual Plans & Max Quota
@@ -130,6 +207,67 @@ Three new tools for attaching assets to Search campaigns:
 CTA words in callout extensions (e.g., "Learn More", "Sign Up") were previously silently dropped. They now generate a **warning** in the tool response instead of being removed — giving you visibility into which callouts were affected without blocking campaign creation.
 
 **Google Ads tool count: 89 → 92**
+
+</Update>
+
+<Update label="May 9, 2026" description="v2.17.3" tags={["Platform", "TikTok", "Google Ads", "Meta Ads", "Billing"]}>
+
+## TikTok Deep Overhaul, Google Ads Conversion Tools, and Meta Adset Performance
+
+### TikTok Ads — Full SDK Overhaul + Layer 2
+
+The TikTok integration received its largest overhaul since launch — every customer-blocking bug from production logs was closed and the platform's full API depth is now accessible.
+
+**Phase 0 — bug fixes (all customer-blocking):** Ad group spec re-architected to 86 fields; creative spec to 59 fields. Image direct-path skips base64 conversion. Slideshow (unsupported by TikTok) removed from code paths. ffmpeg added to Cloud Run for video frame extraction. 5 prod-harness-discovered bugs (pause schema, ValueError hints, image path, envelope, deletes) fixed.
+
+**Phase 1 — full SDK depth:** All 86 ad-group fields and 59 creative fields from TikTok's marketing API are now surfaced through `add_tiktok_ad_group` and `add_tiktok_ad`. Previously only a subset was accessible.
+
+**Layer-1 — validity matrix:** 6 common error classes are now caught *before* the API call — saving tool call quota and eliminating confusing API rejection messages.
+
+**Layer-2 — new tool and rich targeting:**
+
+| Tool | Type | Description |
+|------|------|-------------|
+| `explain_tiktok_objective` | Read | Given your goal (leads, sales, traffic, app installs), returns the correct TikTok campaign objective, recommended ad format, and validity constraints — eliminating trial-and-error |
+
+**Rich targeting** for `add_tiktok_ad_group` now supports interest filters, behavioral keywords, action categories, carrier/device targeting, and language filters — all available through `search_tiktok_targeting`.
+
+**Atomic rollback:** If campaign creation fails at any sub-step (ad group or ad level), previously-created resources are automatically rolled back. No more partial campaigns left in your account.
+
+### Google Ads — Conversion Tracking Tools
+
+Two new tools for conversion analysis — separate from the existing `audit_conversion_tracking` health check:
+
+| Tool | Type | Description |
+|------|------|-------------|
+| `list_conversion_actions` | Read | List all conversion actions in your Google Ads account (purchases, form fills, phone calls, etc.) with status and tracking method |
+| `get_conversion_action_performance` | Read | Pull conversion metrics (volume, value, CPA) broken down by conversion action — see which actions are actually driving results |
+
+`get_campaign_targeting` is also expanded: it now returns all criterion types (location, language, audience, device, ad schedule, topic, content label) instead of just locations and languages.
+
+### Google Ads — Ad-Group Extensions
+
+`add_sitelinks`, `add_callout_extensions`, and `add_structured_snippets` now accept an optional `ad_group_id` parameter. Extensions attached at the ad-group level override campaign-level extensions for that specific ad group — useful for ad groups targeting different products or audiences.
+
+### Meta Ads — Ad Set Performance
+
+A new middle-layer analytics tool between campaign and ad level:
+
+| Tool | Type | Description |
+|------|------|-------------|
+| `get_meta_adset_performance` | Read | Pull spend, clicks, CTR, CPA, ROAS, and conversions broken down by ad set within a campaign — see which audience segments and placements are driving results before going to individual ad level |
+
+Previously, Meta performance tools showed either campaign-level (too broad) or ad-level (too granular) data. Ad set performance fills the gap for budget allocation decisions.
+
+### Billing — Plan Management UI
+
+The **Billing** page now supports plan changes without contacting support:
+
+- **Downgrades** — Switch from Pro → Plus or Plus → Free directly from the billing page
+- **Interval switching** — Toggle between monthly and annual billing mid-cycle
+- **Max plan visibility** — Max plan capabilities and tool call limits are now shown inline on the billing page
+
+All plan changes go through Stripe Checkout (same flow as upgrades) for consistent billing history.
 
 </Update>
 
