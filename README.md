@@ -9,7 +9,7 @@ Documentation for [Adspirer](https://www.adspirer.com) — the MCP server that c
 24 MDX pages covering:
 
 - **Getting Started** — Introduction and quickstart guide
-- **AI Clients** (8) — ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, Windsurf, Custom GPT
+- **AI Clients** — ChatGPT, Claude, Claude Code, Cursor, Codex, OpenClaw, Windsurf, Perplexity, Manus, Gemini CLI
 - **Ad Platforms** (4) — Google Ads (39 tools), Meta Ads (20), LinkedIn Ads (28), TikTok Ads (4)
 - **Agent Skills** (3) — Overview, tool catalog (100+ tools), core workflows
 - **Guides** (7) — SEO pillar content for Google Ads, Meta Ads, TikTok, and AI advertising

@@ -54,6 +54,11 @@
       "permanent": true
     },
     {
+      "source": "/ai-clients/custom-gpt",
+      "destination": "/ai-clients/chatgpt",
+      "permanent": true
+    },
+    {
       "source": "/tools",
       "destination": "/agent-skills/tools",
       "permanent": true
@@ -102,8 +107,7 @@
               "ai-clients/openclaw",
               "ai-clients/windsurf",
               "ai-clients/manus",
-              "ai-clients/perplexity",
-              "ai-clients/custom-gpt"
+              "ai-clients/perplexity"
             ]
           },
           {
