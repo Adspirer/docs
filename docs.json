@@ -122,6 +122,13 @@
             ]
           },
           {
+            "group": "Integrations",
+            "pages": [
+              "integrations/google-analytics",
+              "integrations/klaviyo"
+            ]
+          },
+          {
             "group": "Agent Skills",
             "pages": [
               "agent-skills/overview",

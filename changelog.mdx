@@ -5,6 +5,148 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="May 26, 2026" description="v2.23.1" tags={["Bug Fix"]}>
+
+## Security & Stability Pass
+
+Back-end maintenance day — no behavior change for customers, but worth noting:
+
+- **MCP base image hardening** — all six MCP sub-servers (hub + Google + Meta + TikTok + LinkedIn + Monitoring) now pinned to `python:3.11-slim-trixie` with cryptography and authlib audit-pass dependencies.
+- **Container scanning by digest** — vulnerability scans now resolve images to their content digest instead of the floating `:latest` tag so the report can't drift between scan time and image promotion.
+- **Cross-platform resilience fixes** — tighter input handling on Google Ads tool routing, longer hub timeout for slow Meta calls, and a fix to the Watch Agent classifier so a stuck SQL transaction no longer cascades into a noisy "our bug" finding.
+
+</Update>
+
+<Update label="May 25, 2026" description="v2.23.0" tags={["New Features", "Meta Ads", "Google Ads", "Agency"]}>
+
+## Multi-Google-OAuth, Meta Account Improvements & Per-Platform Cap Messaging
+
+### Connect Multiple Google Logins to One Adspirer Account
+
+A single Adspirer account can now connect **multiple Google OAuth grants**, each with its own non-overlapping set of Google Ads customer IDs. Agencies and consultants who manage Google Ads across separate Google identities no longer need a second Adspirer account.
+
+- Adds a second (or third) Google login from the **Connections → Google Ads → Add another Google login** flow.
+- Each grant tracks its own customer IDs; the agent transparently routes tool calls to the right OAuth based on the customer you ask about.
+- Available on **Max annual** today; rolling to the rest of the paid tiers behind the `feature_multi_google_oauth` flag.
+
+### Meta Ads — Three Things Customers Asked For (Issue #468)
+
+A multi-tranche overhaul of how Adspirer talks to Meta Business Manager:
+
+- **Business Manager-wide import (Tranche B)** — when you connect Meta, Adspirer now discovers **every ad account inside the BM** you grant access to, not just the one you happened to click during OAuth. The Manage Accounts modal lists them all so you can activate the right ones.
+- **Per-account asset scoping (Tranche A)** — image, video, and creative discovery is now scoped to the specific ad account you're targeting. No more "this image was discovered but Meta says it's not in this ad account" errors.
+- **Opt-in auto-copy of creatives (Tranche B)** — when you reuse a creative from a sibling ad account, Adspirer offers to copy it into the target account automatically (opt-in per call) so the campaign launch doesn't stall on asset placement.
+- **Clearer "no account" MCP error (Tranche C)** — when an MCP call can't find a Meta account, the response now distinguishes a stale token from a missing-row state so you (or your AI client) know whether to reconnect or just re-select.
+
+### Per-Platform Active-Account Messaging
+
+The cap is **per platform** — every plan card across pricing and the Manage Accounts modal now states up front how many active accounts you get per platform (Google + Meta + LinkedIn + TikTok each counted independently). When you're capped, the modal shows an inline upsell that links directly into the Adspirer plan picker.
+
+### Smaller Improvements
+
+- **Sidebar rename** — "Account Setup" is now **Home**. Same page, more accurate label for users past initial setup.
+- **Watch Agent briefs**: scoped to your selected accounts (not just the primary), with multi-OAuth coverage so a second Google identity's accounts no longer show up empty.
+- **Live-tail merge** for Google Ads in the brief data fetchers so spend that hit the API after the nightly sweep still lands in your brief.
+
+</Update>
+
+<Update label="May 24, 2026" description="v2.22.0" tags={["New Features", "Billing", "Agency"]}>
+
+## Plan Limits, Cap Rework & Connections Panel Refresh
+
+### Active-Account Caps — New Per-Tier Limits
+
+The big change: **annual plans now activate up to 5 accounts per platform**, not 1. Monthly plans (except Max) still cap at 1 per platform. Full table:
+
+| Plan | Monthly | Annual |
+|------|--------:|-------:|
+| Free | 1 | 1 |
+| Plus | 1 | **5** |
+| Pro  | 1 | **5** |
+| Max  | **5** | 5 |
+
+- "Account" means an ad account on a single platform — Plus annual customers can activate up to 5 Google Ads accounts **and** 5 Meta accounts **and** 5 LinkedIn accounts **and** 5 TikTok accounts.
+- Every Stripe webhook now reconciles down-tier moves automatically: if you downgrade from Max monthly to Plus monthly, excess actives demote to inactive (deterministically — primary-set-first, then most-recently-synced).
+- Caps live in a new `subscription_plan_limits` table so we can adjust without redeploys, and every change is written to a `tier_limit_changes` audit log.
+- **Defense in depth:** the MCP hub also truncates account lists at the tier cap before returning them, so any reconciliation gap can't accidentally let a downgraded user keep agent access to more accounts than their plan allows.
+
+### Onboarding & Connections — Smoothed Out
+
+- **Onboarding Step 5 stays put** — fixed an issue where the Congrats screen would bounce users back to Step 1 if their AppUser stub hadn't finished writing after Stripe checkout. You always land on Step 5 post-payment now.
+- **Connections panel — unified stacked rows** — Available Platforms restyled to compact rows that match the Pipedream integration cards below. The Google Analytics + Klaviyo cards no longer hide below the fold.
+- **OAuth modal always opens** — after a successful OAuth, the account-selection modal opens regardless of how many accounts are under your OAuth identity. No more silent auto-pick when you have multiple accounts and didn't realize.
+- **Tier-aware Manage Accounts modal** with an inline Edit button and a Connections-panel mirror so the active-account picker shows the same state in both surfaces.
+- **Admin: Plan Limits page** with a dry-run preview that counts affected users before you commit a cap change.
+
+### Bug Fixes
+
+- "Add another Google login (coming soon)" placeholder is replaced with a Max-annual upsell that explains how to unlock it today.
+- `get_ad_accounts` now filters out deselected (inactive) accounts so they stop rendering as green Active in the Connected Platforms UI.
+
+</Update>
+
+<Update label="May 22, 2026" description="v2.21.0" tags={["New Features", "Integrations", "Billing"]}>
+
+## Google Analytics & Klaviyo Integrations
+
+Adspirer's first non-ad-platform integrations are live. Plus, Pro, and Max users can now connect **Google Analytics 4** and **Klaviyo** alongside their ad accounts, and the agent can read and act on those properties through chat.
+
+### What You Can Do
+
+| Integration | Tool | What it does |
+|---|---|---|
+| Google Analytics (GA4) | `google_analytics` | Read property data — sessions, conversions, traffic sources, landing-page performance — so the agent can correlate paid ad spend with site behavior. |
+| Klaviyo | `klaviyo` | Read campaigns, flows, segments, profiles, and metrics so the agent can pull email/SMS performance alongside paid media. |
+
+Each is a **router tool** — `action="list_tools"` first to discover what's available, then `action="execute"` with the specific Pipedream tool name to call it. The agent handles this two-step automatically.
+
+### How It Works
+
+- Connect from the **Connections** tab at [adspirer.ai](https://adspirer.ai/connections) — each integration has its own OAuth popup powered by Pipedream Connect.
+- Gated to **Plus and above**. Free users see the integration card with a "Upgrade" prompt that links into the Adspirer plan picker.
+- Disconnect anytime from the same panel; idle connections (>90 days) get pruned automatically to keep the integration list tidy.
+
+### Self-Serve Account Deletion in the Chat Widget
+
+Free-tier users can now ask the in-app chat widget to delete their account end-to-end — no email round-trip required. The widget confirms before executing and runs the full GDPR delete (hard-delete + pseudonymize + retain per Article 17(3)(b)).
+
+### OpenClaw Plugin v2026.5.12
+
+Bumped to expose the new integration tools plus 9 additional Google Ads tools (PMax search themes, audience signals, ad group management) and 3 monitoring tools.
+
+</Update>
+
+<Update label="May 21, 2026" description="v2.20.1" tags={["Bug Fix", "Watch Agent", "Monitors"]}>
+
+## Watch Agent Polish & Support Widget UX
+
+Targeted fixes from the first week of Watch Agent + Monitors in production.
+
+### Watch Agent Briefs
+
+- **Conversion-tracking caveat** — briefs now include a "conversion data is reported through your platforms" caveat so anomalies in conversion volume aren't read as Adspirer numbers.
+- **Paused vs active classification** — briefs no longer call a paused campaign "underperforming" — paused campaigns are explicitly flagged as paused.
+- **Account names cleaned** — stripped a leaked `{tier}` template prefix that was occasionally showing up in account labels.
+- **Dead dashboard link replaced** — the in-brief "open dashboard" link is now an AI re-entry block (a copy-paste prompt you can run in your AI client to drill into the finding).
+- **Recommendations de-alarmed** — toned down "URGENT" language on routine recommendations so high-severity callouts read as actually high severity.
+
+### Monitors & Alerts
+
+- **`create_monitor` returns 409** when you try to create a duplicate alert instead of silently writing two. Tracking added for create + first-trigger so we can see how often each alert fires.
+- **Digest email values corrected** — the daily digest now reports the same value the alert evaluated against, not a stale snapshot.
+
+### Support Chat Widget
+
+- **Address by name** — the L1 support widget greets you by name from turn 1 (pulled from your AppUser record).
+- **Panel state persists** — the widget stays open across page navigations and refreshes, with a time-aware "welcome back" greeting when you return.
+
+### Admin / Engagement Tracking
+
+- New **Monitoring & Alerts engagement** tab in the admin dashboard so we can see which alerts customers actually create and which ones fire.
+- Fixed a fast-upgrader undercount in the "new logo" metric — customers who upgrade within the same day now register correctly.
+
+</Update>
+
 <Update label="May 20, 2026" description="v2.20.0" tags={["New Features", "Automation", "Watch Agent", "Monitors"]}>
 
 ## Watch Agent, Monitors & Alerts Web UI, and 8 New MCP Tools

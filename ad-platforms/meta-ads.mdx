@@ -23,8 +23,12 @@ Once you've set up Adspirer with your AI client, connect Meta:
 3. Enter your email address when prompted
 4. Review and accept the Meta Ads disclaimer — you must check the box acknowledging that Adspirer operates independently from Meta's account enforcement systems before proceeding
 5. Adspirer opens your browser for OAuth authorization
-6. Sign in to Meta Business Manager and select the ad account you want to manage
+6. Sign in to Meta Business Manager and select the **Business Manager(s)** you want to grant access to
 7. Approve permissions (read campaign data, create ads, manage budgets)
+
+<Tip>
+**Business Manager-wide import.** When you grant access to a Business Manager, Adspirer discovers **every ad account inside that BM**, not just the one you happened to click during OAuth. The Manage Accounts modal at [adspirer.ai/connections](https://adspirer.ai/connections) lists all of them so you can pick which ones to activate.
+</Tip>
 
 <Info>
 The disclaimer confirms that you authorize Adspirer to read your campaign data and manage ads through Meta's official Marketing API, and that Adspirer is not responsible for any account actions taken by Meta (security reviews, restrictions, or account disabling).
@@ -36,7 +40,11 @@ Verify the connection:
 Check my connected ad platforms
 ```
 
-You should see your Meta ad account listed with account name, ID, and active status.
+You should see every Meta ad account discovered from your Business Manager listed with name, ID, and active status. Activate the ones you want the agent to work with from the Manage Accounts modal.
+
+### Asset handling across ad accounts
+
+When you ask the agent to launch a creative the agent finds in a **different ad account in the same Business Manager**, Adspirer offers to copy that creative into the target account before creating the campaign. This is **opt-in per call** — the agent asks before copying so you stay in control of which ad account holds which assets. Per-account asset discovery (image, video, creative) is scoped to the specific ad account you're targeting so you don't get false "asset not found" errors when the asset lives one BM over.
 
 <Info>
 Adspirer has Meta approved **Ads Management Standard Access**. This means Adspirer uses Meta's official Marketing API with verified permissions to read campaign data and manage ads on your behalf.

@@ -1,0 +1,108 @@
+---
+title: "Google Analytics 4 Integration | Adspirer"
+description: "Connect Google Analytics 4 to Adspirer and let your AI assistant correlate paid ad spend with on-site behavior — sessions, conversions, traffic sources, landing-page performance."
+icon: "chart-line"
+keywords: ["google analytics", "ga4", "analytics integration", "conversions", "attribution"]
+---
+
+Connect **Google Analytics 4** to Adspirer and your AI assistant can correlate paid ad spend with on-site behavior — sessions, conversions, traffic sources, landing pages — alongside the campaign data it already pulls from Google Ads, Meta, LinkedIn, and TikTok.
+
+## Prerequisites
+
+<Note>
+- A Google Analytics 4 property you have **Viewer** access to (or higher)
+- Adspirer account on the **Plus, Pro, or Max** tier — GA4 is gated to paid plans
+- Adspirer connected to a [supported AI client](/ai-clients/chatgpt)
+</Note>
+
+## Connecting Google Analytics
+
+1. Open [adspirer.ai/connections](https://adspirer.ai/connections)
+2. Scroll to the **Integrations** section and click **Connect** on the Google Analytics card
+3. A Pipedream Connect popup opens — sign in to Google and approve read access to your GA4 properties
+4. The popup closes and the card flips to **Connected**
+
+Verify in your AI client:
+
+```
+What can you do with my Google Analytics account?
+```
+
+The agent will discover what's available via the `google_analytics` tool and reply with the actions it can run.
+
+<Info>
+Adspirer uses [Pipedream Connect](https://pipedream.com/connect) to broker the OAuth grant. Your tokens stay in Pipedream and are scoped to your Adspirer user — Adspirer never sees the raw GA4 credentials.
+</Info>
+
+## What You Can Do
+
+The GA4 integration is exposed through one router tool — **`google_analytics`** — that takes an `action` and a `tool_name`:
+
+| action | What it does |
+|---|---|
+| `list_tools` | Discover the GA4 actions available (the agent does this automatically before its first call) |
+| `execute` | Run a specific GA4 action with parameters |
+
+The Pipedream GA4 catalog includes (non-exhaustive):
+
+- Pull report data — sessions, users, page views, conversions
+- Break down by source, medium, campaign, landing page, device
+- Real-time reporting (last 30 minutes)
+- Custom dimension and metric reads
+- Property and account discovery
+
+The agent picks the right action based on what you ask. You don't need to memorize tool names.
+
+## Example Prompts
+
+```
+Compare last month's paid search conversions in Google Ads to landing-page conversions in GA4.
+```
+
+```
+Which landing pages have the highest conversion rate from my Meta campaigns this quarter?
+```
+
+```
+Pull GA4 traffic by source/medium for the last 7 days and tell me which non-paid channels are growing.
+```
+
+```
+What's the bounce rate on my Google Search campaign landing pages this week?
+```
+
+## Tier Gating
+
+| Plan | Google Analytics |
+|------|:----------------:|
+| Free | — |
+| Plus | <Badge color="green">Included</Badge> |
+| Pro  | <Badge color="green">Included</Badge> |
+| Max  | <Badge color="green">Included</Badge> |
+
+Free users see the integration card in the Connections panel with an **Upgrade** prompt that links directly to the Adspirer plan picker.
+
+## Disconnecting
+
+Open [adspirer.ai/connections](https://adspirer.ai/connections), find the Google Analytics card, and click **Disconnect**. The grant is revoked in Pipedream and the agent loses access immediately.
+
+<Note>
+Idle integrations (>90 days with no tool calls) are pruned automatically to keep your integration list tidy. You can always reconnect.
+</Note>
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Does this count against my Adspirer tool-call quota?">
+Yes — each `google_analytics` call counts as one tool call against your monthly (or annual pooled) quota, same as a Google Ads or Meta call.
+</Accordion>
+<Accordion title="Can the agent modify my GA4 property?">
+No. Adspirer's GA4 integration is read-only — the agent can pull report data and discover properties, but it cannot edit GA4 configuration, audiences, or events.
+</Accordion>
+<Accordion title="Which GA4 properties does the agent see?">
+Whichever properties you have access to under the Google account you used for the OAuth grant. If you have multiple GA4 properties, the agent will ask which one to query (or you can specify by property ID).
+</Accordion>
+<Accordion title="What's the relationship between this and Google Ads?">
+They're separate connections. Connecting Google Ads gives the agent access to campaign data through the Google Ads API. Connecting Google Analytics gives it access to on-site behavior through the GA4 Data API. With both connected, the agent can stitch ad-side performance to site-side outcomes in a single answer.
+</Accordion>
+</AccordionGroup>
