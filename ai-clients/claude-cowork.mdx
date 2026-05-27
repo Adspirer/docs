@@ -15,7 +15,7 @@ keywords: ["claude cowork", "claude desktop", "anthropic", "plugin", "mcp connec
 |---|---|---|
 | **What it is** | Workspace mode in the Claude desktop app — open a folder, chat with Claude about its contents | Terminal CLI / IDE-side developer tool from Anthropic |
 | **Where you use it** | Claude desktop app → **Cowork** tab (or claude.ai → Cowork) | `claude` command in your shell, or Claude Code desktop |
-| **How you connect Adspirer** | Add an MCP connector in **Customize → Connectors** (this page) | `claude mcp add ...` in the terminal, or `/plugin` in Claude Code desktop |
+| **How you connect Adspirer** | Browse Plugins → Install Adspirer in **Customize** (this page) | `claude mcp add ...` in the terminal, or `/plugin` in Claude Code desktop |
 | **Plan required** | Claude **Max**, Team, or Enterprise | Any Claude plan |
 | **Best for** | Brand-aware advertising work where Claude reads your brand folder | Terminal-first developer workflows |
 </Info>
@@ -36,7 +36,7 @@ This page is for **Claude Cowork** — Claude's brand-aware advertising workspac
 
 ## Setup (5 Minutes)
 
-Two ways to connect. **Manual MCP Setup is the recommended path** — it adds the Adspirer connector directly and works on every Cowork build. The Plugin Install path adds slash commands, skills, and a Performance Marketing Agent on top, but plugin discovery has been removed from some Claude surfaces; if Browse Plugins doesn't show Adspirer in your build, use Manual Setup.
+The recommended path is **Browse Plugins → Install Adspirer**. This installs the connector along with 5 slash commands, two skills, and a Performance Marketing Agent in one step.
 
 ### 1. Open Cowork and Customize
 
@@ -57,54 +57,9 @@ Two ways to connect. **Manual MCP Setup is the recommended path** — it adds th
   </Step>
 </Steps>
 
-### 2. Choose your install path
+### 2. Browse Plugins and install Adspirer
 
-<Tabs>
-<Tab title="Manual MCP Setup (Recommended)">
-
-<Steps>
-  <Step title="Open Connectors">
-    From the Customize page, open the **Connectors** section in the left sidebar.
-
-    <Frame caption="Connectors panel inside Cowork's Customize page">
-      <img src="/images/claude-cowork/connectors-install.png" alt="Connectors panel" />
-    </Frame>
-  </Step>
-  <Step title="Add the Adspirer Connector">
-    Click **Add custom connector** and enter:
-
-    - **Name:** `adspirer`
-    - **URL:** `https://mcp.adspirer.com/mcp`
-
-    Click **Add**.
-
-    <Frame caption="Add custom connector — name and URL">
-      <img src="/images/claude-cowork/add-custom-connector.png" alt="Add custom connector dialog" />
-    </Frame>
-  </Step>
-  <Step title="Authenticate with Adspirer">
-    Your browser opens and redirects to Adspirer's OAuth page. Sign in (or create an account) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
-
-    Once authorized, the connector status flips to **connected** with all 190+ tools listed under tool permissions.
-
-    <Frame caption="Adspirer connector connected with tool permissions">
-      <img src="/images/claude-cowork/connector-connected.png" alt="Connected Adspirer connector showing tools" />
-    </Frame>
-
-    <Tip>
-    If the connector doesn't show as connected right away, restart Claude and check again.
-    </Tip>
-  </Step>
-</Steps>
-
-</Tab>
-<Tab title="Plugin Install (slash commands + agent)">
-
-The Plugin Install path bundles the connector with 5 slash commands, two skills, and a Performance Marketing Agent. Use this path if you want the full agent experience.
-
-<Note>
-**Plugin discovery has been removed from some Claude surfaces.** If you don't see Adspirer when you search Browse Plugins, use the **Manual MCP Setup** tab above — it works on every Cowork build and gives you the same 190+ tools.
-</Note>
+The plugin bundles the Adspirer connector with 5 slash commands, two skills, and a Performance Marketing Agent — the full agent experience in one install.
 
 <Steps>
   <Step title="Browse Plugins and Install Adspirer">
@@ -131,6 +86,12 @@ The Plugin Install path bundles the connector with 5 slash commands, two skills,
   <Step title="Install the Connector">
     In the left sidebar under the Adspirer plugin, click **Connectors**. You'll see the **adspirer** connector. Click **Install**.
 
+    <Warning>
+    **Install button grayed out?** Two common causes:
+    - **You're on a VPN** — Many corporate VPNs block the connector handshake to `mcp.adspirer.com`. Disconnect from the VPN and try again.
+    - **IT hasn't enabled external connectors** — On Claude Team/Enterprise, external MCP connectors are off by default and won't appear on the intranet until your workspace admin enables them. Ask your IT or workspace admin to allow external connectors for Adspirer.
+    </Warning>
+
     <Frame caption="Click Install on the adspirer connector">
       <img src="/images/claude-cowork/connectors-install.png" alt="Adspirer connector with Install button" />
     </Frame>
@@ -150,11 +111,12 @@ The Plugin Install path bundles the connector with 5 slash commands, two skills,
     <Frame caption="Adspirer connector connected with tool permissions">
       <img src="/images/claude-cowork/connector-connected.png" alt="Connected Adspirer connector showing tools" />
     </Frame>
+
+    <Tip>
+    If the connector doesn't show as connected right away, restart Claude and check again.
+    </Tip>
   </Step>
 </Steps>
-
-</Tab>
-</Tabs>
 
 ### 3. Open a brand folder and try it
 
@@ -181,7 +143,7 @@ The Plugin Install path bundles the connector with 5 slash commands, two skills,
 </Steps>
 
 <Check>
-You're connected. Claude Cowork now has access to 190+ advertising tools, with optional brand-aware skills and a performance marketing agent if you took the plugin path.
+You're connected. Claude Cowork now has access to 190+ advertising tools, brand-aware skills, and a Performance Marketing Agent that knows how to use them in the right order.
 </Check>
 
 ## Slash Commands
@@ -242,7 +204,7 @@ Give me a prioritized action list with estimated monthly savings.
 
 - **Brand-Aware** — Cowork reads the brand folder you point it at. Voice guidelines, past campaigns, audience targeting docs — all of it informs ad copy and recommendations.
 - **Desktop App, Not Terminal** — Cowork lives in the Claude desktop app and on claude.ai. No CLI, no terminal commands. If you want a CLI workflow, use [Claude Code](/ai-clients/claude-code) instead.
-- **Optional Plugin Ecosystem** — When plugin install is available in your build, you also get 5 slash commands, two skills, and a Performance Marketing Agent that knows how to use all 190+ Adspirer tools in the right order with safety rules.
+- **Plugin Ecosystem** — The Adspirer plugin ships 5 slash commands, two skills, and a Performance Marketing Agent that knows how to use all 190+ Adspirer tools in the right order with safety rules — all installed in one click from Browse Plugins.
 - **Progress Streaming** — Real-time updates during long operations. See campaign creation progress as it happens.
 - **Native MCP** — Anthropic created the Model Context Protocol. Claude has the deepest, most reliable integration.
 
@@ -267,7 +229,15 @@ Claude Chat (the standard chat interface) supports connectors — you add an MCP
 Cowork is available on Claude Max, Team, and Enterprise plans. Pro plans have access to Chat connectors but not the full Cowork experience.
 </Accordion>
 <Accordion title="What does the Adspirer plugin include?">
-The plugin installs: the MCP server connection, 5 slash commands (setup, performance-review, write-ad-copy, wasted-spend, refresh-brand-context), 2 advertising skills, and 1 performance marketing agent. If plugin discovery isn't available in your Claude build, the **Manual MCP Setup** path above gets you the same 190+ tools (without the slash commands and agent).
+The plugin installs: the MCP server connection, 5 slash commands (setup, performance-review, write-ad-copy, wasted-spend, refresh-brand-context), 2 advertising skills, and 1 performance marketing agent — all bundled into a single Browse Plugins → Install step.
+</Accordion>
+<Accordion title="The Install button is grayed out — why?">
+Two common causes:
+
+- **You're on a VPN.** Many corporate VPNs block the handshake to `mcp.adspirer.com`. Disconnect from the VPN and the Install button becomes clickable.
+- **Your IT team hasn't enabled external connectors.** On Claude Team/Enterprise, external MCP connectors are off by default and won't appear on the intranet until your workspace admin enables them. Ask IT or your workspace admin to allow external connectors for Adspirer.
+
+Once either is resolved, the Install button activates and you can proceed.
 </Accordion>
 <Accordion title="Can I use both Cowork and Claude Chat?">
 Yes. The Cowork plugin/connector and Claude Chat connector work independently. You can use Cowork for brand-aware workspace sessions and Chat for quick ad questions. Both connect to the same Adspirer MCP server and share one tool-call quota.
