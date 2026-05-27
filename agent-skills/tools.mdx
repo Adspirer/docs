@@ -209,6 +209,17 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "190 tools", "190+ tools
 
 </Expandable>
 
+## Marketing Stack Integrations (Plus and above)
+
+Two router tools that proxy to third-party marketing tools through [Pipedream Connect](https://pipedream.com/connect). The agent calls `action="list_tools"` first to discover what's available, then `action="execute"` with the specific tool name.
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `google_analytics` | <Badge color="green">Read</Badge> | Pull GA4 property data — sessions, conversions, traffic sources, landing-page performance, real-time. See the [Google Analytics integration page](/integrations/google-analytics). |
+| `klaviyo` | <Badge color="green">Read</Badge> | Pull Klaviyo campaigns (email + SMS), flows, segments, profiles, and metrics. See the [Klaviyo integration page](/integrations/klaviyo). |
+
+Both integrations require the user to connect the account in the [Connections panel](https://adspirer.ai/connections). Free-tier users see the integration cards with an Upgrade prompt.
+
 ## System Tools (5)
 
 | Tool Name | Type | Description |

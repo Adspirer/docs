@@ -35,6 +35,10 @@ A clear breakdown of what Adspirer does and what's outside its scope.
 - Scheduled daily/weekly performance briefs with PDF attachment
 - Cross-platform ad-hoc report generation
 
+### Marketing Stack Integrations (Plus and above)
+- **[Google Analytics 4](/integrations/google-analytics)** — correlate paid ad spend with on-site behavior (sessions, conversions, traffic sources, landing-page performance).
+- **[Klaviyo](/integrations/klaviyo)** — pull email + SMS campaigns, flows, segments, profiles, and revenue alongside paid media for full-funnel analysis.
+
 ## What Adspirer Does NOT Do
 
 ### Creative Generation
@@ -65,7 +69,7 @@ Adspirer manages **paid** advertising only. It cannot post organic content, mana
 | **LinkedIn Ads** | Matched Audiences (retargeting), InMail campaigns |
 | **TikTok Ads** | TopView, Branded Effects |
 
-These limitations reflect the current API integrations. New capabilities are added regularly — see the [Changelog](/changelog) for updates. Custom integrations beyond the four core ad platforms — such as Google Analytics 4 and Slack — are available on the [Adspirer Enterprise plans for agencies and teams](/knowledge-base/enterprise).
+These limitations reflect the current API integrations. New capabilities are added regularly — see the [Changelog](/changelog) for updates. Plus, Pro, and Max plans include [Google Analytics 4](/integrations/google-analytics) and [Klaviyo](/integrations/klaviyo); broader custom integrations (Slack, additional CRMs, warehouses) are available on the [Adspirer Enterprise plans for agencies and teams](/knowledge-base/enterprise).
 
 ## FAQ
 
@@ -74,7 +78,10 @@ These limitations reflect the current API integrations. New capabilities are add
 No. All campaigns are created PAUSED. Budget changes require explicit confirmation. Even autonomous agents (Codex) follow this rule.
 </Accordion>
 <Accordion title="Does Adspirer work with Google Analytics?">
-Not directly. Adspirer reads performance data from ad platform APIs (Google Ads, Meta, etc.). It does not connect to Google Analytics, but the campaign data it reports includes conversion metrics from your platform's tracking.
+Yes — on **Plus, Pro, and Max** plans you can connect a Google Analytics 4 property in the [Connections](https://adspirer.ai/connections) panel and the agent can pull sessions, conversions, traffic sources, and landing-page performance alongside the ad-platform data. See the [Google Analytics integration page](/integrations/google-analytics) for what's available and example prompts.
+</Accordion>
+<Accordion title="Does Adspirer work with Klaviyo?">
+Yes — on **Plus, Pro, and Max** plans you can connect a Klaviyo account in the [Connections](https://adspirer.ai/connections) panel and the agent can pull campaigns, flows, segments, profiles, and revenue alongside paid media. See the [Klaviyo integration page](/integrations/klaviyo) for what's available and example prompts.
 </Accordion>
 <Accordion title="Can Adspirer manage existing campaigns I created manually?">
 Yes. Adspirer can read, analyze, pause, resume, and update campaigns regardless of how they were created. You don't need to create campaigns through Adspirer to manage them with it.

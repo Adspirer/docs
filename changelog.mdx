@@ -7,13 +7,12 @@ keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", 
 
 <Update label="May 26, 2026" description="v2.23.1" tags={["Bug Fix"]}>
 
-## Security & Stability Pass
+## Platform Hardening & Resilience Fixes
 
-Back-end maintenance day — no behavior change for customers, but worth noting:
-
-- **MCP base image hardening** — all six MCP sub-servers (hub + Google + Meta + TikTok + LinkedIn + Monitoring) now pinned to `python:3.11-slim-trixie` with cryptography and authlib audit-pass dependencies.
-- **Container scanning by digest** — vulnerability scans now resolve images to their content digest instead of the floating `:latest` tag so the report can't drift between scan time and image promotion.
-- **Cross-platform resilience fixes** — tighter input handling on Google Ads tool routing, longer hub timeout for slow Meta calls, and a fix to the Watch Agent classifier so a stuck SQL transaction no longer cascades into a noisy "our bug" finding.
+- **MCP base image hardening** — all six MCP sub-servers (hub + Google + Meta + TikTok + LinkedIn + Monitoring) pinned to `python:3.11-slim-trixie` with audit-pass cryptography and authlib dependencies.
+- **Container scanning by digest** — vulnerability scans resolve images to their content digest instead of the floating `:latest` tag, so the report can't drift between scan time and image promotion.
+- **Tool routing resilience** — tighter input handling on Google Ads tool routing and a longer hub timeout for slow Meta calls.
+- **Watch Agent stability** — finding classifier no longer cascades a stuck SQL transaction into a noisy false-positive.
 
 </Update>
 
@@ -23,29 +22,29 @@ Back-end maintenance day — no behavior change for customers, but worth noting:
 
 ### Connect Multiple Google Logins to One Adspirer Account
 
-A single Adspirer account can now connect **multiple Google OAuth grants**, each with its own non-overlapping set of Google Ads customer IDs. Agencies and consultants who manage Google Ads across separate Google identities no longer need a second Adspirer account.
+A single Adspirer account can now hold **multiple Google OAuth grants**, each with its own non-overlapping set of Google Ads customer IDs. Agencies and consultants who manage Google Ads across separate Google identities no longer need a second Adspirer account.
 
 - Adds a second (or third) Google login from the **Connections → Google Ads → Add another Google login** flow.
-- Each grant tracks its own customer IDs; the agent transparently routes tool calls to the right OAuth based on the customer you ask about.
-- Available on **Max annual** today; rolling to the rest of the paid tiers behind the `feature_multi_google_oauth` flag.
+- Each grant tracks its own customer IDs; the agent routes tool calls to the right OAuth based on the customer you reference.
+- Available on **Max annual** today; rolling to the rest of the paid tiers behind a feature flag.
 
-### Meta Ads — Three Things Customers Asked For (Issue #468)
+### Meta Ads — Account Discovery & Asset Handling Overhaul
 
-A multi-tranche overhaul of how Adspirer talks to Meta Business Manager:
+A set of improvements to how Adspirer works with Meta Business Manager and ad-account-scoped assets.
 
-- **Business Manager-wide import (Tranche B)** — when you connect Meta, Adspirer now discovers **every ad account inside the BM** you grant access to, not just the one you happened to click during OAuth. The Manage Accounts modal lists them all so you can activate the right ones.
-- **Per-account asset scoping (Tranche A)** — image, video, and creative discovery is now scoped to the specific ad account you're targeting. No more "this image was discovered but Meta says it's not in this ad account" errors.
-- **Opt-in auto-copy of creatives (Tranche B)** — when you reuse a creative from a sibling ad account, Adspirer offers to copy it into the target account automatically (opt-in per call) so the campaign launch doesn't stall on asset placement.
-- **Clearer "no account" MCP error (Tranche C)** — when an MCP call can't find a Meta account, the response now distinguishes a stale token from a missing-row state so you (or your AI client) know whether to reconnect or just re-select.
+- **Business Manager-wide import** — when you connect Meta, Adspirer discovers **every ad account inside the Business Manager** you grant access to, not just the one you happened to click during OAuth. The Manage Accounts modal lists them all so you can pick which ones to activate.
+- **Per-account asset scoping** — image, video, and creative discovery is now scoped to the specific ad account you're targeting. Eliminates the "this asset was discovered but Meta says it's not in this ad account" error class.
+- **Opt-in auto-copy of creatives** — when you reuse a creative from a sibling ad account, Adspirer offers to copy it into the target account before launching the campaign (opt-in per call) so the launch doesn't stall on asset placement.
+- **Clearer "no account" error** — when a tool call can't find a Meta account, the response distinguishes a stale token from a missing-row state so you (or your AI client) know whether to reconnect or just re-select.
 
 ### Per-Platform Active-Account Messaging
 
-The cap is **per platform** — every plan card across pricing and the Manage Accounts modal now states up front how many active accounts you get per platform (Google + Meta + LinkedIn + TikTok each counted independently). When you're capped, the modal shows an inline upsell that links directly into the Adspirer plan picker.
+The active-account cap is **per platform** — every plan card across pricing and the Manage Accounts modal now states up front how many active accounts you get per platform (Google + Meta + LinkedIn + TikTok each counted independently). When you're at the cap, the modal shows an inline upsell that links directly into the Adspirer plan picker.
 
 ### Smaller Improvements
 
 - **Sidebar rename** — "Account Setup" is now **Home**. Same page, more accurate label for users past initial setup.
-- **Watch Agent briefs**: scoped to your selected accounts (not just the primary), with multi-OAuth coverage so a second Google identity's accounts no longer show up empty.
+- **Brief coverage** — scheduled performance briefs are scoped to your selected accounts (not just the primary), with full multi-OAuth coverage so a second Google identity's accounts no longer show up empty.
 - **Live-tail merge** for Google Ads in the brief data fetchers so spend that hit the API after the nightly sweep still lands in your brief.
 
 </Update>
@@ -120,30 +119,23 @@ Bumped to expose the new integration tools plus 9 additional Google Ads tools (P
 
 ## Watch Agent Polish & Support Widget UX
 
-Targeted fixes from the first week of Watch Agent + Monitors in production.
-
 ### Watch Agent Briefs
 
 - **Conversion-tracking caveat** — briefs now include a "conversion data is reported through your platforms" caveat so anomalies in conversion volume aren't read as Adspirer numbers.
 - **Paused vs active classification** — briefs no longer call a paused campaign "underperforming" — paused campaigns are explicitly flagged as paused.
-- **Account names cleaned** — stripped a leaked `{tier}` template prefix that was occasionally showing up in account labels.
-- **Dead dashboard link replaced** — the in-brief "open dashboard" link is now an AI re-entry block (a copy-paste prompt you can run in your AI client to drill into the finding).
+- **Account names cleaned** — fixed a template placeholder that was occasionally showing up in account labels.
+- **Dead dashboard link replaced** — the in-brief "open dashboard" link is now a copy-paste AI prompt you can run in your AI client to drill into the finding.
 - **Recommendations de-alarmed** — toned down "URGENT" language on routine recommendations so high-severity callouts read as actually high severity.
 
 ### Monitors & Alerts
 
-- **`create_monitor` returns 409** when you try to create a duplicate alert instead of silently writing two. Tracking added for create + first-trigger so we can see how often each alert fires.
+- **`create_monitor` returns 409** when you try to create a duplicate alert instead of silently writing two.
 - **Digest email values corrected** — the daily digest now reports the same value the alert evaluated against, not a stale snapshot.
 
 ### Support Chat Widget
 
-- **Address by name** — the L1 support widget greets you by name from turn 1 (pulled from your AppUser record).
+- **Address by name** — the in-app support widget greets you by name from turn 1.
 - **Panel state persists** — the widget stays open across page navigations and refreshes, with a time-aware "welcome back" greeting when you return.
-
-### Admin / Engagement Tracking
-
-- New **Monitoring & Alerts engagement** tab in the admin dashboard so we can see which alerts customers actually create and which ones fire.
-- Fixed a fast-upgrader undercount in the "new logo" metric — customers who upgrade within the same day now register correctly.
 
 </Update>
 

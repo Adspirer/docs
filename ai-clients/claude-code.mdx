@@ -32,11 +32,49 @@ npm install -g @anthropic-ai/claude-code
 
 ### Install
 
+Two ways to connect. **Manual MCP Setup is the recommended path** — one command, works on every Claude Code install. The Plugin Install path bundles the connector with slash commands, skills, and a Performance Marketing Agent, but plugin discovery has been removed from the terminal CLI in recent Claude Code builds (still available on Claude Code desktop / IDE-side). If `/plugin` doesn't show Adspirer, use Manual MCP Setup.
+
 <Tabs>
-<Tab title="Plugin Install (Recommended)">
+<Tab title="Manual MCP Setup (Recommended)">
+<Steps>
+  <Step title="Add the MCP Server">
+    Run this command in your terminal:
+
+    ```bash
+    claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
+    ```
+
+    Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization with PKCE.
+  </Step>
+  <Step title="Sign In to Adspirer">
+    Approve the requested scopes (campaigns:read/write, reporting:read, accounts:read) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts. Return to your terminal — you'll see "Authentication successful".
+  </Step>
+  <Step title="Add Agent Skills (Optional)">
+    The skill files give Claude proven advertising workflows (campaign creation, performance review, wasted-spend audit).
+
+    ```bash
+    git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
+    cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
+    ```
+  </Step>
+  <Step title="Try It Now">
+    <Card
+      title="Sign up for Adspirer — free to start"
+      icon="rocket"
+      href="https://adspirer.ai/sign-up?utm_source=docs&utm_medium=setup-cta&utm_content=claude-code"
+      horizontal
+    >
+      15 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
+    </Card>
+  </Step>
+</Steps>
+</Tab>
+<Tab title="Plugin Install (slash commands + agent)">
 
 <Note>
-**Important:** The `/plugin` and `/mcp` commands below are **slash commands** — type them directly into the Claude Code input. Do not ask the AI to run them for you (that will cause a "nested session" error).
+**Plugin discovery has been removed from the terminal CLI in some recent Claude Code builds.** If `/plugin` doesn't surface Adspirer in your shell, use the **Manual MCP Setup** tab — same 190+ tools, just without the slash commands. The plugin path still works on Claude Code desktop / IDE-side.
+
+The `/plugin` and `/mcp` commands below are **slash commands** — type them directly into the Claude Code input. Do not ask the AI to run them for you (that will cause a "nested session" error).
 </Note>
 
 <Steps>
@@ -120,23 +158,6 @@ npm install -g @anthropic-ai/claude-code
     >
       15 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
     </Card>
-  </Step>
-</Steps>
-</Tab>
-<Tab title="Manual MCP Setup">
-<Steps>
-  <Step title="Add the MCP Server">
-    ```bash
-    claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
-    ```
-
-    Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization.
-  </Step>
-  <Step title="Add Agent Skills (Optional)">
-    ```bash
-    git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-    cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
-    ```
   </Step>
 </Steps>
 </Tab>
@@ -333,8 +354,12 @@ If `/adspirer:setup` isn't recognized, the plugin may not be installed. Run:
 <Accordion title="Do I need to know MCP to use this?">
 No. MCP (Model Context Protocol) is the plumbing — you don't interact with it directly. You just talk to Claude in plain English. The MCP connection happens behind the scenes.
 </Accordion>
-<Accordion title="What's the difference between Claude Code and Claude Desktop?">
-Claude Code is the terminal-based developer tool. Claude Desktop is the GUI app with chat and Cowork modes. Both support Adspirer through MCP. Use Claude Code if you live in the terminal. Use [Claude Desktop](https://www.adspirer.com/integrations/claude) if you prefer a visual interface.
+<Accordion title="What's the difference between Claude Code and Claude Cowork / Claude Desktop?">
+**Claude Code is Anthropic's terminal/CLI developer tool** — you run `claude` in a shell, it works inside your codebase, optimized for software-engineering workflows. There's also a Claude Code desktop / IDE-side surface.
+
+**[Claude Cowork](/ai-clients/claude-cowork)** is a completely different product — a brand-aware workspace mode inside the Claude desktop app (and on claude.ai). You open a folder, Claude reads its docs, and you collaborate with it on the work in that folder.
+
+Both support Adspirer through MCP, but they're separate apps. Use Claude Code if you live in the terminal. Use [Claude Cowork](/ai-clients/claude-cowork) if you want a brand-aware workspace with folder context.
 </Accordion>
 <Accordion title="What does the plugin install?">
 The `adspirer-ads-agent` plugin installs: the MCP server connection, 5 slash commands (setup, performance-review, write-ad-copy, wasted-spend, refresh-brand-context), a performance marketing agent, and the ad campaign management skill file.

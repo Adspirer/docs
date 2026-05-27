@@ -125,8 +125,14 @@ Adspirer translates MCP tool calls into native API calls for each platform:
 | `create_meta_image_campaign` | Meta Marketing API | Creates an image ad campaign |
 | `get_linkedin_campaign_performance` | LinkedIn Marketing API | Pulls LinkedIn campaign metrics |
 | `create_linkedin_image_campaign` | LinkedIn Marketing API | Creates a sponsored content campaign |
+| `google_analytics` | Google Analytics Data API (via Pipedream Connect) | Pulls GA4 property data — sessions, conversions, traffic sources, landing pages |
+| `klaviyo` | Klaviyo API (via Pipedream Connect) | Pulls campaigns, flows, segments, profiles, and metrics |
 
 Each API call uses the OAuth token from your authenticated session. Adspirer handles rate limiting, pagination, error handling, and response formatting.
+
+<Note>
+**Marketing stack integrations** (Google Analytics, Klaviyo) are brokered through [Pipedream Connect](https://pipedream.com/connect) — the OAuth token lives in Pipedream scoped to your Adspirer user, and Adspirer proxies tool calls to Pipedream's remote MCP. Adspirer never sees the raw third-party credentials. Available on Plus, Pro, and Max plans.
+</Note>
 
 ---
 
