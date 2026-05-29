@@ -217,7 +217,7 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
     **Step 2: Disconnect and reconnect the Adspirer connector**
 
     - **Claude (web/desktop):** Go to **Customize → Connectors**, find Ads MCP, click **Disconnect**, then **Connect** again and complete the OAuth flow
-    - **ChatGPT:** Go to **Settings → Connectors**, remove Adspirer-MCP, then re-add it with URL `https://mcp.adspirer.com/mcp` and complete OAuth
+    - **ChatGPT:** Go to **Settings → Apps**, find Adspirer, click **Disconnect**, then reopen the Adspirer app, click **Connect**, and complete OAuth
     - **Claude Code:** Run `claude mcp remove adspirer`, then `claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp`, restart, and re-authenticate via `/mcp`
     - **Cursor:** Re-connect via MCP settings
 
@@ -260,7 +260,7 @@ keywords: ["faq", "questions", "help", "how does adspirer work", "is adspirer sa
 
     - **Claude Code:** Run `/mcp`, select the Adspirer server, and re-authenticate
     - **Claude:** Reconnect the connector in Customize → Connectors
-    - **ChatGPT:** Reconnect in Settings → Connectors
+    - **ChatGPT:** Reconnect in Settings → Apps
     - **Cursor:** Re-connect via MCP settings
 
     If re-authenticating doesn't work, log out of [adspirer.ai](https://adspirer.ai) and log back in to refresh your session, then reconnect the connector.
