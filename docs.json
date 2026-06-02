@@ -139,6 +139,7 @@
               "agent-skills/codex-agent",
               "agent-skills/openclaw-agent",
               "agent-skills/tools",
+              "agent-skills/diagnostic-helper-tools",
               "agent-skills/workflows"
             ]
           },

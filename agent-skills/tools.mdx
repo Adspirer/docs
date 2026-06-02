@@ -32,7 +32,14 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "190 tools", "190+ tools
 | `pause_campaign` | <Badge color="red">Write</Badge> | Stop campaigns or ad groups |
 | `resume_campaign` | <Badge color="red">Write</Badge> | Restart paused campaigns |
 | `add_negative_keywords` | <Badge color="red">Write</Badge> | Block irrelevant search terms |
-| `manage_ad_extensions` | <Badge color="red">Write</Badge> | Add sitelinks, callouts, structured snippets |
+| `add_sitelinks` | <Badge color="red">Write</Badge> | Add sitelink extensions (accepts `text`/`headline` + `url`/`link` field names) |
+| `remove_sitelinks` | <Badge color="red">Write</Badge> | Remove sitelink extensions from a campaign |
+| `add_callout_extensions` | <Badge color="red">Write</Badge> | Add callout extensions (short promotional blurbs) |
+| `remove_callouts` | <Badge color="red">Write</Badge> | Remove callout extensions from a campaign |
+| `add_structured_snippets` | <Badge color="red">Write</Badge> | Add structured snippet extensions (header + values) |
+| `remove_structured_snippets` | <Badge color="red">Write</Badge> | Remove structured snippet extensions from a campaign |
+| `list_campaign_extensions` | <Badge color="green">Read</Badge> | List sitelinks, callouts, and structured snippets on a campaign |
+| `update_bid_strategy` | <Badge color="red">Write</Badge> | Change a campaign's bid strategy; detects shared portfolio strategies and surfaces Smart Bidding prerequisites |
 | `explain_performance_anomaly` | <Badge color="green">Read</Badge> | Diagnose sudden CPA spikes or CTR drops |
 | `help_user_upload` | <Badge color="green">Read</Badge> | Guide user through asset upload process |
 | `add_pmax_search_themes` | <Badge color="red">Write</Badge> | Add search themes to a PMax campaign's asset group (max 50). Guides Google's automated targeting. |
@@ -51,7 +58,7 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "190 tools", "190+ tools
 | `add_search_campaign_image` | <Badge color="red">Write</Badge> | Attach image assets (logos, marketing images) to Search campaigns |
 | `list_conversion_actions` | <Badge color="green">Read</Badge> | List all conversion actions in the account (purchases, form fills, calls) with status and tracking method |
 | `get_conversion_action_performance` | <Badge color="green">Read</Badge> | Pull conversion volume, value, and CPA broken down by conversion action — see which actions drive results |
-| ...and 10 more | | Bidding strategies, geographic targeting, ad scheduling, etc. |
+| ...and more | | Geographic targeting, ad scheduling, ad-group management, and additional Google Ads tools |
 
 </Expandable>
 
@@ -225,10 +232,34 @@ Both integrations require the user to connect the account in the [Connections pa
 | Tool Name | Type | Description |
 |-----------|------|-------------|
 | `get_connections_status` | <Badge color="green">Read</Badge> | Show all connected ad platforms and account IDs |
-| `list_connected_accounts` | <Badge color="green">Read</Badge> | List all active ad accounts across platforms — used by Max-tier sequential sub-agents to fan out work across accounts. Accepts optional `platform` filter. Zero API calls (reads from database). |
-| `switch_primary_account` | <Badge color="red">Write</Badge> | Change active ad account (for users managing multiple accounts) |
+| `list_connected_accounts` | <Badge color="green">Read</Badge> | List ad accounts across platforms — including connected-but-not-yet-activated accounts and live Google MCC child accounts. Used by sequential sub-agents to fan out work. Optional `platform` filter. Zero API calls (reads from database). |
+| `switch_primary_account` | <Badge color="red">Write</Badge> | Change which ad account is active — by name, from chat, including switching between Google MCC child accounts. Respects your plan's active-account cap (replaces on single-account tiers, adds on multi-account tiers). Doesn't cost a tool call. |
 | `get_usage_status` | <Badge color="green">Read</Badge> | Check Adspirer plan limits (tool calls used/remaining this month) |
 | `get_business_profile` | <Badge color="green">Read</Badge> | View user's Adspirer account details and subscription info |
+
+## Diagnostic & Helper Tools (13)
+
+Read-only "get unstuck" tools — get-started guidance, pre-launch checks, error diagnosis, and value summaries. **All quota-free** (they never count against your tool-call limit) and available on **every plan, including Free**. Your assistant discovers them automatically; in ChatGPT and Claude their results render as interactive cards. See the [Diagnostic & Helper Tools reference](/agent-skills/diagnostic-helper-tools).
+
+<Expandable title="View all 13 Diagnostic & Helper tools">
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `start_here` | <Badge color="green">Read</Badge> | The single best next step for your exact state, with a worked example prompt |
+| `suggest_next_action` | <Badge color="green">Read</Badge> | Ranks the highest-value things to do right now from your live data |
+| `list_what_i_can_do` | <Badge color="green">Read</Badge> | Personalized capability menu by goal, filtered to your connected platforms |
+| `get_campaign_spec` | <Badge color="green">Read</Badge> | Required fields, character limits, and allowed values for a campaign type |
+| `preflight_campaign` | <Badge color="green">Read</Badge> | Checks an account is launch-ready (billing, notification email, connection, pixel/Page for Meta) |
+| `validate_campaign_draft` | <Badge color="green">Read</Badge> | Dry-run validates a campaign draft against the platform spec (no write) |
+| `explain_platform_error` | <Badge color="green">Read</Badge> | Translates a raw platform error into a plain-language cause and fix |
+| `why_did_this_fail` | <Badge color="green">Read</Badge> | Summarizes your recent failed actions and the errors behind them |
+| `diagnose_my_setup` | <Badge color="green">Read</Badge> | Full health check: AI-client connection, ad-platform sign-in, per-platform account health |
+| `verify_campaign_is_live` | <Badge color="green">Read</Badge> | Real live check that a campaign exists and is serving (all 4 platforms) |
+| `whats_changed_since_last_visit` | <Badge color="green">Read</Badge> | What moved since you were last here — spend, clicks, conversions, biggest movers |
+| `weekly_opportunities` | <Badge color="green">Read</Badge> | 1–3 concrete optimization opportunities from recent performance |
+| `usage_value_summary` | <Badge color="green">Read</Badge> | Tool calls used vs. included this period and what they accomplished |
+
+</Expandable>
 
 ## Raw data mode
 

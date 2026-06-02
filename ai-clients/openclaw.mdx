@@ -393,6 +393,10 @@ Format as markdown."
 
 ## Tool Groups
 
+<Note>
+**Plugin v2026.5.30** adds the free [Diagnostic & Helper tools](/agent-skills/diagnostic-helper-tools) — get-started guidance, launch-readiness checks, error explanations, and "what changed" summaries. Reinstall (`openclaw plugins install openclaw-adspirer`) to pick them up, then discover them at runtime with `action: "list_tools"` on the `diagnostic_and_helper_tools` router.
+</Note>
+
 | Group | Platform | Tools |
 |-------|----------|-------|
 | `google_ads` | Google Ads | 40 |
@@ -401,6 +405,7 @@ Format as markdown."
 | `linkedin_ads` | LinkedIn Ads | 28 |
 | `manus` | Automation | 8 |
 | `system` | Cross-Platform | 4 |
+| `diagnostic_and_helper_tools` | Cross-Platform | 1 router → 13 helpers |
 
 ### Filtering
 

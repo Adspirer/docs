@@ -46,13 +46,15 @@ You should see every Meta ad account discovered from your Business Manager liste
 
 When you ask the agent to launch a creative the agent finds in a **different ad account in the same Business Manager**, Adspirer offers to copy that creative into the target account before creating the campaign. This is **opt-in per call** — the agent asks before copying so you stay in control of which ad account holds which assets. Per-account asset discovery (image, video, creative) is scoped to the specific ad account you're targeting so you don't get false "asset not found" errors when the asset lives one BM over.
 
+**Cross-account safety.** If you ask the agent to add an ad to an ad set — or an ad set to a campaign — that actually belongs to a *different* one of your accounts, Adspirer catches the mismatch up front, names both accounts, and points to the right tool to list the correct entity, instead of letting Meta return a misleading "missing creative" error. Deselected (inactive) ad accounts are also write-protected: the agent can't create or change ads in them until you re-activate them from the Manage Accounts modal.
+
 <Info>
 Adspirer has Meta approved **Ads Management Standard Access**. This means Adspirer uses Meta's official Marketing API with verified permissions to read campaign data and manage ads on your behalf.
 
 Meta's account enforcement systems operate independently from Adspirer. Any account actions taken by Meta — including security reviews, restrictions, or account disabling — are governed by [Meta's Community Standards and policies](https://www.facebook.com/policies/ads/), not by Adspirer.
 </Info>
 
-## What You Can Do (36 Tools)
+## What You Can Do (37 Tools)
 
 ### Performance Analysis
 
@@ -66,11 +68,28 @@ Meta's account enforcement systems operate independently from Adspirer. Any acco
 - `explain_meta_anomaly` — Diagnose sudden changes in performance (CPA spikes, CTR drops)
 - `get_meta_ad_creatives` — View creative details for ads in a campaign
 
+<Info>
+**Which conversions Adspirer counts.** Performance and results reporting count the conversions Meta actually reports — including **Pixel custom events** (e.g. a Calendly booking), **lead-form submissions**, **Messenger conversations**, and **offline conversions** — with a per-event-name breakdown ("5 *invitee_select_time* events," not "5 custom conversions"). Lead-gen and sales campaigns are treated as conversion campaigns in wasted-spend, anomaly, and budget analysis, so the agent won't tell you a lead-gen campaign is "optimizing blind." If you recently optimized for a custom Pixel event and saw 0 conversions in older reports, newly collected data now counts it; historical numbers backfill separately.
+</Info>
+
 ### Targeting & Research
 
 - `search_meta_targeting` — Find audiences by interests, demographics, behaviors
 - `browse_meta_targeting` — Explore Meta's targeting categories
 - `list_meta_custom_audiences` — View existing custom audiences (database lists, lookalikes, website, engagement)
+
+### Location & geo targeting
+
+Geo targeting is set as part of campaign and ad-set creation — you describe it in plain language and Adspirer builds the correct Meta targeting:
+
+- **Cities, regions, ZIP/postal codes, and countries**, including **city + radius** ("everyone within 20 miles of Austin"). Multiple cities, each with its own radius, work in a single ad set.
+- **Location reach modes** — control *who* in a location you reach: people who **live** there, were **recently** there, or are **traveling to / interested in** it.
+- **Safer edits** — when you change an ad set's locations with `update_meta_ad_set`, the new geo targeting **merges onto the existing targeting** rather than replacing all of it, so a location-only edit doesn't wipe your audiences and placements.
+
+<Prompt description="Local Meta campaign with city + radius targeting." actions={["copy", "cursor"]}>
+Create a Meta image campaign targeting people within 15 miles of downtown Denver
+who live in the area (not just visitors). Budget $25/day.
+</Prompt>
 
 ### Campaign Creation
 
@@ -80,7 +99,7 @@ Meta's account enforcement systems operate independently from Adspirer. Any acco
 - `create_meta_image_campaign` — Launch single-image campaigns (supports lifetime budgets, end dates, placement controls)
 - `create_meta_video_campaign` — Launch video campaigns (supports lifetime budgets, end dates, placement controls)
 - `create_meta_carousel_campaign` — Launch multi-card carousel campaigns (supports lifetime budgets, end dates, placement controls)
-- `create_meta_dco_ad` — Create dynamic creative optimization ads
+- `create_meta_dco_ad` — Create dynamic creative optimization (DCO) ads — supply multiple headlines and body texts and Meta mixes-and-matches them; Adspirer auto-enables dynamic creative on the target ad set for both image and video
 - `duplicate_meta_campaign` — Duplicate an existing campaign with optional modifications
 
 ### Lead generation
@@ -244,6 +263,12 @@ Validate this Meta creative: [your URL]
 ### "Campaign creation failed" error
 
 Most common reason: skipping workflow steps. Meta campaigns require all 6 steps in order. If you jump straight to `create_meta_image_campaign` without running `validate_and_prepare_meta_assets` first, it will fail.
+
+Adspirer now catches the most common failure causes *before* they reach Meta and explains them in plain language:
+
+- **Missing pixel on a conversion objective** — a conversion-optimized ad set needs a Meta Pixel (or custom conversion). Adspirer flags this up front instead of letting Meta return the cryptic "promoted object fields missing." Pass a pixel, or pick a non-conversion objective. Use `list_meta_pixels` to find yours.
+- **Carousel cards** — each card needs an image, a headline, and a landing-page URL (a carousel-level URL covers cards that don't set their own). Adspirer validates every card before submitting and accepts the same `existing_image_hash` its asset discovery returns, so you can build carousels straight from creatives already in your account.
+- **Wrong account** — if the campaign, ad set, or ad you referenced lives in a different one of your ad accounts, Adspirer names the right account instead of failing deep inside Meta. See [Asset handling across ad accounts](#asset-handling-across-ad-accounts).
 
 If you're using [agent skills](/agent-skills/overview), the AI enforces the correct workflow automatically.
 

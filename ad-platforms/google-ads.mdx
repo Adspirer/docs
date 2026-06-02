@@ -89,11 +89,23 @@ You should see your Google Ads account listed with account name, customer ID, an
 - `pause_ad_group` -- Pause an individual ad group within a campaign
 - `resume_ad_group` -- Resume a paused ad group
 - `add_negative_keywords` -- Block irrelevant search terms from triggering your ads
-- `manage_ad_extensions` -- Add sitelinks, callouts, structured snippets
+- `update_bid_strategy` -- Change a campaign's bidding strategy (Maximize Conversions, Target CPA, Target ROAS, Maximize Clicks, etc.). Detects shared **portfolio** bid strategies and explains how to change them; surfaces Smart Bidding prerequisites when conversion data is missing.
 - `add_business_name_asset` -- Attach a business name asset to a Search campaign (max 25 characters)
 - `add_call_asset` -- Attach a phone number call asset with optional call conversion tracking
 - `add_search_campaign_image` -- Attach image assets to Search campaigns (logos, marketing images)
 - `get_campaign_targeting` -- View targeting for existing campaigns: locations, languages, audiences, devices, ad schedules, topics, and content labels (all criterion types)
+
+### Ad Extensions (Assets)
+
+Sitelinks, callouts, and structured snippets each have full add / remove / list coverage. Ask for "extensions" or "ways to make my ads better" and Adspirer suggests sitelinks first (the highest-impact extension) — you don't have to know the term.
+
+- `add_sitelinks` -- Add sitelink extensions. Accepts natural field names — `text` or `headline` for the label, `url` or `link` for the destination.
+- `remove_sitelinks` -- Remove sitelink extensions from a campaign
+- `add_callout_extensions` -- Add callout extensions (short promotional blurbs, max 25 characters each)
+- `remove_callouts` -- Remove callout extensions from a campaign
+- `add_structured_snippets` -- Add structured snippet extensions (a header like "Brands" or "Styles" plus values)
+- `remove_structured_snippets` -- Remove structured snippet extensions from a campaign (clear out stale values before adding fresh ones)
+- `list_campaign_extensions` -- List the sitelinks, callouts, and structured snippets currently on a campaign
 
 ### Conversion Tracking Analysis
 
@@ -262,6 +274,8 @@ The `research_keywords` tool connects directly to Google Keyword Planner data. Y
 - **Competition level:** Low, Medium, or High
 - **Keyword suggestions:** Related keywords you may not have considered
 
+Each keyword's **search volume, competition, average CPC, and top-of-page bid range** is now passed to your AI assistant as structured data, so it reports the numbers per keyword reliably instead of only in aggregate.
+
 <Warning>
 Keyword research is a Read tool (no cost impact), but always review the data before committing budget. High-volume keywords are not always the best choice -- look for keywords with good volume AND manageable CPC relative to your target CPA.
 </Warning>
@@ -328,6 +342,14 @@ Validate my Google Ads assets for a Search campaign
 Most common reason: skipping workflow steps. Google campaigns require keyword research and asset validation before creation. If you jump straight to `create_search_campaign` without running `research_keywords` and `validate_and_prepare_assets` first, it will fail.
 
 If you're using [agent skills](/agent-skills/overview), the AI enforces the correct workflow automatically.
+
+### "Operation not allowed for the given context" (bid strategy)
+
+This almost always means the campaign is attached to a **shared (portfolio) bid strategy**, so its bidding can't be changed at the campaign level. `update_bid_strategy` now detects this and tells you the two ways forward: detach the portfolio strategy from the campaign, or edit the shared strategy itself (which applies to every campaign using it). If you're switching to Smart Bidding (Target CPA / Target ROAS), Adspirer also reminds you of the prerequisites — active conversion tracking with recent conversion data — and suggests `MAXIMIZE_CONVERSIONS` as a no-target fallback that works with less data.
+
+### "Assets are duplicated across operations"
+
+Google rejects a Responsive Search or Display ad edit if any two headlines (or two descriptions) are identical after ignoring case and whitespace. Adspirer now de-duplicates headlines and descriptions automatically before submitting, so this rarely surfaces. If de-duping leaves you below Google's minimum count, the error tells you exactly how many more **unique** headlines or descriptions to provide.
 
 ### "Keyword research returned no results"
 

@@ -5,6 +5,134 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="June 2, 2026" description="Local targeting & support chat" tags={["Bug Fix", "Meta Ads"]}>
+
+## Meta Local Targeting Lands Correctly + Screenshots in Support Chat
+
+### City + radius targeting now reaches Meta
+
+Targeting a city with a radius — "everyone within 20 miles of Austin" — now reaches Meta as a real city-and-radius instead of being mis-sent as an invalid country code and silently dropped. Local campaigns on image, video, and carousel ads were effectively running nationwide (or failing) before this fix.
+
+- **Multiple cities, each with its own radius**, now work in a single ad set.
+- **Location reach modes** — choose who in a location you reach: people who **live** there, were **recently** there, or are **traveling to / interested in** it.
+- **Safer location edits** — updating an ad set's locations now merges onto its existing targeting instead of replacing everything, so a location-only change no longer wipes the rest of your targeting.
+
+### Attach screenshots to the support chat
+
+The in-app support chat widget now accepts **PNG/JPEG screenshots** — click the paperclip, paste, or drag-and-drop. Support reads the image and runs its diagnostics on it, which is far faster for visual issues. Up to 5 images per message (5 MB each); screenshots are processed in-memory and never stored. Conversations also now **resume where you left off for up to 7 days** (previously 48 hours).
+
+</Update>
+
+<Update label="June 1, 2026" description="Onboarding & billing" tags={["New Features", "Billing"]}>
+
+## Onboarding & Billing Refresh
+
+A polish pass across sign-up and plan management:
+
+- **App Store connect tabs** on the onboarding connection screen, matching how you actually install Adspirer in ChatGPT and Claude.
+- **Redesigned pricing step** — an animated tool-call hero, clearer active-account messaging, and a full-width tier ladder so the plan differences are easy to scan.
+- **Congrats screen** confetti and copy polish once you finish setup.
+- **"Manage Subscription"** now reliably opens the Stripe billing portal from the account menu.
+
+</Update>
+
+<Update label="May 31, 2026" description="Account switching" tags={["New Features", "Agency", "MCP"]}>
+
+## Switch Your Active Ad Account From Chat
+
+You can now change which ad account Adspirer acts on **by just asking** inside ChatGPT or Claude — including switching between child accounts under the same Google Ads manager (MCC) — without opening the web app.
+
+```
+Use my Sahaayak Google Ads account instead
+```
+
+- `list_connected_accounts` now surfaces connected-but-not-yet-activated accounts (including live MCC child accounts), so the agent can resolve a business name to the right account and switch to it.
+- Switching respects your plan's [active-account cap](/knowledge-base/multi-account): on single-account tiers the new account **replaces** the active one; on multi-account tiers (annual plans and Max) it's **added** to the active set.
+- Account switching is a session operation — it never costs a tool call.
+
+Previously this switch silently failed over MCP. It now works end-to-end from any connected AI client.
+
+</Update>
+
+<Update label="May 30, 2026" description="Diagnostic & Helper tools" tags={["New Features", "AI Clients", "Agent Skills"]}>
+
+## Diagnostic & Helper Tools — and Interactive Widgets in ChatGPT & Claude
+
+A new group of **13 read-only "get unstuck" tools** is now live across every AI client, on Free and up. They're **quota-free** — calling them never counts against your monthly tool calls.
+
+### Get started, pre-flight, diagnose, and see your value
+
+| When | Tools | What they do |
+|---|---|---|
+| **Getting started** | `start_here`, `suggest_next_action`, `list_what_i_can_do` | Personalized "what should I do next" based on your real connected accounts and data |
+| **Before launching** | `get_campaign_spec`, `preflight_campaign`, `validate_campaign_draft` | Check an account is launch-ready and dry-run a campaign against the platform's rules before anything is created |
+| **When something fails** | `explain_platform_error`, `why_did_this_fail`, `diagnose_my_setup`, `verify_campaign_is_live` | Turn a cryptic platform error into a plain-language fix, run a full connection health check, and confirm a campaign is actually serving — a **real live check against all four platforms** |
+| **See your value** | `whats_changed_since_last_visit`, `weekly_opportunities`, `usage_value_summary` | What moved since you were last here, 1–3 concrete optimization opportunities, and what your plan delivered |
+
+`diagnose_my_setup` is especially useful when you're not sure whether a problem is your AI-client connection or your ad-platform sign-in — it tells them apart. → [Full Diagnostic & Helper reference](/agent-skills/diagnostic-helper-tools)
+
+### Answers render as interactive cards
+
+In **ChatGPT and Claude**, these tools now render as branded, interactive cards — setup checklists, usage meters, opportunity lists, an account switcher — instead of a wall of text. The cards adapt to light/dark themes and fall back gracefully to plain text on any client that doesn't render widgets.
+
+### OpenClaw plugin v2026.5.30
+
+The OpenClaw plugin now bundles the diagnostic & helper tools too (tool count 139 → 140). Reinstall with `openclaw plugins install openclaw-adspirer` to pick them up.
+
+</Update>
+
+<Update label="May 30, 2026" description="Google Ads reliability" tags={["New Features", "Bug Fix", "Google Ads"]}>
+
+## Google Ads: Clearer Bidding Errors, Reliable Keyword Metrics, Full Ad Extensions
+
+### Bid-strategy changes explain themselves
+
+Changing a campaign's bid strategy when it's attached to a **shared (portfolio) bid strategy** used to fail with Google's opaque "operation not allowed for the given context." Adspirer now detects the portfolio strategy up front and tells you exactly what to do — detach it from the campaign, or edit the shared strategy itself. Smart Bidding errors (Target CPA / Target ROAS) now include the conversion-tracking prerequisites you're missing.
+
+### Keyword research metrics reach your AI reliably
+
+`research_keywords` now surfaces **per-keyword search volume, competition, average CPC, and top-of-page bid range** in the structured data your assistant reads — so it stops claiming "per-keyword data isn't available" when Google Keyword Planner returned it all.
+
+### Ad copy edits stop failing on duplicates
+
+Editing a Responsive Search or Display ad no longer fails with "Assets are duplicated across operations" — Adspirer automatically de-duplicates identical headlines/descriptions before submitting, and if that leaves you short of Google's minimum, it tells you exactly how many more unique lines to add.
+
+### Full ad-extension control
+
+Sitelinks, callouts, and structured snippets now have complete add / remove / list coverage, including the new `remove_structured_snippets` tool for clearing out stale snippet values. Sitelinks also accept natural field names (`text`/`headline`, `url`/`link`) and are now suggested whenever you ask about "extensions" or "making my ads better" — you don't have to know the word "sitelinks."
+
+</Update>
+
+<Update label="May 29, 2026" description="Meta conversions & creatives" tags={["New Features", "Bug Fix", "Meta Ads", "Agency"]}>
+
+## Meta Ads: Conversion Reporting You Can Trust, Plus Creative & Agency Fixes
+
+### Conversions Meta actually reports now count
+
+If your campaigns showed real conversions in Meta Ads Manager but **zero in Adspirer**, this fixes it. Adspirer now counts:
+
+- **Pixel custom-event conversions** (e.g. a Calendly booking) — the most common "0 conversions" cause
+- **Lead-form submissions** and **Messenger conversations**
+- **Offline conversions**, with a **per-event-name breakdown** ("5 *invitee_select_time* events", not "5 custom conversions")
+
+Lead-gen and sales campaigns are now correctly treated as conversion campaigns in wasted-spend, anomaly, and budget analysis — no more "Meta is optimizing blind" when it isn't.
+
+<Note>
+This applies to newly collected performance. Historical numbers for affected accounts backfill separately as data is re-collected.
+</Note>
+
+### Creating ads with fewer dead ends
+
+- **Carousel ads** accept your existing assets (the same `existing_image_hash` Adspirer's discovery returns) and validate each card up front — needs an image, headline, and landing URL — with a clear message instead of an opaque Meta rejection.
+- **Dynamic creative (DCO)** ads now accept multiple headlines and body texts directly, and Adspirer auto-enables dynamic creative on the target ad set for video as well as image.
+- **Conversion ad sets** now warn you about a **missing pixel** before Meta rejects the campaign with "promoted object fields missing."
+
+### Agency-grade cross-account safety
+
+If you manage multiple ad accounts and ask the agent to add an ad to an ad set that belongs to a *different* account, Adspirer now catches the mismatch, names both accounts, and points to the right tool — instead of a misleading "missing image" loop. Deselected (inactive) accounts can no longer be written to until you re-activate them.
+
+</Update>
+
 <Update label="May 29, 2026" description="ChatGPT App Store" tags={["New Features", "AI Clients"]}>
 
 ## Adspirer Is Now in the ChatGPT App Store

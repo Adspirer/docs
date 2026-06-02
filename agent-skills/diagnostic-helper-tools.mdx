@@ -1,0 +1,104 @@
+---
+title: "Diagnostic & Helper Tools | Adspirer"
+sidebarTitle: "Diagnostic & Helper Tools"
+description: "Adspirer's free, read-only get-started, pre-flight, and diagnostic tools — check launch-readiness, explain platform errors, confirm a campaign is live, and see what changed. Quota-free on every plan."
+icon: "stethoscope"
+keywords: ["diagnostics", "preflight", "campaign validation", "troubleshooting", "onboarding", "verify campaign", "what changed"]
+---
+
+Adspirer ships a group of **13 read-only "get unstuck" tools** that help you start, pre-flight, and troubleshoot — without touching a single campaign. They cover the moments around the work: figuring out the best next step, checking an account is launch-ready, turning a cryptic platform error into a plain-language fix, and confirming a campaign actually went live.
+
+<Note>
+**These tools are quota-free.** Calling any Diagnostic & Helper tool never counts against your monthly tool-call limit, and they're available on **every plan, including Free**. They're also all **Read** tools — they never create, edit, or pause anything. Any actual fix is something your assistant does afterward with the normal platform tools, with your confirmation.
+</Note>
+
+Your AI assistant discovers and calls these automatically — you don't need to memorize names. Ask things like *"what should I do first?"*, *"is my account ready to launch?"*, *"why did that fail?"*, or *"what changed since last week?"* and the right tool runs.
+
+## Getting started
+
+The fastest way to go from "connected" to "doing something useful." Each tool reads your real connected accounts and data, so the suggestions name your business and platforms — not generic advice.
+
+| Tool | What it does |
+|------|--------------|
+| `start_here` | The single best next step for your exact state — not connected yet, connected but no data, or already running campaigns — with a worked example prompt. |
+| `suggest_next_action` | Ranks the highest-value things you can do right now from your live data: analyze, find wasted spend, set a monitor, optimize, or launch. |
+| `list_what_i_can_do` | A personalized capability menu organized by goal (Analyze & Report, Monitor & Alert, Manage & Optimize, Create & Launch), filtered to your connected platforms. |
+
+<Prompt description="Personalized first step based on your connected accounts." actions={["copy", "cursor"]}>
+I just connected Adspirer — what should I do first?
+</Prompt>
+
+## Before launching a campaign
+
+Catch the problems that cause "campaign creation failed" *before* anything reaches the ad platform. These work across Google Ads, Meta, TikTok, and LinkedIn.
+
+| Tool | What it does |
+|------|--------------|
+| `get_campaign_spec` | Returns the exact required fields, character limits, asset requirements, and allowed values for a given campaign type, so a create satisfies every constraint. |
+| `preflight_campaign` | Confirms an ad account is launch-ready: billing active, notification email set, platform connected, account access — and, for Meta, a linked Facebook Page and pixel. |
+| `validate_campaign_draft` | Dry-run validates a fully assembled campaign draft against the platform's spec (no write) and returns per-field issues — character limits, item counts, missing required fields. |
+
+<Prompt description="Pre-flight an account before building a campaign." actions={["copy", "cursor"]}>
+Before I build anything, check whether my Meta ad account is ready to launch a conversions campaign.
+</Prompt>
+
+## When something fails
+
+Turn an opaque ad-platform error into a clear cause and next step — and confirm a fix actually worked.
+
+| Tool | What it does |
+|------|--------------|
+| `explain_platform_error` | Translates a raw ad-platform error message into a plain-language cause and the exact step to fix it. |
+| `why_did_this_fail` | Summarizes your recent failed actions and the errors behind them, so the issue can be corrected and retried. |
+| `diagnose_my_setup` | A full health check across your AI-client → Adspirer connection, ad-platform sign-in/tokens, and per-platform account health. |
+| `verify_campaign_is_live` | After you create a campaign, checks it actually exists and is serving (not paused, not on a $0 budget) with a **real live check against the platform** — Google Ads, Meta, TikTok, or LinkedIn. |
+
+<Tip>
+`diagnose_my_setup` is the one to reach for when you're not sure *where* a problem is. Customers regularly think an ad platform is disconnected when really it's the **AI-client connection** (your ChatGPT/Claude link to Adspirer) that expired — these are two different connections, and this tool tells them apart. See [Authentication](/knowledge-base/security) for how the two layers differ.
+</Tip>
+
+<Prompt description="Diagnose whether the problem is the AI client or the ad platform." actions={["copy", "cursor"]}>
+My Google Ads data isn't loading. Diagnose my setup and tell me what's actually broken.
+</Prompt>
+
+## See your value
+
+Lightweight "what's going on" tools that summarize movement and surface opportunities.
+
+| Tool | What it does |
+|------|--------------|
+| `whats_changed_since_last_visit` | How long you've been away and what moved — spend, clicks, conversions trend, plus the biggest-mover campaigns. |
+| `weekly_opportunities` | 1–3 concrete, high-value optimization opportunities from recent performance (wasted spend, paused-but-spent, active-but-not-delivering), each naming the action to take. |
+| `usage_value_summary` | Your plan as value delivered: tool calls used vs. included this period and what those calls accomplished. |
+
+<Prompt description="Catch up on what changed and what to act on." actions={["copy", "cursor"]}>
+What changed in my ad accounts since last week, and what are the top opportunities to act on?
+</Prompt>
+
+## Interactive cards in ChatGPT & Claude
+
+In **ChatGPT** and **Claude**, these tools render as branded, interactive cards instead of plain text — a setup checklist, a usage meter, a ranked opportunity list, an account switcher. The cards adapt to light and dark themes, and the buttons can kick off the next step.
+
+On any client that doesn't render widgets (and in terminal clients like [Claude Code](/ai-clients/claude-code) or [Cursor](/ai-clients/cursor)), the same answer falls back to clean text — nothing is lost, it just isn't a card.
+
+<Info>
+Interactive cards are built on the open **MCP-Apps** standard (SEP-1865) that ChatGPT and Claude both support. They render entirely from the tool's own data — no external page loads — and any link (upgrade, connect a platform) opens through your client to [adspirer.ai](https://adspirer.ai).
+</Info>
+
+## Availability
+
+| | |
+|---|---|
+| **Plans** | All, including **Free** |
+| **Quota** | Quota-free — never counts against your tool-call limit |
+| **Tool type** | Read-only (no campaign changes) |
+| **Clients** | Every connected AI client; interactive cards render in ChatGPT and Claude |
+| **Platforms** | Google Ads, Meta, TikTok, LinkedIn |
+
+## Related Documentation
+
+- [Tool Catalog](/agent-skills/tools) — every Adspirer tool by platform
+- [Agent Skills Overview](/agent-skills/overview) — how skills enforce the right workflow
+- [Authentication & Security](/knowledge-base/security) — the difference between your AI-client connection and ad-platform sign-in
+- [Multi-Account](/knowledge-base/multi-account) — switching active accounts from chat
+- [Support](/knowledge-base/support) — when to escalate beyond self-diagnosis
