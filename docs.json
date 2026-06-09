@@ -49,6 +49,11 @@
   },
   "redirects": [
     {
+      "source": "/guides/google-ads-automation",
+      "destination": "https://www.adspirer.com/blog/google-ads-automation",
+      "permanent": true
+    },
+    {
       "source": "/guides/best-ad-mcp-servers-2026",
       "destination": "https://www.adspirer.com/blog/best-ad-mcp-servers-2026",
       "permanent": true
@@ -164,7 +169,6 @@
             "group": "Google Ads",
             "pages": [
               "guides/chatgpt-google-ads-keywords",
-              "guides/google-ads-automation",
               "guides/automate-google-ads"
             ]
           },
