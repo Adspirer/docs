@@ -49,6 +49,11 @@
   },
   "redirects": [
     {
+      "source": "/guides/best-ad-mcp-servers-2026",
+      "destination": "https://www.adspirer.com/blog/best-ad-mcp-servers-2026",
+      "permanent": true
+    },
+    {
       "source": "/getting-started",
       "destination": "/quickstart",
       "permanent": true
@@ -185,12 +190,6 @@
             "group": "OpenClaw",
             "pages": [
               "guides/deploy-paid-media-agent-hostinger"
-            ]
-          },
-          {
-            "group": "Comparisons",
-            "pages": [
-              "guides/best-ad-mcp-servers-2026"
             ]
           },
           {
