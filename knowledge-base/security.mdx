@@ -15,10 +15,11 @@ When you connect an ad platform (Google Ads, Meta, LinkedIn, TikTok), Adspirer u
 
 ### What This Means
 
-- **Your passwords stay with Google/Meta/LinkedIn/TikTok.** Adspirer never receives, stores, or transmits your login credentials.
+- **Your passwords stay with Google/Meta/Amazon/LinkedIn/TikTok.** Adspirer never receives, stores, or transmits your login credentials. (ChatGPT Ads has no login — you paste an OpenAI Advertiser API key, which Adspirer stores encrypted and never exposes to the AI client.)
 - **PKCE prevents interception.** Every authentication generates a cryptographic proof that only your specific session can complete. Even if someone intercepts the authorization code, they can't use it.
 - **Scoped permissions.** You authorize exactly what Adspirer can do — read campaign data, create ads, manage budgets. Nothing more.
 - **Meta approved access.** Adspirer has Meta approved Ads Management Standard Access, meaning Meta has verified the app's use of their Marketing API. Meta's account enforcement systems (security reviews, restrictions, account disabling) operate independently from Adspirer and are governed by Meta's own Community Standards and policies.
+- **Google agency-level approval.** Google reviewed and classified Adspirer as an agency, full-service ad platform for the Google Ads API and granted Standard Access — verifying how Adspirer uses the API and lifting the daily operations cap. (This is the Google Ads API "external full-service" classification — not the separate Google Partners program.)
 
 ### Token Lifecycle
 

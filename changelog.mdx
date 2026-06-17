@@ -5,6 +5,109 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="June 17, 2026" description="ChatGPT Ads — new platform" tags={["New Features", "ChatGPT Ads"]}>
+
+## Run Ads Inside ChatGPT — New: ChatGPT Ads (OpenAI Ads)
+
+Adspirer now supports **ChatGPT Ads (OpenAI Ads)** — pay-per-click "chat card" ads that render inside ChatGPT responses. Launch and manage them conversationally from ChatGPT, Claude, or any connected AI client.
+
+- **Connect once with an API key.** ChatGPT Ads is Adspirer's first non-OAuth platform: paste your OpenAI Advertiser API key in the Connections tab (one key = one ad account). It's stored encrypted, and the chat agent never sees it.
+- **Launch by describing the ad** — destination URL, headline, body, an image, a daily budget, and a location. Adspirer builds the campaign, ad group, and chat-card ad for you.
+- **Paused by default, confirm to spend.** Nothing serves until you activate, and activation echoes the dollar-per-day budget for your explicit OK.
+- **Honest review status.** Adspirer reports OpenAI's ad-review state (in review → approved/rejected) and flags policies up front — notably that third-party AI services are disallowed.
+- **Conversions** via the OpenAI pixel and Conversions API.
+
+→ [ChatGPT Ads integration guide](/ad-platforms/chatgpt-ads)
+
+</Update>
+
+<Update label="June 16, 2026" description="Meta conversions reconcile with Ads Manager" tags={["Bug Fix", "Meta Ads"]}>
+
+## Meta Performance: Conversions That Reconcile With Ads Manager
+
+The Meta performance dashboard now shows a **full conversion-action breakdown** and highlights the **purchase-class event** that matches the "Results" column in Meta Ads Manager. Meta's `total_conversions` sums every pixel action (add-to-cart, initiate-checkout, purchase, and more), which could make the dashboard headline look far higher than Ads Manager's purchase count. Now you can see exactly which figure reconciles — no more chasing a phantom discrepancy. CPA, ROAS, and deltas are unchanged.
+
+</Update>
+
+<Update label="June 12, 2026" description="Google ad-level performance & creative export" tags={["New Features", "Google Ads"]}>
+
+## Google Ads: Per-Ad Performance, Creative Export & Complete Asset Discovery
+
+- **`get_ad_performance`** — a per-ad breakdown (one row per ad) with impressions, clicks, CTR, cost, conversions, conversion value, CPC, CPA, ROAS, video views, ad strength, and a live flag — plus a head-to-head comparison when an ad group has multiple ads. Covers Search, Display, Demand Gen, and YouTube.
+- **`get_ad_creative`** — export the creative composition of existing ads: YouTube video IDs and thumbnails, downloadable image URLs with roles and dimensions, every headline/description/CTA, and carousel cards.
+- **`discover_existing_assets`** is now **paginated** across all asset types, returning your complete asset inventory instead of silently capping — with downloadable image URLs and a clear path forward when a square logo is missing (previously a dead end for Performance Max).
+
+The OpenClaw plugin (v2026.6.12) bundles these too.
+
+</Update>
+
+<Update label="June 11, 2026" description="Claude Cowork OAuth self-serve fix" tags={["Bug Fix", "AI Clients"]}>
+
+## Claude Cowork: Self-Serve Fix for "No OAuth Flow Is in Progress"
+
+If Claude's desktop/Cowork app shows *"No OAuth flow is in progress"* when connecting Adspirer, that's a known client-side bug in the Claude app — not an Adspirer problem. The fix takes about 30 seconds: in Claude, go to **Settings → Connectors → Add custom connector**, enter `https://mcp.adspirer.com/mcp`, and connect from there. → [Claude Cowork setup](/ai-clients/claude-cowork)
+
+</Update>
+
+<Update label="June 10, 2026" description="Amazon Ads — new platform" tags={["New Features", "Amazon Ads", "Meta Ads"]}>
+
+## Amazon Ads Joins Adspirer — 61 Tools for Sponsored Products, Brands & Display
+
+Amazon Ads is now a fully supported ad platform, with **61 tools** spanning **Sponsored Products, Sponsored Brands, and Sponsored Display**.
+
+- Connect via **Login with Amazon**; Adspirer discovers your advertiser profiles across **North America, Europe, and the Far East** and imports each as an ad account.
+- Full Sponsored Products lifecycle (campaigns → ad groups → product ads → keywords / targets / negatives), all 7 Sponsored Brands ad types (Brand Registry required), and Sponsored Display.
+- Amazon-native analytics: **ACOS / ROAS**, per-ASIN performance, wasted-spend detection, budget optimization, and a purchased-products cross-sell view. Reporting runs asynchronously via `get_amazon_report`.
+
+→ [Amazon Ads integration guide](/ad-platforms/amazon-ads)
+
+### Meta: EU DSA support + an extra Google extension tool
+
+- Meta ad sets that target the **EU/EEA** now accept the required **DSA disclosure** fields (`dsa_beneficiary` / `dsa_payor`), so EU-targeted campaigns no longer dead-end. The fields are sent only when an ad set actually targets the EU/EEA.
+- Google Ads adds **`remove_structured_snippets`** to clear stale snippet values before adding fresh ones.
+
+The OpenClaw plugin (v2026.6.10) adds the Amazon Ads router.
+
+</Update>
+
+<Update label="June 9, 2026" description="In-chat dashboards overhaul" tags={["New Features", "AI Clients", "MCP"]}>
+
+## In-Chat Dashboards: Tabs, Date Ranges, Working Buttons & Mobile
+
+The interactive widgets in ChatGPT and Claude got a major upgrade:
+
+- **Tabbed performance dashboard** — Overview / Campaigns / Insights, with KPI tiles, period-over-period deltas, charts, "needs attention" highlights, and **7 / 14 / 30 / 60 / 90-day plus custom date-range** switching that re-runs the query live.
+- **Redesigned conversion-audit and connections widgets** — a graded scorecard with an action plan, and an account switcher with a quota meter.
+- **Action buttons now work** — "pause this campaign" or "draft a message for my developer" post straight back into the chat.
+- **Mobile rendering** — widgets now render in the Claude mobile app, with a clean text fallback on clients that don't support them.
+
+</Update>
+
+<Update label="June 8, 2026" description="Google agency-level Standard Access" tags={["New Features", "Google Ads", "Agency"]}>
+
+## Approved at the Agency Level for the Google Ads API
+
+Google reviewed and classified Adspirer as an **agency, full-service ad platform** for the Google Ads API and granted **Standard Access** — which lifts the daily operations cap. Bulk builds, large account restructures, and account-wide optimization now run at full speed, with no daily ceiling on Google Ads work.
+
+</Update>
+
+<Update label="June 6, 2026" description="Connection Health on Usage & Billing" tags={["New Features", "Billing"]}>
+
+## See Your Connection Health on Usage & Billing
+
+The Usage & Billing page now shows a **Connection Health** card: whether your AI assistant is connected via MCP, and — per ad account — whether the OAuth link is healthy or needs reconnecting. A **Test now** button re-checks live, so you can confirm everything's wired up before you start a session.
+
+</Update>
+
+<Update label="June 5, 2026" description="TikTok targeting fix + redesigned setup guide" tags={["Bug Fix", "TikTok", "AI Clients"]}>
+
+## TikTok Targeting Search Fixed + Redesigned Setup Guide
+
+- **TikTok targeting search works again.** `search_tiktok_targeting` had been failing for every caller; it's fixed. Interest keywords are targeted by **numeric ID** (from that search), not by plain keyword strings — the tool docs now make this explicit.
+- **Redesigned setup guide.** The per-client setup experience now has a screenshot carousel synced to the step list and a walkthrough video for Claude Cowork and ChatGPT, plus a standalone Setup Guide you can revisit any time from the web app.
+
+</Update>
+
 <Update label="June 2, 2026" description="Local targeting & support chat" tags={["Bug Fix", "Meta Ads"]}>
 
 ## Meta Local Targeting Lands Correctly + Screenshots in Support Chat

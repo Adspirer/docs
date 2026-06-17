@@ -1,13 +1,17 @@
 ---
 title: "Google Ads Integration | Adspirer"
-description: "Manage Google Search, Performance Max, Display, YouTube, and Demand Gen campaigns with AI — 90+ tools for keywords, ad copy, and optimization."
+description: "Manage Google Search, Performance Max, Display, YouTube, and Demand Gen campaigns with AI — 95 tools for keywords, ad copy, and optimization."
 icon: "magnifying-glass-dollar"
 keywords: ["google ads", "search ads", "pmax", "display ads", "gdn", "keyword research", "google adwords", "ppc", "sem"]
 ---
 
 # Google Ads Integration
 
-The most comprehensive ad platform integration. Create Search, Performance Max, Display, YouTube, and Demand Gen campaigns, research keywords with real CPC data, generate ad copy, and optimize performance with 90+ specialized tools.
+The most comprehensive ad platform integration. Create Search, Performance Max, Display, YouTube, and Demand Gen campaigns, research keywords with real CPC data, generate ad copy, and optimize performance with 95 specialized tools.
+
+<Note>
+**Approved at the agency level for the Google Ads API.** Google classified Adspirer as an agency, full-service ad platform and granted Standard Access — so there's **no daily cap** on the work Adspirer can do on Google. Bulk builds, large restructures, and account-wide optimization run at full speed.
+</Note>
 
 <Frame caption="Google Ads + Claude: Instant Clarity with Adspirer">
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/xf4mRLs1VR8" title="Google Ads + Claude: Instant Clarity with Adspirer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -44,11 +48,12 @@ You should see your Google Ads account listed with account name, customer ID, an
 **Connect multiple Google logins to one Adspirer account.** Agencies and consultants managing Google Ads across separate Google identities can attach multiple Google OAuth grants to a single Adspirer account. Each grant contributes its own non-overlapping customer IDs; the agent transparently routes tool calls to the right OAuth based on the customer you reference. Add a second login from **Connections → Google Ads → Add another Google login**. Available on **Max annual** today; rolling to other paid tiers behind a feature flag. See [Multi-Account](/knowledge-base/multi-account) for details.
 </Tip>
 
-## What You Can Do (90+ Tools)
+## What You Can Do (95 Tools)
 
 ### Performance Analysis
 
 - `get_campaign_performance` -- Pull metrics for campaigns (spend, conversions, CPA, ROAS)
+- `get_ad_performance` -- Per-ad performance breakdown (one row per ad): impressions, clicks, CTR, cost, conversions, conversion value, CPC, CPA, ROAS, video views, ad strength, and an is-live flag — with a head-to-head comparison when an ad group has multiple ads. Covers Search, Display, Demand Gen, and YouTube.
 - `analyze_wasted_spend` -- Find keywords with spend but zero conversions
 - `analyze_search_terms` -- Review actual search queries triggering your ads. Supports `raw_report` mode to see the exact search terms users type into Google.
 - `explain_performance_anomaly` -- Diagnose sudden CPA spikes or CTR drops
@@ -61,11 +66,12 @@ You should see your Google Ads account listed with account name, customer ID, an
 ### Ad Copy & Content
 
 - `suggest_ad_content` -- Generate headlines and descriptions optimized for Google's character limits
+- `get_ad_creative` -- Export the creative composition of existing ads: YouTube video IDs and watch/thumbnail URLs, downloadable image URLs (with role + dimensions), every headline/description/business name/CTA, and carousel cards. Covers Demand Gen, Responsive Search, and Responsive Display ads.
 - `help_user_upload` -- Guide users through the asset upload process
 
 ### Campaign Creation
 
-- `discover_existing_assets` -- Check if account has images, headlines, and descriptions already
+- `discover_existing_assets` -- Browse the account's complete asset inventory (images, headlines, descriptions, sitelinks, videos), now paginated across all asset types so nothing is silently capped, with downloadable image URLs and a clear forward path when a square logo is missing
 - `validate_and_prepare_assets` -- Verify assets meet Google's requirements before campaign creation
 - `create_search_campaign` -- Launch Google Search campaigns (text ads on search results, created PAUSED)
 - `create_pmax_campaign` -- Launch Performance Max campaigns (ads across all Google channels, created PAUSED)
