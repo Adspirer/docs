@@ -1,7 +1,7 @@
 ---
 title: "Connect Claude to Ad Platforms | Adspirer"
 sidebarTitle: "Claude"
-description: "Connect Claude Desktop or claude.ai to Adspirer via MCP connector. Manage Google, Meta, LinkedIn, and TikTok Ads with 190+ tools using natural language."
+description: "Connect Claude Desktop or claude.ai to Adspirer via MCP connector. Manage Google, Meta, Amazon, ChatGPT, LinkedIn, and TikTok Ads with 300+ tools using natural language."
 icon: "/icons/claude.svg"
 keywords: ["claude", "anthropic", "mcp connector", "claude pro", "claude max"]
 ---
@@ -43,7 +43,7 @@ The best MCP experience for advertising. Anthropic created the Model Context Pro
     Click to connect. Your browser opens and redirects to Adspirer's OAuth page. Sign in and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
   </Step>
   <Step title="Add the Adspirer Skill (Recommended)">
-    Skills teach Claude the *right way* to use Adspirer's 190+ tools — research before creating, validate before launching, confirm before spending. Without a skill, Claude guesses the tool order. With it, Claude follows proven advertising workflows with safety rules.
+    Skills teach Claude the *right way* to use Adspirer's 300+ tools — research before creating, validate before launching, confirm before spending. Without a skill, Claude guesses the tool order. With it, Claude follows proven advertising workflows with safety rules.
 
     Open the raw skill file, select all, and copy:
 
@@ -124,17 +124,23 @@ Claude offers unique advantages for ad management:
 
 ## What You Can Do
 
-190+ tools across 4 ad platforms:
+300+ tools across 6 ad platforms:
 
 | Platform | Tools | Key Capabilities |
 |----------|-------|-----------------|
-| **Google Ads** | 39 | Keyword research with real CPC data, Search & PMax campaigns, wasted spend analysis, budget optimization |
-| **Meta Ads** | 20 | Image/video/carousel campaigns, audience targeting, creative fatigue detection |
-| **LinkedIn Ads** | 28 | Sponsored content, lead gen forms, B2B targeting by job title, industry, seniority |
-| **TikTok Ads** | 4 | In-feed campaigns, asset validation, performance analysis |
+| **Google Ads** | 95 | Keyword research with real CPC data, Search & PMax campaigns, per-ad performance, wasted spend analysis, budget optimization |
+| **Meta Ads** | 37 | Image/video/carousel campaigns, audience targeting, creative fatigue detection, EU DSA support |
+| **Amazon Ads** | 61 | Sponsored Products / Brands / Display, ASIN targeting, ACOS/ROAS analytics, wasted-spend detection |
+| **ChatGPT Ads** | Conversational | Launch & manage pay-per-click chat-card ads inside ChatGPT, paused by default |
+| **LinkedIn Ads** | 45 | Sponsored content, lead gen forms, B2B targeting by job title, industry, seniority |
+| **TikTok Ads** | 37 | In-feed video, Spark Ads, Carousel, asset validation, performance analysis |
 
 <Tip>
 **Interactive cards.** When you run Adspirer's free [Diagnostic & Helper tools](/agent-skills/diagnostic-helper-tools) — get-started guidance, launch-readiness checks, error explanations, "what changed since last visit" — the answers render as branded interactive cards (checklists, usage meters, opportunity lists, an account switcher) right inside Claude, not just plain text. They're quota-free and available on every plan.
+</Tip>
+
+<Tip>
+**In-chat dashboards.** Performance and audit answers render as interactive dashboards inside Claude. `get_campaign_performance` (Google) and `get_meta_campaign_performance` (Meta) open a tabbed dashboard — Overview / Campaigns / Insights — with KPI tiles, period-over-period deltas, charts, and **7 / 14 / 30 / 60 / 90-day plus custom date-range** switching. `audit_conversion_tracking` renders a graded scorecard and `get_connections_status` an account switcher, with action buttons that post back into the chat. Widgets render in Claude on web, desktop (macOS), and mobile; Claude Code shows a clean text fallback.
 </Tip>
 
 ## Example Prompts

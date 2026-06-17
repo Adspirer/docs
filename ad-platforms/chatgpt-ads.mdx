@@ -1,0 +1,245 @@
+---
+title: "ChatGPT Ads Integration | Adspirer"
+description: "Run ads inside ChatGPT (OpenAI Ads) with AI — launch, manage, and measure chat_card ads from a conversation, all created paused with a confirm-to-spend gate."
+icon: "/icons/openai.svg"
+keywords: ["chatgpt ads", "openai ads", "chat_card", "ads in chatgpt", "conversational ads"]
+---
+
+# ChatGPT Ads Integration
+
+Publish ads that appear **inside ChatGPT responses** as a **"chat card"** — a title, body, image, and click-through URL — and manage them conversationally from ChatGPT, Claude, or any supported AI client. ChatGPT Ads (OpenAI Ads) is a **pay-per-click** auction. Adspirer turns the launch, management, and measurement of these ads into plain-language requests: you describe the ad you want, and the agent builds the campaign, ad group, image upload, and chat_card ad for you — every object **created PAUSED** until you confirm the budget.
+
+## Prerequisites
+
+<Note>
+- An OpenAI Ads (Advertiser) account with an **Advertiser API key** (generated in OpenAI Ads Manager → Settings → API keys)
+- Adspirer account connected via [ChatGPT](/ai-clients/chatgpt), [Claude Code](/ai-clients/claude-code), or any [supported AI client](https://www.adspirer.com/integrations)
+- A **public image URL** (PNG or JPG) for the ad creative
+</Note>
+
+## Connecting ChatGPT Ads
+
+ChatGPT Ads is the first Adspirer platform that connects with a **pasted API key** instead of an OAuth browser login. You connect **once in the Adspirer web app** — the chat agent never asks for your key.
+
+<Note>
+**One API key = exactly one ad account.** Unlike Google, Meta, TikTok, LinkedIn, and Amazon (which use an OAuth browser redirect and can import multiple accounts), each ChatGPT Ads key maps to a single advertiser account.
+</Note>
+
+1. In OpenAI Ads Manager, go to **Settings → API keys** and generate (or copy) your **Advertiser API key**
+2. Open the Adspirer web app and go to the **Connections** tab
+3. Click **"Connect ChatGPT Ads"**
+4. **Paste your Advertiser API key** and save — the key is stored **encrypted**
+
+Once connected, the account joins your Adspirer **multi-account switcher** and is usable from chat. Verify the connection from your AI assistant:
+
+```
+Check my connected ad platforms
+```
+
+You should see your ChatGPT Ads account listed with its name, account ID, and review status.
+
+### Optional: Conversions step
+
+In the same Connect flow, set up conversion measurement (recommended). You can configure one or both:
+
+- **Client-side Pixel** — a small JS snippet you add to your site `<head>`, configured with your **Pixel ID**
+- **Conversions API (server-side)** — paste a **Conversions API key** for more reliable attribution
+
+Supported events include `order_created`, `lead_created`, `subscription_created`, and `trial_started`. See [Conversion Tracking](#conversion-tracking) below.
+
+## What You Can Do
+
+ChatGPT Ads is driven entirely through Adspirer's conversational tools. Connecting and disconnecting are done in the web app, not via a chat tool.
+
+### Launch
+
+- `launch_chatgpt_ad` — The orchestrator. Builds the whole **paused** ad from URL + headline + body + image + budget + geo (creates the campaign, ad group, image upload, and chat_card ad in one step)
+- `search_chatgpt_geo` — Resolve a location like "California" to a valid targeting value
+
+### Manage
+
+- `activate_chatgpt_campaign` — The **spend gate**: echoes the dollar/day budget and requires your explicit confirmation before anything serves
+- `pause_chatgpt_campaign` — Stop a campaign from serving
+- `update_chatgpt_campaign` — Change budget, schedule, or targeting
+
+### Insights
+
+- `get_chatgpt_ads_performance` — Impressions, clicks, spend, CTR, CPC (plus segments, and conversions once the pixel/CAPI is live)
+- `list_chatgpt_campaigns` — List your campaigns with status and budget
+
+### Status
+
+- `get_chatgpt_ads_status` — Is ChatGPT Ads connected? Which account? What is the account review status?
+
+<Note>
+The object model (Account → Campaign → Ad Group → Ad) is hidden by the agent — you just describe the ad you want. The agent always speaks in **dollars**, not micros. Minimum budget is **$1/day**.
+</Note>
+
+## How a Launch Works
+
+Launching never spends money on its own. Everything is created paused, and activation is a separate, explicit step.
+
+<Steps>
+<Step title="You describe the ad">
+"Run a ChatGPT ad for adspirer.com, $25/day, target California, headline 'Your AI Paid Media Agent', body 'Run ads from ChatGPT', use this image: [url]."
+</Step>
+<Step title="The agent builds everything — PAUSED">
+`launch_chatgpt_ad` resolves the location, creates the campaign + ad group, uploads the image from your URL, and builds the chat_card ad. **Nothing serves or spends yet.**
+</Step>
+<Step title="The agent confirms the budget">
+It echoes back the **dollar/day budget** and asks you to confirm before activating. The agent will not activate without your explicit yes.
+</Step>
+<Step title="You activate">
+On your confirmation, `activate_chatgpt_campaign` flips the campaign live — subject to OpenAI's review. The agent reports the ad's review status honestly (it never claims an ad is "live" while review is pending or rejected).
+</Step>
+</Steps>
+
+```
+launch_chatgpt_ad   →   everything created PAUSED
+        ↓
+agent echoes "$25/day — confirm?"
+        ↓
+you say yes
+        ↓
+activate_chatgpt_campaign   →   live (pending review)
+```
+
+## Example Prompts
+
+### Launch an Ad
+
+<Prompt description="Launch a ChatGPT chat_card ad — created paused, confirm budget to activate." actions={["copy", "cursor"]}>
+Run a ChatGPT ad for adspirer.com.
+Budget: $25/day, target California.
+Headline: "Your AI Paid Media Agent"
+Body: "Run ads from ChatGPT"
+Image: [public PNG/JPG URL]
+
+Build it paused, then ask me to confirm the budget before activating.
+</Prompt>
+
+### Check Performance
+
+<Prompt description="ChatGPT Ads metrics for the week — impressions, clicks, spend, CTR, CPC." actions={["copy", "cursor"]}>
+How's my ChatGPT ad doing this week?
+Show impressions, clicks, spend, CTR, and CPC.
+Include conversions if the pixel is live.
+</Prompt>
+
+### Pause or Adjust Budget
+
+<Prompt description="Pause a ChatGPT campaign or change its daily budget." actions={["copy", "cursor"]}>
+Pause my ChatGPT campaign.
+Then bump the budget to $50/day, but keep it paused until I confirm.
+</Prompt>
+
+## Creative Requirements
+
+The ChatGPT ad renders as a single **chat_card** — a title, body, image, and destination URL.
+
+| Field | Rule |
+|-------|------|
+| **Title / headline** | 3–50 characters |
+| **Body** | Up to 100 characters |
+| **Image** | One image, supplied as a **public image URL** (PNG or JPG). Adspirer uploads from the URL — no binary file upload. **Square, at least 256×256 px** recommended |
+| **Destination URL** | Must be `http`/`https` |
+
+<Warning>
+Provide a **public, reachable** image URL. Non-PNG/JPG files or unreachable URLs are **rejected up front**. Non-square or smaller-than-256px images produce a **warning** — they can still be rejected at review.
+</Warning>
+
+## Conversion Tracking
+
+Conversion measurement is optional but recommended. Set it up in the **Conversions step** of the Connect flow (see [Connecting ChatGPT Ads](#optional-conversions-step)). You can use either or both methods:
+
+- **Client-side Pixel** — add a small JS snippet to your site `<head>`, configured with your **Pixel ID**
+- **Conversions API (server-side)** — paste a **Conversions API key** for more reliable attribution
+
+Supported events:
+
+| Event | Meaning |
+|-------|---------|
+| `order_created` | A purchase or order was completed |
+| `lead_created` | A lead was captured |
+| `subscription_created` | A subscription started |
+| `trial_started` | A free trial began |
+
+Once the pixel or Conversions API is live, conversions appear alongside impressions, clicks, spend, CTR, and CPC in `get_chatgpt_ads_performance`.
+
+## Ad Review and Policy
+
+<Warning>
+Every ad — and the **account** itself — must pass **OpenAI's review** before it can serve. OpenAI's ad policies **disallow some categories**, notably **"third-party AI services"**, so AI-company advertisers should expect extra scrutiny. The agent reports the review status (`in_review` → `approved`/`rejected`) **honestly** — it will not tell you an ad is "live" while review is pending or rejected.
+</Warning>
+
+## Safety Guardrails
+
+These are built into the tools, not optional settings:
+
+- **Everything is created PAUSED.** Nothing serves or spends until you activate.
+- **Activation requires explicit confirmation.** `activate_chatgpt_campaign` echoes the dollar/day budget and waits for your yes.
+- **The agent speaks in dollars,** never micros.
+- **Review status is reported honestly** — no false "live" claims while review is pending or rejected.
+
+## Best Use Cases for ChatGPT Ads
+
+- **Reaching people inside ChatGPT** — put your offer in front of users at the moment they're asking an AI for help
+- **Simple, single-card creative** — one headline, one short body line, one image, one link; no video production required
+- **Pay-per-click testing** — start at as little as $1/day, confirm the budget, and read CTR/CPC before scaling
+
+**Not ideal for:** rich multi-format creative (use [Meta Ads](/ad-platforms/meta-ads) for image/video/carousel), high-intent search capture (use [Google Ads](/ad-platforms/google-ads)), or categories OpenAI's policies disallow (e.g. third-party AI services).
+
+## Troubleshooting
+
+### "Not connected" — ChatGPT Ads doesn't appear
+
+ChatGPT Ads is connected in the **web app**, not from chat. Open the Adspirer web app → **Connections** tab → **"Connect ChatGPT Ads"** and paste your Advertiser API key. Then ask your assistant to "Check my connected ad platforms."
+
+### "Invalid API key"
+
+The pasted key is wrong, revoked, or for the wrong account. Generate a fresh Advertiser API key in **OpenAI Ads Manager → Settings → API keys**, then re-paste it in the Connections tab. Remember: **one key = one ad account**.
+
+### Ad stuck in review
+
+OpenAI reviews both the account and each ad before it can serve. `in_review` is normal for new ads and accounts. AI-related advertisers face extra scrutiny — if the ad is `rejected`, the category may be disallowed (see [Ad Review and Policy](#ad-review-and-policy)). Use `get_chatgpt_ads_status` to check the account review status.
+
+### Image rejected
+
+Make the image **square and at least 256×256 px**, in **PNG or JPG**, served from a **public, reachable URL**. Non-PNG/JPG files and unreachable URLs are rejected up front; non-square or undersized images warn and may be rejected at review.
+
+## FAQ
+
+<AccordionGroup>
+<Accordion title="Why do I paste a key instead of logging in?">
+ChatGPT Ads (OpenAI Ads) authenticates with an **Advertiser API key**, not an OAuth browser redirect like Google, Meta, TikTok, LinkedIn, and Amazon. You paste the key once in the Adspirer web app's Connections tab; it's stored encrypted and the chat agent never asks for it. One key maps to exactly one ad account.
+</Accordion>
+
+<Accordion title="How is ChatGPT Ads billed in Adspirer?">
+Adspirer pricing is based on tool calls, not ad spend. Free tier: 15 calls/month. Plus: $49–150/mo. Pro: $99–600/mo. Max: $199–3,000/mo. Launching a ChatGPT ad uses a handful of tool calls. Your ad spend is billed separately by OpenAI. See [full pricing](https://www.adspirer.com/pricing).
+</Accordion>
+
+<Accordion title="Can the agent spend money without my approval?">
+No. Everything is created **PAUSED** — nothing serves or spends until you activate. Activation (`activate_chatgpt_campaign`) **echoes the dollar/day budget and requires your explicit confirmation** first. The agent always speaks in dollars, not micros.
+</Accordion>
+
+<Accordion title="What image do I need?">
+One image, supplied as a **public PNG or JPG URL** — Adspirer uploads it from the URL (no file upload). **Square, at least 256×256 px** is recommended. Non-square or smaller images produce a warning and may be rejected at review; non-PNG/JPG or unreachable URLs are rejected up front.
+</Accordion>
+
+<Accordion title="Is my ChatGPT Ads API key secure?">
+Yes. Your Advertiser API key is stored **encrypted** in the Adspirer web app and is never exposed to the chat agent. All connections are HTTPS-encrypted. You can disconnect the account from the Connections tab at any time, and you can revoke the key from OpenAI Ads Manager.
+</Accordion>
+
+<Accordion title="What metrics can I see?">
+`get_chatgpt_ads_performance` reports impressions, clicks, spend, CTR, and CPC (with segments). Once you've configured the client-side Pixel or the Conversions API, conversions (`order_created`, `lead_created`, `subscription_created`, `trial_started`) appear alongside those metrics.
+</Accordion>
+</AccordionGroup>
+
+## Related Documentation
+
+- [Google Ads Integration](/ad-platforms/google-ads)
+- [Meta Ads Integration](/ad-platforms/meta-ads)
+- [Amazon Ads Integration](/ad-platforms/amazon-ads)
+- [ChatGPT Setup](/ai-clients/chatgpt)
+- [Campaign Creation Workflows](/agent-skills/workflows)
+- [Pricing & Plans](https://www.adspirer.com/pricing)

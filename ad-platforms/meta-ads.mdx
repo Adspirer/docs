@@ -70,6 +70,8 @@ Meta's account enforcement systems operate independently from Adspirer. Any acco
 
 <Info>
 **Which conversions Adspirer counts.** Performance and results reporting count the conversions Meta actually reports — including **Pixel custom events** (e.g. a Calendly booking), **lead-form submissions**, **Messenger conversations**, and **offline conversions** — with a per-event-name breakdown ("5 *invitee_select_time* events," not "5 custom conversions"). Lead-gen and sales campaigns are treated as conversion campaigns in wasted-spend, anomaly, and budget analysis, so the agent won't tell you a lead-gen campaign is "optimizing blind." If you recently optimized for a custom Pixel event and saw 0 conversions in older reports, newly collected data now counts it; historical numbers backfill separately.
+
+The Meta performance dashboard also shows a **conversion breakdown** of every action type and highlights the **purchase-class event** that reconciles with the "Results" column in Meta Ads Manager. So when a "Conversions (all actions)" headline looks higher than Ads Manager — because Meta sums add-to-cart, initiate-checkout, purchase, and more — you can see exactly which figure matches, instead of chasing a phantom discrepancy.
 </Info>
 
 ### Targeting & Research
@@ -90,6 +92,15 @@ Geo targeting is set as part of campaign and ad-set creation — you describe it
 Create a Meta image campaign targeting people within 15 miles of downtown Denver
 who live in the area (not just visitors). Budget $25/day.
 </Prompt>
+
+### European Union (EU/EEA) targeting — DSA disclosure
+
+The EU **Digital Services Act (DSA)** requires every ad set that reaches an EU/EEA country to declare who the ad is for. When you create or update an ad set that targets the EU/EEA, supply:
+
+- `dsa_beneficiary` — the person or organization the ad benefits (required for EU/EEA-targeted ad sets)
+- `dsa_payor` — the entity paying for the ad (optional; defaults to the beneficiary)
+
+These fields are sent **only** when an ad set actually targets the EU/EEA — non-EU ad sets are unaffected (Meta rejects DSA fields on them). Without a beneficiary, Meta blocks EU-targeted ad sets, so Adspirer asks you for one up front instead of letting the launch fail.
 
 ### Campaign Creation
 

@@ -1,7 +1,7 @@
 ---
 title: "Connect Claude Cowork to Ad Platforms | Adspirer"
 sidebarTitle: "Claude Cowork"
-description: "Connect Claude Cowork (Claude's desktop app workspace mode — not the terminal CLI) to Adspirer. Manage Google, Meta, LinkedIn, and TikTok Ads with 190+ tools, brand-aware skills, and a marketing agent."
+description: "Connect Claude Cowork (Claude's desktop app workspace mode — not the terminal CLI) to Adspirer. Manage Google, Meta, Amazon, ChatGPT, LinkedIn, and TikTok Ads with 300+ tools, brand-aware skills, and a marketing agent."
 icon: "/icons/claude.svg"
 keywords: ["claude cowork", "claude desktop", "anthropic", "plugin", "mcp connector", "claude max", "brand workspace", "cowork vs claude code"]
 ---
@@ -20,7 +20,7 @@ keywords: ["claude cowork", "claude desktop", "anthropic", "plugin", "mcp connec
 | **Best for** | Brand-aware advertising work where Claude reads your brand folder | Terminal-first developer workflows |
 </Info>
 
-This page is for **Claude Cowork** — Claude's brand-aware advertising workspace. Connect Adspirer and you get 190+ ad management tools the agent can call against your Google, Meta, LinkedIn, and TikTok accounts, all grounded in the brand folder you point Cowork at.
+This page is for **Claude Cowork** — Claude's brand-aware advertising workspace. Connect Adspirer and you get 300+ ad management tools the agent can call against your Google, Meta, Amazon, ChatGPT Ads, LinkedIn, and TikTok accounts, all grounded in the brand folder you point Cowork at.
 
 <Frame caption="How to connect Claude Cowork with Adspirer">
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/Bgpkc2DDcEM" title="How to connect Claude Cowork with Adspirer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -77,7 +77,7 @@ The plugin bundles the Adspirer connector with 5 slash commands, two skills, and
 
     **Skills** — Two skills that teach Claude advertising best practices
 
-    **Agents** — A Performance Marketing Agent that specializes in using Adspirer's 190+ tools
+    **Agents** — A Performance Marketing Agent that specializes in using Adspirer's 300+ tools
 
     <Frame caption="Adspirer plugin showing Commands, Skills, and Agents">
       <img src="/images/claude-cowork/plugin-commands.png" alt="Adspirer plugin commands, skills, and agents" />
@@ -104,9 +104,13 @@ The plugin bundles the Adspirer connector with 5 slash commands, two skills, and
     </Frame>
   </Step>
   <Step title="Authenticate with Adspirer">
-    Your browser opens and redirects to Adspirer's OAuth page. Sign in (or create an account) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts.
+    Your browser opens and redirects to Adspirer's OAuth page. Sign in (or create an account) and link your Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, and/or TikTok accounts.
 
-    Once authorized, the connector status flips to **connected** with all 190+ tools listed under tool permissions.
+    Once authorized, the connector status flips to **connected** with all 300+ tools listed under tool permissions.
+
+    <Tip>
+    **Recommended tool permissions.** Set **Interactive** and **Read-only** tools to **Always allow** so research, reporting, and dashboards run without interruption. Leave **Write / delete** tools on **Needs approval**, so anything that changes a campaign still pauses for your confirmation — and remember Adspirer also creates every new campaign paused by default.
+    </Tip>
 
     <Frame caption="Adspirer connector connected with tool permissions">
       <img src="/images/claude-cowork/connector-connected.png" alt="Connected Adspirer connector showing tools" />
@@ -143,7 +147,7 @@ The plugin bundles the Adspirer connector with 5 slash commands, two skills, and
 </Steps>
 
 <Check>
-You're connected. Claude Cowork now has access to 190+ advertising tools, brand-aware skills, and a Performance Marketing Agent that knows how to use them in the right order.
+You're connected. Claude Cowork now has access to 300+ advertising tools, brand-aware skills, and a Performance Marketing Agent that knows how to use them in the right order.
 </Check>
 
 ## Slash Commands
@@ -162,14 +166,16 @@ You don't need to remember these — just describe what you want and Claude will
 
 ## What You Can Do
 
-190+ tools across 4 ad platforms:
+300+ tools across 6 ad platforms:
 
 | Platform | Tools | Key Capabilities |
 |----------|-------|-----------------|
-| **Google Ads** | 39 | Keyword research with real CPC data, Search & PMax campaigns, wasted spend analysis, budget optimization |
-| **Meta Ads** | 20 | Image/video/carousel campaigns, audience targeting, creative fatigue detection |
-| **LinkedIn Ads** | 28 | Sponsored content, lead gen forms, B2B targeting by job title, industry, seniority |
-| **TikTok Ads** | 4 | In-feed campaigns, asset validation, performance analysis |
+| **Google Ads** | 95 | Keyword research with real CPC data, Search & PMax campaigns, per-ad performance, wasted spend analysis, budget optimization |
+| **Meta Ads** | 37 | Image/video/carousel campaigns, audience targeting, creative fatigue detection, EU DSA support |
+| **Amazon Ads** | 61 | Sponsored Products / Brands / Display, ASIN targeting, ACOS/ROAS analytics, wasted-spend detection |
+| **ChatGPT Ads** | Conversational | Launch & manage pay-per-click chat-card ads inside ChatGPT, paused by default |
+| **LinkedIn Ads** | 45 | Sponsored content, lead gen forms, B2B targeting by job title, industry, seniority |
+| **TikTok Ads** | 37 | In-feed video, Spark Ads, Carousel, asset validation, performance analysis |
 
 ## Example Prompts
 
@@ -204,7 +210,7 @@ Give me a prioritized action list with estimated monthly savings.
 
 - **Brand-Aware** — Cowork reads the brand folder you point it at. Voice guidelines, past campaigns, audience targeting docs — all of it informs ad copy and recommendations.
 - **Desktop App, Not Terminal** — Cowork lives in the Claude desktop app and on claude.ai. No CLI, no terminal commands. If you want a CLI workflow, use [Claude Code](/ai-clients/claude-code) instead.
-- **Plugin Ecosystem** — The Adspirer plugin ships 5 slash commands, two skills, and a Performance Marketing Agent that knows how to use all 190+ Adspirer tools in the right order with safety rules — all installed in one click from Browse Plugins.
+- **Plugin Ecosystem** — The Adspirer plugin ships 5 slash commands, two skills, and a Performance Marketing Agent that knows how to use all 300+ Adspirer tools in the right order with safety rules — all installed in one click from Browse Plugins.
 - **Progress Streaming** — Real-time updates during long operations. See campaign creation progress as it happens.
 - **Native MCP** — Anthropic created the Model Context Protocol. Claude has the deepest, most reliable integration.
 
@@ -238,6 +244,11 @@ Two common causes:
 - **Your IT team hasn't enabled external connectors.** On Claude Team/Enterprise, external MCP connectors are off by default and won't appear on the intranet until your workspace admin enables them. Ask IT or your workspace admin to allow external connectors for Adspirer.
 
 Once either is resolved, the Install button activates and you can proceed.
+</Accordion>
+<Accordion title="Claude says &quot;No OAuth flow is in progress&quot;">
+This is a known **client-side** bug in the Claude desktop/Cowork app — Claude loses its sign-in session between steps and shows *"No OAuth flow is in progress."* It's an issue in Anthropic's app, not a problem with your Adspirer account or connection.
+
+**Workaround (one-time, ~30 seconds):** in Claude, go to **Settings → Connectors → Add custom connector**, enter `https://mcp.adspirer.com/mcp`, and connect from there. The OAuth flow completes cleanly, and the connector stays linked afterward.
 </Accordion>
 <Accordion title="Can I use both Cowork and Claude Chat?">
 Yes. The Cowork plugin/connector and Claude Chat connector work independently. You can use Cowork for brand-aware workspace sessions and Chat for quick ad questions. Both connect to the same Adspirer MCP server and share one tool-call quota.

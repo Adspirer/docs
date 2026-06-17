@@ -10,10 +10,11 @@ A clear breakdown of what Adspirer does and what's outside its scope.
 ## What Adspirer Does
 
 ### Campaign Management
-- Create Search, PMax, [Display](/ad-platforms/google-display-ads), [YouTube](/ad-platforms/youtube-ads), Demand Gen, Image, Video, Carousel, and Sponsored Content campaigns
+- Create Search, PMax, [Display](/ad-platforms/google-display-ads), [YouTube](/ad-platforms/youtube-ads), Demand Gen, Image, Video, Carousel, Sponsored Content, [Amazon Sponsored Products / Brands / Display](/ad-platforms/amazon-ads), and [pay-per-click ChatGPT Ads](/ad-platforms/chatgpt-ads) campaigns
 - Pause, resume, and update live campaigns
 - Set and adjust budgets, bids, targeting, frequency caps, and schedules
 - All campaigns created **PAUSED** for your review
+- **No daily cap on Google Ads operations** — Adspirer holds agency-level Standard Access for the Google Ads API, so bulk builds, large restructures, and account-wide optimization run at full speed
 
 ### Research & Analysis
 - Keyword research with real CPC data from Google Keyword Planner
@@ -22,6 +23,7 @@ A clear breakdown of what Adspirer does and what's outside its scope.
 - Wasted spend detection (keywords with clicks but zero conversions)
 - Creative fatigue detection (declining CTR over time)
 - Performance anomaly diagnosis (sudden CPA spikes)
+- Conversion reporting that reconciles with each platform's own dashboard — on Meta, every conversion action is broken out with the purchase event that matches Ads Manager highlighted
 
 ### Optimization
 - Budget reallocation based on ROAS/CPA performance
@@ -36,9 +38,9 @@ A clear breakdown of what Adspirer does and what's outside its scope.
 - Cross-platform ad-hoc report generation
 
 ### Get Started, Pre-flight & Diagnostics
-- **[Diagnostic & Helper tools](/agent-skills/diagnostic-helper-tools)** — a group of free, read-only tools that suggest your best next step, check an account is launch-ready before you create a campaign, translate cryptic platform errors into plain-language fixes, and confirm a campaign is actually serving (a real live check across all four platforms). Quota-free on **every plan, including Free**.
+- **[Diagnostic & Helper tools](/agent-skills/diagnostic-helper-tools)** — a group of free, read-only tools that suggest your best next step, check an account is launch-ready before you create a campaign, translate cryptic platform errors into plain-language fixes, and confirm a campaign is actually serving (a real live check across all six platforms). Quota-free on **every plan, including Free**.
 - **Self-diagnosis** — `diagnose_my_setup` tells apart an AI-client connection problem from an ad-platform sign-in problem, so you fix the right thing.
-- **Interactive cards** — in ChatGPT and Claude, these tools render as branded, interactive cards (checklists, usage meters, opportunity lists, an account switcher) instead of plain text.
+- **Interactive cards & dashboards** — in ChatGPT and Claude, results render as branded, interactive UI instead of plain text: setup checklists, usage meters, opportunity lists, and an account switcher, plus a tabbed performance dashboard (KPI tiles, charts, and 7 / 14 / 30 / 60 / 90-day or custom date-range switching) and a graded conversion-audit scorecard. They render on desktop, web, and mobile, and fall back to clean text where widgets aren't supported.
 
 ### Marketing Stack Integrations (Plus and above)
 - **[Google Analytics 4](/integrations/google-analytics)** — correlate paid ad spend with on-site behavior (sessions, conversions, traffic sources, landing-page performance).
@@ -71,6 +73,8 @@ Adspirer manages **paid** advertising only. It cannot post organic content, mana
 |----------|------------------|
 | **Google Ads** | Shopping campaigns (standalone) |
 | **Meta Ads** | Instagram-only campaigns (Meta treats FB/IG as placements), Messenger ads |
+| **Amazon Ads** | Amazon DSP (programmatic display); Sponsored Products / Brands / Display are fully supported |
+| **ChatGPT Ads** | Multi-card / non-`chat_card` creatives; ads pass OpenAI review (some categories disallowed) |
 | **LinkedIn Ads** | Matched Audiences (retargeting), InMail campaigns |
 | **TikTok Ads** | TopView, Branded Effects |
 

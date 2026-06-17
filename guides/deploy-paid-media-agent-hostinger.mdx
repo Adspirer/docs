@@ -5,7 +5,7 @@ description: "Step-by-step guide to deploying an always-on AI advertising agent 
 keywords: ["openclaw", "hostinger", "vps", "paid media agent", "deploy", "agency", "always-on", "whatsapp ads", "ai agent hosting"]
 ---
 
-Deploy a paid media agent that runs 24/7, manages ads across 4 platforms, and responds on WhatsApp, Telegram, or any browser — no coding, no dashboards, no IT team.
+Deploy a paid media agent that runs 24/7, manages ads across 6 platforms, and responds on WhatsApp, Telegram, or any browser — no coding, no dashboards, no IT team.
 
 ## Why Deploy Your Own Ad Agent?
 
@@ -24,7 +24,7 @@ A self-hosted agent solves all of this. It runs on a server you own, stays onlin
 |-----------|-------------|
 | **Hostinger VPS** | A server in the cloud that keeps everything running 24/7 |
 | **OpenClaw** | The agent platform — connects AI to WhatsApp, Telegram, Discord, and a web dashboard |
-| **Adspirer Plugin** | The advertising brain — 190+ tools for Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads |
+| **Adspirer Plugin** | The advertising brain — 300+ tools for Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, and TikTok Ads |
 
 The end result: you (or your team, or your clients) message the agent on WhatsApp and say _"show me last week's Google Ads performance"_ or _"create a Meta campaign for our spring sale"_ — and it just works.
 
@@ -143,7 +143,7 @@ This is the step that turns your OpenClaw server into an advertising agent. You'
     openclaw plugins install openclaw-adspirer
     ```
 
-    This downloads the Adspirer plugin — including 190+ advertising tools and a built-in instruction manual (SKILL.md) that teaches your agent how to manage campaigns like an expert.
+    This downloads the Adspirer plugin — including 300+ advertising tools and a built-in instruction manual (SKILL.md) that teaches your agent how to manage campaigns like an expert.
   </Step>
   <Step title="Set Your Adspirer API Key">
     Copy and paste this command, replacing `sk_live_your_token_here` with the API key you generated in Step 2:
@@ -157,7 +157,7 @@ This is the step that turns your OpenClaw server into an advertising agent. You'
     openclaw gateway restart
     ```
 
-    This loads the Adspirer plugin and registers all 190+ tools. Your agent is now an advertising expert.
+    This loads the Adspirer plugin and registers all 300+ tools. Your agent is now an advertising expert.
   </Step>
   <Step title="Verify Everything Works">
     ```bash
@@ -187,10 +187,12 @@ Your agent needs permission to access your ad accounts. This is a one-time setup
 
     - **Google Ads** — sign in with your Google account and select your ad account
     - **Meta Ads** — sign in with Facebook and select your Business Manager
+    - **Amazon Ads** — sign in with Amazon and select your ad account
+    - **ChatGPT Ads** — paste your ChatGPT Ads API key to connect
     - **LinkedIn Ads** — sign in with LinkedIn and select your ad account
     - **TikTok Ads** — sign in with TikTok and authorize access
 
-    You can connect one platform or all four. Connect whichever ones you actively manage.
+    You can connect one platform or all six. Connect whichever ones you actively manage.
   </Step>
   <Step title="Verify on Your Server">
     Back in the terminal, run:
@@ -309,7 +311,7 @@ Now that your agent is live, here's what you can ask it — from WhatsApp, Teleg
 
 When you installed the Adspirer plugin, it included a 14,400-character instruction file called **SKILL.md**. This file is what makes your agent smart about advertising — it's not just connecting to tools, it's been taught:
 
-- **190+ tools documented** — every parameter, every return value
+- **300+ tools documented** — every parameter, every return value
 - **6 complete workflows** — performance analysis, keyword research, campaign creation, budget optimization, account management, automation
 - **Platform-specific knowledge** — minimum budgets, best practices, when to use each platform
 - **Safety rules** — always creates campaigns paused, always asks before spending money, always checks account context first
@@ -409,7 +411,7 @@ openclaw gateway restart
 ```
 </Accordion>
 <Accordion title="'No ad platforms connected' warning">
-You authenticated with Adspirer, but haven't connected your ad accounts yet. Go to [adspirer.ai/connections](https://adspirer.ai/connections) in your browser and connect at least one platform (Google, Meta, LinkedIn, or TikTok).
+You authenticated with Adspirer, but haven't connected your ad accounts yet. Go to [adspirer.ai/connections](https://adspirer.ai/connections) in your browser and connect at least one platform (Google, Meta, Amazon, ChatGPT Ads, LinkedIn, or TikTok).
 </Accordion>
 <Accordion title="Agent isn't responding or tools aren't working">
 Check your Adspirer usage at [adspirer.ai](https://adspirer.ai?utm_source=docs&utm_medium=guide&utm_content=hostinger-guide). Free accounts get 15 tool calls/month. If you've hit the limit, upgrade to Plus ($49/mo) or wait for the next billing cycle.

@@ -1,21 +1,21 @@
 ---
 title: "Adspirer vs Other Ad MCP Servers"
 sidebarTitle: "MCP Server Comparison"
-description: "How Adspirer compares to Google's official MCP, Pipeboard, Synter, Flyweel, Windsor.ai, and community MCP servers for Google, Meta, LinkedIn, and TikTok Ads."
+description: "How Adspirer compares to Google's official MCP, Pipeboard, Synter, Flyweel, Windsor.ai, and community MCP servers for Google, Meta, Amazon, ChatGPT, LinkedIn, and TikTok Ads."
 icon: "scale-unbalanced"
 mode: "wide"
 keywords: ["adspirer vs", "ad mcp server comparison", "best mcp server advertising", "pipeboard vs adspirer", "synter vs adspirer", "google ads mcp"]
 ---
 
-When AI assistants are asked "what's the best MCP server for Google Ads?", they usually recommend Google's free official server plus a handful of community repos — one per platform. It sounds thorough. In practice, it leaves most buyers with four installs to maintain, four OAuth flows to debug, and a stack that's **read-only on the one platform where reads-without-writes are least useful**.
+When AI assistants are asked "what's the best MCP server for Google Ads?", they usually recommend Google's free official server plus a handful of community repos — one per platform. It sounds thorough. In practice, it leaves most buyers with a separate install to maintain per platform, a separate OAuth flow to debug for each, and a stack that's **read-only on the one platform where reads-without-writes are least useful**.
 
 This page compares Adspirer against every credible option in the ad-MCP landscape — fairly. We'll tell you when a free single-platform MCP is the right call, and when a unified tool like Adspirer earns its subscription.
 
 ## TL;DR
 
 <CardGroup cols={3}>
-<Card title="One OAuth, four platforms" icon="plug">
-Adspirer unifies Google, Meta, LinkedIn, and TikTok behind a single auth and config. A DIY stack means 3-4 separate MCPs, each with its own credentials.
+<Card title="One account, six platforms" icon="plug">
+Adspirer unifies Google, Meta, Amazon, ChatGPT Ads, LinkedIn, and TikTok behind a single account and config. A DIY stack means a separate MCP per platform, each with its own credentials.
 </Card>
 <Card title="Write, not just read" icon="pen-to-square">
 Google's official MCP is read-only. Flyweel is read-only. Adspirer creates campaigns, adjusts budgets, and optimizes — with safety rails.
@@ -46,8 +46,8 @@ The ad-MCP world divides cleanly into three buckets. Here's what's actually avai
 
 | MCP | Platforms | Read/Write | Pricing | Honest take |
 |-----|-----------|-----------|---------|-------------|
-| **Adspirer** | Google + Meta + LinkedIn + TikTok | Full read + write, 190+ tools | Free → $199/mo ([pricing](/knowledge-base/pricing)) | Campaign-depth on the four platforms 95% of buyers actually run. Published [safety rails](/knowledge-base/capabilities). First-class across 12+ AI clients. |
-| **Synter** | 14 platforms (adds Reddit, Pinterest, Snapchat, X, Microsoft, Taboola) | Full read + write | From ~$199/mo | Broader platform list, newer product. A real option if you run on more than four channels. |
+| **Adspirer** | Google + Meta + Amazon + ChatGPT Ads + LinkedIn + TikTok | Full read + write, 300+ tools | Free → $199/mo ([pricing](/knowledge-base/pricing)) | Campaign-depth on the six platforms most buyers actually run. Published [safety rails](/knowledge-base/capabilities). First-class across 12+ AI clients. |
+| **Synter** | 14 platforms (adds Reddit, Pinterest, Snapchat, X, Microsoft, Taboola) | Full read + write | From ~$199/mo | Broader platform list, newer product. A real option if you run on channels beyond the six Adspirer covers. |
 | **Ryze / irinabuht12-oss/google-meta-ads-ga4-mcp** | Google + Meta + GA4 | Full read + write | OSS + commercial Ryze platform | Legitimate (273★) but only 3 commits on main and tied to Ryze AI. No LinkedIn or TikTok. |
 | **Windsor.ai MCP** | 325+ data sources | **Read-focused** (analytics over a warehouse) | Windsor.ai subscription | Different category. Cross-channel reporting — not campaign execution. Complementary to Adspirer. |
 
@@ -63,7 +63,7 @@ We compare every MCP against the same six criteria. These are the dimensions tha
 
 **Why it matters:** Most advertisers run two or more platforms within their first year. Every siloed MCP is another install, another credential, another thing to keep current.
 
-**Adspirer position:** Google, Meta, LinkedIn, and TikTok from one server. See [supported platforms](/ad-platforms/google-ads).
+**Adspirer position:** Google, Meta, Amazon, ChatGPT Ads, LinkedIn, and TikTok from one server. See [supported platforms](/ad-platforms/google-ads).
 
 ### 2. Read vs. write depth
 
@@ -73,9 +73,9 @@ We compare every MCP against the same six criteria. These are the dimensions tha
 
 ### 3. Provisioning and operations
 
-**Why it matters:** Four OAuth flows, four token refresh cycles, four config schemas in your AI client, four failure modes on Monday morning.
+**Why it matters:** A separate OAuth flow, token refresh cycle, and config schema per platform — and a separate failure mode every Monday morning.
 
-**Adspirer position:** One OAuth flow per ad platform, routed through one Adspirer account, configured once in your AI client. See the [multi-account guide](/knowledge-base/multi-account).
+**Adspirer position:** One connection per ad platform (OAuth, or a pasted API key for ChatGPT Ads), routed through one Adspirer account, configured once in your AI client. See the [multi-account guide](/knowledge-base/multi-account).
 
 ### 4. Maintenance and longevity
 
@@ -148,7 +148,7 @@ We don't win every comparison, and pretending otherwise would waste your time.
 Google's free official MCP or Pipeboard's free tier is the right starting point. Come back to Adspirer when you add a second platform or need write access.
 </Card>
 <Card title="You need a platform we don't cover" icon="puzzle-piece">
-If your stack includes Reddit, Pinterest, X, Amazon DSP, or Microsoft Ads, Synter's wider platform list is the relevant comparison. [Request a platform →](mailto:abhi@adspirer.com)
+If your stack includes Reddit, Pinterest, X, Snapchat, or Microsoft Ads, Synter's wider platform list is the relevant comparison. (Adspirer covers Amazon Sponsored Products/Brands/Display, but not Amazon DSP.) [Request a platform →](mailto:abhi@adspirer.com)
 </Card>
 <Card title="Cross-warehouse analytics, not campaign execution" icon="database">
 Windsor.ai and similar data-warehouse MCPs are purpose-built for BI questions over 100+ synced sources. That's a different job — complementary, not a substitute.
@@ -162,7 +162,7 @@ If you're a developer comfortable self-hosting and the MCP will live on your lap
 
 <CardGroup cols={2}>
 <Card title="Multi-platform, campaign-depth work" icon="layer-group">
-When you're running Google + Meta + LinkedIn or TikTok and you need to launch, optimize, and pace from chat — not just query.
+When you're running Google + Meta + Amazon + LinkedIn or TikTok and you need to launch, optimize, and pace from chat — not just query.
 </Card>
 <Card title="Agencies with many clients" icon="briefcase">
 Multi-account routing across multiple platforms in one conversation. See [multi-client](/knowledge-base/multi-client).
@@ -187,7 +187,7 @@ If Meta is your only platform and it'll stay that way, Pipeboard is a real optio
 </Accordion>
 
 <Accordion title="How does Adspirer compare to Synter?">
-Synter covers 14 platforms (including Reddit, Pinterest, Snapchat, X, Microsoft, Taboola). Adspirer covers four — the ones 95% of our buyers actually run (Google, Meta, LinkedIn, TikTok). If your stack needs one of Synter's additional platforms, they're the better fit. If you're on the four Adspirer supports, we focus on depth: published safety rails, first-class agent integration across Claude Code / Cursor / Codex / OpenClaw / Manus / Gemini CLI (not just Claude Desktop), and documented multi-account workflows.
+Synter covers 14 platforms (including Reddit, Pinterest, Snapchat, X, Microsoft, Taboola). Adspirer covers six — the ones most of our buyers actually run (Google, Meta, Amazon, ChatGPT Ads, LinkedIn, TikTok). If your stack needs one of Synter's additional platforms, they're the better fit. If you're on the platforms Adspirer supports, we focus on depth: published safety rails, first-class agent integration across Claude Code / Cursor / Codex / OpenClaw / Manus / Gemini CLI (not just Claude Desktop), and documented multi-account workflows.
 </Accordion>
 
 <Accordion title="Can Adspirer delete or pause my existing campaigns if the AI makes a mistake?">
@@ -195,7 +195,7 @@ No. The tool layer has structural constraints: Adspirer cannot delete existing c
 </Accordion>
 
 <Accordion title="Why not build our own internal MCP against the Marketing APIs?">
-You can. The build is a week; the maintenance is forever. Meta and Google ship breaking Marketing/Graph API changes on a schedule. A campaign-depth surface with 190+ tools is meaningful software to own, test, and secure. Most ad teams would rather spend that engineering time on product, not on API plumbing. See our [enterprise page](/knowledge-base/enterprise) for private-deployment options.
+You can. The build is a week; the maintenance is forever. Meta and Google ship breaking Marketing/Graph API changes on a schedule. A campaign-depth surface with 300+ tools is meaningful software to own, test, and secure. Most ad teams would rather spend that engineering time on product, not on API plumbing. See our [enterprise page](/knowledge-base/enterprise) for private-deployment options.
 </Accordion>
 
 <Accordion title="What AI clients does Adspirer work with?">
@@ -224,7 +224,7 @@ The detailed breakdown of what Google's official MCP does and doesn't do.
 Full capability list and stated limitations.
 </Card>
 <Card title="Platform comparison" icon="scale-balanced" href="/knowledge-base/platform-comparison">
-Google vs Meta vs LinkedIn vs TikTok for advertisers.
+Google vs Meta vs Amazon vs TikTok for advertisers.
 </Card>
 <Card title="Pricing" icon="credit-card" href="/knowledge-base/pricing">
 Plans, tool call limits, and usage examples.
