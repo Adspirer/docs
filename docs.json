@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
   "name": "Adspirer",
-  "description": "Manage ad campaigns with AI. 300+ tools across Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, and TikTok Ads.",
+  "description": "Manage ad campaigns with AI. 340+ tools across Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, and TikTok Ads.",
   "colors": {
     "primary": "#2563EB",
     "light": "#F8FAFC",
@@ -196,6 +196,12 @@
             "group": "OpenClaw",
             "pages": [
               "guides/deploy-paid-media-agent-hostinger"
+            ]
+          },
+          {
+            "group": "Claude Cowork",
+            "pages": [
+              "guides/claude-cowork-ad-ops"
             ]
           },
           {

@@ -1,13 +1,13 @@
 ---
 title: "ChatGPT Ads Integration | Adspirer"
-description: "Run ads inside ChatGPT (OpenAI Ads) with AI — launch, manage, and measure chat_card ads from a conversation, all created paused with a confirm-to-spend gate."
+description: "Run ads inside ChatGPT (OpenAI Ads) with AI — 31 tools to launch, manage, and measure chat_card ads from a conversation, all created paused."
 icon: "/icons/openai.svg"
 keywords: ["chatgpt ads", "openai ads", "chat_card", "ads in chatgpt", "conversational ads"]
 ---
 
 # ChatGPT Ads Integration
 
-Publish ads that appear **inside ChatGPT responses** as a **"chat card"** — a title, body, image, and click-through URL — and manage them conversationally from ChatGPT, Claude, or any supported AI client. ChatGPT Ads (OpenAI Ads) is a **pay-per-click** auction. Adspirer turns the launch, management, and measurement of these ads into plain-language requests: you describe the ad you want, and the agent builds the campaign, ad group, image upload, and chat_card ad for you — every object **created PAUSED** until you confirm the budget.
+Publish ads that appear **inside ChatGPT responses** as a **"chat card"** — a title, body, image, and click-through URL — and manage them conversationally from ChatGPT, Claude, or any supported AI client. ChatGPT Ads (OpenAI Ads) is a **pay-per-click** auction. Adspirer turns the launch, management, and measurement of these ads into plain-language requests across **31 tools**: describe the ad you want and the agent builds the campaign, ad group, image upload, and chat_card ad for you — every object **created PAUSED** until you resume it.
 
 ## Prerequisites
 
@@ -45,77 +45,98 @@ In the same Connect flow, set up conversion measurement (recommended). You can c
 - **Client-side Pixel** — a small JS snippet you add to your site `<head>`, configured with your **Pixel ID**
 - **Conversions API (server-side)** — paste a **Conversions API key** for more reliable attribution
 
-Supported events include `order_created`, `lead_created`, `subscription_created`, and `trial_started`. See [Conversion Tracking](#conversion-tracking) below.
+Supported events include `order_created`, `lead_created`, `subscription_created`, and `trial_started`. You can also configure and verify conversions from chat (see [Conversion Tracking](#conversion-tracking) below).
 
-## What You Can Do
+## What You Can Do (31 Tools)
 
-ChatGPT Ads is driven entirely through Adspirer's conversational tools. Connecting and disconnecting are done in the web app, not via a chat tool.
+ChatGPT Ads is driven through Adspirer's conversational tools. Connecting and disconnecting are done in the web app, not via a chat tool — everything else is available from your AI assistant.
 
-### Launch
+### Accounts
 
-- `launch_chatgpt_ad` — The orchestrator. Builds the whole **paused** ad from URL + headline + body + image + budget + geo (creates the campaign, ad group, image upload, and chat_card ad in one step)
-- `search_chatgpt_geo` — Resolve a location like "California" to a valid targeting value
+- `list_chatgpt_accounts` -- Your connected ChatGPT Ads account(s), with name, ID, and account review status
 
-### Manage
+### Campaigns
 
-- `activate_chatgpt_campaign` — The **spend gate**: echoes the dollar/day budget and requires your explicit confirmation before anything serves
-- `pause_chatgpt_campaign` — Stop a campaign from serving
-- `update_chatgpt_campaign` — Change budget, schedule, or targeting
+- `list_chatgpt_campaigns` / `get_chatgpt_campaign` -- List campaigns or get the full detail of one
+- `create_chatgpt_campaign` -- Create a campaign (created PAUSED)
+- `update_chatgpt_campaign` -- Change budget, schedule, or targeting
+- `pause_chatgpt_campaign` / `resume_chatgpt_campaign` -- Stop serving, or resume to go live
+- `archive_chatgpt_campaign` -- Archive a campaign
+
+### Ad Groups
+
+- `list_chatgpt_ad_groups` / `get_chatgpt_ad_group` -- List ad groups or get one
+- `create_chatgpt_ad_group` -- Add an ad group (bid + targeting) to a campaign
+- `update_chatgpt_ad_group` -- Update bid, schedule, or targeting
+- `pause_chatgpt_ad_group` / `resume_chatgpt_ad_group` / `archive_chatgpt_ad_group` -- Control ad-group state
+
+### Ads
+
+- `list_chatgpt_ads` / `get_chatgpt_ad` -- List ads or get one
+- `create_chatgpt_ad` -- Create a chat_card ad (title, body, image, destination URL)
+- `update_chatgpt_ad` -- Update an ad's creative
+- `pause_chatgpt_ad` / `resume_chatgpt_ad` / `archive_chatgpt_ad` -- Control ad state
+
+### Launch & Creative
+
+- `launch_chatgpt_ad` -- The one-shot orchestrator. Builds the whole **paused** ad in one step from URL + headline + body + image + budget + geo (creates the campaign, ad group, image upload, and chat_card ad)
+- `upload_chatgpt_creative` -- Upload a chat_card image from a public URL
+- `chatgpt_geo_lookup` -- Resolve a location like "California" to a valid targeting value
 
 ### Insights
 
-- `get_chatgpt_ads_performance` — Impressions, clicks, spend, CTR, CPC (plus segments, and conversions once the pixel/CAPI is live)
-- `list_chatgpt_campaigns` — List your campaigns with status and budget
+- `get_chatgpt_performance` -- Headline metrics: impressions, clicks, spend, CTR, CPC (plus conversions once the pixel/CAPI is live)
+- `get_chatgpt_insights` -- Scoped, detailed insights with selectable fields, filters, sort, pagination, and zero-impression rows
 
-### Status
+### Conversions
 
-- `get_chatgpt_ads_status` — Is ChatGPT Ads connected? Which account? What is the account review status?
+- `set_chatgpt_conversions_config` / `get_chatgpt_conversions_config` -- Configure (or review) your Pixel and Conversions API setup
+- `list_chatgpt_conversion_events` -- See the conversion events being recorded
+- `test_chatgpt_conversion` -- Send a test conversion to confirm tracking works end to end
 
 <Note>
-The object model (Account → Campaign → Ad Group → Ad) is hidden by the agent — you just describe the ad you want. The agent always speaks in **dollars**, not micros. Minimum budget is **$1/day**.
+The object model (Account → Campaign → Ad Group → Ad) is hidden by the agent — you just describe the ad you want, and it builds the right structure. The agent speaks in **dollars**, not micros. Minimum budget is **$1/day**.
 </Note>
 
 ## How a Launch Works
 
-Launching never spends money on its own. Everything is created paused, and activation is a separate, explicit step.
+Launching never spends money on its own. Everything is created **paused**, and you resume it when you're ready.
 
 <Steps>
 <Step title="You describe the ad">
 "Run a ChatGPT ad for adspirer.com, $25/day, target California, headline 'Your AI Paid Media Agent', body 'Run ads from ChatGPT', use this image: [url]."
 </Step>
 <Step title="The agent builds everything — PAUSED">
-`launch_chatgpt_ad` resolves the location, creates the campaign + ad group, uploads the image from your URL, and builds the chat_card ad. **Nothing serves or spends yet.**
+`launch_chatgpt_ad` resolves the location, creates the campaign + ad group, uploads the image from your URL, and builds the chat_card ad. **Nothing serves or spends yet.** (Prefer step-by-step control? The agent can build the same tree with `create_chatgpt_campaign` → `create_chatgpt_ad_group` → `upload_chatgpt_creative` → `create_chatgpt_ad`.)
 </Step>
-<Step title="The agent confirms the budget">
-It echoes back the **dollar/day budget** and asks you to confirm before activating. The agent will not activate without your explicit yes.
+<Step title="You review">
+Check the campaign, budget, and creative. The agent reports the ad's review status honestly — it never claims an ad is "live" while review is pending or rejected.
 </Step>
-<Step title="You activate">
-On your confirmation, `activate_chatgpt_campaign` flips the campaign live — subject to OpenAI's review. The agent reports the ad's review status honestly (it never claims an ad is "live" while review is pending or rejected).
+<Step title="You resume to go live">
+On your say-so, `resume_chatgpt_campaign` takes it live — subject to OpenAI's review. Want to stop again? `pause_chatgpt_campaign`.
 </Step>
 </Steps>
 
 ```
 launch_chatgpt_ad   →   everything created PAUSED
         ↓
-agent echoes "$25/day — confirm?"
+you review the budget + creative
         ↓
-you say yes
-        ↓
-activate_chatgpt_campaign   →   live (pending review)
+resume_chatgpt_campaign   →   live (pending review)
 ```
 
 ## Example Prompts
 
 ### Launch an Ad
 
-<Prompt description="Launch a ChatGPT chat_card ad — created paused, confirm budget to activate." actions={["copy", "cursor"]}>
+<Prompt description="Launch a ChatGPT chat_card ad — created paused so you review before it goes live." actions={["copy", "cursor"]}>
 Run a ChatGPT ad for adspirer.com.
 Budget: $25/day, target California.
 Headline: "Your AI Paid Media Agent"
 Body: "Run ads from ChatGPT"
 Image: [public PNG/JPG URL]
 
-Build it paused, then ask me to confirm the budget before activating.
+Build it paused so I can review before resuming it.
 </Prompt>
 
 ### Check Performance
@@ -130,7 +151,7 @@ Include conversions if the pixel is live.
 
 <Prompt description="Pause a ChatGPT campaign or change its daily budget." actions={["copy", "cursor"]}>
 Pause my ChatGPT campaign.
-Then bump the budget to $50/day, but keep it paused until I confirm.
+Then bump the budget to $50/day, but keep it paused until I resume it.
 </Prompt>
 
 ## Creative Requirements
@@ -150,7 +171,7 @@ Provide a **public, reachable** image URL. Non-PNG/JPG files or unreachable URLs
 
 ## Conversion Tracking
 
-Conversion measurement is optional but recommended. Set it up in the **Conversions step** of the Connect flow (see [Connecting ChatGPT Ads](#optional-conversions-step)). You can use either or both methods:
+Conversion measurement is optional but recommended. Set it up in the **Conversions step** of the Connect flow (see [Connecting ChatGPT Ads](#optional-conversions-step)), or configure and verify it from chat with `set_chatgpt_conversions_config` and `test_chatgpt_conversion`. You can use either or both methods:
 
 - **Client-side Pixel** — add a small JS snippet to your site `<head>`, configured with your **Pixel ID**
 - **Conversions API (server-side)** — paste a **Conversions API key** for more reliable attribution
@@ -164,7 +185,7 @@ Supported events:
 | `subscription_created` | A subscription started |
 | `trial_started` | A free trial began |
 
-Once the pixel or Conversions API is live, conversions appear alongside impressions, clicks, spend, CTR, and CPC in `get_chatgpt_ads_performance`.
+Use `test_chatgpt_conversion` to fire a test event and confirm tracking works, then `list_chatgpt_conversion_events` to see what's being recorded. Once the pixel or Conversions API is live, conversions appear alongside impressions, clicks, spend, CTR, and CPC in `get_chatgpt_performance`.
 
 ## Ad Review and Policy
 
@@ -176,16 +197,15 @@ Every ad — and the **account** itself — must pass **OpenAI's review** before
 
 These are built into the tools, not optional settings:
 
-- **Everything is created PAUSED.** Nothing serves or spends until you activate.
-- **Activation requires explicit confirmation.** `activate_chatgpt_campaign` echoes the dollar/day budget and waits for your yes.
-- **The agent speaks in dollars,** never micros.
+- **Everything is created PAUSED.** Nothing serves or spends until you resume it with `resume_chatgpt_campaign`.
+- **The agent speaks in dollars,** never micros, so budgets are always clear.
 - **Review status is reported honestly** — no false "live" claims while review is pending or rejected.
 
 ## Best Use Cases for ChatGPT Ads
 
 - **Reaching people inside ChatGPT** — put your offer in front of users at the moment they're asking an AI for help
 - **Simple, single-card creative** — one headline, one short body line, one image, one link; no video production required
-- **Pay-per-click testing** — start at as little as $1/day, confirm the budget, and read CTR/CPC before scaling
+- **Pay-per-click testing** — start at as little as $1/day, review before you resume, and read CTR/CPC before scaling
 
 **Not ideal for:** rich multi-format creative (use [Meta Ads](/ad-platforms/meta-ads) for image/video/carousel), high-intent search capture (use [Google Ads](/ad-platforms/google-ads)), or categories OpenAI's policies disallow (e.g. third-party AI services).
 
@@ -201,7 +221,7 @@ The pasted key is wrong, revoked, or for the wrong account. Generate a fresh Adv
 
 ### Ad stuck in review
 
-OpenAI reviews both the account and each ad before it can serve. `in_review` is normal for new ads and accounts. AI-related advertisers face extra scrutiny — if the ad is `rejected`, the category may be disallowed (see [Ad Review and Policy](#ad-review-and-policy)). Use `get_chatgpt_ads_status` to check the account review status.
+OpenAI reviews both the account and each ad before it can serve. `in_review` is normal for new ads and accounts. AI-related advertisers face extra scrutiny — if the ad is `rejected`, the category may be disallowed (see [Ad Review and Policy](#ad-review-and-policy)). Use `list_chatgpt_accounts` to check the account review status.
 
 ### Image rejected
 
@@ -219,7 +239,7 @@ Adspirer pricing is based on tool calls, not ad spend. Free tier: 15 calls/month
 </Accordion>
 
 <Accordion title="Can the agent spend money without my approval?">
-No. Everything is created **PAUSED** — nothing serves or spends until you activate. Activation (`activate_chatgpt_campaign`) **echoes the dollar/day budget and requires your explicit confirmation** first. The agent always speaks in dollars, not micros.
+No. Everything is created **PAUSED** — nothing serves or spends until you resume it with `resume_chatgpt_campaign`. The agent always speaks in dollars (not micros), so the budget is clear before you go live, and you can `pause_chatgpt_campaign` at any time.
 </Accordion>
 
 <Accordion title="What image do I need?">
@@ -231,7 +251,7 @@ Yes. Your Advertiser API key is stored **encrypted** in the Adspirer web app and
 </Accordion>
 
 <Accordion title="What metrics can I see?">
-`get_chatgpt_ads_performance` reports impressions, clicks, spend, CTR, and CPC (with segments). Once you've configured the client-side Pixel or the Conversions API, conversions (`order_created`, `lead_created`, `subscription_created`, `trial_started`) appear alongside those metrics.
+`get_chatgpt_performance` reports impressions, clicks, spend, CTR, and CPC. `get_chatgpt_insights` gives a scoped, detailed view with selectable fields, filters, sort, and pagination. Once you've configured the client-side Pixel or the Conversions API, conversions (`order_created`, `lead_created`, `subscription_created`, `trial_started`) appear alongside those metrics.
 </Accordion>
 </AccordionGroup>
 

@@ -1,10 +1,10 @@
 ---
-title: "Adspirer Tool Catalog: 300+ MCP Tools by Platform"
+title: "Adspirer Tool Catalog: 340+ MCP Tools by Platform"
 sidebarTitle: "Tool Catalog"
-description: "Complete reference of all 300+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
+description: "Complete reference of all 340+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
 icon: "wrench"
 mode: "wide"
-keywords: ["tools", "mcp tools", "api", "tool catalog", "300 tools", "300+ tools"]
+keywords: ["tools", "mcp tools", "api", "tool catalog", "340 tools", "340+ tools"]
 ---
 
 ## Tool Types
@@ -12,7 +12,7 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "300 tools", "300+ tools
 - <Badge color="green">Read</Badge> Safe to run anytime. Pulls data, analyzes performance, provides insights. No spending impact.
 - <Badge color="red">Write</Badge> Requires user confirmation. Creates campaigns, updates budgets, modifies targeting. Affects spend.
 
-## Google Ads Tools (40+)
+## Google Ads Tools (95)
 
 <Expandable title="View all Google Ads tools" defaultOpen>
 
@@ -62,7 +62,7 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "300 tools", "300+ tools
 
 </Expandable>
 
-## LinkedIn Ads Tools (30+)
+## LinkedIn Ads Tools (45)
 
 <Expandable title="View all LinkedIn Ads tools">
 
@@ -134,9 +134,9 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "300 tools", "300+ tools
 
 </Expandable>
 
-## TikTok Ads Tools (33)
+## TikTok Ads Tools (37)
 
-<Expandable title="View all 33 TikTok Ads tools">
+<Expandable title="View all TikTok Ads tools">
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
@@ -170,6 +170,81 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "300 tools", "300+ tools
 | `resume_tiktok_ad` | <Badge color="red">Write</Badge> | Resume a paused TikTok ad |
 | `explain_tiktok_objective` | <Badge color="green">Read</Badge> | Given your goal (leads, sales, traffic, app installs), returns the correct TikTok campaign objective, recommended ad format, and compatibility constraints — eliminates trial-and-error objective selection |
 | ...and 4 more | | Additional TikTok tools |
+
+</Expandable>
+
+## Amazon Ads Tools (61)
+
+<Expandable title="View Amazon Ads tools">
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `list_amazon_profiles` | <Badge color="green">Read</Badge> | List advertiser profiles across NA, EU, and FE |
+| `list_amazon_campaigns` | <Badge color="green">Read</Badge> | List Sponsored Products / Brands / Display campaigns |
+| `create_amazon_sp_campaign` | <Badge color="red">Write</Badge> | Create a Sponsored Products campaign (created PAUSED) |
+| `create_amazon_sb_campaign` | <Badge color="red">Write</Badge> | Create a Sponsored Brands campaign (created PAUSED) |
+| `create_amazon_sd_campaign` | <Badge color="red">Write</Badge> | Create a Sponsored Display campaign (created PAUSED) |
+| `update_amazon_campaigns` | <Badge color="red">Write</Badge> | Update name, budget, or bidding across campaign types |
+| `pause_amazon_campaigns` / `resume_amazon_campaigns` | <Badge color="red">Write</Badge> | Pause or resume campaigns |
+| `delete_amazon_campaigns` | <Badge color="red">Write</Badge> | Archive campaigns |
+| `list_amazon_ad_groups` / `create_amazon_ad_groups` / `update_amazon_ad_groups` / `delete_amazon_ad_groups` | <Badge color="red">Write</Badge> | Manage Sponsored Products ad groups |
+| `list_amazon_product_ads` / `add_amazon_product_ads` / `update_amazon_product_ads` / `delete_amazon_product_ads` | <Badge color="red">Write</Badge> | Manage product ads (your ASINs/SKUs) |
+| `list_amazon_keywords` / `add_amazon_keywords` / `update_amazon_keywords` / `delete_amazon_keywords` | <Badge color="red">Write</Badge> | Manage keywords for manual targeting |
+| `list_amazon_negative_keywords` / `add_amazon_negative_keywords` / `delete_amazon_negative_keywords` | <Badge color="red">Write</Badge> | Block irrelevant search terms |
+| `list_amazon_targets` / `add_amazon_targets` / `update_amazon_targets` / `delete_amazon_targets` | <Badge color="red">Write</Badge> | Manage product and category targeting |
+| `list_amazon_sb_ad_groups` | <Badge color="green">Read</Badge> | List Sponsored Brands ad groups |
+| `create_amazon_sb_ad` / `list_amazon_sb_ads` / `update_amazon_sb_ads` | <Badge color="red">Write</Badge> | Manage Sponsored Brands ads (all 7 ad types) |
+| `list_amazon_sb_creatives` / `update_amazon_sb_creatives` | <Badge color="red">Write</Badge> | Manage Sponsored Brands creative assets |
+| `list_amazon_sb_keywords` / `add_amazon_sb_keywords` / `update_amazon_sb_keywords` / `delete_amazon_sb_keywords` | <Badge color="red">Write</Badge> | Manage Sponsored Brands keywords |
+| `add_amazon_sb_negative_keywords` | <Badge color="red">Write</Badge> | Add negative keywords to Sponsored Brands |
+| `list_amazon_sb_targets` / `add_amazon_sb_targets` / `update_amazon_sb_targets` | <Badge color="red">Write</Badge> | Manage Sponsored Brands targets |
+| `add_amazon_sb_themes` | <Badge color="red">Write</Badge> | Add theme-based targets to Sponsored Brands |
+| `upload_amazon_asset` | <Badge color="red">Write</Badge> | Upload a creative asset (e.g. a brand logo) |
+| `search_amazon_assets` | <Badge color="green">Read</Badge> | Find existing assets in your Amazon library |
+| `get_amazon_keyword_recommendations` / `get_amazon_bid_recommendations` | <Badge color="green">Read</Badge> | Sponsored Products keyword & bid suggestions |
+| `get_amazon_sb_keyword_recommendations` / `get_amazon_sb_bid_recommendations` | <Badge color="green">Read</Badge> | Sponsored Brands keyword & bid suggestions |
+| `get_amazon_budget_recommendations` / `get_amazon_budget_usage` | <Badge color="green">Read</Badge> | Budget recommendations and consumption |
+| `get_amazon_campaign_performance` | <Badge color="green">Read</Badge> | Impressions, clicks, spend, sales, ACOS, ROAS |
+| `get_amazon_search_terms` | <Badge color="green">Read</Badge> | The search terms shoppers used to find your ads |
+| `get_amazon_report` | <Badge color="green">Read</Badge> | Retrieve an async Amazon (Reporting v3) report by ID |
+| `analyze_amazon_wasted_spend` | <Badge color="green">Read</Badge> | Find keywords/targets spending without converting |
+| `optimize_amazon_budget` | <Badge color="green">Read</Badge> | Budget reallocation based on ACOS and ROAS |
+| `get_amazon_product_performance` | <Badge color="green">Read</Badge> | Per-ASIN/SKU performance breakdown |
+| `analyze_amazon_placements` | <Badge color="green">Read</Badge> | Compare performance across placements |
+| `analyze_amazon_targeting` | <Badge color="green">Read</Badge> | Evaluate keyword and product targeting effectiveness |
+| `get_amazon_purchased_products` | <Badge color="green">Read</Badge> | Cross-sell view of what shoppers actually bought |
+| `amazon_unified_api` | <Badge color="red">Write</Badge> | Direct Amazon Advertising API access for advanced operations |
+
+</Expandable>
+
+## ChatGPT Ads Tools (31)
+
+<Expandable title="View all ChatGPT Ads tools">
+
+| Tool Name | Type | Description |
+|-----------|------|-------------|
+| `list_chatgpt_accounts` | <Badge color="green">Read</Badge> | Connected ChatGPT Ads account(s) + review status |
+| `list_chatgpt_campaigns` / `get_chatgpt_campaign` | <Badge color="green">Read</Badge> | List campaigns or get one in detail |
+| `create_chatgpt_campaign` | <Badge color="red">Write</Badge> | Create a campaign (created PAUSED) |
+| `update_chatgpt_campaign` | <Badge color="red">Write</Badge> | Change budget, schedule, or targeting |
+| `pause_chatgpt_campaign` / `resume_chatgpt_campaign` | <Badge color="red">Write</Badge> | Stop serving, or resume to go live |
+| `archive_chatgpt_campaign` | <Badge color="red">Write</Badge> | Archive a campaign |
+| `list_chatgpt_ad_groups` / `get_chatgpt_ad_group` | <Badge color="green">Read</Badge> | List ad groups or get one |
+| `create_chatgpt_ad_group` | <Badge color="red">Write</Badge> | Add an ad group (bid + targeting) |
+| `update_chatgpt_ad_group` | <Badge color="red">Write</Badge> | Update bid, schedule, or targeting |
+| `pause_chatgpt_ad_group` / `resume_chatgpt_ad_group` / `archive_chatgpt_ad_group` | <Badge color="red">Write</Badge> | Control ad-group state |
+| `list_chatgpt_ads` / `get_chatgpt_ad` | <Badge color="green">Read</Badge> | List ads or get one |
+| `create_chatgpt_ad` | <Badge color="red">Write</Badge> | Create a chat_card ad (title, body, image, URL) |
+| `update_chatgpt_ad` | <Badge color="red">Write</Badge> | Update an ad's creative |
+| `pause_chatgpt_ad` / `resume_chatgpt_ad` / `archive_chatgpt_ad` | <Badge color="red">Write</Badge> | Control ad state |
+| `launch_chatgpt_ad` | <Badge color="red">Write</Badge> | One-shot: campaign → ad group → upload → ad (PAUSED) |
+| `upload_chatgpt_creative` | <Badge color="red">Write</Badge> | Upload a chat_card image from a public URL |
+| `chatgpt_geo_lookup` | <Badge color="green">Read</Badge> | Resolve a location to a targeting value |
+| `get_chatgpt_performance` | <Badge color="green">Read</Badge> | Impressions, clicks, spend, CTR, CPC |
+| `get_chatgpt_insights` | <Badge color="green">Read</Badge> | Scoped insights (fields, filters, sort, pagination) |
+| `set_chatgpt_conversions_config` / `get_chatgpt_conversions_config` | <Badge color="red">Write</Badge> | Configure or review Pixel / Conversions API |
+| `list_chatgpt_conversion_events` | <Badge color="green">Read</Badge> | Conversion events being recorded |
+| `test_chatgpt_conversion` | <Badge color="red">Write</Badge> | Send a test conversion to verify tracking |
 
 </Expandable>
 

@@ -9,13 +9,13 @@ keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", 
 
 ## Run Ads Inside ChatGPT — New: ChatGPT Ads (OpenAI Ads)
 
-Adspirer now supports **ChatGPT Ads (OpenAI Ads)** — pay-per-click "chat card" ads that render inside ChatGPT responses. Launch and manage them conversationally from ChatGPT, Claude, or any connected AI client.
+Adspirer now supports **ChatGPT Ads (OpenAI Ads)** — pay-per-click "chat card" ads that render inside ChatGPT responses, with **31 tools** to launch, manage, and measure them conversationally from ChatGPT, Claude, or any connected AI client. (This also brings Adspirer's total tool surface to 340+.)
 
 - **Connect once with an API key.** ChatGPT Ads is Adspirer's first non-OAuth platform: paste your OpenAI Advertiser API key in the Connections tab (one key = one ad account). It's stored encrypted, and the chat agent never sees it.
-- **Launch by describing the ad** — destination URL, headline, body, an image, a daily budget, and a location. Adspirer builds the campaign, ad group, and chat-card ad for you.
-- **Paused by default, confirm to spend.** Nothing serves until you activate, and activation echoes the dollar-per-day budget for your explicit OK.
+- **Launch in one shot, or manage granularly.** `launch_chatgpt_ad` builds the whole ad from a description (URL, headline, body, image, budget, geo), or use full campaign/ad-group/ad controls (list, get, create, update, pause, resume, archive).
+- **Paused by default.** Nothing serves or spends until you resume the campaign, and the agent always speaks in dollars, not micros.
 - **Honest review status.** Adspirer reports OpenAI's ad-review state (in review → approved/rejected) and flags policies up front — notably that third-party AI services are disallowed.
-- **Conversions** via the OpenAI pixel and Conversions API.
+- **Conversions** via the OpenAI pixel and Conversions API, with a built-in test event to verify tracking.
 
 → [ChatGPT Ads integration guide](/ad-platforms/chatgpt-ads)
 
