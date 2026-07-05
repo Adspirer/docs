@@ -9,7 +9,7 @@ keywords: ["claude code", "terminal", "cli", "mcp", "plugin"]
 Manage all your ad campaigns from the terminal. One command to connect, 340+ tools to use.
 
 <Tip>
-**Adspirer is now available on the official Claude plugin marketplace.** Run `/plugin` in Claude Code, open the **Discover** tab, and search for `adspirer` — you'll find `adspirer-ads-agent` from `claude-plugins-official`. No custom marketplace setup required.
+**Adspirer is available on the Claude plugin marketplace.** Run `/plugin` in Claude Code, open the **Discover** tab, and search for `adspirer` — you'll find `adspirer-ads-agent` from `claude-community`. No custom marketplace setup required.
 </Tip>
 
 <Frame caption="Create Google Ads Campaigns From Your Terminal">
@@ -81,10 +81,10 @@ The `/plugin` and `/mcp` commands below are **slash commands** — type them dir
   <Step title="Search and Install the Plugin">
     Type `/plugin` to open the plugin manager. The UI has four tabs — **Discover**, **Installed**, **Marketplaces**, **Errors** — cycle with Tab.
 
-    In the **Discover** tab, search for `adspirer` (or `ads`). You'll see **adspirer-ads-agent** from `claude-plugins-official` — the official Anthropic marketplace, enabled by default.
+    In the **Discover** tab, search for `adspirer` (or `ads`). You'll see **adspirer-ads-agent** from `claude-community` — Anthropic's community marketplace, enabled by default.
 
-    <Frame caption="Adspirer in the Discover tab of the official claude-plugins-official marketplace">
-      <img src="/images/claude-code/plugin-discover-search.png" alt="Plugin Discover tab showing adspirer-ads-agent from claude-plugins-official" />
+    <Frame caption="Adspirer in the Discover tab of the claude-community marketplace">
+      <img src="/images/claude-code/plugin-discover-search.png" alt="Plugin Discover tab showing adspirer-ads-agent from claude-community" />
     </Frame>
 
     Press Enter on the plugin, then choose an install scope:
@@ -99,7 +99,7 @@ The `/plugin` and `/mcp` commands below are **slash commands** — type them dir
     Or install directly from the command line:
 
     ```bash
-    /plugin install adspirer-ads-agent@claude-plugins-official
+    /plugin install adspirer-ads-agent@claude-community
     ```
   </Step>
   <Step title="Reload Plugins">
@@ -132,7 +132,7 @@ The `/plugin` and `/mcp` commands below are **slash commands** — type them dir
 
     **From `/mcp`:** type `/mcp`, find **plugin:adspirer-ads-agent:adspirer MCP Server** in the list, select it, then choose **Authenticate**.
 
-    Sign in with your Adspirer account and authorize the requested scopes (campaigns:read/write, reporting:read, accounts:read). Return to Claude Code — you'll see "Authentication successful".
+    Sign in with your Adspirer account and authorize the requested scopes (campaigns:read/write, reporting:read, accounts:read). **New to Adspirer?** The browser lands on a quick sign-up page first — create a free account (no credit card) and you're sent straight back to the authorization screen. Return to Claude Code — you'll see "Authentication successful".
 
     <Frame caption="OAuth authorization — review and approve the requested scopes">
       <img src="/images/claude-code/oauth-scopes.png" alt="Adspirer OAuth authorization page showing requested scopes" />
@@ -307,7 +307,7 @@ Run `/reload-plugins` after installing, or restart Claude Code. Then verify via 
 - `/plugin` → **Installed** tab — you should see **adspirer** listed
 - `/mcp` — you should see **plugin:adspirer-ads-agent:adspirer MCP Server**
 
-If the plugin is missing from the **Discover** tab, refresh the marketplace: `/plugin marketplace update claude-plugins-official`.
+If the plugin is missing from the **Discover** tab, refresh the marketplace: `/plugin marketplace update claude-community`.
 
 ### Authentication keeps failing
 
@@ -344,7 +344,7 @@ You should see a SKILL.md file. If not, re-run the plugin install or manual copy
 If `/adspirer:setup` isn't recognized, the plugin may not be installed. Run:
 
 ```bash
-/plugin install adspirer-ads-agent@claude-plugins-official
+/plugin install adspirer-ads-agent@claude-community
 /reload-plugins
 ```
 
