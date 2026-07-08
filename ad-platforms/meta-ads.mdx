@@ -1,8 +1,8 @@
 ---
 title: "Meta Ads Integration | Adspirer"
-description: "Manage Facebook and Instagram campaigns with Adspirer's 37 MCP tools: image, video, and carousel ads, creative fatigue, audiences, and performance."
+description: "Manage Facebook and Instagram campaigns with Adspirer's 54 MCP tools: image, video, carousel, and Advantage+ Catalog (dynamic product) ads, creative fatigue, audiences, and performance."
 icon: "image"
-keywords: ["meta ads", "facebook ads", "instagram ads", "social media ads", "carousel"]
+keywords: ["meta ads", "facebook ads", "instagram ads", "social media ads", "carousel", "advantage+ catalog", "dynamic product ads"]
 ---
 
 ## Prerequisites
@@ -54,7 +54,7 @@ Adspirer has Meta approved **Ads Management Standard Access**. This means Adspir
 Meta's account enforcement systems operate independently from Adspirer. Any account actions taken by Meta — including security reviews, restrictions, or account disabling — are governed by [Meta's Community Standards and policies](https://www.facebook.com/policies/ads/), not by Adspirer.
 </Info>
 
-## What You Can Do (37 Tools)
+## What You Can Do (54 Tools)
 
 ### Performance Analysis
 
@@ -112,6 +112,31 @@ These fields are sent **only** when an ad set actually targets the EU/EEA — no
 - `create_meta_carousel_campaign` — Launch multi-card carousel campaigns (supports lifetime budgets, end dates, placement controls)
 - `create_meta_dco_ad` — Create dynamic creative optimization (DCO) ads — supply multiple headlines and body texts and Meta mixes-and-matches them; Adspirer auto-enables dynamic creative on the target ad set for both image and video
 - `duplicate_meta_campaign` — Duplicate an existing campaign with optional modifications
+
+### Catalog & commerce ads (Advantage+ Catalog / Dynamic Product Ads)
+
+Connect a product **catalog** you already manage in Meta Commerce Manager (or synced from Shopify, WooCommerce, or another store platform) and Adspirer builds **dynamic product ads (DPA)** — Meta pulls each product's image, name, and price straight from the catalog and renders the ad automatically. This is how e-commerce advertisers run **prospecting** (show relevant products to cold audiences) and **retargeting** (re-show the exact products a visitor viewed or added to cart) at scale without hand-building an ad per SKU.
+
+- `list_meta_catalogs` — List the product catalogs available to your ad account
+- `list_meta_products` — Browse the products inside a catalog
+- `list_meta_product_sets` — View existing product sets (targetable subsets of a catalog)
+- `create_meta_product_set` — Create a product set with filter rules (e.g. "best sellers under $50")
+- `compare_meta_catalog_product_sets` — Compare performance across product sets to find your winners
+- `validate_catalog_readiness` — Pre-flight check that tells you whether your catalog + recent pixel data can support **retargeting** (needs view/add-to-cart/purchase events) or only **prospecting** — before you spend
+- `create_meta_catalog_campaign` — Launch an Advantage+ Catalog campaign (prospecting or retargeting), created **PAUSED**
+- `add_meta_catalog_ad_set` — Add a catalog ad set (audience, budget, retargeting window)
+- `add_meta_catalog_ad` — Add a catalog ad (creative format + product set)
+- `update_meta_catalog_campaign` — Change catalog-campaign budget, status, or settings
+- `update_meta_catalog_ad_set` — Update catalog ad-set targeting, budget, or retargeting window
+- `update_meta_catalog_ad` — Update catalog ad creative or product set
+- `analyze_meta_catalog_performance` — Product-level performance across the catalog
+- `get_meta_product_performance` — Per-product spend, sales, and ROAS — see which SKUs actually sell
+- `detect_meta_catalog_waste` — Flag products burning budget with no return
+- `diagnose_meta_catalog_funnel` — Walk the catalog funnel (impressions → view → add-to-cart → purchase) to find where it leaks
+
+<Note>
+Adspirer manages the **ads** on a catalog you've already built in Meta Commerce Manager (or synced from your store platform) — it doesn't create or edit the product feed itself. Set the catalog up once in Commerce Manager, then create, target, and optimize the campaigns with your AI assistant. Catalog campaigns are created **PAUSED** so you can review before spending.
+</Note>
 
 ### Lead generation
 
@@ -209,6 +234,15 @@ What interests correlate with higher ROAS?
 Show me a breakdown table.
 </Prompt>
 
+### Launch an Advantage+ Catalog (Dynamic Product Ads) campaign
+
+<Prompt description="Check catalog readiness, then launch a retargeting DPA campaign from your product feed." actions={["copy", "cursor"]}>
+List my Meta product catalogs and check whether my catalog is ready for retargeting.
+If it is, create an Advantage+ Catalog retargeting campaign for my "Best Sellers"
+product set at $40/day, targeting people who viewed or added to cart in the last 14 days.
+Leave it paused so I can review before launch.
+</Prompt>
+
 ## Creative Assets: What You Need to Know
 
 Adspirer does NOT generate images or videos. You provide the creative URLs.
@@ -238,9 +272,9 @@ The `validate_and_prepare_meta_assets` tool checks these automatically:
 
 ## Best Use Cases for Meta Ads
 
-- **E-commerce:** Visual products (fashion, home goods, beauty)
+- **E-commerce:** Visual products (fashion, home goods, beauty) — and with **Advantage+ Catalog / dynamic product ads**, show the exact SKUs from your feed to the right shopper automatically
 - **Demand generation:** Reach cold audiences with interest-based targeting
-- **Retargeting:** Re-engage website visitors, cart abandoners (also see [Google Display Ads](/ad-platforms/google-display-ads) for retargeting across the open web)
+- **Retargeting:** Re-engage website visitors and cart abandoners — including **catalog retargeting** that re-shows the precise product someone viewed (also see [Google Display Ads](/ad-platforms/google-display-ads) for retargeting across the open web)
 - **Video storytelling:** Brand awareness campaigns with Reels or Stories
 - **Lead generation:** On-platform forms (though LinkedIn often performs better for B2B)
 
@@ -303,6 +337,9 @@ The tool needs at least 14 days of data per ad. If your ads are newer, it can't 
     **Meta Ads:** Best for demand generation (reaching people who don't know you exist) and visual products. Interest-based targeting. Lower intent but cheaper clicks.
 
     **[Google Ads](/ad-platforms/google-ads):** Best for demand capture (reaching people actively searching for solutions). Keyword-based targeting. Higher intent but more expensive clicks.
+  </Accordion>
+  <Accordion title="Do I need to build a product feed to run Catalog / dynamic product ads?">
+    You build the **catalog** once in Meta Commerce Manager — or sync it automatically from Shopify, WooCommerce, or another store platform — and Adspirer manages the **ads** on top of it. Adspirer reads your catalogs and product sets, checks whether your pixel data can support retargeting (`validate_catalog_readiness`), and creates/optimizes Advantage+ Catalog campaigns. It doesn't edit the product feed itself. Once the catalog exists, you can run everything else — prospecting, retargeting, product-set testing, per-SKU performance — from your AI assistant.
   </Accordion>
   <Accordion title="How much does Adspirer cost for Meta Ads?">
     Adspirer pricing is based on tool calls, not ad spend. Free tier: 15 calls/month. Plus: $49/mo for 150 calls. Pro: $99/mo for 600 calls. Max: $199/mo for 3,000 calls. A typical Meta campaign creation uses 4-6 tool calls. See [full pricing](https://www.adspirer.com/pricing).

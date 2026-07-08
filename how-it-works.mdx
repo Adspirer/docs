@@ -16,9 +16,11 @@ flowchart TD
     C -->|OAuth 2.1| D{Ad Platform APIs}
     D --> E[Google Ads API]
     D --> F[Meta Marketing API]
-    D --> G[LinkedIn Marketing API]
-    D --> H[TikTok Marketing API]
-    E & F & G & H -->|API response| C
+    D --> G[Amazon Advertising API]
+    D --> H[OpenAI Ads API]
+    D --> I[LinkedIn Marketing API]
+    D --> J[TikTok Marketing API]
+    E & F & G & H & I & J -->|API response| C
     C -->|Structured result| B
     B -->|Formatted answer| A
 ```
@@ -55,7 +57,7 @@ The AI determines which Adspirer tools to call and in what order. With [skills](
 
 ### What MCP Does
 
-- **Tool discovery:** Your AI client discovers Adspirer's 340+ tools with descriptions and parameters
+- **Tool discovery:** Your AI client discovers Adspirer's 400+ tools with descriptions and parameters
 - **Tool invocation:** When the AI decides to use a tool, it sends a structured request via MCP
 - **Response delivery:** Adspirer returns structured results that the AI formats for you
 - **Authentication:** OAuth flows are triggered transparently through MCP
@@ -68,7 +70,7 @@ Every AI client connects to the same MCP endpoint:
 https://mcp.adspirer.com/mcp
 ```
 
-This single URL gives access to all 340+ tools across all 6 ad platforms. Your AI client doesn't need to know about Google Ads APIs, Meta APIs, or LinkedIn APIs — Adspirer handles all of that behind the MCP layer.
+This single URL gives access to all 400+ tools across all 6 ad platforms. Your AI client doesn't need to know about Google Ads APIs, Meta APIs, or LinkedIn APIs — Adspirer handles all of that behind the MCP layer.
 
 ### Tool Categories
 
@@ -90,7 +92,7 @@ When you first connect an ad platform, Adspirer uses **OAuth 2.1 with PKCE** —
     Either through your AI client's MCP settings or by running setup (`/adspirer:setup`).
   </Step>
   <Step title="Browser opens">
-    You're redirected to Google/Meta/LinkedIn/TikTok's login page. You sign in with your existing credentials.
+    You're redirected to the ad platform's login page (Google, Meta, Amazon, ChatGPT, LinkedIn, or TikTok). You sign in with your existing credentials.
   </Step>
   <Step title="You authorize permissions">
     You see exactly what Adspirer is requesting (read campaigns, create ads, manage budgets). You approve.
@@ -123,6 +125,10 @@ Adspirer translates MCP tool calls into native API calls for each platform:
 | `create_search_campaign` | Google Ads API | Creates a Search campaign (PAUSED) |
 | `get_meta_campaign_performance` | Meta Marketing API | Pulls Meta campaign metrics |
 | `create_meta_image_campaign` | Meta Marketing API | Creates an image ad campaign |
+| `get_amazon_campaign_performance` | Amazon Advertising API | Pulls Amazon metrics (spend, sales, ACOS, ROAS) |
+| `create_amazon_sp_campaign` | Amazon Advertising API | Creates a Sponsored Products campaign (PAUSED) |
+| `get_chatgpt_performance` | OpenAI Ads API | Pulls ChatGPT Ads metrics (impressions, clicks, spend, CTR, CPC) |
+| `launch_chatgpt_ad` | OpenAI Ads API | Builds a pay-per-click chat-card ad campaign (PAUSED) |
 | `get_linkedin_campaign_performance` | LinkedIn Marketing API | Pulls LinkedIn campaign metrics |
 | `create_linkedin_image_campaign` | LinkedIn Marketing API | Creates a sponsored content campaign |
 | `google_analytics` | Google Analytics Data API (via Pipedream Connect) | Pulls GA4 property data — sessions, conversions, traffic sources, landing pages |
@@ -191,7 +197,7 @@ No single layer is sufficient on its own. The safety model works because each la
 
 | What | Where It Lives | Who Can Access It |
 |------|---------------|-------------------|
-| Your ad platform credentials | Google/Meta/LinkedIn/TikTok servers | Only the ad platform |
+| Your ad platform credentials | Google/Meta/Amazon/ChatGPT/LinkedIn/TikTok servers | Only the ad platform |
 | OAuth tokens | Adspirer servers (encrypted) | Adspirer (for API calls) |
 | Campaign performance data | Ad platform APIs (real-time) | Your AI client (via Adspirer) |
 | Brand context (CLAUDE.md) | Your local machine | Your AI client |
@@ -206,4 +212,4 @@ Adspirer reads your campaign data in real-time and passes it to your AI client. 
 - [Security & Data Privacy](/knowledge-base/security) — OAuth, encryption, and data handling
 - [Agent Skills Overview](/agent-skills/overview) — Skills, workflows, and safety rules
 - [Performance Marketing Agent](/agent-skills/agent) — Agent architecture
-- [Tool Catalog](/agent-skills/tools) — All 340+ tools
+- [Tool Catalog](/agent-skills/tools) — All 400+ tools

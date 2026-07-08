@@ -187,6 +187,10 @@ The key difference from Google, Meta, TikTok, and LinkedIn: Amazon attributes sa
 
 Amazon Reporting v3 generates reports asynchronously. Adspirer requests a report, then polls Amazon until it's ready, and `get_amazon_report` retrieves it by `report_id` once complete. For large date ranges, a report may still be processing when first requested — ask the assistant to check again in a moment, or pass the `report_id` to `get_amazon_report`.
 
+<Tip>
+**Analytics now serve instantly.** Adspirer keeps a nightly-refreshed analytics store of your Amazon performance, so the deeper analytics tools — wasted-spend detection, budget optimization, per-ASIN and purchased-products views, and targeting analysis — return **immediately** instead of waiting on a live Amazon report to generate. Point-in-time reports (`get_amazon_report`) still fetch fresh from Amazon when you need the very latest numbers.
+</Tip>
+
 ## Sponsored Brands & Brand Registry
 
 <Warning>
@@ -269,5 +273,6 @@ Yes. Adspirer connects via OAuth through Login with Amazon — your Amazon crede
 - [Meta Ads Integration](/ad-platforms/meta-ads)
 - [TikTok Ads Integration](/ad-platforms/tiktok-ads)
 - [LinkedIn Ads Integration](/ad-platforms/linkedin-ads)
+- [ChatGPT Ads Integration](/ad-platforms/chatgpt-ads)
 - [Campaign Creation Workflows](/agent-skills/workflows)
 - [Pricing & Plans](https://www.adspirer.com/pricing)

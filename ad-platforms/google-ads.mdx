@@ -1,13 +1,13 @@
 ---
 title: "Google Ads Integration | Adspirer"
-description: "Manage Google Search, Performance Max, Display, YouTube, and Demand Gen campaigns with AI — 95 tools for keywords, ad copy, and optimization."
+description: "Manage Google Search, Performance Max, Shopping, App, Display, YouTube, and Demand Gen campaigns with AI — 147 tools for keywords, ad copy, and optimization."
 icon: "magnifying-glass-dollar"
-keywords: ["google ads", "search ads", "pmax", "display ads", "gdn", "keyword research", "google adwords", "ppc", "sem"]
+keywords: ["google ads", "search ads", "pmax", "shopping ads", "app campaigns", "display ads", "gdn", "keyword research", "google adwords", "ppc", "sem", "merchant center"]
 ---
 
 # Google Ads Integration
 
-The most comprehensive ad platform integration. Create Search, Performance Max, Display, YouTube, and Demand Gen campaigns, research keywords with real CPC data, generate ad copy, and optimize performance with 95 specialized tools.
+The most comprehensive ad platform integration. Create Search, Performance Max, Shopping, App, Display, YouTube, and Demand Gen campaigns, research keywords with real CPC data, generate ad copy, and optimize performance with 147 specialized tools — including Manager-parity deep management down to the ad-group, asset-group, and product-partition level.
 
 <Note>
 **Approved at the agency level for the Google Ads API.** Google classified Adspirer as an agency, full-service ad platform and granted Standard Access — so there's **no daily cap** on the work Adspirer can do on Google. Bulk builds, large restructures, and account-wide optimization run at full speed.
@@ -48,7 +48,7 @@ You should see your Google Ads account listed with account name, customer ID, an
 **Connect multiple Google logins to one Adspirer account.** Agencies and consultants managing Google Ads across separate Google identities can attach multiple Google OAuth grants to a single Adspirer account. Each grant contributes its own non-overlapping customer IDs; the agent transparently routes tool calls to the right OAuth based on the customer you reference. Add a second login from **Connections → Google Ads → Add another Google login**. Available on **Max annual** today; rolling to other paid tiers behind a feature flag. See [Multi-Account](/knowledge-base/multi-account) for details.
 </Tip>
 
-## What You Can Do (95 Tools)
+## What You Can Do (147 Tools)
 
 ### Performance Analysis
 
@@ -118,8 +118,43 @@ Sitelinks, callouts, and structured snippets each have full add / remove / list 
 - `list_conversion_actions` -- List all conversion actions in your account (purchases, form fills, phone calls, app installs) with tracking method and status
 - `get_conversion_action_performance` -- Pull conversion volume, value, and CPA broken down by conversion action — see which actions actually drive results
 
+### Shopping & Merchant Center
+
+Run Standard Shopping campaigns straight from your Google Merchant Center product feed — no per-product ad building.
+
+- `link_merchant_center` -- Link a Google Merchant Center account to your Google Ads account so its products are eligible to advertise
+- `get_merchant_center_links` -- List the Merchant Center accounts linked to your Google Ads account
+- `unlink_merchant_center` -- Remove a Merchant Center link
+- `get_shopping_settings` -- View a Shopping campaign's Merchant Center ID, country, and inventory filter
+- `create_shopping_campaign` -- Launch a Standard Shopping campaign from a linked Merchant Center feed (created PAUSED)
+- `add_shopping_ad_group` -- Add an ad group to a Shopping campaign
+- `add_shopping_product_ad` -- Add the product ad that surfaces your feed items
+- `add_product_group` / `get_product_groups` / `update_product_group` / `remove_product_group` -- Build and manage the **product partition tree** — subdivide your feed by brand, category, product type, or item ID and bid on each partition independently
+
+### App (Universal App / UAC) Campaigns
+
+- `create_app_campaign` -- Launch an App campaign to drive **installs, in-app engagement, or pre-registration** across Search, Play, YouTube, Display, and Discover (created PAUSED)
+- App-ad creative management -- Add and edit the text, image, and video assets Google mixes into your app ads
+
+### Demand Gen Campaigns
+
+- `create_demandgen_campaign` -- Launch a Demand Gen campaign (visual, social-style ads across YouTube, Shorts, Discover, and Gmail)
+- `add_demandgen_ad_group` / `add_demandgen_ad` -- Build ad groups and image/video ads inside a Demand Gen campaign
+- `get_demandgen_audiences` / `replace_demandgen_audiences` -- View and set audience targeting
+- `get_demandgen_channel_controls` / `update_demandgen_channel_controls` -- Choose which surfaces (YouTube, Shorts, Discover, Gmail) the campaign runs on
+
+### PMax Asset-Group Deep Management
+
+Beyond search themes and audience signals, manage the full asset-group structure of a Performance Max campaign:
+
+- `add_pmax_asset_group` / `get_pmax_asset_groups` / `update_pmax_asset_group` / `remove_pmax_asset_group` -- Full asset-group lifecycle
+- `add_pmax_asset_group_asset` / `list_pmax_asset_group_assets` / `remove_pmax_asset_group_asset` -- Manage individual headlines, descriptions, images, and videos within an asset group
+- `add_pmax_asset_group_image` / `list_pmax_asset_group_images` / `remove_pmax_asset_group_image` -- Manage asset-group images specifically
+- `get_pmax_asset_performance` -- See which assets Google rates Best / Good / Low so you know what to swap
+- `add_asset_group_listing_filter` / `get_asset_group_listing_filters` / `remove_asset_group_listing_filter` -- Scope a PMax asset group to a subset of your Merchant Center feed (retail PMax)
+
 <Tip>
-Google Ads has the largest tool set in Adspirer. The tools listed above are the most commonly used. Additional tools cover ad group management, bidding strategies, geographic targeting, and more.
+Google Ads has the largest tool set in Adspirer — **147 tools** with Manager-parity depth. The tools listed above are the most commonly used across Search, Shopping, App, PMax, Display, YouTube, and Demand Gen. Additional tools cover ad-group settings, device and ad-schedule bid modifiers, campaign labels, frequency caps, and more.
 </Tip>
 
 ## Campaign Types
@@ -147,6 +182,18 @@ Responsive Display Ads across 2M+ websites, apps, and YouTube display slots. Sup
 Video ads on YouTube (In-Feed, In-Stream, Shorts). Uses Demand Gen format with YouTube-only channel controls.
 
 **When to use:** Video-first creative, product demos, brand storytelling. → [Full YouTube Ads guide](/ad-platforms/youtube-ads)
+
+### Shopping Campaigns <Badge color="green">New</Badge>
+
+Standard Shopping campaigns that advertise products directly from your Google Merchant Center feed — Google shows the product image, title, and price. Adspirer links Merchant Center, creates the campaign and product ad, and lets you build a **product partition tree** to bid differently by brand, category, or item.
+
+**When to use:** E-commerce and retail with a Merchant Center product feed. Pair with retail PMax (via asset-group listing filters) for full-funnel shopping coverage.
+
+### App Campaigns <Badge color="green">New</Badge>
+
+Universal App campaigns that drive app **installs, engagement, or pre-registration** across Search, Google Play, YouTube, Display, and Discover from a single set of assets.
+
+**When to use:** Mobile app growth — acquiring new installs or re-engaging existing users.
 
 ## Search Campaign Creation Workflow
 
@@ -269,6 +316,15 @@ Add them as audience signals to my PMax campaign.
 Analyze my Google Ads campaigns for the last 30 days.
 Which campaigns have the best ROAS?
 Recommend how to reallocate my $3,000/month budget to maximize conversions.
+</Prompt>
+
+### Launch a Shopping Campaign
+
+<Prompt description="Link Merchant Center and launch a Standard Shopping campaign with a product partition tree." actions={["copy", "cursor"]}>
+Show my linked Google Merchant Center accounts (link one if none is connected),
+then create a Standard Shopping campaign at $50/day.
+Break the products into partitions by product type and give me a bid on each.
+Leave it paused so I can review.
 </Prompt>
 
 ## Keyword Research: What You Need to Know
@@ -413,6 +469,10 @@ Most advertisers run both: Google for high-intent searches, Meta for awareness a
 **Audience signals** tell Google which audience segments are most likely to convert — in-market audiences, affinity audiences, custom audiences, and user lists (remarketing). They are signals, not hard targeting — Google uses them as starting points and expands from there. Only one audience signal is allowed per asset group.
 
 Both are PMax-only features and do not apply to Search, Display, or other campaign types.
+</Accordion>
+
+<Accordion title="Can Adspirer run Shopping and App campaigns, not just Search?">
+Yes. Google Ads is Adspirer's deepest integration (147 tools) and covers **Search, Performance Max, Shopping, App (Universal App), Display, YouTube, and Demand Gen**. For Shopping, Adspirer links your Google Merchant Center feed, creates the campaign and product ad, and builds a product partition tree so you can bid by brand, category, or item. For App campaigns, it launches install / engagement / pre-registration campaigns across Search, Play, YouTube, Display, and Discover. Both are created PAUSED for your review.
 </Accordion>
 
 <Accordion title="How much does Adspirer cost for Google Ads?">

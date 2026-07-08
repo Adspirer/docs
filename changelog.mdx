@@ -5,6 +5,148 @@ icon: "clock"
 keywords: ["changelog", "updates", "releases", "new features", "MCC", "agency", "MCP"]
 ---
 
+<Update label="July 7, 2026" description="Delete-confirmation safety gate" tags={["Bug Fix", "MCP"]}>
+
+## A Hard Gate So "Pause" Never Means "Delete"
+
+Adspirer now hard-gates every destructive tool. `remove_*` and `delete_*` tools carry a `destructiveHint` and **won't run unless the call explicitly passes `confirm_delete: true`**, and a "pause" request is never routed to a delete tool. This closes a class of error where an ambiguous instruction like "pause these keywords" could be interpreted as a permanent deletion. Read tools still auto-run; only irreversible actions are gated. → [Tool safety model](/mcp#tool-safety-model)
+
+</Update>
+
+<Update label="July 6, 2026" description="Google App campaigns + LinkedIn campaign groups & forecasting" tags={["New Features", "Google Ads", "LinkedIn Ads"]}>
+
+## Google App Campaigns + a Much Deeper LinkedIn
+
+**Google App (Universal App) campaigns.** `create_app_campaign` launches campaigns that drive app **installs, engagement, or pre-registration** across Search, Google Play, YouTube, Display, and Discover — with app-ad creative management. Created PAUSED for review. → [Google App campaigns](/ad-platforms/google-ads)
+
+**LinkedIn, deepened (now 55 tools).** New this week:
+- **Campaign groups** — create, update, delete, list, search, and batch-create groups with shared budgets and schedules.
+- **Pre-launch forecasting** — `estimate_linkedin_audience_size` and `forecast_linkedin_campaign_supply` project reachable audience and expected impressions/clicks/spend at a given budget, so you size campaigns with data.
+- **Full lifecycle** — archive, reactivate, delete, clone, and batch-update campaigns.
+
+→ [LinkedIn Ads integration](/ad-platforms/linkedin-ads)
+
+</Update>
+
+<Update label="July 4, 2026" description="Google Shopping + Merchant Center + smarter tool discovery" tags={["New Features", "Google Ads", "MCP"]}>
+
+## Google Shopping Campaigns Arrive
+
+Run **Standard Shopping** campaigns straight from your Google Merchant Center feed — no per-product ad building.
+
+- `link_merchant_center` / `get_merchant_center_links` connect your product feed.
+- `create_shopping_campaign` → `add_shopping_ad_group` → `add_shopping_product_ad` builds the campaign.
+- **Product partition trees** (`add_product_group` and friends) let you subdivide the feed by brand, category, product type, or item ID and bid on each partition independently.
+
+→ [Google Shopping campaigns](/ad-platforms/google-ads)
+
+**Smarter tool discovery.** As the surface grows past 400 tools, new `search_tools` (find the right tool from a natural-language description) and `get_tool_schema` (fetch a tool's exact parameters) keep the AI accurate. → [How discovery works](/mcp)
+
+</Update>
+
+<Update label="July 3, 2026" description="Google Ads Manager-parity deep management" tags={["New Features", "Google Ads"]}>
+
+## Manager-Parity Deep Management for Google Ads
+
+Google Ads is now Adspirer's deepest integration at **147 tools**, with control down to the ad-group, asset-group, and product-partition level:
+
+- **Search** — ad-group lifecycle and settings, demographics, audiences, proximity / ad-schedule / device-bid targeting.
+- **Demand Gen** — create campaigns and ads, manage audiences and channel controls across YouTube, Shorts, Discover, and Gmail.
+- **Performance Max** — full asset-group lifecycle, per-asset edits, asset-performance ratings (Best / Good / Low), and listing filters for retail PMax.
+- **Campaign-level depth** — tracking, dates, frequency caps, network settings, and labels.
+
+Every write is live-verified against a sandbox. → [Google Ads integration](/ad-platforms/google-ads)
+
+</Update>
+
+<Update label="July 2, 2026" description="Cross-platform Ad Ops agents, teach-your-agent + Meta lead forms" tags={["New Features", "Agent Skills", "Meta Ads"]}>
+
+## Ad Ops Agents Get Smarter — and Cross-Platform
+
+- **Cross-platform agents.** One agent can now reason and act across **Google, Meta, TikTok, LinkedIn, and Amazon** from a single goal — e.g. "cap total monthly spend at 10,000 CAD across Meta, Google, and LinkedIn."
+- **Teach your agent.** Upload your own brand rules, target CPAs, seasonal calendars, and SOPs; every run grounds its decisions in your documents.
+- **Evidence-gated impact.** Impact verdicts only make a causal claim when your own data supports it — no more misleading "+54% worse" calls off a tiny sample.
+- **Rejection-reason chips.** One tap tells the agent *why* you rejected a proposal, so the next run is better.
+
+Also: **Meta native lead-form campaigns** (on-platform Instant Forms, no pixel required) now pass pre-flight. → [Autonomous Ad Ops agents](/agent-skills/ad-ops-agents)
+
+</Update>
+
+<Update label="June 30, 2026" description="Meta Advantage+ Catalog (dynamic product ads)" tags={["New Features", "Meta Ads"]}>
+
+## Meta Advantage+ Catalog — Dynamic Product Ads
+
+Adspirer now runs **Meta Advantage+ Catalog campaigns (dynamic product ads / DPA)** — the way e-commerce advertisers show the exact products from their feed to the right shopper without hand-building an ad per SKU. **16 new Meta tools** (Meta Ads is now 54 tools):
+
+- **Discover & prepare** — `list_meta_catalogs`, `list_meta_products`, `list_meta_product_sets`, `create_meta_product_set`, and `validate_catalog_readiness` (a pre-flight that tells you whether your catalog + pixel data supports **retargeting** or **prospecting only**, before you spend).
+- **Launch & manage** — `create_meta_catalog_campaign` (prospecting or retargeting, created PAUSED) plus catalog ad-set and ad management.
+- **Optimize** — `analyze_meta_catalog_performance`, `get_meta_product_performance` (per-SKU ROAS), `detect_meta_catalog_waste`, and `diagnose_meta_catalog_funnel`.
+
+Connect a catalog you already manage in Meta Commerce Manager (or synced from Shopify/WooCommerce) and manage the ads conversationally. → [Meta Catalog ads](/ad-platforms/meta-ads)
+
+</Update>
+
+<Update label="June 24, 2026" description="Ad Ops agent builder, approvals & community playbooks" tags={["New Features", "Agent Skills"]}>
+
+## Build, Approve, and Share Ad Ops Agents
+
+The autonomous Ad Ops agent got a full build-and-run experience:
+
+- **Gallery + 5-step builder** with active-agent cards, background goal-compile so the builder opens instantly, and per-agent detail panels.
+- **Approvals from the card** — review, approve, or reject each proposal in place, with server-side approval counts and a per-agent inbox.
+- **Impact & Recommendations tabs** — see whether approved changes actually added value (fed back into the next run) and a running list of prioritized, ad-focused suggestions.
+- **Community playbooks** — share an agent's decision logic (goal, rules, and guardrails only — never accounts or budgets) and fork others' proven playbooks onto your own account.
+
+→ [Autonomous Ad Ops agents](/agent-skills/ad-ops-agents)
+
+</Update>
+
+<Update label="June 23, 2026" description="Shareable Dashboards V2 — white-label & adaptive" tags={["New Features", "MCP"]}>
+
+## Shareable Dashboards V2 — White-Label & Adaptive
+
+Shareable dashboards were rebuilt into a data- and platform-adaptive report you can hand to clients:
+
+- **White-label** — upload your own logo, set a custom title and footer, and hide Adspirer branding.
+- **Adaptive depth** — ~20 analysis blocks (Pareto, anomaly z-scores, efficiency frontier, funnel, treemap, waterfall) that appear only when your data supports them, plus per-platform "signatures" for Google, Meta, TikTok, and LinkedIn.
+- **Prompt-mode** — compose a dashboard's layout from a natural-language prompt.
+
+Links stay live (fresh data on open), expire per plan tier, and are revocable. → [Shareable dashboards](/knowledge-base/capabilities#shareable-dashboards)
+
+</Update>
+
+<Update label="June 22, 2026" description="Community Plugins — open-source, read-only extensions" tags={["New Features", "Agent Skills"]}>
+
+## Community Plugins (v1)
+
+Adspirer can now be extended with **open-source, community-contributed analysis tools** that appear alongside the built-in ones via the `community_plugins` router. They're **read-only** to your ad accounts, run in a **credential-free, sandboxed** sub-server, and are loaded from a **pinned, reviewed commit** of the public [`Adspirer/adspirer-mcp-community`](https://github.com/Adspirer/adspirer-mcp-community) repo. First example: a keyword clusterer that groups your search terms into themes. → [Community Plugins](/agent-skills/community-plugins)
+
+</Update>
+
+<Update label="June 20, 2026" description="Now in 116 languages + Start Here onboarding" tags={["New Features", "AI Clients"]}>
+
+## Adspirer Now Speaks 116 Languages
+
+The Adspirer dashboard, onboarding, and AI-client setup guides are now localized into **116 languages**, with:
+
+- **Automatic browser-language detection** and a one-click language switcher.
+- Full **right-to-left (RTL)** support for Arabic, Hebrew, Persian, Urdu, and more.
+- A language preference that's **remembered across devices**.
+
+And because you manage ads by chatting with an AI, you can give instructions in your own language. → [Localization](/knowledge-base/localization)
+
+Also new: a redesigned **Start Here** onboarding experience with an interactive, illustrated card carousel and try-it prompts that track real completion from your own account history.
+
+</Update>
+
+<Update label="June 18, 2026" description="Autonomous Ad Ops agents are live" tags={["New Features", "Agent Skills"]}>
+
+## Autonomous Ad Ops Agents Go Live
+
+Adspirer's **autonomous Ad Ops agents** are out of beta. Give an agent a plain-English goal and a cadence, and it monitors your accounts on a schedule and **proposes every change to an approval queue** — find winners to scale, wasted spend to cut, budgets to rebalance, CPA/ROAS drift to correct, or broken conversion tracking to flag. Nothing spends or changes without your approval, enforced server-side. Available on Plus, Pro, and Max. → [Autonomous Ad Ops agents](/agent-skills/ad-ops-agents)
+
+</Update>
+
 <Update label="June 17, 2026" description="ChatGPT Ads — new platform" tags={["New Features", "ChatGPT Ads"]}>
 
 ## Run Ads Inside ChatGPT — New: ChatGPT Ads (OpenAI Ads)

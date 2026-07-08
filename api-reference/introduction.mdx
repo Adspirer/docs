@@ -1,7 +1,7 @@
 ---
 title: "Adspirer REST API for Ads Automation"
 sidebarTitle: "REST API Overview"
-description: "HTTP access to Adspirer's 340+ tools. Create campaigns and pull performance for Google, Meta, Amazon, ChatGPT, LinkedIn, and TikTok Ads from n8n, Zapier, or Make."
+description: "HTTP access to Adspirer's 400+ tools. Create campaigns and pull performance for Google, Meta, Amazon, ChatGPT, LinkedIn, and TikTok Ads from n8n, Zapier, or Make."
 icon: "code"
 keywords: ["adspirer api", "ad campaign api", "google ads api", "meta ads api", "rest api", "n8n ads", "zapier ads", "make ads automation"]
 ---
@@ -268,6 +268,10 @@ This endpoint is plain request/response JSON. **No SSE, no chunked streaming.** 
   </Card>
 </CardGroup>
 
+<Note>
+The endpoint reference above is being expanded to the full **400+ tool** surface. **Amazon Ads** (61 tools) and **ChatGPT Ads** (31 tools), plus the newest **Google Shopping/App**, **Meta Advantage+ Catalog**, and **LinkedIn** tools, are all available over the same REST transport today — every MCP tool has a matching `POST /api/v1/tools/{tool_name}/execute` endpoint. See the [Tool Catalog](/agent-skills/tools) for the complete, current list while the interactive reference pages are regenerated.
+</Note>
+
 ## Architecture patterns
 
 ### Slack ChatOps — campaign creation from a message
@@ -398,6 +402,6 @@ Revoke it immediately at [adspirer.ai/keys](https://adspirer.ai/keys) and genera
 
 - [How MCP Works](/mcp) — the protocol the REST API mirrors
 - [Core Workflows](/agent-skills/workflows) — step-by-step tool sequences for common jobs
-- [Tool Catalog](/agent-skills/tools) — the 175-tool reference
+- [Tool Catalog](/agent-skills/tools) — the full 400+ tool reference
 - [Pricing](/knowledge-base/pricing) — quota tiers and overage billing
 - [Security](/knowledge-base/security) — how API keys, OAuth, and session data are handled

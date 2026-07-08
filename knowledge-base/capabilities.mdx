@@ -10,7 +10,9 @@ A clear breakdown of what Adspirer does and what's outside its scope.
 ## What Adspirer Does
 
 ### Campaign Management
-- Create Search, PMax, [Display](/ad-platforms/google-display-ads), [YouTube](/ad-platforms/youtube-ads), Demand Gen, Image, Video, Carousel, Sponsored Content, [Amazon Sponsored Products / Brands / Display](/ad-platforms/amazon-ads), and [pay-per-click ChatGPT Ads](/ad-platforms/chatgpt-ads) campaigns
+- Create Search, PMax, [Shopping](/ad-platforms/google-ads), App/UAC, [Display](/ad-platforms/google-display-ads), [YouTube](/ad-platforms/youtube-ads), Demand Gen, Image, Video, Carousel, [Meta Advantage+ Catalog (dynamic product ads)](/ad-platforms/meta-ads), Sponsored Content (image/video/text/carousel), [Amazon Sponsored Products / Brands / Display](/ad-platforms/amazon-ads), and [pay-per-click ChatGPT Ads](/ad-platforms/chatgpt-ads) campaigns
+- Run **Shopping** campaigns from a Google Merchant Center feed with a full product-partition tree
+- Manage **Meta catalog / dynamic product ads** — prospecting and retargeting from your product catalog
 - Pause, resume, and update live campaigns
 - Set and adjust budgets, bids, targeting, frequency caps, and schedules
 - All campaigns created **PAUSED** for your review
@@ -32,6 +34,7 @@ A clear breakdown of what Adspirer does and what's outside its scope.
 - Cross-platform performance comparison
 
 ### Automation & Proactive Monitoring
+- **[Autonomous Ad Ops agents](/agent-skills/ad-ops-agents)** — give an agent a plain-English goal and a cadence; it monitors your accounts and **proposes every change to an approval queue**. Nothing spends or changes without your sign-off. One agent can act across Google, Meta, TikTok, LinkedIn, and Amazon, measure its own impact, and learn from your rejections. **Community playbooks** let you share and fork agent strategies. (Plus/Pro/Max)
 - **Watch Agent** — background AI agent that scans all connected ad accounts every 15 minutes, finds issues, and emails you a ready-to-paste action prompt. Trigger on demand with `run_watch_now`.
 - **Monitors & Alerts** — set metric thresholds (CPA, ROAS, CTR, spend, etc.) via MCP tools or the [Monitors web UI](https://adspirer.ai/monitors). Alerts fire when thresholds are crossed and can be scoped to specific platforms or campaigns.
 - Scheduled daily/weekly performance briefs with PDF attachment
@@ -41,6 +44,15 @@ A clear breakdown of what Adspirer does and what's outside its scope.
 - **[Diagnostic & Helper tools](/agent-skills/diagnostic-helper-tools)** — a group of free, read-only tools that suggest your best next step, check an account is launch-ready before you create a campaign, translate cryptic platform errors into plain-language fixes, and confirm a campaign is actually serving (a real live check across all six platforms). Quota-free on **every plan, including Free**.
 - **Self-diagnosis** — `diagnose_my_setup` tells apart an AI-client connection problem from an ad-platform sign-in problem, so you fix the right thing.
 - **Interactive cards & dashboards** — in ChatGPT and Claude, results render as branded, interactive UI instead of plain text: setup checklists, usage meters, opportunity lists, and an account switcher, plus a tabbed performance dashboard (KPI tiles, charts, and 7 / 14 / 30 / 60 / 90-day or custom date-range switching) and a graded conversion-audit scorecard. They render on desktop, web, and mobile, and fall back to clean text where widgets aren't supported.
+
+### Shareable Dashboards
+- Generate a performance dashboard from chat or the `/dashboards` UI and share it as a **live, no-login link** — recipients always see fresh data. Links are revocable and expire per plan tier.
+- **White-label** dashboards with your own logo, custom title/footer, and an option to hide Adspirer branding — ideal for client reporting.
+- Dashboards adapt to your data with ~20 analysis blocks (Pareto, anomaly detection, efficiency frontier, funnel, treemap, waterfall) and platform-specific signatures across Google, Meta, TikTok, and LinkedIn.
+
+### Extend & Localize
+- **[Community Plugins](/agent-skills/community-plugins)** — open-source, read-only community analysis tools that show up alongside the built-in ones (sandboxed, credential-free).
+- **[Available in 116 languages](/knowledge-base/localization)** — the dashboard and onboarding are localized with full right-to-left support, and you can instruct the AI assistant in your own language.
 
 ### Marketing Stack Integrations (Plus and above)
 - **[Google Analytics 4](/integrations/google-analytics)** — correlate paid ad spend with on-site behavior (sessions, conversions, traffic sources, landing-page performance).
@@ -71,11 +83,11 @@ Adspirer manages **paid** advertising only. It cannot post organic content, mana
 
 | Platform | Not Yet Supported |
 |----------|------------------|
-| **Google Ads** | Shopping campaigns (standalone) |
-| **Meta Ads** | Instagram-only campaigns (Meta treats FB/IG as placements), Messenger ads |
+| **Google Ads** | Discovery (legacy) campaigns; hotel/local campaigns. Search, PMax, Shopping, App/UAC, Display, YouTube, and Demand Gen are supported |
+| **Meta Ads** | Instagram-only campaigns (Meta treats FB/IG as placements), Messenger ads. Image, video, carousel, and Advantage+ Catalog (dynamic product ads) are supported |
 | **Amazon Ads** | Amazon DSP (programmatic display); Sponsored Products / Brands / Display are fully supported |
 | **ChatGPT Ads** | Multi-card / non-`chat_card` creatives; ads pass OpenAI review (some categories disallowed) |
-| **LinkedIn Ads** | Matched Audiences (retargeting), InMail campaigns |
+| **LinkedIn Ads** | Matched Audiences (retargeting), InMail campaigns. Image, video, text, and carousel campaigns are supported |
 | **TikTok Ads** | TopView, Branded Effects |
 
 These limitations reflect the current API integrations. New capabilities are added regularly — see the [Changelog](/changelog) for updates. Plus, Pro, and Max plans include [Google Analytics 4](/integrations/google-analytics) and [Klaviyo](/integrations/klaviyo); broader custom integrations (Slack, additional CRMs, warehouses) are available on the [Adspirer Enterprise plans for agencies and teams](/knowledge-base/enterprise).
@@ -84,7 +96,7 @@ These limitations reflect the current API integrations. New capabilities are add
 
 <AccordionGroup>
 <Accordion title="Can Adspirer spend money without my approval?">
-No. All campaigns are created PAUSED. Budget changes require explicit confirmation. Even autonomous agents (Codex) follow this rule.
+No. All campaigns are created PAUSED. Budget changes require explicit confirmation. Even [autonomous Ad Ops agents](/agent-skills/ad-ops-agents) follow this rule — they propose every change to an approval queue and nothing executes until you approve it.
 </Accordion>
 <Accordion title="Does Adspirer work with Google Analytics?">
 Yes — on **Plus, Pro, and Max** plans you can connect a Google Analytics 4 property in the [Connections](https://adspirer.ai/connections) panel and the agent can pull sessions, conversions, traffic sources, and landing-page performance alongside the ad-platform data. See the [Google Analytics integration page](/integrations/google-analytics) for what's available and example prompts.

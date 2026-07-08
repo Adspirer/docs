@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
   "name": "Adspirer",
-  "description": "Manage ad campaigns with AI. 340+ tools across Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, and TikTok Ads.",
+  "description": "Manage ad campaigns with AI. 400+ tools across Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, and TikTok Ads.",
   "colors": {
     "primary": "#2563EB",
     "light": "#F8FAFC",
@@ -145,6 +145,7 @@
             "pages": [
               "agent-skills/overview",
               "agent-skills/skills",
+              "agent-skills/ad-ops-agents",
               "agent-skills/agent",
               "agent-skills/claude-code-agent",
               "agent-skills/cursor-agent",
@@ -152,7 +153,8 @@
               "agent-skills/openclaw-agent",
               "agent-skills/tools",
               "agent-skills/diagnostic-helper-tools",
-              "agent-skills/workflows"
+              "agent-skills/workflows",
+              "agent-skills/community-plugins"
             ]
           },
           {
@@ -230,6 +232,7 @@
               "knowledge-base/multi-client",
               "knowledge-base/computer-use-agents",
               "knowledge-base/capabilities",
+              "knowledge-base/localization",
               "knowledge-base/faq",
               "knowledge-base/glossary",
               "knowledge-base/support"

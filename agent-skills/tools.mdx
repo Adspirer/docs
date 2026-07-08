@@ -1,10 +1,10 @@
 ---
-title: "Adspirer Tool Catalog: 340+ MCP Tools by Platform"
+title: "Adspirer Tool Catalog: 400+ MCP Tools by Platform"
 sidebarTitle: "Tool Catalog"
-description: "Complete reference of all 340+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
+description: "Complete reference of all 400+ Adspirer tools. Organized by platform (Google Ads, Meta Ads, Amazon Ads, ChatGPT Ads, LinkedIn Ads, TikTok Ads) with types, descriptions, and parameters."
 icon: "wrench"
 mode: "wide"
-keywords: ["tools", "mcp tools", "api", "tool catalog", "340 tools", "340+ tools"]
+keywords: ["tools", "mcp tools", "api", "tool catalog", "400 tools", "400+ tools"]
 ---
 
 ## Tool Types
@@ -12,7 +12,7 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "340 tools", "340+ tools
 - <Badge color="green">Read</Badge> Safe to run anytime. Pulls data, analyzes performance, provides insights. No spending impact.
 - <Badge color="red">Write</Badge> Requires user confirmation. Creates campaigns, updates budgets, modifies targeting. Affects spend.
 
-## Google Ads Tools (95)
+## Google Ads Tools (147)
 
 <Expandable title="View all Google Ads tools" defaultOpen>
 
@@ -58,11 +58,23 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "340 tools", "340+ tools
 | `add_search_campaign_image` | <Badge color="red">Write</Badge> | Attach image assets (logos, marketing images) to Search campaigns |
 | `list_conversion_actions` | <Badge color="green">Read</Badge> | List all conversion actions in the account (purchases, form fills, calls) with status and tracking method |
 | `get_conversion_action_performance` | <Badge color="green">Read</Badge> | Pull conversion volume, value, and CPA broken down by conversion action — see which actions drive results |
-| ...and more | | Geographic targeting, ad scheduling, ad-group management, and additional Google Ads tools |
+| `get_ad_performance` | <Badge color="green">Read</Badge> | Per-ad metrics (Search/Display/Demand Gen/YouTube) with head-to-head comparison and ad-strength |
+| `get_ad_creative` | <Badge color="green">Read</Badge> | Export an ad's headlines, descriptions, images, YouTube videos, and carousel cards |
+| `link_merchant_center` | <Badge color="red">Write</Badge> | Link a Google Merchant Center feed to enable Shopping |
+| `get_merchant_center_links` | <Badge color="green">Read</Badge> | List linked Merchant Center accounts |
+| `create_shopping_campaign` | <Badge color="red">Write</Badge> | Launch a Standard Shopping campaign from a Merchant Center feed (created PAUSED) |
+| `add_shopping_ad_group` | <Badge color="red">Write</Badge> | Add an ad group to a Shopping campaign |
+| `add_shopping_product_ad` | <Badge color="red">Write</Badge> | Add the product ad that surfaces feed items |
+| `add_product_group` | <Badge color="red">Write</Badge> | Build the product partition tree (subdivide by brand/category/item and bid per partition) |
+| `create_app_campaign` | <Badge color="red">Write</Badge> | Launch a Universal App campaign — installs, engagement, or pre-registration (created PAUSED) |
+| `create_demandgen_campaign` | <Badge color="red">Write</Badge> | Launch a Demand Gen campaign across YouTube, Shorts, Discover, and Gmail (created PAUSED) |
+| `add_pmax_asset_group` | <Badge color="red">Write</Badge> | Add an asset group to a Performance Max campaign |
+| `get_pmax_asset_performance` | <Badge color="green">Read</Badge> | See which PMax assets Google rates Best / Good / Low |
+| ...and more | | Shopping product partitions, App/UAC creative, Demand Gen audiences & channel controls, PMax asset-group management, ad-group device/schedule bid modifiers, campaign labels, frequency caps, geographic targeting, and additional Google Ads tools |
 
 </Expandable>
 
-## LinkedIn Ads Tools (45)
+## LinkedIn Ads Tools (55)
 
 <Expandable title="View all LinkedIn Ads tools">
 
@@ -84,13 +96,21 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "340 tools", "340+ tools
 | `pause_linkedin_campaign` | <Badge color="red">Write</Badge> | Stop campaigns or ad groups |
 | `explain_linkedin_anomaly` | <Badge color="green">Read</Badge> | Diagnose sudden CTR, CPC, or conversion rate changes |
 | `manage_linkedin_conversions` | <Badge color="red">Write</Badge> | Set up and track conversion events (form fills, downloads) |
-| ...and 14 more | | Lead gen forms, audience expansion, bid strategies, etc. |
+| `create_linkedin_video_campaign` | <Badge color="red">Write</Badge> | Launch a video sponsored content campaign (created PAUSED) |
+| `create_linkedin_carousel_campaign` | <Badge color="red">Write</Badge> | Launch a multi-card carousel campaign (created PAUSED) |
+| `create_linkedin_text_campaign` | <Badge color="red">Write</Badge> | Launch a text ad campaign (created PAUSED) |
+| `create_linkedin_campaign_group` | <Badge color="red">Write</Badge> | Create a campaign group with a shared budget/schedule |
+| `estimate_linkedin_audience_size` | <Badge color="green">Read</Badge> | Estimate reachable audience size for a targeting spec before launch |
+| `forecast_linkedin_campaign_supply` | <Badge color="green">Read</Badge> | Forecast impressions, clicks, and spend at a given budget |
+| `get_linkedin_audience_insights` | <Badge color="green">Read</Badge> | See which job functions, industries, and seniorities engage |
+| `clone_linkedin_campaign` | <Badge color="red">Write</Badge> | Duplicate a campaign with optional changes |
+| ...and more | | Video/text/carousel creatives, campaign-group batch operations, archive/reactivate/delete, engagement metrics, wasted-spend analysis, AI creative generation, and additional LinkedIn tools |
 
 </Expandable>
 
-## Meta Ads Tools (37)
+## Meta Ads Tools (54)
 
-<Expandable title="View all 37 Meta Ads tools">
+<Expandable title="View all 54 Meta Ads tools">
 
 | Tool Name | Type | Description |
 |-----------|------|-------------|
@@ -131,6 +151,20 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "340 tools", "340+ tools
 | `list_meta_instagram_accounts` | <Badge color="green">Read</Badge> | View connected Instagram accounts |
 | `list_meta_pixels` | <Badge color="green">Read</Badge> | View Meta Pixels in your ad account |
 | `get_meta_adset_performance` | <Badge color="green">Read</Badge> | Pull spend, clicks, CTR, CPA, ROAS, and conversions broken down by ad set within a campaign — middle layer between campaign and ad performance |
+| `list_meta_catalogs` | <Badge color="green">Read</Badge> | List product catalogs available to the ad account (Advantage+ Catalog / DPA) |
+| `list_meta_products` | <Badge color="green">Read</Badge> | Browse products inside a catalog |
+| `list_meta_product_sets` | <Badge color="green">Read</Badge> | View product sets (targetable subsets of a catalog) |
+| `create_meta_product_set` | <Badge color="red">Write</Badge> | Create a product set with filter rules (e.g. "best sellers under $50") |
+| `validate_catalog_readiness` | <Badge color="green">Read</Badge> | Pre-flight check: is the catalog + pixel data ready for retargeting or prospecting only? |
+| `create_meta_catalog_campaign` | <Badge color="red">Write</Badge> | Launch an Advantage+ Catalog (dynamic product ads) campaign (created PAUSED) |
+| `add_meta_catalog_ad_set` | <Badge color="red">Write</Badge> | Add a catalog ad set (audience, budget, retargeting window) |
+| `add_meta_catalog_ad` | <Badge color="red">Write</Badge> | Add a catalog ad (creative format + product set) |
+| `analyze_meta_catalog_performance` | <Badge color="green">Read</Badge> | Product-level performance across the catalog |
+| `get_meta_product_performance` | <Badge color="green">Read</Badge> | Per-product spend, sales, and ROAS |
+| `detect_meta_catalog_waste` | <Badge color="green">Read</Badge> | Flag products burning budget with no return |
+| `diagnose_meta_catalog_funnel` | <Badge color="green">Read</Badge> | Walk the catalog funnel (view → add-to-cart → purchase) to find leaks |
+| `compare_meta_catalog_product_sets` | <Badge color="green">Read</Badge> | Compare performance across product sets |
+| ...and more | | Catalog campaign/ad-set/ad updates and additional Meta tools |
 
 </Expandable>
 

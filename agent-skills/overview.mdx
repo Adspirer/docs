@@ -1,7 +1,7 @@
 ---
 title: "Agent Skills: AI Workflows for Ad Campaigns"
 sidebarTitle: "Overview"
-description: "Turn your AI assistant into an expert ad manager. Skills teach the right workflow for Adspirer's 340+ tools: research, validate, then launch safely."
+description: "Turn your AI assistant into an expert ad manager. Skills teach the right workflow for Adspirer's 400+ tools: research, validate, then launch safely."
 icon: "brain"
 keywords: ["agent skills", "ai skills", "workflows", "automation"]
 ---
@@ -12,7 +12,7 @@ keywords: ["agent skills", "ai skills", "workflows", "automation"]
 
 ## The Problem Skills Solve
 
-When you connect an AI assistant to Adspirer, it gains access to 340+ advertising tools. That's powerful. It's also overwhelming.
+When you connect an AI assistant to Adspirer, it gains access to 400+ advertising tools. That's powerful. It's also overwhelming.
 
 Without guidance, the AI sees a list of tools and has to guess which order to use them. Should it research keywords before creating a Google Search campaign? Should it validate creative assets before launching a Meta campaign? Should it check connection status before pulling performance data?
 
@@ -30,7 +30,7 @@ A skill file contains:
 
 - **Workflows:** Step-by-step sequences for common tasks ("to create a Google Search campaign, first research keywords, then validate assets, then create")
 - **Safety rules:** Critical guidelines ("always get user confirmation before spending money," "campaigns are created PAUSED," "never retry campaign creation on error")
-- **Tool reference:** Descriptions of all 340+ tools with parameters and use cases
+- **Tool reference:** Descriptions of all 400+ tools with parameters and use cases
 - **Platform guidance:** When to use each ad platform, minimum budgets, best practices
 - **Troubleshooting:** Common errors and how to handle them
 
@@ -188,11 +188,11 @@ Critical guardrails to prevent expensive mistakes:
 - **Campaigns created PAUSED:** Never launch campaigns live -- user reviews first
 - **Read-before-write:** Research keywords before creating Google Search campaigns, validate assets before launching
 - **Never retry campaign creation:** If it fails, report the error and wait for user input
-- **Platform minimums:** Google $10/day, LinkedIn $10/day, Meta $5/day
+- **Platform minimums:** Google $10/day, Meta $5/day, Amazon $1/day, ChatGPT Ads $1/day, LinkedIn $10/day, TikTok $20/day
 
 ### 3. Tool Catalog
 
-Complete reference of all 340+ tools with:
+Complete reference of all 400+ tools with:
 
 - Tool name and category
 - Type (Read vs. Write)
@@ -208,6 +208,8 @@ See [full tool catalog](/agent-skills/tools).
 |----------|----------|------------|
 | Google Ads | High-intent search traffic | $10/day |
 | Meta Ads | Demand generation, visual products | $5/day |
+| Amazon Ads | Retail purchase intent (Sponsored Products / Brands / Display) | $1/day |
+| ChatGPT Ads | Pay-per-click chat-card ads inside ChatGPT | $1/day |
 | LinkedIn Ads | B2B lead generation | $10/day |
 | TikTok Ads | Gen Z/Millennial reach, viral creative | $20/day |
 
@@ -218,7 +220,7 @@ Common errors and how to handle them:
 - "Connection not found" -- Run `get_connections_status` and reconnect the platform
 - "Asset validation failed" -- Check image dimensions, file size, URL accessibility
 - "Campaign creation failed" -- Verify all workflow steps were completed in order
-- "Budget below minimum" -- Increase to platform minimum ($10/day for Google/LinkedIn, $5/day for Meta)
+- "Budget below minimum" -- Increase to platform minimum ($10/day for Google/LinkedIn, $5/day for Meta, $1/day for Amazon/ChatGPT, $20/day for TikTok)
 
 ## Why Skills Matter
 
@@ -269,7 +271,9 @@ Skills transform a tool connection into an advertising management *system*.
 ## Related Documentation
 
 - [Core Workflows](/agent-skills/workflows) -- Step-by-step flows for campaign creation, optimization, and analysis
-- [Tool Catalog](/agent-skills/tools) -- Full reference of all 340+ Adspirer tools
+- [Tool Catalog](/agent-skills/tools) -- Full reference of all 400+ Adspirer tools
+- [Autonomous Ad Ops Agents](/agent-skills/ad-ops-agents) -- Give a plain-English goal and cadence; every proposed change lands in an approval queue for your review
+- [Community Plugins](/agent-skills/community-plugins) -- Open-source, read-only community analysis tools
 - [Claude Code Setup](/ai-clients/claude-code)
 - [Cursor Setup](/ai-clients/cursor)
 - [OpenClaw Setup](/ai-clients/openclaw)
