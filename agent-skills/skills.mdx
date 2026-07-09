@@ -93,6 +93,45 @@ budget, or changes a bid strategy without you agreeing to that specific action f
 
 ---
 
+## Using your assistant's own features
+
+The skills know what the app they're running in can do, and offer it when it helps.
+
+### Showing work
+
+In **Claude**, a scorecard, a set of ad-copy variants, or a campaign plan can be published as an
+**artifact** — a live page that updates as work continues, private to you by default.
+
+In **ChatGPT**, something you'll revisit or send to a client can be a hosted **Site**. The agent
+defaults to invitation-only, because these pages carry your spend and conversion data.
+
+### Repeating work
+
+Ask for a weekly review or a pacing check and the agent offers to schedule it, using whatever your
+assistant calls it:
+
+| Assistant | What it's called | Runs when your computer is off? |
+|---|---|---|
+| ChatGPT | Scheduled tasks | Yes |
+| Codex | Scheduled tasks (automations) | Yes |
+| Claude Cowork | Scheduled tasks, via `/schedule` | Yes — they run remotely |
+| Claude Code | Routines — a *local* task or a *remote* routine | Local: no. Remote: yes |
+
+<Warning>
+A Claude Code **local** scheduled task only runs while the desktop app is open and your computer is
+awake. A laptop asleep at 9am skips the run. For budget pacing or spend alerts, the agent sets up a
+**remote routine** instead.
+</Warning>
+
+Every scheduled run calls Adspirer tools again, so it draws on your monthly tool-call quota exactly
+like a live conversation. The agent tells you what a cadence will cost before setting it up — weekly
+is the sensible default for a performance review.
+
+If your assistant has no scheduler, Adspirer's own monitoring tools cover the same ground
+server-side: threshold alerts on ROAS, CPA and spend, and scheduled reports delivered by email.
+
+---
+
 ## Deeper reference material
 
 Some skills carry `references/` files that load only when the agent needs them — keeping the day-to-day
