@@ -1,237 +1,140 @@
 ---
-title: "Adspirer Skill Reference: 5 AI Ad Workflows"
+title: "Adspirer Skill Reference: 13 AI Ad Skills"
 sidebarTitle: "Skills"
-description: "Reference for all 5 Adspirer skills — proven workflows that teach AI how to manage ad campaigns, research keywords, write ad copy, and optimize spend."
+description: "Reference for all 13 Adspirer skills — the agent persona, the tool-call contract, six platform skills, four cross-platform workflows, and docs access."
 icon: "book"
-keywords: ["skills", "slash commands", "adspirer skills", "skill reference", "workflows"]
+keywords: ["skills", "agent skills", "adspirer skills", "skill reference", "workflows", "SKILL.md"]
 ---
 
-Adspirer ships 5 skills — instruction files that teach AI assistants proven advertising workflows. You can invoke them directly or just describe what you want in natural language.
+Adspirer ships **13 skills** — instruction files that teach an AI assistant how to run advertising
+campaigns properly. They follow the open [Agent Skills](https://agentskills.io) format, so the same
+files work in Claude, ChatGPT, Codex, Cursor, Gemini CLI, and OpenClaw.
 
-## Quick Reference
+You don't invoke them by name. Describe what you want — "how are my Google Ads doing?", "launch a
+TikTok campaign" — and your assistant loads the right skill.
 
-| Skill | Claude Code | Cursor | Codex | What It Does |
-|-------|-------------|--------|-------|--------------|
-| **Ad Campaign Management** | `/adspirer:ad-campaign-management` | `/adspirer-ads` | `$adspirer-ads` | Full campaign management — all platforms, all workflows |
-| **Setup** | `/adspirer:setup` | `/adspirer-setup` | `$adspirer-setup` | Bootstrap a brand workspace |
-| **Performance Review** | `/adspirer:performance-review` | `/adspirer-performance-review` | `$adspirer-performance-review` | Cross-platform performance scorecard |
-| **Write Ad Copy** | `/adspirer:write-ad-copy` | `/adspirer-write-ad-copy` | `$adspirer-write-ad-copy` | Brand-voice ad copy from real data |
-| **Wasted Spend** | `/adspirer:wasted-spend` | `/adspirer-wasted-spend` | `$adspirer-wasted-spend` | Find and fix wasted ad spend |
+## How the skills fit together
 
-<Tip>
-You don't need to memorize these commands. Just describe what you want — "how are my Google Ads doing?" or "create a LinkedIn campaign" — and your AI assistant will match the right skill automatically.
-</Tip>
+Skills load on demand. Your assistant sees only each skill's name and description until a task
+matches, then reads the full instructions.
+
+Two skills underpin everything:
+
+- **`adspirer-agent`** sets the safety rules — campaigns are created paused, nothing spends without
+  your explicit approval — and routes to the right skill.
+- **`adspirer-mcp`** carries the tool-call contract: how to reach each platform's tools, which
+  account id each platform expects, and the budget units (Meta budgets are in cents, Google's in
+  dollars).
+
+Everything else builds on those two. A workflow skill like "launch a campaign" delegates to the
+platform skill for that platform's field rules, rather than duplicating them.
+
+## Quick reference
+
+### Foundational
+
+| Skill | What it does |
+|---|---|
+| **`adspirer-agent`** | Paid-media agent behavior. The safety contract and the routing table. |
+| **`adspirer-mcp`** | How to call the tools: the router two-step, account ids, budget units, quota. |
+
+### Per platform
+
+| Skill | What it covers |
+|---|---|
+| **`adspirer-google-ads`** | Search, Performance Max, Demand Gen, YouTube, Display. Keywords, extensions, bidding. |
+| **`adspirer-meta-ads`** | Facebook and Instagram. Image, video, carousel, lead-gen. Audiences and creative fatigue. |
+| **`adspirer-tiktok-ads`** | In-feed video, Spark Ads, carousel, app promotion. The pixel and objective rules. |
+| **`adspirer-linkedin-ads`** | Sponsored content and lead-gen, with B2B job-title and company targeting. |
+| **`adspirer-amazon-ads`** | Sponsored Products, Brands, and Display. ASIN targeting and ACoS. |
+| **`adspirer-chatgpt-ads`** | Ads that appear inside ChatGPT responses. |
+
+### Cross-platform workflows
+
+| Skill | What it does |
+|---|---|
+| **`adspirer-launch`** | Plan and launch a campaign. Picks the platform for the goal, splits budget, verifies the build. |
+| **`adspirer-performance-review`** | Cross-platform scorecard, plus a conversion-tracking audit. Read-only. |
+| **`adspirer-optimize`** | Find wasted spend, add negatives, exclude placements, reallocate budget, check pacing. |
+| **`adspirer-creative`** | Write headlines and ad copy. Diagnose and fix creative fatigue. |
+
+### Product questions
+
+| Skill | What it does |
+|---|---|
+| **`adspirer-docs`** | Answers questions about Adspirer — plans, quota, connecting accounts — from these docs. |
+
+### Workspace (local assistants only)
+
+| Skill | What it does |
+|---|---|
+| **`adspirer-setup`** | Bootstraps a brand workspace: scans your folder, pulls live campaign data, writes context files. |
+
+`adspirer-setup` needs a filesystem, so it ships to Claude Code, Cursor, Codex, and Gemini CLI — not
+to the ChatGPT app.
 
 ---
 
-## Skill Details
+## What the skills guarantee
 
-### Ad Campaign Management
+Every skill inherits the same safety contract from `adspirer-agent`:
 
-The main skill. Covers campaign creation, performance analysis, keyword research, budget optimization, ad extensions, audience analysis, monitoring, and reporting across all 6 platforms.
+<Card title="Nothing spends without your approval" icon="shield-check">
+Campaigns are created **paused** on every platform. The agent never resumes a campaign, raises a
+budget, or changes a bid strategy without you agreeing to that specific action first.
+</Card>
 
-**When to use:** Any advertising task — creating campaigns, analyzing performance, researching keywords, optimizing budgets, writing ad copy, managing ad extensions, or switching accounts.
+- **Read before write.** The agent looks at what's actually in the account before proposing a change.
+- **Verify after write.** After creating or updating anything, it reads the object back and reports
+  what exists — not what it asked for.
+- **Never invent a number.** If a tool fails, the agent says so. It does not estimate metrics.
+- **Destructive means destructive.** Deleting a creative or removing keywords is named as such, and
+  confirmed, before it happens.
 
-**What happens when you invoke it:**
+---
 
-1. Checks which ad platforms are connected (`get_connections_status`)
-2. Identifies the task type (performance analysis, campaign creation, keyword research, etc.)
-3. Follows the platform-specific workflow (see [Core Workflows](/agent-skills/workflows))
-4. Loads strategy directives from `STRATEGY.md` if they exist
-5. Presents results with recommendations
-6. Asks for confirmation before any action that affects spend
+## Deeper reference material
 
-<Prompt description="Full campaign creation with keyword research and ad extensions." actions={["copy", "cursor"]}>
+Some skills carry `references/` files that load only when the agent needs them — keeping the day-to-day
+context small:
+
+| Reference | Lives in | Why |
+|---|---|---|
+| Objective × pixel validity matrix | `adspirer-tiktok-ads` | TikTok rejects invalid combinations rather than correcting them. |
+| Creative specs and ODAX objectives | `adspirer-meta-ads` | Image ratios, carousel rules, character limits. |
+| Campaign types, bidding, PMax assets, extensions | `adspirer-google-ads` | Choosing the right campaign and bid strategy. |
+| Error catalog | `adspirer-mcp` | Known failures and their fixes, so the agent doesn't retry a call that cannot succeed. |
+| Docs map | `adspirer-docs` | Topic-to-URL index of this documentation. |
+
+---
+
+## Getting the skills
+
+<CardGroup cols={2}>
+  <Card title="Claude Code & Cowork" icon="/icons/claude.svg" href="/ai-clients/claude-code">
+    Install the Adspirer plugin from the marketplace.
+  </Card>
+  <Card title="ChatGPT" icon="/icons/openai.svg" href="/ai-clients/chatgpt">
+    Skills ship with the Adspirer app.
+  </Card>
+  <Card title="Codex" icon="/icons/openai.svg" href="/ai-clients/codex">
+    Install the Adspirer plugin.
+  </Card>
+  <Card title="Cursor" icon="/icons/cursor.svg" href="/ai-clients/cursor">
+    Install the Adspirer plugin.
+  </Card>
+</CardGroup>
+
+Source lives in [github.com/amekala/ads-mcp](https://github.com/amekala/ads-mcp) under
+`shared/skills/`, and fans out to each client from there.
+
+<Prompt description="Launch a Google Search campaign end to end." actions={["copy", "cursor"]}>
 Create a Google Search campaign for my SaaS product:
 - Product: cloud inventory management for restaurants
 - Target: restaurant owners in Chicago
 - Budget: $75/day
-- Research keywords first, then create the campaign with sitelinks and callout extensions
+Research keywords first, then create the campaign with sitelinks and callout extensions.
 </Prompt>
 
-This skill contains the complete [Tool Catalog](/agent-skills/tools) (400+ tools) and all [Core Workflows](/agent-skills/workflows).
-
----
-
-### Setup
-
-Bootstraps a brand workspace from scratch. Scans your folder, connects to your ad accounts, pulls live campaign data, and creates context files that power all other skills.
-
-**When to use:** First time in a new brand folder, or when you want to refresh your brand context after connecting new platforms or adding new docs.
-
-**What happens when you invoke it:**
-
-1. Connects to Adspirer MCP (triggers OAuth if needed)
-2. Scans local files for brand docs (`.md`, `.txt`, `.csv`, `.yaml`, `.json`, `.pdf`)
-3. Pulls live data: connections, campaigns, performance, search terms, benchmarks
-4. Creates the brand context file with:
-   - Brand overview, voice, target audiences
-   - Connected platforms and active campaign counts
-   - Budget guardrails and KPI targets
-   - Performance snapshot and key findings
-5. Creates `STRATEGY.md` for persisting strategic decisions
-6. Presents a summary of what it found
-
-<Prompt description="Bootstrap a brand workspace from scratch." actions={["copy", "cursor"]}>
-Set up my brand workspace
-</Prompt>
-
-**What it creates:**
-
-| File | Purpose |
-|------|---------|
-| `CLAUDE.md` / `BRAND.md` / `AGENTS.md` | Brand context (varies by IDE) |
-| `STRATEGY.md` | Strategy directives that persist across sessions |
-| `MEMORY.md` | Past decisions and learnings (Claude Code + Cursor) |
-
-<Tip>
-Drop brand docs (guidelines, media plans, briefs) into your folder before running setup. The more context you provide, the better the agent's ad copy and recommendations.
-</Tip>
-
----
-
-### Performance Review
-
-Runs a cross-platform performance scorecard. Pulls metrics from all connected platforms, compares against KPI targets, and identifies top performers, underperformers, and wasted spend.
-
-**When to use:** Weekly check-ins, monthly reviews, or whenever you want a snapshot of how campaigns are doing across all platforms.
-
-**What happens when you invoke it:**
-
-1. Reads your brand context file for KPI targets
-2. Reads `STRATEGY.md` for active directives — flags "Strategy Drift" if campaigns violate them
-3. Pulls last 30 days of performance from all connected platforms
-4. Pulls wasted spend analysis per platform
-5. Presents a unified scorecard with actuals vs. targets
-6. Highlights top performers, underperformers, and strategy alignment
-7. Recommends top 3 actions
-
-<Prompt description="Cross-platform performance review with strategy alignment." actions={["copy", "cursor"]}>
-Run a performance review for the last 30 days across all platforms. Compare against my KPI targets and flag any campaigns that conflict with my strategy.
-</Prompt>
-
-**Output format:**
-
-| Platform | Campaigns | Spend | CTR | CPA | ROAS | Waste | Health |
-|----------|-----------|-------|-----|-----|------|-------|--------|
-| Google   | ...       | ...   | ... | ... | ...  | ...   | ...    |
-| Meta     | ...       | ...   | ... | ... | ...  | ...   | ...    |
-| Amazon   | ...       | ...   | ... | ... | ...  | ...   | ...    |
-| ChatGPT  | ...       | ...   | ... | ... | ...  | ...   | ...    |
-| LinkedIn | ...       | ...   | ... | ... | ...  | ...   | ...    |
-| TikTok   | ...       | ...   | ... | ... | ...  | ...   | ...    |
-
----
-
-### Write Ad Copy
-
-Generates brand-voice ad copy from real keyword and performance data. Reads your brand guidelines, checks current campaigns, analyzes what users search for, and produces copy that matches your voice and targets high-performing keywords.
-
-**When to use:** When you need new headlines, descriptions, or ad creative text for any platform.
-
-**What happens when you invoke it:**
-
-1. Reads brand context for voice rules and target audiences
-2. Reads `STRATEGY.md` for competitive positioning and creative direction
-3. Pulls current ad copy and keywords from your campaigns
-4. Analyzes search terms to understand user intent
-5. Generates AI-powered suggestions from real data
-6. Filters through brand voice rules
-7. Presents 5+ headline/description options with:
-   - Character count validation
-   - Keyword theme coverage
-   - Pass/fail vs. platform limits
-8. Gets your approval before applying changes
-
-<Prompt description="Brand-voice ad copy with keyword coverage validation." actions={["copy", "cursor"]}>
-Write new Google Ads headlines and descriptions for my top-performing campaign. Use my brand voice from BRAND.md and make sure headlines cover the top keyword themes.
-</Prompt>
-
----
-
-### Wasted Spend
-
-Audits all connected platforms for wasted ad spend. Finds zero-conversion keywords, fatigued creatives, underperforming audiences, and budget misallocations. Automatically detects campaigns in learning phase or with insufficient data and excludes them from waste totals.
-
-**When to use:** Monthly budget reviews, when CPA is climbing, or when you suspect money is being wasted on underperforming campaigns.
-
-**What happens when you invoke it:**
-
-1. Checks connected platforms
-2. Reads `STRATEGY.md` — flags campaigns violating strategy directives as priority waste
-3. Runs platform-specific waste analysis:
-   - Google: `analyze_wasted_spend` + `analyze_search_terms`
-   - Meta: `analyze_meta_wasted_spend`
-   - Amazon: `analyze_amazon_wasted_spend`
-   - LinkedIn: `analyze_linkedin_wasted_spend`
-4. Separates campaigns into three categories:
-   - **Learning phase** (< 14 days of data) — shown separately, excluded from waste totals
-   - **Insufficient data** (< $20 spend) — shown separately, excluded from waste totals
-   - **Established campaigns** — full ROAS-based waste analysis
-5. Runs budget optimization analysis
-6. Presents total wasted spend, top waste sources, and potential monthly savings
-7. Recommends fixes: negative keywords, audience exclusions, budget shifts
-8. Gets your approval before making changes
-
-<Note>
-New campaigns are never flagged as "wasted spend." The tool waits for 14 days of data and at least $20 in spend before judging performance, so you won't get false alarms on campaigns that just launched.
-</Note>
-
-<Prompt description="Cross-platform wasted spend audit with savings estimate." actions={["copy", "cursor"]}>
-Find wasted spend across all my platforms. Show me which keywords have spend but zero conversions, which Meta ads are fatigued, and how much I could save per month.
-</Prompt>
-
----
-
-## Customizing Skills
-
-Skills are plain markdown files (`SKILL.md`). You can edit them to:
-
-- Add custom workflows for your specific use cases
-- Modify safety rules (e.g., change minimum budget thresholds)
-- Add industry-specific guidance (e.g., healthcare compliance, financial disclaimers)
-- Remove sections you don't need
-
-Changes take effect immediately (or after restarting your AI client).
-
-**Skill file locations:**
-
-| IDE | Location |
-|-----|----------|
-| Claude Code | `~/.claude/skills/ad-campaign-management/SKILL.md` |
-| Cursor | `~/.cursor/skills/adspirer-*/SKILL.md` |
-| Codex | `~/.agents/skills/adspirer-*/SKILL.md` |
-| OpenClaw | Bundled with plugin (not editable) |
-
-## FAQ
-
-<AccordionGroup>
-  <Accordion title="Do I need all 5 skills?">
-    No. The **Ad Campaign Management** skill is the main one — it covers everything. The other 4 are shortcuts for common tasks. If you only install one skill, install that one.
-  </Accordion>
-  <Accordion title="What's the difference between a skill and a slash command?">
-    They're the same thing. A **skill** is the instruction file (`SKILL.md`) that teaches the AI a workflow. A **slash command** (like `/adspirer:setup`) is how you invoke that skill. In Cursor, skills are invoked with `/adspirer-*`. In Codex, they use `$adspirer-*`.
-  </Accordion>
-  <Accordion title="Can I create my own skills?">
-    Yes. Create a `SKILL.md` file with frontmatter (`name`, `description`) and markdown instructions. Place it in your IDE's skills directory. See the [Adspirer skills source code](https://github.com/amekala/ads-mcp/tree/main/shared/skills) for examples of the format.
-  </Accordion>
-  <Accordion title="Do skills work across all IDEs?">
-    The same skill content works in Claude Code, Cursor, and Codex — but with IDE-specific adaptations. Claude Code uses `CLAUDE.md` for brand context, Cursor uses `BRAND.md`, and Codex uses `AGENTS.md`. The [sync script](https://github.com/amekala/ads-mcp/blob/main/scripts/sync-skills.sh) generates IDE-specific versions from shared templates.
-  </Accordion>
-  <Accordion title="Skills can't reach Adspirer — what do I do?">
-    If skills fail because the MCP server is unreachable, the issue is your connector, not the skill. Follow these steps:
-
-    1. **Check tool permissions** in your AI client's connector settings — read tools should be **Always allow**, write tools should be **Custom**
-    2. **Disconnect and reconnect** the Adspirer connector, then complete the OAuth flow again
-    3. **Refresh your Adspirer session** — log out of [adspirer.ai](https://adspirer.ai) and log back in
-
-    Claude and ChatGPT web connectors may disconnect every 1–2 weeks. This is normal — just re-enable and re-authenticate. See [Troubleshooting FAQ](/knowledge-base/faq#troubleshooting) for full details.
-  </Accordion>
-</AccordionGroup>
-
-## Related Documentation
-
-- [Skills Overview](/agent-skills/overview) — What skills are and how to install them
-- [Performance Marketing Agent](/agent-skills/agent) — The agent that orchestrates skills with brand knowledge and strategy
-- [Core Workflows](/agent-skills/workflows) — Step-by-step tool sequences
-- [Tool Catalog](/agent-skills/tools) — All 400+ Adspirer tools
+See the [Tool Catalog](/agent-skills/tools) for the tools these skills drive, and
+[Core Workflows](/agent-skills/workflows) for the step-by-step patterns.
