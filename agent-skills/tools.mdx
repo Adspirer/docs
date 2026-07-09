@@ -12,6 +12,35 @@ keywords: ["tools", "mcp tools", "api", "tool catalog", "400 tools", "400+ tools
 - <Badge color="green">Read</Badge> Safe to run anytime. Pulls data, analyzes performance, provides insights. No spending impact.
 - <Badge color="red">Write</Badge> Requires user confirmation. Creates campaigns, updates budgets, modifies targeting. Affects spend.
 
+## How the agent reaches these tools
+
+Adspirer exposes a small set of top-level tools. Most of the tools listed on this page sit **behind
+a platform router** — `google_ads`, `meta_ads`, `linkedin_ads`, `tiktok_ads`, `amazon_ads`,
+`chatgpt_ads` — and are reached in two steps:
+
+```json
+// 1. Discover. Always free — never counts against your quota.
+{ "action": "list_tools" }
+
+// 2. Execute, using an exact tool name from step 1.
+{ "action": "execute", "tool_name": "create_search_campaign", "arguments": { "...": "..." } }
+```
+
+<Note>
+Only these tools are callable directly by name: `start_here`, `search_tools`, `get_tool_schema`,
+`get_connections_status`, `get_usage_status`, `switch_primary_account`, `get_campaign_performance`,
+`get_meta_campaign_performance`, `audit_conversion_tracking`, and `echo_test`.
+
+Everything else in this catalog goes through its platform router. Calling a routed tool by name
+returns "tool not found."
+</Note>
+
+`search_tools` finds the right tool from a plain-English description, and `get_tool_schema` returns
+its exact live signature. Both are top-level: they are never wrapped in `action: "execute"`.
+
+The [`adspirer-mcp` skill](/agent-skills/skills) teaches this contract to your assistant, along with
+the per-platform account ids and budget units.
+
 ## Google Ads Tools (147)
 
 <Expandable title="View all Google Ads tools" defaultOpen>
