@@ -1,0 +1,173 @@
+---
+title: "Set Up Your Adspirer Project (ChatGPT, Claude, Cowork, Codex)"
+sidebarTitle: "Set Up Your Project"
+description: "The best way to run ads with Adspirer is a project — a persistent workspace with instructions, context, memory, connectors, and scheduled tasks. How to organize it by client or by channel, what to put in each part, and how to have the agent build your setup for you."
+icon: "folder-tree"
+keywords: ["adspirer project setup", "chatgpt projects", "claude projects", "claude cowork", "project instructions", "organize by client", "organize by channel", "ad ops workspace", "agency setup", "scheduled tasks"]
+---
+
+The best way to run ads with Adspirer isn't a one-off chat — it's a **project**. Every AI client
+worth using for ad ops (ChatGPT Projects, Claude Projects and Cowork, Claude Code, Codex) has the
+same idea: a persistent workspace that remembers your setup so the agent starts every task already
+knowing your accounts, your rules, and your goals.
+
+Set it up once and the difference is night and day: no re-explaining your brand each session, no
+guessing which account, and the agent can run on a schedule while you're away.
+
+<Note>
+  Not connected yet? Connect [Adspirer](/mcp) in your client first — [ChatGPT](/ai-clients/chatgpt),
+  [Claude](/ai-clients/claude), [Cowork](/ai-clients/claude-cowork), [Codex](/ai-clients/codex) —
+  then come back here to structure the project around it.
+</Note>
+
+## The parts of a project
+
+Whatever the client calls them, a good project has five parts. Keeping them separate is the most
+important setup decision.
+
+| Part | What it's for | Where it lives (Claude / Cowork) |
+|---|---|---|
+| **Instructions** | The agent's always-on constitution: role, goals, hard rules | the **Instructions** field |
+| **Context** | Your data: brand docs, target CPAs, feeds, naming conventions | the **Context** folder |
+| **Memory** | What the agent learns as it works — reused across sessions | **Memory** (leave it on) |
+| **Connectors** | Adspirer plus your notification channel and brief source | the **＋ → Connectors** menu |
+| **Scheduled tasks** | The same agent, run unattended on a cadence | the **Scheduled** panel |
+
+**Golden rule: instructions are rules, context is data.** Put procedures and your constitution in
+Instructions; put files the agent should *read* in Context. Don't paste data into Instructions or
+drop playbooks into Context.
+
+## Choose your structure: by client or by channel
+
+This is the decision that shapes everything. A project is a boundary, and the right boundary
+depends on how your work is organized — around **whose** ads, or **which** platform. Pick the axis
+that varies most for you; pass the other one in as context inside the project.
+
+| Who you are | Structure | A project is… | Inside it |
+|---|---|---|---|
+| **Agency, account-managed** — one manager owns a client end-to-end | **By client** | one client | that client's channels (Google + Meta + …) |
+| **Agency, channel-specialized** — a Google team, a Meta team | **By channel** | one platform | all the clients on it |
+| **Single brand / in-house** — several platforms | **By channel** (or one project if lean) | one platform | your own channels |
+| **Freelancer / consultant** — a few clients | **By client**, one each | one client | that client's channels |
+
+<Tip>
+  One project can manage multiple ad accounts. The rule that keeps automation safe is **one writer
+  per portfolio** — never point two scheduled tasks at the same campaigns. See [running multiple
+  accounts](/knowledge-base/multi-client).
+</Tip>
+
+## Fill each part
+
+### Instructions — the constitution
+
+The instructions make safe behavior the *default*, so you never babysit the agent. The
+non-negotiables for ad ops: **confirm before building**, **create paused, never launch**,
+**validate copy, don't edit it**, **read before you write**, and **money needs an explicit yes**.
+
+Set the agent's **default mode** to how you actually work:
+
+- **Builder-executor** — you hand it approved briefs and want campaigns *built*, verified, and
+  monitored. Copy stays locked; it validates but never rewrites.
+- **Advisor-overseer** — you want the portfolio truth and the decisions; it *analyzes and proposes*,
+  builds only on request, and the budget calls stay yours.
+
+Then name your **north-star metric** (a target CPA, ROAS, or contribution margin) — the one lens the
+agent optimizes toward — and, if you're in a regulated category or have locked creative, a line
+about compliant copy (approved exemplars in, new claims to review first).
+
+<Accordion title="Copy-paste: starter project instructions">
+
+```markdown
+# Project Instructions — <Brand/Client> Paid-Media Ad Ops (Adspirer)
+
+## Your role
+You are the ad-operations agent for <who>. You traffic, verify, monitor, and optimize campaigns
+through the Adspirer MCP connector. Humans decide WHAT to run; you build it EXACTLY as specified,
+verify it, and flag anything that isn't right.
+
+## What we're optimizing for
+- Goal: <leads / sales / ROAS / a specific CPA>
+- A conversion is worth: <value>
+- Channels + accounts: <the real, connected ones — name the exact account IDs>
+
+## Golden rules (never break)
+1. Nothing goes live without a human. Create every campaign PAUSED. Never enable or launch.
+2. Money needs a yes. No budget raise, bid change, or resume without explicit approval, numbers first.
+3. Validate, don't edit. Copy over a platform limit? STOP and report the field and length.
+4. Read before you write; verify after — report what actually exists, not what you asked for.
+5. Never invent a number. If a tool fails, say so.
+6. Budget units: Google = dollars, Meta = CENTS, others = account currency.
+```
+
+</Accordion>
+
+For the full always-on version — the standard operating loop, handoff items, and the
+interactive-vs-scheduled monitoring split — see [Cowork for Ad Ops](/guides/claude-cowork-ad-ops).
+
+### Context — what to upload
+
+Give the project the data that makes it sharp:
+
+- Brand / voice guidelines (so generated copy sounds like you)
+- Target CPA / ROAS by campaign or product line
+- Your product feed, offer list, or the thing being advertised
+- Naming conventions (campaign / ad-group / UTM structure)
+- Audience definitions and exclusion lists
+- A recent performance export as a baseline
+- Any approved creative that must be used verbatim
+
+### Memory — leave it on
+
+Project memory lets the agent reuse prior builds, naming conventions, and decisions across
+sessions. It's scoped to the project and private to you. Turn it on and let it accumulate.
+
+### Connectors — Adspirer is the must-have
+
+- **[Adspirer](/mcp)** (`mcp.adspirer.com/mcp`) — the one that matters. Toggle it on and link the
+  exact ad accounts you'll work in.
+- A **notification channel** (Slack or email) — so scheduled tasks can report every run.
+- Your **brief source** (Google Drive, a sheet) — optional, if your specs live there.
+
+## Let the agent build your setup for you
+
+You don't have to fill any of this in by hand. Ask the in-app assistant, or email our agent Otto,
+something like:
+
+> *"What's the best way to set up my Adspirer project?"*
+
+It reads your connected accounts — and any brief, brand doc, or screenshot you share — and
+generates a setup tailored to **you**: a project title, ready-to-paste instructions, a prompt
+library naming your real campaigns, scheduled-task prompts, and a documents + connectors checklist.
+The docs on this page are the map; the agent fills it with your reality.
+
+## Where each part lives, by client
+
+| Part | ChatGPT Projects | Claude / Cowork | Claude Code / Codex |
+|---|---|---|---|
+| Instructions | Project instructions | **Instructions** field | `AGENTS.md` / project instructions |
+| Context | Project files | **Context** folder | repo / working folder |
+| Memory | Memory | **Memory** | files persist on disk |
+| Connectors | Connectors | **＋ → Connectors** | MCP config / connectors |
+| Scheduled tasks | Scheduled tasks | **Scheduled** | Routines / Scheduled tasks |
+
+## Keep it running
+
+The payoff of a project is automation: a Monday scorecard, a mid-month pacing check, an alert when
+CPA drifts. That's the next step.
+
+<CardGroup cols={2}>
+  <Card title="Automate with scheduled tasks" icon="clock" href="/guides/scheduled-tasks">
+    What each client calls it, how to write a recurring prompt, and what a schedule costs.
+  </Card>
+  <Card title="Cowork for Ad Ops" icon="robot" href="/guides/claude-cowork-ad-ops">
+    The full always-on setup: the safety model for unattended, self-optimizing tasks.
+  </Card>
+  <Card title="Agent Skills" icon="brain" href="/agent-skills/overview">
+    The skills that ride inside your project and do the actual campaign work.
+  </Card>
+  <Card title="Running multiple accounts" icon="users" href="/knowledge-base/multi-client">
+    Manage many clients or channels without letting automation collide.
+  </Card>
+</CardGroup>
+
+<Snippet file="cta-get-started.mdx" />

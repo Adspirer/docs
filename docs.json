@@ -170,6 +170,13 @@
         "icon": "compass",
         "groups": [
           {
+            "group": "Get Set Up",
+            "pages": [
+              "guides/set-up-your-project",
+              "guides/scheduled-tasks"
+            ]
+          },
+          {
             "group": "Google Ads",
             "pages": [
               "guides/chatgpt-google-ads-keywords",
