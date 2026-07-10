@@ -23,7 +23,8 @@ If Adspirer tools aren't responding or you see connection errors, try these step
   <Step title="Disconnect and Reconnect the Connector">
     - **Claude:** Customize → Connectors → Disconnect Ads MCP → Connect again → Complete OAuth
     - **ChatGPT:** Settings → Apps → find Adspirer → Disconnect → reopen the Adspirer app → Connect → Complete OAuth
-    - **Claude Code:** `claude mcp remove adspirer` → `claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp` → Restart → `/mcp` to authenticate
+    - **Claude Code (plugin install, recommended):** `/plugin` → **Installed** tab → **adspirer** → **Authenticate** (or `/mcp` → **plugin:adspirer-ads-agent:adspirer MCP Server** → **Authenticate**)
+    - **Claude Code (manual MCP install):** `claude mcp remove adspirer` → `claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp` → Restart → `/mcp` to authenticate
 
     Claude and ChatGPT web connectors may disconnect every 1–2 weeks. This is normal — just re-enable and re-authenticate.
   </Step>

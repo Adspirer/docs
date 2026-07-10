@@ -105,7 +105,13 @@ Required Plan:  Pro, Max, Team, or Enterprise
 Claude auto-discovers the server name and authentication method — just paste the URL.
 </Tab>
 <Tab title="Claude Code (Terminal)">
-For developer/terminal setup, see the full [Claude Code Setup Guide](/ai-clients/claude-code):
+For developer/terminal setup, see the full [Claude Code Setup Guide](/ai-clients/claude-code). The recommended path is the plugin install (bundles the MCP connector with slash commands, skills, and an agent):
+
+```bash
+/plugin install adspirer-ads-agent@claude-community
+```
+
+Prefer raw MCP access only? Use the manual fallback:
 
 ```bash
 claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp

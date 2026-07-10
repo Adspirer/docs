@@ -55,9 +55,9 @@ keywords: ["setup", "install", "getting started", "connect ai client", "mcp setu
     <Tabs>
       <Tab title="Claude Code">
         ```bash
-        claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
+        /plugin install adspirer-ads-agent@claude-community
         ```
-        Or use the plugin system: `/plugin install adspirer-ads-agent@claude-community` (Anthropic community marketplace — enabled by default, no setup needed)
+        Recommended — Anthropic community marketplace, enabled by default, no setup needed. Bundles the MCP connector with slash commands, skills, and an agent. Prefer raw MCP access only? Use the manual fallback: `claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp`
       </Tab>
       <Tab title="Cursor">
         ```bash

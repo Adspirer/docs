@@ -9,7 +9,7 @@ keywords: ["claude code", "terminal", "cli", "mcp", "plugin"]
 Manage all your ad campaigns from the terminal. One command to connect, 400+ tools to use.
 
 <Tip>
-**Adspirer is available on the Claude plugin marketplace.** Run `/plugin` in Claude Code, open the **Discover** tab, and search for `adspirer` — you'll find `adspirer-ads-agent` from `claude-community`. No custom marketplace setup required.
+**Adspirer is available on the Claude plugin marketplace.** Run `/plugin install adspirer-ads-agent@claude-community` directly, or type `/plugin`, open the **Discover** tab, and search for `adspirer` — you'll find `adspirer-ads-agent` from `claude-community`. No custom marketplace setup required. This is the recommended way to connect Adspirer to Claude Code.
 </Tip>
 
 <Frame caption="Create Google Ads Campaigns From Your Terminal">
@@ -32,54 +32,24 @@ npm install -g @anthropic-ai/claude-code
 
 ### Install
 
-Two ways to connect. **Manual MCP Setup is the recommended path** — one command, works on every Claude Code install. The Plugin Install path bundles the connector with slash commands, skills, and a Performance Marketing Agent, but plugin discovery has been removed from the terminal CLI in recent Claude Code builds (still available on Claude Code desktop / IDE-side). If `/plugin` doesn't show Adspirer, use Manual MCP Setup.
+Two ways to connect. **Plugin Install is the recommended path** — one command bundles the MCP connector with slash commands, skills, and a Performance Marketing Agent. Manual MCP Setup is available as a fallback if you only need raw tool access without the slash commands and agent.
 
 <Tabs>
-<Tab title="Manual MCP Setup (Recommended)">
-<Steps>
-  <Step title="Add the MCP Server">
-    Run this command in your terminal:
-
-    ```bash
-    claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
-    ```
-
-    Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization with PKCE.
-  </Step>
-  <Step title="Sign In to Adspirer">
-    Approve the requested scopes (campaigns:read/write, reporting:read, accounts:read) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts. Return to your terminal — you'll see "Authentication successful".
-  </Step>
-  <Step title="Add Agent Skills (Optional)">
-    The skill files give Claude proven advertising workflows (campaign creation, performance review, wasted-spend audit).
-
-    ```bash
-    git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-    cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
-    ```
-  </Step>
-  <Step title="Try It Now">
-    <Card
-      title="Sign up for Adspirer — free to start"
-      icon="rocket"
-      href="https://adspirer.ai/sign-up?utm_source=docs&utm_medium=setup-cta&utm_content=claude-code"
-      horizontal
-    >
-      15 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
-    </Card>
-  </Step>
-</Steps>
-</Tab>
-<Tab title="Plugin Install (slash commands + agent)">
+<Tab title="Plugin Install (Recommended)">
 
 <Note>
-**Plugin discovery has been removed from the terminal CLI in some recent Claude Code builds.** If `/plugin` doesn't surface Adspirer in your shell, use the **Manual MCP Setup** tab — same 400+ tools, just without the slash commands. The plugin path still works on Claude Code desktop / IDE-side.
-
 The `/plugin` and `/mcp` commands below are **slash commands** — type them directly into the Claude Code input. Do not ask the AI to run them for you (that will cause a "nested session" error).
 </Note>
 
 <Steps>
-  <Step title="Search and Install the Plugin">
-    Type `/plugin` to open the plugin manager. The UI has four tabs — **Discover**, **Installed**, **Marketplaces**, **Errors** — cycle with Tab.
+  <Step title="Install the Plugin">
+    Run this directly from the command line:
+
+    ```bash
+    /plugin install adspirer-ads-agent@claude-community
+    ```
+
+    Or type `/plugin` to open the plugin manager. The UI has four tabs — **Discover**, **Installed**, **Marketplaces**, **Errors** — cycle with Tab.
 
     In the **Discover** tab, search for `adspirer` (or `ads`). You'll see **adspirer-ads-agent** from `claude-community` — Anthropic's community marketplace, enabled by default.
 
@@ -95,12 +65,6 @@ The `/plugin` and `/mcp` commands below are **slash commands** — type them dir
     <Frame caption="Plugin details page with install scope options">
       <img src="/images/claude-code/plugin-install-scopes.png" alt="adspirer-ads-agent plugin details with user/project/local scope options" />
     </Frame>
-
-    Or install directly from the command line:
-
-    ```bash
-    /plugin install adspirer-ads-agent@claude-community
-    ```
   </Step>
   <Step title="Reload Plugins">
     After installation, reload plugins to activate:
@@ -148,6 +112,40 @@ The `/plugin` and `/mcp` commands below are **slash commands** — type them dir
     <Frame caption="All Adspirer slash commands available after setup">
       <img src="/images/claude-code/slash-commands.png" alt="Adspirer slash commands in Claude Code" />
     </Frame>
+  </Step>
+  <Step title="Try It Now">
+    <Card
+      title="Sign up for Adspirer — free to start"
+      icon="rocket"
+      href="https://adspirer.ai/sign-up?utm_source=docs&utm_medium=setup-cta&utm_content=claude-code"
+      horizontal
+    >
+      15 free tool calls/month. No credit card required. Connect your ad accounts in 2 minutes.
+    </Card>
+  </Step>
+</Steps>
+</Tab>
+<Tab title="Manual MCP Setup (fallback)">
+<Steps>
+  <Step title="Add the MCP Server">
+    Run this command in your terminal:
+
+    ```bash
+    claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
+    ```
+
+    Next time you ask Claude Code about your ad accounts, it'll prompt you to sign in. Your browser opens automatically for OAuth 2.1 authorization with PKCE.
+  </Step>
+  <Step title="Sign In to Adspirer">
+    Approve the requested scopes (campaigns:read/write, reporting:read, accounts:read) and link your Google Ads, Meta Ads, LinkedIn Ads, and/or TikTok accounts. Return to your terminal — you'll see "Authentication successful".
+  </Step>
+  <Step title="Add Agent Skills (Optional)">
+    This path only adds the MCP connector — no slash commands or agent. To get the skill file that gives Claude proven advertising workflows (campaign creation, performance review, wasted-spend audit), copy it manually:
+
+    ```bash
+    git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
+    cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
+    ```
   </Step>
   <Step title="Try It Now">
     <Card
