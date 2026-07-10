@@ -52,23 +52,10 @@ The Adspirer plugin gives Claude Code everything it needs:
 | **Skill** | `~/.claude/skills/ad-campaign-management/SKILL.md` | Proven workflows for all platforms |
 | **Commands** | `~/.claude/commands/*.md` | 5 slash commands for common tasks |
 
-<Tabs>
-  <Tab title="Plugin Install (Recommended)">
-    ```bash
-    /plugin install adspirer-ads-agent@claude-community
-    ```
-    Available on the official Anthropic marketplace — no custom marketplace setup needed. Or type `/plugin`, open the **Discover** tab, and search `adspirer`. Installs everything in one step. Run `/reload-plugins` after installing.
-  </Tab>
-  <Tab title="Manual Install">
-    ```bash
-    claude mcp add --transport http adspirer https://mcp.adspirer.com/mcp
-    git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-    cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
-    cp -r /tmp/ads-mcp/agents/performance-marketing-agent.md ~/.claude/agents/
-    cp /tmp/ads-mcp/commands/*.md ~/.claude/commands/
-    ```
-  </Tab>
-</Tabs>
+```bash
+/plugin install adspirer-ads-agent@claude-community
+```
+Available on the official Anthropic marketplace — no custom marketplace setup needed. Or type `/plugin`, open the **Discover** tab, and search `adspirer`. Installs everything in one step. Run `/reload-plugins` after installing.
 
 ---
 

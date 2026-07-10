@@ -72,7 +72,7 @@ Skills turn a vague prompt into a complete, validated workflow.
 
 | AI Client | Skills Support | Install Location |
 |-----------|---------------|-----------------|
-| [Claude Code](/ai-clients/claude-code) | <Badge color="green">Full</Badge> + Slash Commands | `~/.claude/skills/` (via plugin or manual) |
+| [Claude Code](/ai-clients/claude-code) | <Badge color="green">Full</Badge> + Slash Commands | `~/.claude/skills/` (via plugin) |
 | [Cursor](/ai-clients/cursor) | <Badge color="green">Full</Badge> + Subagent + Rules | `~/.cursor/skills/` + `~/.cursor/agents/` |
 | [Codex](/ai-clients/codex) | <Badge color="green">Full</Badge> + Agent Config | `~/.agents/skills/` + `~/.codex/agents/` |
 | [OpenClaw](/ai-clients/openclaw) | <Badge color="green">Bundled</Badge> (14.4KB SKILL.md) | Auto-installed with plugin |
@@ -92,17 +92,10 @@ Go to **Customize → Skills** in Claude. Upload the [Adspirer SKILL.md](https:/
 
 ### Claude Code
 
-**Option A: Plugin install (recommended)** — installs MCP server, skills, slash commands, and agent in one step. Available on the official Anthropic marketplace, no setup needed:
+One command installs the MCP server, skills, slash commands, and agent together. Available on the official Anthropic marketplace, no setup needed:
 
 ```bash
 /plugin install adspirer-ads-agent@claude-community
-```
-
-**Option B: Manual skill install:**
-
-```bash
-git clone https://github.com/amekala/ads-mcp.git /tmp/ads-mcp
-cp -r /tmp/ads-mcp/skills/ad-campaign-management ~/.claude/skills/
 ```
 
 ### Cursor
