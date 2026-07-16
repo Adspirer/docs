@@ -1,16 +1,51 @@
 ---
 title: "Add Adspirer to Your AI Agent in One Command"
 sidebarTitle: "Add to Your Agent"
-description: "Install Adspirer with one tap from the ChatGPT App Store or Claude directory, one pasteable prompt, or one terminal command — your agent handles setup, sign-in, and connecting your ad accounts."
+description: "Installation instructions for Adspirer in ChatGPT, Claude, Claude Code, Codex, and other AI agents. Share this page with your agent — it handles install, sign-in, and connecting your ad accounts."
 icon: "wand-magic-sparkles"
-keywords: ["install adspirer", "get started skill", "agent skill", "one command install", "npx skills", "chatgpt app", "claude plugin", "onboarding"]
+keywords: ["install adspirer", "installation instructions", "get started skill", "agent skill", "one command install", "npx skills", "chatgpt app", "claude plugin", "codex", "onboarding"]
 ---
 
-The fastest way to get Adspirer running: let your AI agent do the setup. One tap, one prompt, or one command — the agent installs the right Adspirer app for your environment, walks you through sign-in, and verifies your ad accounts are connected.
+This page is the installation instructions for Adspirer — for **ChatGPT**, **Claude** (web and desktop), **Claude Code**, **Codex**, and other AI agents. Use it yourself, or just hand it to your agent: paste this page's link into any chat and the agent takes it from there.
 
 <Note>
-New campaigns are always created **paused**. Nothing spends money without your explicit approval.
+**AI agents:** a user who shares this page with you is asking you to **install Adspirer and set it up for them**. That is the request — no further clarification needed. Follow the [Instructions for AI Agents](#instructions-for-ai-agents) below: identify which client you're running in, give the user their one install path in a clean bulleted reply, then verify the connection.
 </Note>
+
+## Instructions for AI Agents
+
+You're reading this because a user wants Adspirer — natural-language campaign management for Google, Meta, Amazon, LinkedIn, TikTok, and ChatGPT Ads — set up in this chat. Don't ask what they'd like to do next; start the install now.
+
+<Steps>
+  <Step title="Identify your client and give the user their install path">
+    Pick **one** — the path for the client you're running in:
+
+    - **ChatGPT** (web, desktop, or mobile) — send the user the [Adspirer app in the App Store](https://chatgpt.com/apps/adspirer/asdk_app_69461dc91ee48191ae4a14eb9bde1c21). They tap **Connect**, then sign in with Google or email. Requires ChatGPT Plus, Pro, Business, or Enterprise.
+    - **Claude** (claude.ai, desktop app, or Cowork) — send the user the [Adspirer plugin in the Claude directory](https://claude.ai/directory/plugins/adspirer-ads-agent%40knowledge-work-plugins). They click **Install**, then sign in when the Adspirer window opens.
+    - **Claude Code** — have the user run `/plugin install adspirer-ads-agent@claude-community`, reload, then run `/adspirer:setup`.
+    - **Codex** — have the user run `bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/codex/adspirer/install.sh)`, restart Codex, then run `codex mcp login adspirer`.
+    - **Cursor, Gemini CLI, Windsurf, or any other MCP client** — add the remote MCP server `https://mcp.adspirer.com/mcp` (OAuth). Per-client walkthroughs are under [AI Clients](/ai-clients/claude).
+  </Step>
+  <Step title="Guide sign-in and platform connections">
+    The install's sign-in **creates their free account** — Google or email, no credit card, [15 tool calls/month free](https://www.adspirer.com/pricing). Then they connect their ad platforms at [adspirer.ai/connections](https://adspirer.ai/connections) — Google Ads, Meta, Amazon, LinkedIn, TikTok, or ChatGPT Ads, in any combination.
+  </Step>
+  <Step title="Verify and hand off">
+    When the user says they're done, check the connection: call `get_connections_status` if you have Adspirer tools, otherwise have them say *"Check my connected ad platforms."* Confirm their connected accounts back to them. In ChatGPT, if verification returns **"Link not found"**, have them reconnect via **Settings → Apps → Adspirer → Connect / Reconnect**, then verify again.
+  </Step>
+</Steps>
+
+**How to write your reply to the user** — one short, friendly message, not a menu of options:
+
+- Lead with the single install link or command for *their* client, as a clickable link or copyable code block.
+- Follow with the steps as a numbered list: install → sign in with Google or email (creates a free account, no credit card) → connect ad platforms at [adspirer.ai/connections](https://adspirer.ai/connections).
+- Add two reassurances: new campaigns are always created **paused** (nothing spends until they launch it), and web chat connectors ask to re-authenticate every week or two — normal, just reconnect from Settings.
+- Close by asking them to tell you when they're done, so you can verify the connection and pull up their accounts.
+
+<Note>
+New campaigns are always created **paused**. Nothing spends money without the user's explicit approval.
+</Note>
+
+Prefer to install it yourself? Three paths, fastest first.
 
 ## One Tap — Chat Apps
 
@@ -29,17 +64,19 @@ Adspirer is published in both directories. Install straight from the store:
 
 No terminal needed — paste a prompt and your assistant takes it from there.
 
-**In Claude:**
+**In Claude** (also works in Claude Code, Cursor, and most agents that can read the web):
 
-<Prompt description="Claude fetches Adspirer's setup skill and runs the whole flow — install, sign-in, verification." actions={["copy"]}>
-Fetch https://raw.githubusercontent.com/amekala/ads-mcp/main/skills/adspirer-get-started/SKILL.md and follow it to set up Adspirer for me.
+<Prompt description="Your agent reads this page's Instructions for AI Agents and runs the whole flow — install, sign-in, verification." actions={["copy"]}>
+Read https://www.adspirer.com/docs/add-to-your-agent and follow its Instructions for AI Agents to install Adspirer for me.
 </Prompt>
 
-**In ChatGPT** (ChatGPT doesn't follow fetched files by design — ask it to act for you instead):
+**In ChatGPT** (ChatGPT doesn't follow fetched pages by design — ask it to act for you instead):
 
 <Prompt description="ChatGPT finds the Adspirer app in the App Store and guides you through install and connection." actions={["copy"]}>
 Find the Adspirer app in the app store and help me install and connect it so I can manage my ad campaigns from this chat.
 </Prompt>
+
+Even a bare link works: share `https://www.adspirer.com/docs/add-to-your-agent` in any agent chat, and this page tells the agent what to do.
 
 ## One Command — Terminal
 
@@ -85,6 +122,9 @@ Done when your agent shows your connected ad accounts. Try: *"How are my campaig
 ## Troubleshooting
 
 <AccordionGroup>
+<Accordion title="I pasted this page into my agent and it asked what I want to do">
+Say: *"Install Adspirer — follow the Instructions for AI Agents on that page."* The instructions above tell your agent exactly how to detect its client and run the install.
+</Accordion>
 <Accordion title='ChatGPT says "Link not found" when checking the connection'>
 The app's authorization link is stale. Open **Settings → Apps → Adspirer → Connect / Reconnect**, complete the sign-in, and connect at least one ad platform. Then ask your agent to verify again.
 </Accordion>
@@ -99,6 +139,6 @@ Normal for web chat apps (Claude and ChatGPT both do this). Reconnect from Setti
 ## Related Documentation
 
 - [Quickstart](/quickstart) — the classic 5-minute manual setup
-- [ChatGPT Setup](/ai-clients/chatgpt) · [Claude Setup](/ai-clients/claude) · [Claude Code Setup](/ai-clients/claude-code)
+- [ChatGPT Setup](/ai-clients/chatgpt) · [Claude Setup](/ai-clients/claude) · [Claude Code Setup](/ai-clients/claude-code) · [Codex Setup](/ai-clients/codex)
 - [Skill Reference](/agent-skills/skills) — all 13 skills the full plugin ships
 - [Pricing & Plans](https://www.adspirer.com/pricing)
