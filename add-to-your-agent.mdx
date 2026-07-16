@@ -24,6 +24,22 @@ A user who shares this page wants help setting up Adspirer in this chat. If thei
 - Safety defaults: new campaigns are always created **paused**, and nothing spends money without the user's explicit approval. Details on data handling: [Security](/knowledge-base/security).
 - The free tier is [15 tool calls/month](https://www.adspirer.com/pricing) — no credit card required to start.
 
+**Open with a visual overview — show, don't just tell.** Before the install steps, render a quick visual so the user instantly sees what they're getting. Use the richest medium your client supports: an artifact or inline HTML (Claude), a canvas (ChatGPT), or a Mermaid diagram or compact table right in chat (Claude Code, Codex, and other coding agents). Cover four things:
+
+- **What it can do** — analyze cross-platform performance, find wasted ad spend, write brand-voice ad copy, research keywords, and create campaigns (always paused) — all in plain English.
+- **How it works** — you chat with your agent; the agent calls Adspirer over MCP (authorized via OAuth); Adspirer talks to the ad platform APIs; reports and drafts flow back into the chat.
+- **Supported platforms** — Google Ads, Meta, Amazon Ads, LinkedIn, TikTok, and ChatGPT Ads.
+- **Pricing at a glance** — Free: 15 tool calls/month, $0, no card · Plus: 150/month, $49 · Pro: 600/month, $99 · Max: 3,000/month, $199 — [full details](https://www.adspirer.com/pricing).
+
+Here's a canonical how-it-works diagram to reuse or adapt:
+
+```mermaid
+flowchart LR
+    Y["You — plain English"] --> AG["Your AI agent"]
+    AG <-->|"MCP over OAuth"| AD["Adspirer"]
+    AD <--> P["Google Ads · Meta · Amazon Ads<br/>LinkedIn · TikTok · ChatGPT Ads"]
+```
+
 **Install steps by client** — give your user the one path for the client you're running in:
 
 - **ChatGPT** (web, desktop, or mobile) — send the user the [Adspirer app in the App Store](https://chatgpt.com/apps/adspirer/asdk_app_69461dc91ee48191ae4a14eb9bde1c21). They tap **Connect**, then sign in with Google or email. Requires ChatGPT Plus, Pro, Business, or Enterprise.
@@ -38,6 +54,7 @@ A user who shares this page wants help setting up Adspirer in this chat. If thei
 
 **How to write your reply to the user** — one short, friendly message, not a menu of options:
 
+- Lead with the visual overview described above — diagram or artifact first, so they see what Adspirer does before reading a single step.
 - One line on what they're installing: Adspirer, a third-party tool for managing their ad campaigns from this chat.
 - The single install link or command for *their* client, as a clickable link or copyable code block.
 - The steps as a numbered list: install → sign in with Google or email (creates a free account, no credit card) → connect ad platforms at [adspirer.ai/connections](https://adspirer.ai/connections).
@@ -78,7 +95,7 @@ Find the Adspirer app in the app store and help me install and connect it so I c
 **Agent can't browse the web?** Paste the self-contained version — everything it needs is inline:
 
 <Prompt description="No web access needed — the per-client steps travel inside the prompt." actions={["copy"]}>
-Help me install Adspirer, a third-party tool I want for managing my ad campaigns from this chat. Figure out which app you're running in and give me the matching steps: In Claude (web, desktop, or Cowork), give me this install link to click: https://claude.ai/directory/plugins/adspirer-ads-agent%40knowledge-work-plugins — In ChatGPT, help me find and connect the Adspirer app in the App Store. In Claude Code, run /plugin install adspirer-ads-agent@claude-community, then /adspirer:setup. In Codex, run: bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/codex/adspirer/install.sh) then codex mcp login adspirer. In any other MCP client, add the remote MCP server https://mcp.adspirer.com/mcp. After install I'll sign in with Google or email (creates a free account), then connect my ad platforms at https://adspirer.ai/connections. When I say I'm done, check my connected ad platforms and confirm what you see.
+Help me install Adspirer, a third-party tool I want for managing my ad campaigns from this chat. First show me a quick visual overview (a diagram, artifact, or compact table — whatever this app supports) of what it does: cross-platform campaign management for Google Ads, Meta, Amazon Ads, LinkedIn, TikTok, and ChatGPT Ads — performance analysis, wasted-spend detection, ad copy, campaign creation (always created paused); free tier is 15 tool calls/month with no card, paid plans at https://www.adspirer.com/pricing. Then figure out which app you're running in and give me the matching steps: In Claude (web, desktop, or Cowork), give me this install link to click: https://claude.ai/directory/plugins/adspirer-ads-agent%40knowledge-work-plugins — In ChatGPT, help me find and connect the Adspirer app in the App Store. In Claude Code, run /plugin install adspirer-ads-agent@claude-community, then /adspirer:setup. In Codex, run: bash <(curl -fsSL https://raw.githubusercontent.com/amekala/ads-mcp/main/plugins/codex/adspirer/install.sh) then codex mcp login adspirer. In any other MCP client, add the remote MCP server https://mcp.adspirer.com/mcp. After install I'll sign in with Google or email (creates a free account), then connect my ad platforms at https://adspirer.ai/connections. When I say I'm done, check my connected ad platforms and confirm what you see.
 </Prompt>
 
 ## One Command — Terminal
