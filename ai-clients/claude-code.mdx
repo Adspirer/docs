@@ -6,10 +6,10 @@ icon: "/icons/claude-code.svg"
 keywords: ["claude code", "terminal", "cli", "mcp", "plugin"]
 ---
 
-Manage all your ad campaigns from the terminal. One command to connect, 400+ tools to use.
+Manage all your ad campaigns from the terminal. Two commands to connect, 400+ tools to use.
 
 <Tip>
-**Adspirer is available on the Claude plugin marketplace.** Run `/plugin install adspirer-ads-agent@claude-community` directly, or type `/plugin`, open the **Discover** tab, and search for `adspirer` — you'll find `adspirer-ads-agent` from `claude-community`. No custom marketplace setup required. This is the recommended way to connect Adspirer to Claude Code.
+**Adspirer runs its own Claude Code plugin marketplace.** Add it once with `/plugin marketplace add amekala/ads-mcp`, then install **Adspirer Advertising Agent** from the **Discover** tab (or run `/plugin install adspirer-advertising-agent@adspirer-marketplace` directly). This is the recommended way to connect Adspirer to Claude Code — full walkthrough below.
 </Tip>
 
 <Frame caption="Create Google Ads Campaigns From Your Terminal">
@@ -32,39 +32,53 @@ npm install -g @anthropic-ai/claude-code
 
 ### Install
 
-One command installs the MCP connector, slash commands, skills, and the Performance Marketing Agent together.
+Adding Adspirer's plugin marketplace once, then installing the plugin, sets up the MCP connector, slash commands, skills, and the Performance Marketing Agent together.
 
 <Note>
-The `/plugin` and `/mcp` commands below are **slash commands** — type them directly into the Claude Code input. Do not ask the AI to run them for you (that will cause a "nested session" error).
+The `/plugin`, `/mcp`, and `/reload-plugins` commands below are **slash commands** — type them directly into the Claude Code input. Do not ask the AI to run them for you (that will cause a "nested session" error).
 </Note>
 
 <Steps>
-  <Step title="Install the Plugin">
-    Run this directly from the command line:
+  <Step title="Add the Adspirer Marketplace">
+    Adspirer runs its own plugin marketplace on GitHub — it's not on a shared/curated marketplace, so you add it once by source.
 
-    ```bash
-    /plugin install adspirer-ads-agent@claude-community
+    Type `/plugin` to open the plugin manager. The UI has four tabs — **Discover**, **Installed**, **Marketplaces**, **Errors** — cycle with Tab. Switch to **Marketplaces**, then select **+ Add Marketplace**.
+
+    <Frame caption="Plugin manager — Marketplaces tab, + Add Marketplace">
+      <img src="/images/claude-code/marketplace-tab.png" alt="Claude Code plugin manager Marketplaces tab with + Add Marketplace option" />
+    </Frame>
+
+    Enter the marketplace source and press Enter:
+
+    ```
+    amekala/ads-mcp
     ```
 
-    Or type `/plugin` to open the plugin manager. The UI has four tabs — **Discover**, **Installed**, **Marketplaces**, **Errors** — cycle with Tab.
-
-    In the **Discover** tab, search for `adspirer` (or `ads`). You'll see **adspirer-ads-agent** from `claude-community` — Anthropic's community marketplace, enabled by default.
-
-    <Frame caption="Adspirer in the Discover tab of the claude-community marketplace">
-      <img src="/images/claude-code/plugin-discover-search.png" alt="Plugin Discover tab showing adspirer-ads-agent from claude-community" />
+    <Frame caption="Add Marketplace — entering amekala/ads-mcp as the source">
+      <img src="/images/claude-code/marketplace-add-dialog.png" alt="Add Marketplace dialog with amekala/ads-mcp entered as the GitHub source" />
     </Frame>
 
-    Press Enter on the plugin, then choose an install scope:
-    - **Install for you (user scope)** — recommended, available across all your projects
-    - **Install for all collaborators on this repository (project scope)**
-    - **Install for you, in this repo only (local scope)**
+    This registers Adspirer's marketplace (`adspirer-marketplace`) and downloads its plugin list. Or skip the UI and run it directly:
 
-    <Frame caption="Plugin details page with install scope options">
-      <img src="/images/claude-code/plugin-install-scopes.png" alt="adspirer-ads-agent plugin details with user/project/local scope options" />
+    ```bash
+    /plugin marketplace add amekala/ads-mcp
+    ```
+  </Step>
+  <Step title="Find and Install the Plugin">
+    Switch to the **Discover** tab — you'll see **Adspirer Advertising Agent**.
+
+    <Frame caption="Discover tab — Adspirer Advertising Agent found after adding the marketplace">
+      <img src="/images/claude-code/plugin-discover-search.png" alt="Plugin Discover tab showing Adspirer Advertising Agent plugin" />
     </Frame>
+
+    Select it and install. Or install directly from the command line:
+
+    ```bash
+    /plugin install adspirer-advertising-agent@adspirer-marketplace
+    ```
   </Step>
   <Step title="Reload Plugins">
-    After installation, reload plugins to activate:
+    Claude Code confirms the install and prompts you to reload:
 
     ```bash
     /reload-plugins
@@ -72,31 +86,29 @@ The `/plugin` and `/mcp` commands below are **slash commands** — type them dir
 
     Or close and reopen Claude Code.
 
-    <Frame caption="Post-install output — plugins, skills, agents, and MCP servers loaded">
-      <img src="/images/claude-code/plugin-reloaded.png" alt="Claude Code reload-plugins output showing 2 plugins, 7 skills, 6 agents, 2 plugin MCP servers" />
+    <Frame caption="Plugin installed, then /reload-plugins applies it">
+      <img src="/images/claude-code/plugin-reloaded.png" alt="Claude Code output confirming Adspirer Advertising Agent installed, followed by reload-plugins output" />
     </Frame>
   </Step>
   <Step title="Authenticate with Adspirer">
-    The plugin's MCP server needs a one-time OAuth sign-in. Use either path:
+    The plugin's MCP server needs a one-time OAuth sign-in. Type `/mcp` to open the MCP server manager.
 
-    **From the plugin manager (recommended):** type `/plugin`, open the **Installed** tab, and select **adspirer**. You'll see it flagged as "needs attention".
-
-    <Frame caption="Installed tab — adspirer flagged as needs authentication">
-      <img src="/images/claude-code/plugin-installed-tab.png" alt="Plugin manager Installed tab showing adspirer plugin needs authentication" />
+    <Frame caption="Typing /mcp to open the MCP server manager">
+      <img src="/images/claude-code/mcp-command.png" alt="Typing the /mcp slash command in Claude Code" />
     </Frame>
 
-    Select the plugin to open its detail view — you'll see **Plugin:adspirer-ads-agent:adspirer MCP Server** with status "needs authentication". Choose **Authenticate** — your browser opens for OAuth sign-in.
+    Find **plugin:adspirer-advertising-agent:adspirer** in the list, select it, then choose **Authenticate** — your browser opens for OAuth sign-in.
 
-    <Frame caption="Plugin MCP server detail view with Authenticate option">
-      <img src="/images/claude-code/plugin-auth-view.png" alt="adspirer MCP server detail view showing Authenticate option" />
-    </Frame>
-
-    **From `/mcp`:** type `/mcp`, find **plugin:adspirer-ads-agent:adspirer MCP Server** in the list, select it, then choose **Authenticate**.
-
-    Sign in with your Adspirer account and authorize the requested scopes (campaigns:read/write, reporting:read, accounts:read). **New to Adspirer?** The browser lands on a quick sign-up page first — create a free account (no credit card) and you're sent straight back to the authorization screen. Return to Claude Code — you'll see "Authentication successful".
+    Sign in with your Adspirer account and review the requested scopes (campaigns:read/write, performance:read, accounts:read). **New to Adspirer?** The browser lands on a quick sign-up page first — create a free account (no credit card) and you're sent straight back to the authorization screen. Click **Authorize**.
 
     <Frame caption="OAuth authorization — review and approve the requested scopes">
       <img src="/images/claude-code/oauth-scopes.png" alt="Adspirer OAuth authorization page showing requested scopes" />
+    </Frame>
+
+    Return to Claude Code and run `/mcp` (or `/plugin`) again — **plugin:adspirer-advertising-agent:adspirer** now shows connected with its full tool count. You're ready to go.
+
+    <Frame caption="plugin:adspirer-advertising-agent:adspirer connected, 20 tools">
+      <img src="/images/claude-code/mcp-server-connected.png" alt="MCP server manager showing plugin:adspirer-advertising-agent:adspirer connected" />
     </Frame>
   </Step>
   <Step title="Set Up Your Brand Workspace">
@@ -265,10 +277,10 @@ If you see `Error: Claude Code cannot be launched inside another Claude Code ses
 ### Plugin not showing after install
 
 Run `/reload-plugins` after installing, or restart Claude Code. Then verify via either:
-- `/plugin` → **Installed** tab — you should see **adspirer** listed
-- `/mcp` — you should see **plugin:adspirer-ads-agent:adspirer MCP Server**
+- `/plugin` → **Installed** tab — you should see **Adspirer Advertising Agent** listed
+- `/mcp` — you should see **plugin:adspirer-advertising-agent:adspirer**
 
-If the plugin is missing from the **Discover** tab, refresh the marketplace: `/plugin marketplace update claude-community`.
+If the plugin is missing from the **Discover** tab, make sure the marketplace was added (`/plugin` → **Marketplaces** tab should list `adspirer-marketplace`), or refresh it: `/plugin marketplace update adspirer-marketplace`.
 
 ### Authentication keeps failing
 
@@ -276,7 +288,12 @@ Clear your browser cache or try a different browser. The OAuth flow uses PKCE fo
 
 ### MCP server not found
 
-Run `/mcp` and look for **plugin:adspirer-ads-agent:adspirer MCP Server**. If it's missing, run `/reload-plugins` or restart Claude Code. If it's still missing, re-run `/plugin install adspirer-ads-agent@claude-community`.
+Run `/mcp` and look for **plugin:adspirer-advertising-agent:adspirer**. If it's missing, run `/reload-plugins` or restart Claude Code. If it's still missing, re-run:
+
+```bash
+/plugin marketplace add amekala/ads-mcp
+/plugin install adspirer-advertising-agent@adspirer-marketplace
+```
 
 ### Tools not working after connecting
 
@@ -297,7 +314,8 @@ You should see a SKILL.md file. If not, re-run the plugin install command.
 If `/adspirer:setup` isn't recognized, the plugin may not be installed. Run:
 
 ```bash
-/plugin install adspirer-ads-agent@claude-community
+/plugin marketplace add amekala/ads-mcp
+/plugin install adspirer-advertising-agent@adspirer-marketplace
 /reload-plugins
 ```
 
@@ -315,7 +333,7 @@ No. MCP (Model Context Protocol) is the plumbing — you don't interact with it 
 Both support Adspirer through MCP, but they're separate apps. Use Claude Code if you live in the terminal. Use [Claude Cowork](/ai-clients/claude-cowork) if you want a brand-aware workspace with folder context.
 </Accordion>
 <Accordion title="What does the plugin install?">
-The `adspirer-ads-agent` plugin installs: the MCP server connection, 5 slash commands (setup, performance-review, write-ad-copy, wasted-spend, refresh-brand-context), a performance marketing agent, and the ad campaign management skill file.
+The `adspirer-advertising-agent` plugin installs: the MCP server connection, 5 slash commands (setup, performance-review, write-ad-copy, wasted-spend, refresh-brand-context), a performance marketing agent, and the ad campaign management skill file.
 </Accordion>
 <Accordion title="Can I manage multiple ad accounts?">
 Yes. Adspirer supports multiple accounts per platform. Use the `switch_primary_account` tool to change which account you're managing, or specify the account ID in your prompts.
