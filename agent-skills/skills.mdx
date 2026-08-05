@@ -167,6 +167,24 @@ context small:
 Source lives in [github.com/amekala/ads-mcp](https://github.com/amekala/ads-mcp) under
 `shared/skills/`, and fans out to each client from there.
 
+## Going further: a skill for your own account
+
+These 13 skills know advertising. They don't know *your* account — your campaigns, your spend, your
+currency, what state the account is in.
+
+The [**Prompt Engineering Playbook**](/agent-skills/prompt-engineering-playbook) is the paid layer
+that does: a **one-time $39 per ad account**, and Adspirer generates a custom skill, an account
+dossier, a prompt book, and paste-ready agent instructions from that account's real data. You
+download the files and install them alongside these free skills.
+
+| | These 13 skills | Prompt Engineering Playbook |
+|---|---|---|
+| **Scope** | Advertising in general | One specific ad account |
+| **Knows your campaigns** | No | Yes |
+| **Cost** | Free on every plan | $39 once, per account (one free on annual) |
+
+You want both — the free skills are the grammar, the playbook is the briefing.
+
 <Prompt description="Launch a Google Search campaign end to end." actions={["copy", "cursor"]}>
 Create a Google Search campaign for my SaaS product:
 - Product: cloud inventory management for restaurants

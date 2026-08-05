@@ -146,6 +146,7 @@
             "pages": [
               "agent-skills/overview",
               "agent-skills/skills",
+              "agent-skills/prompt-engineering-playbook",
               "agent-skills/ad-ops-agents",
               "agent-skills/agent",
               "agent-skills/claude-code-agent",
